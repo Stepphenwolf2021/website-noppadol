@@ -1,0 +1,524 @@
+/* Trunk-Base Inspired Minimal Design */
+/* Monochrome palette with focus on typography */
+
+:root {
+  /* Monochrome color palette */
+  --black: #000000;
+  --gray-100: #111111;
+  --gray-200: #222222;
+  --gray-300: #444444;
+  --gray-400: #666666;
+  --gray-500: #888888;
+  --gray-600: #aaaaaa;
+  --gray-700: #cccccc;
+  --gray-800: #e0e0e0;
+  --gray-900: #f0f0f0;
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+  
+  /* Spacing units */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  
+  /* Max content width for readability (60-70 characters) */
+  --content-width: 65ch;
+  
+  /* Border */
+  --border-thin: 1px solid var(--gray-300);
+}
+
+/* Font imports - using Google Fonts as close alternatives to the fonts used in anulikajoy.com */
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400;900&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* 16px base */
+  line-height: 1.6;
+  color: var(--gray-100);
+  background-color: var(--white);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  line-height: 1.2;
+  margin-block-start: 1em;
+  margin-block-end: 0.5em;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+p, li {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.7;
+  max-width: var(--content-width);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+}
+
+a:hover {
+  color: var(--gray-400);
+}
+
+.nav-links a.active {
+  text-decoration: underline;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-inline-size: 75rem; /* 1200px */
+  padding-inline: var(--spacing-6);
+  margin-inline: auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr min(var(--content-width), 100%) 1fr;
+}
+
+.content-grid > * {
+  grid-column: 2;
+}
+
+/* Header */
+header {
+  padding-block: var(--spacing-6);
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
+  z-index: 10;
+  border-bottom: var(--border-thin);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-8);
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Mobile menu */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray-100);
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    padding: var(--spacing-6);
+    flex-direction: column;
+    gap: var(--spacing-4);
+    border-bottom: var(--border-thin);
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+}
+
+/* Main content */
+main {
+  padding-block: var(--spacing-12);
+  min-height: calc(100vh - 200px);
+}
+
+/* Sections */
+.section {
+  margin-block: var(--spacing-12);
+}
+
+.section-header {
+  margin-block-end: var(--spacing-10);
+  border-bottom: var(--border-thin);
+  padding-bottom: var(--spacing-6);
+}
+
+/* Hero section (for home page) */
+.hero {
+  padding-block: var(--spacing-20) 0;
+}
+
+.hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  margin-block-end: var(--spacing-2);
+  font-weight: 400;
+}
+
+.hero p {
+  color: var(--gray-400);
+  max-width: var(--content-width);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  margin-block-end: var(--spacing-8);
+}
+
+/* Animated greeting text */
+#hi-text {
+  display: inline-block;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-family: 'MuseoModerno', cursive, sans-serif;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+#greeting {
+  display: inline-block;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-family: 'MuseoModerno', cursive, sans-serif;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+#time-greeting {
+  display: inline-block;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-family: 'MuseoModerno', cursive, sans-serif;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.4s both, colorChange 8s infinite;
+  margin-left: 0.5ch;
+  background: linear-gradient(270deg, #ff0000, #ff8000, #ffff00, #00ff00, #0000ff, #8000ff, #ff00ff, #ff0000);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@keyframes colorChange {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Profile section */
+.profile-container {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: flex-start;
+  margin-block: var(--spacing-10);
+}
+
+.profile-image {
+  width: 323px;
+  height: 323px;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: white;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+/* Adjust profile info for anulikajoy.com style */
+.profile-info p {
+  max-width: 50ch; /* Slightly narrower text width */
+}
+
+/* Portfolio grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-8);
+}
+
+.portfolio-item {
+  padding-block: var(--spacing-8);
+  border-bottom: var(--border-thin);
+}
+
+.portfolio-item:last-child {
+  border-bottom: none;
+}
+
+.portfolio-title {
+  font-weight: 400;
+  margin-block-end: var(--spacing-2);
+}
+
+.portfolio-meta {
+  display: flex;
+  gap: var(--spacing-4);
+  color: var(--gray-400);
+  font-size: 0.875rem;
+  margin-block-end: var(--spacing-3);
+}
+
+.portfolio-description {
+  color: var(--gray-400);
+}
+
+/* Writing hub */
+.writing-section {
+  margin-block-start: var(--spacing-8);
+}
+
+.writing-section h3 {
+  margin-block: var(--spacing-6) var(--spacing-4);
+  padding-block-start: var(--spacing-4);
+  border-top: var(--border-thin);
+}
+
+.writing-item {
+  padding-block: var(--spacing-6);
+  border-bottom: var(--border-thin);
+}
+
+.writing-item:last-child {
+  border-bottom: none;
+}
+
+.writing-title {
+  margin-block-end: var(--spacing-2);
+}
+
+.writing-meta {
+  color: var(--gray-400);
+  font-size: 0.875rem;
+  margin-block-end: var(--spacing-2);
+}
+
+/* Project hub */
+.project-item {
+  padding-block: var(--spacing-6);
+  border-bottom: var(--border-thin);
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.project-title {
+  margin-block-end: var(--spacing-2);
+}
+
+.project-description {
+  color: var(--gray-400);
+  margin-block-end: var(--spacing-2);
+}
+
+.project-link {
+  color: var(--gray-400);
+  font-size: 0.875rem;
+  text-decoration: underline;
+}
+
+/* Contact page */
+.contact-methods {
+  margin-block-start: var(--spacing-8);
+}
+
+.contact-item {
+  padding-block: var(--spacing-4);
+  border-bottom: var(--border-thin);
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item i {
+  width: 20px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* Brand color styling */
+.fa-envelope {
+  color: #0072C6; /* Microsoft/Outlook blue */
+}
+
+.fa-facebook {
+  color: #1877F2; /* Facebook blue */
+}
+
+.fa-twitter {
+  color: #1DA1F2; /* Twitter blue */
+}
+
+.fa-linkedin {
+  color: #0077B5; /* LinkedIn blue */
+}
+
+.fa-map-marker-alt {
+  color: #EA4335; /* Google red (for location) */
+}
+
+/* Footer */
+footer {
+  border-top: var(--border-thin);
+  padding-block: var(--spacing-8);
+  text-align: center;
+  color: var(--gray-400);
+}
+
+footer p {
+  font-size: 0.6rem;
+}
+
+/* Utility classes */
+.text-gray {
+  color: var(--gray-400);
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.mb-4 {
+  margin-block-end: var(--spacing-4);
+}
+
+.mb-6 {
+  margin-block-end: var(--spacing-6);
+}
+
+.mb-8 {
+  margin-block-end: var(--spacing-8);
+}
+
+.mt-8 {
+  margin-block-start: var(--spacing-8);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .container {
+    padding-inline: var(--spacing-4);
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .profile-container {
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .profile-image {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    margin-block: var(--spacing-8);
+  }
+  
+  main {
+    padding-block: var(--spacing-8);
+  }
+  
+  header {
+    padding-block: var(--spacing-4);
+  }
+  
+  .nav-container {
+    gap: var(--spacing-4);
+  }
+  
+  .logo {
+    font-size: 0.8rem;
+  }
+}
