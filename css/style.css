@@ -412,6 +412,66 @@ main {
   text-align: center;
 }
 
+/* Contact form */
+.contact-form-section {
+  margin-block-start: var(--spacing-10);
+  padding-block-start: var(--spacing-6);
+  border-top: var(--border-thin);
+}
+
+.contact-form {
+  margin-block-start: var(--spacing-6);
+}
+
+.form-group {
+  margin-block-end: var(--spacing-5);
+}
+
+.form-group label {
+  display: block;
+  margin-block-end: var(--spacing-2);
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--spacing-3);
+  border: var(--border-thin);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  background-color: var(--white);
+  color: var(--gray-100);
+  max-width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 1px solid var(--gray-400);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  background-color: var(--gray-100);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-3) var(--spacing-6);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: var(--gray-300);
+}
+
 /* Brand color styling */
 .fa-envelope {
   color: #0072C6; /* Microsoft/Outlook blue */
