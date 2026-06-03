@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liverpool FC - All-Time Success Dashboard (1892 - 2026)</title>
+  <meta name="description" content="An interactive premium dashboard tracking Liverpool FC's seasons, trophies, managers, and stats from their first year in 1892 to 2026. Custom Best XI builder and interactive charts included.">
+  
+  <!-- Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Background Glowing Blobs -->
+  <div class="glow-blob blob-1"></div>
+  <div class="glow-blob blob-2"></div>
+  <div class="glow-blob blob-3"></div>
+
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <!-- Stylized Minimalist Liverbird Crest SVG -->
+        <svg viewBox="0 0 100 120" width="54" height="65" class="crest-svg" alt="Liverpool Crest">
+          <path fill="currentColor" d="M50,10 C45,15 48,22 45,26 C42,30 38,32 35,35 C32,38 34,42 37,41 C40,40 43,35 44,38 C45,41 40,45 38,48 C36,51 39,53 41,51 C43,49 45,44 47,46 C49,48 43,56 42,60 C41,64 45,63 46,59 C47,55 49,50 51,51 C53,52 50,58 51,62 C52,66 56,64 55,60 C54,56 54,51 56,52 C58,53 58,58 60,61 C62,64 65,60 63,56 C61,52 59,48 60,45 C61,42 65,47 67,45 C69,43 65,39 63,38 C61,37 60,39 59,36 C58,33 60,31 59,28 C58,25 53,20 53,16 C53,12 55,10 50,10 Z" />
+          <path fill="currentColor" opacity="0.8" d="M35,65 C30,70 33,75 35,78 C37,81 40,82 45,82 C50,82 55,83 60,82 C65,82 68,81 70,78 C72,75 75,70 70,65 C68,63 65,67 60,67 C55,67 50,66 45,67 C40,67 37,63 35,65 Z" />
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M25,85 Q50,110 75,85" />
+          <path fill="none" stroke="currentColor" stroke-dasharray="2,2" stroke-width="1.5" stroke-linecap="round" d="M15,75 Q50,120 85,75" />
+        </svg>
+        <div class="logo-text">
+          <span class="logo-main">LIVERPOOL FC</span>
+          <span class="logo-sub">ALL-TIME SUCCESS TRACKER</span>
+        </div>
+      </div>
+      
+      <!-- Navigation Tabs -->
+      <nav class="header-nav">
+        <button class="nav-tab active" id="tab-overview" data-tab="overview-section">Overview</button>
+        <button class="nav-tab" id="tab-seasons" data-tab="seasons-section">Season Explorer</button>
+        <button class="nav-tab" id="tab-managers" data-tab="managers-section">Manager Eras</button>
+        <button class="nav-tab" id="tab-squad" data-tab="squad-section">Best XI Builder</button>
+        <button class="nav-tab" id="tab-moments" data-tab="moments-section">Key Moments</button>
+      </nav>
+      
+      <!-- Meta Information (Current Time / Context) -->
+      <div class="header-meta">
+        <span class="meta-season-badge">1892 – 2026</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      
+      <!-- 1. OVERVIEW & STATS SECTION -->
+      <section id="overview-section" class="tab-content active">
+        
+        <!-- Animated Count / High-Level Stats Grid -->
+        <div class="stats-overview-grid">
+          <div class="metric-card gold-glowing">
+            <div class="card-icon trophy-gold">
+              <!-- Trophy SVG -->
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                <path d="M18,2H6V4H2V8C2,10.21 3.79,12 6,12H8.09C8.97,14.28 10.93,16 13.34,16.5C13.88,16.61 14,17.09 14,17.5V19H12A2,2 0 0,0 10,21V22H14V21H18V22H22V21A2,2 0 0,0 20,19H18V17.5C18,17.09 18.12,16.61 18.66,16.5C21.07,16 23.03,14.28 23.91,12H26C28.21,12 30,10.21 30,8V4H26V2H18M6,10C4.9,10 4,9.1 4,8V6H6V8C6,9.1 5.1,10 4,10M26,8C26,9.1 25.1,10 24,10C22.9,10 22,9.1 22,8V6H24V8Z" transform="scale(0.8) translate(2,2)" />
+              </svg>
+            </div>
+            <div class="metric-data">
+              <span class="metric-value counter" data-target="68">0</span>
+              <span class="metric-label">Total Silverware</span>
+            </div>
+          </div>
+          
+          <div class="metric-card crimson-glowing">
+            <div class="card-icon">
+              <!-- Goal SVG -->
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+              </svg>
+            </div>
+            <div class="metric-data">
+              <span class="metric-value counter" data-target="8419">0</span>
+              <span class="metric-label">League Goals Scored</span>
+            </div>
+          </div>
+
+          <div class="metric-card teal-glowing">
+            <div class="card-icon">
+              <!-- Win percentage icon -->
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                <path d="M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M11,7H13V9H11V7M11,11H13V17H11V11Z" />
+              </svg>
+            </div>
+            <div class="metric-data">
+              <span class="metric-value">48.7%</span>
+              <span class="metric-label">Overall Win Rate</span>
+            </div>
+          </div>
+
+          <div class="metric-card blue-glowing">
+            <div class="card-icon">
+              <!-- Match icon -->
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                <path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3 4.9 3 6V20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4M19 20H5V9H19V20M19 7H5V6H19V7Z" />
+              </svg>
+            </div>
+            <div class="metric-data">
+              <span class="metric-value counter" data-target="4816">0</span>
+              <span class="metric-label">League Matches Played</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Trophy Cabinet Showcase -->
+        <div class="dashboard-panel cabinet-panel">
+          <div class="panel-header">
+            <h3>Digital Trophy Cabinet</h3>
+            <p>Major silverware secured in club history (1892–2026)</p>
+          </div>
+          
+          <div class="trophy-cabinet-grid">
+            <div class="trophy-item-card gold-hover">
+              <div class="trophy-badge pl-badge">
+                <span class="trophy-count-tag">x20</span>
+                <div class="trophy-silhouette pl-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">League Titles</span>
+              <span class="trophy-seasons">1901 – 2025 (20 Titles)</span>
+            </div>
+
+            <div class="trophy-item-card gold-hover">
+              <div class="trophy-badge ucl-badge">
+                <span class="trophy-count-tag">x6</span>
+                <div class="trophy-silhouette ucl-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">European Cups</span>
+              <span class="trophy-seasons">1977 – 2019 (6 Titles)</span>
+            </div>
+
+            <div class="trophy-item-card crimson-hover">
+              <div class="trophy-badge fa-badge">
+                <span class="trophy-count-tag">x8</span>
+                <div class="trophy-silhouette domestic-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">FA Cup</span>
+              <span class="trophy-seasons">1965 – 2022 (8 Titles)</span>
+            </div>
+
+            <div class="trophy-item-card crimson-hover">
+              <div class="trophy-badge efl-badge">
+                <span class="trophy-count-tag">x10</span>
+                <div class="trophy-silhouette domestic-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">League Cups</span>
+              <span class="trophy-seasons">1981 – 2024 (10 Titles)</span>
+            </div>
+
+            <div class="trophy-item-card blue-hover">
+              <div class="trophy-badge europa-badge">
+                <span class="trophy-count-tag">x3</span>
+                <div class="trophy-silhouette domestic-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">UEFA Cups</span>
+              <span class="trophy-seasons">1973, 1976, 2001</span>
+            </div>
+
+            <div class="trophy-item-card gold-hover">
+              <div class="trophy-badge cwc-badge">
+                <span class="trophy-count-tag">x1</span>
+                <div class="trophy-silhouette cwc-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">FIFA Club World Cup</span>
+              <span class="trophy-seasons">2019</span>
+            </div>
+
+            <div class="trophy-item-card gold-hover">
+              <div class="trophy-badge supercup-badge">
+                <span class="trophy-count-tag">x4</span>
+                <div class="trophy-silhouette supercup-trophy">🏆</div>
+              </div>
+              <span class="trophy-name">UEFA Super Cup</span>
+              <span class="trophy-seasons">1977, 2001, 2005, 2019</span>
+            </div>
+
+            <div class="trophy-item-card crimson-hover">
+              <div class="trophy-badge shield-badge">
+                <span class="trophy-count-tag">x16</span>
+                <div class="trophy-silhouette shield-trophy">🛡️</div>
+              </div>
+              <span class="trophy-name">Community Shields</span>
+              <span class="trophy-seasons">1964 – 2022 (16 Titles)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Era Filter Row -->
+        <div class="chart-filter-row glass-panel">
+          <span class="filter-label">Filter Charts Timeline:</span>
+          <div class="filter-buttons-wrapper">
+            <button class="filter-btn active" data-range="all">All-Time</button>
+            <button class="filter-btn" data-range="pre-war">Early Years (1892-1939)</button>
+            <button class="filter-btn" data-range="golden-era">Shankly & Paisley (1946-1985)</button>
+            <button class="filter-btn" data-range="dalglish-houllier">Dalglish to Houllier (1985-2004)</button>
+            <button class="filter-btn" data-range="modern-era">Klopp & Slot (2004-2026)</button>
+          </div>
+        </div>
+
+        <!-- Charts Dashboard Section -->
+        <div class="charts-dashboard-row">
+          
+          <!-- Chart 1: Premier League Positions -->
+          <div class="dashboard-panel chart-panel flex-2">
+            <div class="panel-header">
+              <div class="header-title">
+                <h4>League Finishing Positions</h4>
+                <p>Standard Inverted View: 1st place is at the top</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="positionsChart"></canvas>
+            </div>
+          </div>
+          
+          <!-- Chart 2: Points Accumulation -->
+          <div class="dashboard-panel chart-panel flex-1">
+            <div class="panel-header">
+              <div class="header-title">
+                <h4>Points Per Season</h4>
+                <p>Evaluating season-on-season progress</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="pointsChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goals Chart Panel (Full Width) -->
+        <div class="dashboard-panel chart-panel full-width-panel">
+          <div class="panel-header">
+            <div class="header-title">
+              <h4>Offense vs. Defense: Goals For (GF) & Goals Against (GA) Comparison</h4>
+              <p>Evaluating defensive solidity and attacking output across history</p>
+            </div>
+          </div>
+          <div class="chart-container wide-chart">
+            <canvas id="goalsChart"></canvas>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 2. SEASON-BY-SEASON EXPLORER -->
+      <section id="seasons-section" class="tab-content">
+        
+        <!-- Timeline Slider Controller -->
+        <div class="timeline-control-panel glass-panel">
+          <label for="timeline-slider" class="timeline-slider-label">Drag to explore seasons:</label>
+          <div class="slider-wrapper">
+            <span class="slider-extreme">1892-93</span>
+            <input type="range" id="timeline-slider" min="0" max="122" value="122" class="timeline-slider">
+            <span class="slider-extreme">2025-26</span>
+          </div>
+          <div class="timeline-buttons-row" id="timeline-years-indicators">
+            <!-- Dynamically populated year buttons -->
+          </div>
+        </div>
+
+        <!-- Season Stats Grid and Details Layout -->
+        <div class="season-explorer-content">
+          
+          <!-- Left Column: Season PL Card & Details -->
+          <div class="explorer-left">
+            
+            <div class="season-badge-header">
+              <h2 id="explorer-season-title">2024–25</h2>
+              <span class="explorer-pos-badge" id="explorer-season-pos">1st Place</span>
+            </div>
+            
+            <div class="explorer-details-grid">
+              
+              <div class="explorer-stat-card">
+                <span class="estat-label">Points</span>
+                <span class="estat-value" id="explorer-pts">84</span>
+              </div>
+              
+              <div class="explorer-stat-card">
+                <span class="estat-label">Record (W-D-L)</span>
+                <span class="estat-value" id="explorer-record">25 - 9 - 4</span>
+              </div>
+              
+              <div class="explorer-stat-card">
+                <span class="estat-label">Goals (GF / GA)</span>
+                <span class="estat-value" id="explorer-goals">86 / 41</span>
+              </div>
+
+              <div class="explorer-stat-card">
+                <span class="estat-label">Goal Difference</span>
+                <span class="estat-value" id="explorer-gd">+45</span>
+              </div>
+
+              <div class="explorer-stat-card full-width">
+                <span class="estat-label">Manager</span>
+                <span class="estat-value manager-text" id="explorer-manager">Arne Slot</span>
+              </div>
+
+              <div class="explorer-stat-card full-width">
+                <span class="estat-label">Top Scorer (All Comps)</span>
+                <span class="estat-value scorer-text" id="explorer-scorer">Mohamed Salah (34 goals)</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Column: Silverware & Narratives -->
+          <div class="explorer-right">
+            
+            <!-- Silverware Won Card -->
+            <div class="glass-card trophies-card">
+              <h4>Trophies Won in <span id="trophy-season-label">2024–25</span></h4>
+              <div class="explorer-trophies-list" id="explorer-trophies-container">
+                <!-- Dynamically populated trophies badges -->
+              </div>
+            </div>
+
+            <!-- Narrative / Story Card -->
+            <div class="glass-card story-card">
+              <h4>Season Narrative & Highlights</h4>
+              <p class="season-narrative" id="explorer-narrative">
+                Arne Slot's debut season ended in glory! Liverpool won the Premier League title (their 20th league championship), clinching the trophy with four games to spare. Reached the Carabao Cup final.
+              </p>
+            </div>
+            
+            <!-- Detailed Cup Runs Table -->
+            <div class="glass-card cup-table-card">
+              <h4>Cup Competitions Results</h4>
+              <table class="cup-runs-table">
+                <thead>
+                  <tr>
+                    <th>Competition</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>FA Cup</td>
+                    <td id="cup-fa">R4</td>
+                  </tr>
+                  <tr>
+                    <td>EFL Cup (Carabao)</td>
+                    <td id="cup-efl">Runner-up</td>
+                  </tr>
+                  <tr>
+                    <td>UEFA Champions League</td>
+                    <td id="cup-ucl">R16</td>
+                  </tr>
+                  <tr>
+                    <td>UEFA Cup / Europa</td>
+                    <td id="cup-europa">—</td>
+                  </tr>
+                  <tr>
+                    <td>Other (CWC / Super Cup)</td>
+                    <td id="cup-other">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- 3. MANAGER ERAS -->
+      <section id="managers-section" class="tab-content">
+        
+        <div class="managers-intro-header">
+          <h2>The Tactical Thinkers of Anfield</h2>
+          <p>Analyzing and comparing manager tenures from 1892 to 2026. Tabs reflect each manager's statistical profile.</p>
+        </div>
+
+        <div class="managers-layout">
+          <!-- Sidebar selector -->
+          <div class="managers-sidebar" id="managers-selector-list">
+            <!-- Dynamically populated manager buttons -->
+          </div>
+          
+          <!-- Stats card details -->
+          <div class="managers-main-display glass-panel" id="manager-profile-card">
+            
+            <div class="manager-profile-header">
+              <div class="manager-title-group">
+                <h3 id="manager-profile-name">Jürgen Klopp</h3>
+                <span class="manager-years" id="manager-profile-years">2015 – 2024</span>
+              </div>
+              <div class="manager-trophies-count">
+                <span class="count" id="manager-profile-trophies-count">8</span>
+                <span class="lbl">Trophies</span>
+              </div>
+            </div>
+
+            <p class="manager-bio" id="manager-profile-bio">
+              Restored Liverpool to the absolute pinnacle of world football. Klopp built a legendary side that won every major trophy available, introducing 'Gegenpressing' and emotional connection.
+            </p>
+
+            <div class="manager-metrics-grid">
+              <div class="m-metric-card">
+                <span class="m-val" id="manager-profile-seasons">9</span>
+                <span class="m-lbl">Seasons</span>
+              </div>
+              <div class="m-metric-card">
+                <span class="m-val" id="manager-profile-winrate">60.9%</span>
+                <span class="m-lbl">Win Percentage</span>
+              </div>
+              <div class="m-metric-card">
+                <span class="m-val" id="manager-profile-avgpos">3.3</span>
+                <span class="m-lbl">Avg. League Finish</span>
+              </div>
+            </div>
+
+            <div class="manager-trophy-shelf">
+              <h4>Silverware Catalog</h4>
+              <ul class="manager-trophies-list" id="manager-profile-trophies-list">
+                <!-- Dynamically populated manager trophies list -->
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4. BEST XI BUILDER -->
+      <section id="squad-section" class="tab-content">
+        
+        <div class="squad-intro-header">
+          <h2>Create Your 21st Century Liverpool XI</h2>
+          <p>Assemble your ultimate squad. Click on any position on the tactical pitch to select a legendary player who played between 2000 and 2026. Hover over players to see their ratings!</p>
+        </div>
+
+        <div class="squad-builder-playground">
+          
+          <!-- Left: Tactical Pitch -->
+          <div class="tactical-pitch-container">
+            <div class="football-pitch">
+              <!-- Field Markings -->
+              <div class="pitch-marking penalty-area-top"></div>
+              <div class="pitch-marking penalty-area-bottom"></div>
+              <div class="pitch-marking center-circle"></div>
+              <div class="pitch-marking center-line"></div>
+              
+              <!-- GK Slot -->
+              <div class="pitch-player-slot gk-slot" data-pos="GK">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Goalkeeper</span>
+              </div>
+
+              <!-- DF Slots (4-3-3 Standard Layout) -->
+              <div class="pitch-player-slot lb-slot" data-pos="DF" data-role="LB">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Left Back</span>
+              </div>
+              <div class="pitch-player-slot lcb-slot" data-pos="DF" data-role="LCB">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Center Back</span>
+              </div>
+              <div class="pitch-player-slot rcb-slot" data-pos="DF" data-role="RCB">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Center Back</span>
+              </div>
+              <div class="pitch-player-slot rb-slot" data-pos="DF" data-role="RB">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Right Back</span>
+              </div>
+
+              <!-- MF Slots -->
+              <div class="pitch-player-slot lcm-slot" data-pos="MF" data-role="LCM">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Midfielder</span>
+              </div>
+              <div class="pitch-player-slot cm-slot" data-pos="MF" data-role="CM">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Midfielder</span>
+              </div>
+              <div class="pitch-player-slot rcm-slot" data-pos="MF" data-role="RCM">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Midfielder</span>
+              </div>
+
+              <!-- FW Slots -->
+              <div class="pitch-player-slot lw-slot" data-pos="FW" data-role="LW">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Left Winger</span>
+              </div>
+              <div class="pitch-player-slot st-slot" data-pos="FW" data-role="ST">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Striker</span>
+              </div>
+              <div class="pitch-player-slot rw-slot" data-pos="FW" data-role="RW">
+                <div class="player-bubble empty">+</div>
+                <span class="player-slot-label">Right Winger</span>
+              </div>
+            </div>
+            
+            <div class="pitch-controls">
+              <button id="reset-squad-btn" class="secondary-btn">Clear Pitch</button>
+              <button id="share-squad-btn" class="primary-btn">Generate Team Card</button>
+            </div>
+          </div>
+
+          <!-- Right: Player Pool Selector overlay/modal panel -->
+          <div class="player-selector-panel glass-panel hidden" id="player-pool-modal">
+            <div class="selector-header">
+              <h4>Select a <span id="selecting-position-label">GK</span></h4>
+              <button class="close-selector-btn" id="close-selector-btn">&times;</button>
+            </div>
+            
+            <div class="selector-players-list" id="selector-players-container">
+              <!-- Dynamically populated candidates list -->
+            </div>
+          </div>
+          
+          <!-- Best XI Details Card -->
+          <div class="squad-sidebar-info glass-panel">
+            <h4>Squad Overview</h4>
+            <div class="team-rating-box">
+              <span class="team-rating-title">Team Chemistry & Quality</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="team-rating-progress" style="width: 0%;"></div>
+              </div>
+              <span class="rating-value" id="team-rating-value">0 / 100</span>
+            </div>
+            
+            <div class="team-summary-list">
+              <h5>Lineup Check</h5>
+              <ul class="lineup-check-list" id="lineup-checklist">
+                <li data-check="GK">❌ Goalkeeper</li>
+                <li data-check="DF">❌ Defenders (0 / 4)</li>
+                <li data-check="MF">❌ Midfielders (0 / 3)</li>
+                <li data-check="FW">❌ Forwards (0 / 3)</li>
+              </ul>
+            </div>
+            
+            <!-- Generated team output card (hidden by default) -->
+            <div class="squad-share-result hidden" id="squad-share-box">
+              <p>Squad successfully built!</p>
+              <div class="generated-card">
+                <h6 id="gen-squad-title">Anfield 21st Century Dream XI</h6>
+                <p id="gen-squad-names"></p>
+                <div class="gen-rating-badge">Ovr: <span id="gen-squad-ovr">0</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- 5. HISTORIC MOMENTS -->
+      <section id="moments-section" class="tab-content">
+        
+        <div class="timeline-intro-header">
+          <h2>Milestones and Legends (1892 - 2026)</h2>
+          <p>Chronological milestones detailing the greatest matches, legendary managers, and massive achievements of the club.</p>
+        </div>
+
+        <div class="vertical-timeline-container">
+          
+          <div class="timeline-milestone-item left-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">June 1892</div>
+              <h4>Founding of Liverpool F.C.</h4>
+              <p>Following a dispute over rent at Anfield stadium between the Everton board and John Houlding, Everton relocated to Goodison Park. Left with an empty stadium, Houlding founded Liverpool Football Club. In their inaugural 1892-93 season, they won the Lancashire League title unbeaten.</p>
+              <span class="moment-badge count-badge">Club Founded</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item right-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 1901</div>
+              <h4>First League Title</h4>
+              <p>Managed by Tom Watson, Liverpool captured their first-ever First Division League Championship. They won 19 games and secured 45 points, finishing two points clear of runners-up Sunderland, establishing themselves as a force in English football.</p>
+              <span class="moment-badge premier-league-badge">League Title</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item left-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 1965</div>
+              <h4>Bill Shankly Wins First FA Cup</h4>
+              <p>After joining the club in 1959 and gaining promotion from the Second Division in 1962, Bill Shankly guided Liverpool to their first-ever FA Cup trophy in club history, defeating Leeds United 2-1 after extra time at Wembley Stadium.</p>
+              <span class="moment-badge fa-cup-badge">FA Cup Title</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item right-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 1977</div>
+              <h4>Rome & The First European Cup</h4>
+              <p>Under Bob Paisley, Liverpool captured their first-ever European Cup (UEFA Champions League) title by defeating Borussia Mönchengladbach 3-1 in a legendary final in Rome, kickstarting an era of dominant continental conquest.</p>
+              <span class="moment-badge champions-league-badge">European Champions</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item left-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 1984</div>
+              <h4>Joe Fagan's Historic Treble</h4>
+              <p>Joe Fagan's side recorded an unprecedented treble by winning the First Division League Title, beating Everton to lift the League Cup, and defeating AS Roma in their own stadium on penalties to claim Liverpool's fourth European Cup.</p>
+              <span class="moment-badge count-badge">Historic Treble</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item right-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 1986</div>
+              <h4>The Player-Manager Double</h4>
+              <p>In his first season as player-manager, Kenny Dalglish led the club to their first domestic League & FA Cup double. Dalglish scored the title-winning league goal against Chelsea, and Liverpool beat Everton 3-1 in the FA Cup final.</p>
+              <span class="moment-badge premier-league-badge">Domestic Double</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item left-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 2001</div>
+              <h4>The Historic Cup Treble</h4>
+              <p>Under Gérard Houllier, Liverpool achieved a unique cup treble. They won the League Cup, staged a late Michael Owen comeback to beat Arsenal 2-1 in the FA Cup, and conquered Alavés 5-4 in a wild UEFA Cup Final ending in a golden goal.</p>
+              <span class="moment-badge count-badge">3 Trophies</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item right-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 2005</div>
+              <h4>The Miracle of Istanbul</h4>
+              <p>Trailing AC Milan 3-0 at half-time in the UEFA Champions League Final, Liverpool staged the greatest comeback in football history. Goals from Steven Gerrard, Vladimír Šmicer, and Xabi Alonso drew them level, winning on penalties to secure their 5th European Cup.</p>
+              <span class="moment-badge champions-league-badge">Champions League</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item left-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 2019</div>
+              <h4>4-0 Barcelona Miracle & 6th Champions League</h4>
+              <p>Trailing Barcelona 3-0 in the UCL semi-final, Liverpool blew Barca away 4-0 at Anfield, highlighted by Trent's quick corner. Liverpool went on to defeat Tottenham 2-0 in Madrid to secure their 6th European Cup under Jürgen Klopp.</p>
+              <span class="moment-badge champions-league-badge">Champions League</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item right-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">June 2020</div>
+              <h4>The 30-Year Premier League Wait Ends</h4>
+              <p>In a record-shattering campaign, Liverpool clinched their first Premier League title, winning the league with an unprecedented 7 games remaining. Klopp's team accumulated 99 points, recording 32 wins, 3 draws, and only 3 defeats.</p>
+              <span class="moment-badge premier-league-badge">Premier League</span>
+            </div>
+          </div>
+
+          <div class="timeline-milestone-item left-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">May 2025</div>
+              <h4>Arne Slot clinches Premier League Title</h4>
+              <p>Continuing the legacy, Dutch coach Arne Slot led Liverpool to a magnificent league victory in his first season. Winning 25 matches and finishing on 84 points, they clinched the trophy with four games to spare, showcasing the club's incredible structural stability.</p>
+              <span class="moment-badge premier-league-badge">Premier League</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>&copy; 2026 Liverpool FC Success Tracker. All data compiled from official records and updated as of May 2026. Made with ❤️ for Liverpool supporters.</p>
+    </footer>
+
+  </div>
+
+  <!-- Data.js containing the statistical models -->
+  <script src="data.js"></script>
+  <!-- Application JS containing state and logic -->
+  <script src="app.js"></script>
+</body>
+</html>
