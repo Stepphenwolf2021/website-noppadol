@@ -708,49 +708,114 @@
 
         <div class="news-layout-grid">
           
-          <!-- Left Column: Official Tweets -->
-          <div class="news-column-left">
-            <h4>Official Live Feed</h4>
-            <div class="x-feed-container">
-              <a class="twitter-timeline" 
-                 data-theme="dark" 
-                 data-height="650" 
-                 data-chrome="noheader nofooter noborders transparent"
-                 data-link-color="#e2c07d"
-                 href="https://twitter.com/LFC?ref_src=twsrc%5Etfw">
-                Loading Tweets by @LFC...
-              </a>
+          <!-- Left Column: Official Tweets inside Dashboard Panel -->
+          <div class="dashboard-panel news-column-left">
+            <div class="panel-header">
+              <div class="header-live-title">
+                <h3>Official Live Feed</h3>
+                <span class="live-indicator">
+                  <span class="live-dot"></span>
+                  LIVE
+                </span>
+              </div>
+              <p>Real-time updates directly from Liverpool FC official X timeline</p>
+            </div>
+            
+            <div class="x-feed-wrapper">
+              <!-- Loading Skeleton -->
+              <div id="x-feed-skeleton" class="skeleton-container">
+                <div class="skeleton-tweet">
+                  <div class="skeleton-header">
+                    <div class="skeleton-avatar shim"></div>
+                    <div class="skeleton-header-text">
+                      <div class="skeleton-line title-line shim"></div>
+                      <div class="skeleton-line subtitle-line shim"></div>
+                    </div>
+                  </div>
+                  <div class="skeleton-content">
+                    <div class="skeleton-line body-line-1 shim"></div>
+                    <div class="skeleton-line body-line-2 shim"></div>
+                    <div class="skeleton-line body-line-3 shim"></div>
+                  </div>
+                  <div class="skeleton-actions">
+                    <div class="skeleton-action shim"></div>
+                    <div class="skeleton-action shim"></div>
+                    <div class="skeleton-action shim"></div>
+                  </div>
+                </div>
+                
+                <hr class="skeleton-divider">
+                
+                <div class="skeleton-tweet">
+                  <div class="skeleton-header">
+                    <div class="skeleton-avatar shim"></div>
+                    <div class="skeleton-header-text">
+                      <div class="skeleton-line title-line shim"></div>
+                      <div class="skeleton-line subtitle-line shim"></div>
+                    </div>
+                  </div>
+                  <div class="skeleton-content">
+                    <div class="skeleton-line body-line-1 shim"></div>
+                    <div class="skeleton-line body-line-2 shim"></div>
+                  </div>
+                  <div class="skeleton-actions">
+                    <div class="skeleton-action shim"></div>
+                    <div class="skeleton-action shim"></div>
+                    <div class="skeleton-action shim"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Actual feed container -->
+              <div class="x-feed-container">
+                <a class="twitter-timeline" 
+                   data-theme="dark" 
+                   data-height="650" 
+                   data-chrome="noheader nofooter noborders transparent"
+                   data-link-color="#e2c07d"
+                   href="https://twitter.com/LFC?ref_src=twsrc%5Etfw">
+                  Loading Tweets by @LFC...
+                </a>
+              </div>
             </div>
           </div>
 
-          <!-- Right Column: Interactive Fan Poll -->
-          <div class="news-column-right" id="fan-poll-card">
-            <h4>Anfield Fan Poll</h4>
+          <!-- Right Column: Interactive Fan Poll inside Dashboard Panel -->
+          <div class="dashboard-panel news-column-right" id="fan-poll-card">
+            <div class="panel-header">
+              <h3>Anfield Fan Poll</h3>
+              <p>Share your voice on Andoni Iraola's appointment and see real-time opinions</p>
+            </div>
+            
             <div class="poll-widget-container">
-              <h5 class="poll-question">คุณคิดว่า Andoni Iraola จะพาทีมประสบความสำเร็จแค่ไหนในฤดูกาล 2026-27 ที่กำลังจะถึง?</h5>
+              <h5 class="poll-question">How successful will Andoni Iraola be in the upcoming 2026-27 season?</h5>
               
               <!-- Voting state -->
               <div id="poll-voting-state" class="poll-state">
                 <button class="poll-opt-btn" data-option="0">
-                  <span class="opt-text">🏆 คว้าแชมป์ Premier League / ลุ้น 4 ถ้วย</span>
+                  <span class="opt-emoji">🏆</span>
+                  <span class="opt-text">Win Premier League / Quadruple Challenge</span>
                 </button>
                 <button class="poll-opt-btn" data-option="1">
-                  <span class="opt-text">🥈 จบ Top 4 และได้แชมป์บอลถ้วยติดมือ</span>
+                  <span class="opt-emoji">🥈</span>
+                  <span class="opt-text">Top 4 Finish & Cup Silverware</span>
                 </button>
                 <button class="poll-opt-btn" data-option="2">
-                  <span class="opt-text">🥉 จบเพียง Top 4 โดยไม่มีถ้วยแชมป์</span>
+                  <span class="opt-emoji">🥉</span>
+                  <span class="opt-text">Top 4 Finish Only (No Silverware)</span>
                 </button>
                 <button class="poll-opt-btn" data-option="3">
-                  <span class="opt-text">❌ หลุด Top 4 (ผลงานย่ำแย่กว่าเดิม)</span>
+                  <span class="opt-emoji">❌</span>
+                  <span class="opt-text">Outside Top 4 (Disastrous Season)</span>
                 </button>
-                <p class="poll-meta-text">Total Votes: 1,064 • ผลโหวตจากแฟนบอลเรียลไทม์</p>
+                <p class="poll-meta-text">Total Votes: 1,064 • Real-time Fan Opinion</p>
               </div>
 
               <!-- Results state (hidden initially) -->
               <div id="poll-results-state" class="poll-state hidden">
                 <div class="poll-result-item">
                   <div class="result-label-row">
-                    <span class="result-text">คว้าแชมป์ PL / ลุ้น 4 ถ้วย</span>
+                    <span class="result-text">🏆 PL Title / Quadruple Challenge</span>
                     <span class="result-percent" id="pct-0">0%</span>
                   </div>
                   <div class="result-bar-bg">
@@ -761,7 +826,7 @@
 
                 <div class="poll-result-item">
                   <div class="result-label-row">
-                    <span class="result-text">จบ Top 4 และได้แชมป์บอลถ้วย</span>
+                    <span class="result-text">🥈 Top 4 Finish & Cup Silverware</span>
                     <span class="result-percent" id="pct-1">0%</span>
                   </div>
                   <div class="result-bar-bg">
@@ -772,7 +837,7 @@
 
                 <div class="poll-result-item">
                   <div class="result-label-row">
-                    <span class="result-text">จบเพียง Top 4 (ไม่มีถ้วย)</span>
+                    <span class="result-text">🥉 Top 4 Finish Only (No Silverware)</span>
                     <span class="result-percent" id="pct-2">0%</span>
                   </div>
                   <div class="result-bar-bg">
@@ -783,7 +848,7 @@
 
                 <div class="poll-result-item">
                   <div class="result-label-row">
-                    <span class="result-text">หลุด Top 4 (ผลงานย่ำแย่)</span>
+                    <span class="result-text">❌ Outside Top 4 (Disastrous Season)</span>
                     <span class="result-percent" id="pct-3">0%</span>
                   </div>
                   <div class="result-bar-bg">
@@ -793,7 +858,7 @@
                 </div>
 
                 <p class="poll-meta-text" id="poll-total-votes">Total Votes: 1,065</p>
-                <button id="reset-vote-btn" class="poll-reset-btn">โหวตใหม่อีกครั้ง</button>
+                <button id="reset-vote-btn" class="poll-reset-btn">Vote Again</button>
               </div>
 
             </div>

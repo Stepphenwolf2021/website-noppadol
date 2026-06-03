@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initManagerEras();
   initSquadBuilder();
   initFanPoll();
+  initTwitterFeed();
 });
 
 // 1. SPA TABS NAVIGATION
@@ -934,4 +935,26 @@ function initFanPoll() {
     resultsState.classList.add("hidden");
     votingState.classList.remove("hidden");
   }
+}
+
+// 8. TWITTER FEED SKELETON LOADER
+function initTwitterFeed() {
+  const skeleton = document.getElementById("x-feed-skeleton");
+  if (!skeleton) return;
+
+  const hideSkeleton = () => {
+    skeleton.classList.add("hidden");
+  };
+
+  // Listen to Twitter's widgets rendered event
+  if (window.twttr) {
+    twttr.ready(function (t) {
+      t.events.bind("rendered", function (event) {
+        hideSkeleton();
+      });
+    });
+  }
+
+  // Safety fallback timeout (4s) to hide skeleton if ad-blockers block widgets.js
+  setTimeout(hideSkeleton, 4000);
 }
