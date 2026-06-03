@@ -910,19 +910,21 @@ function initFanPoll() {
   });
 
   // Attach reset button listener
-  resetBtn.addEventListener("click", () => {
-    localStorage.removeItem(pollVotedKey);
-    localStorage.removeItem(pollOptionKey);
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      localStorage.removeItem(pollVotedKey);
+      localStorage.removeItem(pollOptionKey);
 
-    // Switch back to voting state
-    resultsState.classList.add("hidden");
-    votingState.classList.remove("hidden");
+      // Switch back to voting state
+      resultsState.classList.add("hidden");
+      votingState.classList.remove("hidden");
 
-    // Reset bar widths to 0 first
-    for (let i = 0; i < 4; i++) {
-      document.getElementById(`bar-${i}`).style.width = "0%";
-    }
-  });
+      // Reset bar widths to 0 first
+      for (let i = 0; i < 4; i++) {
+        document.getElementById(`bar-${i}`).style.width = "0%";
+      }
+    });
+  }
 
   // Initialize display state based on localStorage
   const hasVoted = localStorage.getItem(pollVotedKey) === "true";
