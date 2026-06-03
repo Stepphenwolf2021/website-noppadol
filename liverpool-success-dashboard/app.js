@@ -939,7 +939,7 @@ function initFanPoll() {
   }
 }
 
-// 8. TWITTER FEED SKELETON LOADER
+// 8. TWITTER FEED SKELETON LOADER & SOURCE SWITCHER
 function initTwitterFeed() {
   const skeleton = document.getElementById("x-feed-skeleton");
   if (!skeleton) return;
@@ -958,5 +958,45 @@ function initTwitterFeed() {
   }
 
   // Safety fallback timeout (4s) to hide skeleton if ad-blockers block widgets.js
-  setTimeout(hideSkeleton, 4000);
+  let fallbackTimeout = setTimeout(hideSkeleton, 4000);
+
+  // Setup tab switcher buttons
+  const tabButtons = document.querySelectorAll(".feed-tab-btn");
+  const container = document.querySelector(".x-feed-container");
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // Avoid reloading if clicking the active feed
+      if (btn.classList.contains("active")) return;
+
+      // Update active state
+      tabButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Show skeleton
+      skeleton.classList.remove("hidden");
+
+      // Clear previous timeout and set a new safety fallback
+      clearTimeout(fallbackTimeout);
+      fallbackTimeout = setTimeout(hideSkeleton, 4000);
+
+      // Re-create the timeline anchor pointing to the selected account
+      const username = btn.getAttribute("data-username");
+      container.innerHTML = `
+        <a class="twitter-timeline" 
+           data-theme="dark" 
+           data-height="650" 
+           data-chrome="noheader nofooter noborders transparent"
+           data-link-color="#e2c07d"
+           href="https://twitter.com/${username}?ref_src=twsrc%5Etfw">
+          Loading Tweets by @${username}...
+        </a>
+      `;
+
+      // Reload Twitter widgets to parse the new anchor
+      if (window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load();
+      }
+    });
+  });
 }

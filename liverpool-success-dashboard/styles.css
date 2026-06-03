@@ -1713,6 +1713,44 @@ body {
   100% { transform: scale(0.9); opacity: 0.6; }
 }
 
+/* Feed Tabs styling */
+.feed-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.feed-tab-btn {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.feed-tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.feed-tab-btn.active {
+  background: var(--crimson-primary);
+  color: var(--text-primary);
+  box-shadow: 0 0 10px var(--crimson-glow);
+}
+
 /* X Feed Loading Skeleton and Wrapper */
 .x-feed-wrapper {
   position: relative;
@@ -2031,6 +2069,16 @@ body {
 @media (max-width: 480px) {
   .news-intro-header h2 {
     font-size: 24px;
+  }
+  
+  .feed-tabs {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .feed-tab-btn {
+    padding: 6px 8px;
+    font-size: 10px;
   }
   
   .poll-question {
