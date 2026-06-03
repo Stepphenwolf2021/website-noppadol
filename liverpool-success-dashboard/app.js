@@ -595,6 +595,85 @@ function formatCupResult(res) {
   return res;
 }
 
+// Manager profile photos database (Wikimedia Commons thumbnails)
+const managerImages = {
+  "W. E. Barclay / John McKenna": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/John_McKenna.jpg/120px-John_McKenna.jpg",
+  "Tom Watson": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tom_Watson_footballer.JPG/120px-Tom_Watson_footballer.JPG",
+  "David Ashworth": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/David_Ashworth.jpg/120px-David_Ashworth.jpg",
+  "Matt McQueen": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Matt_McQueen.jpg/120px-Matt_McQueen.jpg",
+  "George Patterson": "",
+  "George Kay": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/George_Kay_footballer.jpg/120px-George_Kay_footballer.jpg",
+  "Don Welsh": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Don_Welsh.jpg/120px-Don_Welsh.jpg",
+  "Phil Taylor": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phil_Taylor_footballer.JPG/120px-Phil_Taylor_footballer.JPG",
+  "Bill Shankly": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Bill_Shankly.jpg/120px-Bill_Shankly.jpg",
+  "Bob Paisley": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Bob_Paisley.jpg/120px-Bob_Paisley.jpg",
+  "Joe Fagan": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Joe_Fagan.jpg/120px-Joe_Fagan.jpg",
+  "Kenny Dalglish": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Kenny_Dalglish_1985.jpg/120px-Kenny_Dalglish_1985.jpg",
+  "Graeme Souness": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Graeme_Souness_2015.jpg/120px-Graeme_Souness_2015.jpg",
+  "Roy Evans": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Roy_Evans_2016.jpg/120px-Roy_Evans_2016.jpg",
+  "Gérard Houllier": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/G%C3%A9rard_Houllier.jpg/120px-G%C3%A9rard_Houllier.jpg",
+  "Rafael Benítez": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Rafael_Ben%C3%ADtez_2016.jpg/120px-Rafael_Ben%C3%ADtez_2016.jpg",
+  "Roy Hodgson": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Roy_Hodgson_2020.jpg/120px-Roy_Hodgson_2020.jpg",
+  "Kenny Dalglish (2nd)": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kenny_Dalglish_2013.jpg/120px-Kenny_Dalglish_2013.jpg",
+  "Brendan Rodgers": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Brendan_Rodgers_2015.jpg/120px-Brendan_Rodgers_2015.jpg",
+  "Jürgen Klopp": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/J%C3%BCrgen_Klopp%2C_Liverpool_vs._Chelsea%2C_UEFA_Super_Cup_2019-08-14_05.jpg/120px-J%C3%BCrgen_Klopp%2C_Liverpool_vs._Chelsea%2C_UEFA_Super_Cup_2019-08-14_05.jpg",
+  "Arne Slot": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Arne_Slot_2024.jpg/120px-Arne_Slot_2024.jpg",
+  "Andoni Iraola": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Andoni_Iraola_2012.jpg/120px-Andoni_Iraola_2012.jpg"
+};
+
+// Extract manager initials for fallback avatars
+function getInitials(name) {
+  const parts = name.split(" / ");
+  const mainName = parts[0];
+  const words = mainName.split(" ");
+  if (words.length >= 2) {
+    let first = words[0].replace(".", "").trim();
+    if (first.length === 1 && words.length >= 3) {
+      return (first + words[2][0]).toUpperCase();
+    }
+    return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+  }
+  return mainName.substring(0, 2).toUpperCase();
+}
+
+// Generate avatar HTML with image or gradient initial fallback
+function createAvatarHTML(name, sizeClass) {
+  const imageUrl = managerImages[name] || "";
+  const initials = getInitials(name);
+  
+  // Consistent color selection based on name hash code
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const colors = [
+    ["#e31b23", "#800f13"], // Velvet Crimson
+    ["#c8a152", "#634f24"], // LFC Gold
+    ["#1e3a8a", "#0f1d45"], // Historic Blue
+    ["#10b981", "#055e3e"], // Emerald Green
+    ["#6366f1", "#2e3170"], // Indigo
+    ["#a855f7", "#52228c"], // Purple
+    ["#ec4899", "#851c51"]  // Pink
+  ];
+  const colorIndex = Math.abs(hash) % colors.length;
+  const gradient = `linear-gradient(135deg, ${colors[colorIndex][0]} 0%, ${colors[colorIndex][1]} 100%)`;
+
+  if (imageUrl) {
+    return `
+      <div class="manager-avatar ${sizeClass}">
+        <img src="${imageUrl}" alt="${name}" class="avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="avatar-fallback" style="background: ${gradient};">${initials}</div>
+      </div>
+    `;
+  } else {
+    return `
+      <div class="manager-avatar ${sizeClass}">
+        <div class="avatar-fallback" style="display: flex; background: ${gradient};">${initials}</div>
+      </div>
+    `;
+  }
+}
+
 // 5. MANAGER ERAS SELECTOR
 function initManagerEras() {
   const selectorList = document.getElementById("managers-selector-list");
@@ -605,7 +684,10 @@ function initManagerEras() {
     if (index === 19) btn.classList.add("active"); // Klopp active by default
     
     btn.innerHTML = `
-      <span>${manager.name}</span>
+      <div class="manager-btn-content">
+        ${createAvatarHTML(manager.name, "mini")}
+        <span>${manager.name}</span>
+      </div>
       <span class="m-arrow">&rarr;</span>
     `;
     
@@ -629,6 +711,12 @@ function showManagerProfile(manager) {
   document.getElementById("manager-profile-bio").innerText = manager.description;
   document.getElementById("manager-profile-seasons").innerText = manager.seasons;
   document.getElementById("manager-profile-winrate").innerText = manager.winRate;
+  
+  // Injected large avatar next to name
+  const avatarContainer = document.getElementById("manager-profile-avatar-container");
+  if (avatarContainer) {
+    avatarContainer.innerHTML = createAvatarHTML(manager.name, "large");
+  }
   
   // Calculate average position manually if not an integer
   document.getElementById("manager-profile-avgpos").innerText = manager.avgPosition;

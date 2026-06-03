@@ -988,6 +988,85 @@ body {
   font-size: 14px;
 }
 
+/* Manager Avatar styling */
+.manager-avatar {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-tertiary);
+  flex-shrink: 0;
+}
+
+.manager-avatar.mini {
+  width: 32px;
+  height: 32px;
+}
+
+.manager-avatar.large {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 11px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.manager-avatar.large .avatar-fallback {
+  font-size: 18px;
+}
+
+/* Adjustments for Sidebar buttons */
+.manager-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  gap: 12px;
+}
+
+.manager-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.manager-btn-content span {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Adjustments for display header */
+.manager-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 /* 4. SQUAD BUILDER STYLING */
 
 .squad-intro-header {
