@@ -3338,6 +3338,16 @@ const managersData = [
       "Premier League (2025)"
     ],
     "description": "Achieved immediate success post-Klopp, winning the 2024-25 Premier League title in his debut season and maintaining elite level play in Europe."
+  },
+  {
+    "name": "Andoni Iraola",
+    "years": "2026\u2013Present",
+    "seasons": 0,
+    "trophies": 0,
+    "avgPosition": "—",
+    "winRate": "—",
+    "trophiesList": [],
+    "description": "The Basque tactician appointed in 2026 to lead Liverpool into a new era, bringing a high-intensity, aggressive pressing style from his successful tenure at Bournemouth."
   }
 ];
 

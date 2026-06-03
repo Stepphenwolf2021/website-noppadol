@@ -110,6 +110,36 @@ body {
   padding: 0 4vw;
 }
 
+/* Club Anthem Motto Banner */
+.ynwa-banner {
+  text-align: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(200, 161, 82, 0.15);
+  margin-top: 16px;
+  background: linear-gradient(90deg, transparent, rgba(227, 27, 35, 0.04) 20%, rgba(200, 161, 82, 0.04) 50%, rgba(227, 27, 35, 0.04) 80%, transparent);
+  position: relative;
+}
+
+.ynwa-text {
+  font-family: var(--font-title);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  background: linear-gradient(135deg, var(--gold-text) 30%, #ffffff 70%, var(--gold-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse-glow 3s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    text-shadow: 0 0 10px rgba(200, 161, 82, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 18px rgba(227, 27, 35, 0.6);
+  }
+}
+
 /* App Header styling */
 .app-header {
   display: flex;
@@ -128,12 +158,14 @@ body {
   gap: 16px;
 }
 
-.crest-svg {
+.crest-svg,
+.crest-img {
   color: var(--crimson-primary);
   filter: drop-shadow(0 0 10px var(--crimson-glow));
   transition: transform var(--transition-speed);
 }
-.header-logo:hover .crest-svg {
+.header-logo:hover .crest-svg,
+.header-logo:hover .crest-img {
   transform: rotate(-5deg) scale(1.05);
   color: var(--gold-primary);
   filter: drop-shadow(0 0 12px var(--gold-glow));
@@ -1534,6 +1566,15 @@ body {
   .timeline-marker {
     left: 12px !important;
   }
+  
+  .ynwa-text {
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
+  .ynwa-banner {
+    padding: 8px 0;
+    margin-top: 10px;
+  }
 }
 
 /* APP FOOTER */
@@ -1606,4 +1647,45 @@ body {
     align-items: flex-start;
     gap: 12px;
   }
+}
+
+/* 6. LIVE NEWS SECTION STYLING */
+.news-intro-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 32px auto;
+}
+
+.news-intro-header h2 {
+  font-family: var(--font-title);
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.news-intro-header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.news-layout {
+  max-width: 650px;
+  margin: 0 auto 40px auto;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.x-feed-container {
+  width: 100%;
+  max-width: 600px;
+  height: 650px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--glass-border);
 }

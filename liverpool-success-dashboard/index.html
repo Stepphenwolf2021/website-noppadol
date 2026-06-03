@@ -26,16 +26,16 @@
 
   <div class="app-container">
     
+    <!-- Club Anthem Motto Banner -->
+    <div class="ynwa-banner">
+      <span class="ynwa-text">YOU'LL NEVER WALK ALONE</span>
+    </div>
+
     <!-- Top Header -->
     <header class="app-header">
       <div class="header-logo">
-        <!-- Stylized Minimalist Liverbird Crest SVG -->
-        <svg viewBox="0 0 100 120" width="54" height="65" class="crest-svg" alt="Liverpool Crest">
-          <path fill="currentColor" d="M50,10 C45,15 48,22 45,26 C42,30 38,32 35,35 C32,38 34,42 37,41 C40,40 43,35 44,38 C45,41 40,45 38,48 C36,51 39,53 41,51 C43,49 45,44 47,46 C49,48 43,56 42,60 C41,64 45,63 46,59 C47,55 49,50 51,51 C53,52 50,58 51,62 C52,66 56,64 55,60 C54,56 54,51 56,52 C58,53 58,58 60,61 C62,64 65,60 63,56 C61,52 59,48 60,45 C61,42 65,47 67,45 C69,43 65,39 63,38 C61,37 60,39 59,36 C58,33 60,31 59,28 C58,25 53,20 53,16 C53,12 55,10 50,10 Z" />
-          <path fill="currentColor" opacity="0.8" d="M35,65 C30,70 33,75 35,78 C37,81 40,82 45,82 C50,82 55,83 60,82 C65,82 68,81 70,78 C72,75 75,70 70,65 C68,63 65,67 60,67 C55,67 50,66 45,67 C40,67 37,63 35,65 Z" />
-          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M25,85 Q50,110 75,85" />
-          <path fill="none" stroke="currentColor" stroke-dasharray="2,2" stroke-width="1.5" stroke-linecap="round" d="M15,75 Q50,120 85,75" />
-        </svg>
+        <!-- Official Liverpool FC Crest -->
+        <img src="liverpool_fc_official.svg" width="54" height="65" class="crest-img" alt="Official Liverpool FC Crest">
         <div class="logo-text">
           <span class="logo-main">LIVERPOOL FC</span>
           <span class="logo-sub">ALL-TIME SUCCESS TRACKER</span>
@@ -49,6 +49,7 @@
         <button class="nav-tab" id="tab-managers" data-tab="managers-section">Manager Eras</button>
         <button class="nav-tab" id="tab-squad" data-tab="squad-section">Best XI Builder</button>
         <button class="nav-tab" id="tab-moments" data-tab="moments-section">Key Moments</button>
+        <button class="nav-tab" id="tab-news" data-tab="news-section">Live News</button>
       </nav>
       
       <!-- Meta Information (Current Time / Context) -->
@@ -683,6 +684,121 @@
             </div>
           </div>
 
+          <div class="timeline-milestone-item right-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-moment-card glass-card">
+              <div class="moment-year">June 2026</div>
+              <h4>Andoni Iraola Appointed Head Coach</h4>
+              <p>Following Arne Slot's tenure, Basque tactician Andoni Iraola was appointed to lead Liverpool F.C., bringing his signature high-pressing, intense tactical style from Bournemouth to Anfield.</p>
+              <span class="moment-badge count-badge">New Era</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- 6. LIVE HUB (X FEED & FAN POLL) -->
+      <section id="news-section" class="tab-content">
+        
+        <div class="news-intro-header">
+          <h2>Anfield Live Hub</h2>
+          <p>Get official news from X (Twitter) and share your opinion on the current situation under head coach Andoni Iraola.</p>
+        </div>
+
+        <div class="news-layout-grid">
+          
+          <!-- Left Column: Official Tweets -->
+          <div class="news-column-left">
+            <h4>Official Live Feed</h4>
+            <div class="x-feed-container">
+              <a class="twitter-timeline" 
+                 data-theme="dark" 
+                 data-height="650" 
+                 data-chrome="noheader nofooter noborders transparent"
+                 data-link-color="#e2c07d"
+                 href="https://twitter.com/LFC?ref_src=twsrc%5Etfw">
+                Loading Tweets by @LFC...
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Fan Poll -->
+          <div class="news-column-right" id="fan-poll-card">
+            <h4>Anfield Fan Poll</h4>
+            <div class="poll-widget-container">
+              <h5 class="poll-question">คุณคิดว่า Andoni Iraola จะพาทีมประสบความสำเร็จแค่ไหนในฤดูกาล 2026-27 ที่กำลังจะถึง?</h5>
+              
+              <!-- Voting state -->
+              <div id="poll-voting-state" class="poll-state">
+                <button class="poll-opt-btn" data-option="0">
+                  <span class="opt-text">🏆 คว้าแชมป์ Premier League / ลุ้น 4 ถ้วย</span>
+                </button>
+                <button class="poll-opt-btn" data-option="1">
+                  <span class="opt-text">🥈 จบ Top 4 และได้แชมป์บอลถ้วยติดมือ</span>
+                </button>
+                <button class="poll-opt-btn" data-option="2">
+                  <span class="opt-text">🥉 จบเพียง Top 4 โดยไม่มีถ้วยแชมป์</span>
+                </button>
+                <button class="poll-opt-btn" data-option="3">
+                  <span class="opt-text">❌ หลุด Top 4 (ผลงานย่ำแย่กว่าเดิม)</span>
+                </button>
+                <p class="poll-meta-text">Total Votes: 1,064 • ผลโหวตจากแฟนบอลเรียลไทม์</p>
+              </div>
+
+              <!-- Results state (hidden initially) -->
+              <div id="poll-results-state" class="poll-state hidden">
+                <div class="poll-result-item">
+                  <div class="result-label-row">
+                    <span class="result-text">คว้าแชมป์ PL / ลุ้น 4 ถ้วย</span>
+                    <span class="result-percent" id="pct-0">0%</span>
+                  </div>
+                  <div class="result-bar-bg">
+                    <div class="result-bar-fill" id="bar-0" style="width: 0%;"></div>
+                  </div>
+                  <span class="result-count" id="count-0">0 votes</span>
+                </div>
+
+                <div class="poll-result-item">
+                  <div class="result-label-row">
+                    <span class="result-text">จบ Top 4 และได้แชมป์บอลถ้วย</span>
+                    <span class="result-percent" id="pct-1">0%</span>
+                  </div>
+                  <div class="result-bar-bg">
+                    <div class="result-bar-fill" id="bar-1" style="width: 0%;"></div>
+                  </div>
+                  <span class="result-count" id="count-1">0 votes</span>
+                </div>
+
+                <div class="poll-result-item">
+                  <div class="result-label-row">
+                    <span class="result-text">จบเพียง Top 4 (ไม่มีถ้วย)</span>
+                    <span class="result-percent" id="pct-2">0%</span>
+                  </div>
+                  <div class="result-bar-bg">
+                    <div class="result-bar-fill" id="bar-2" style="width: 0%;"></div>
+                  </div>
+                  <span class="result-count" id="count-2">0 votes</span>
+                </div>
+
+                <div class="poll-result-item">
+                  <div class="result-label-row">
+                    <span class="result-text">หลุด Top 4 (ผลงานย่ำแย่)</span>
+                    <span class="result-percent" id="pct-3">0%</span>
+                  </div>
+                  <div class="result-bar-bg">
+                    <div class="result-bar-fill" id="bar-3" style="width: 0%;"></div>
+                  </div>
+                  <span class="result-count" id="count-3">0 votes</span>
+                </div>
+
+                <p class="poll-meta-text" id="poll-total-votes">Total Votes: 1,065</p>
+                <button id="reset-vote-btn" class="poll-reset-btn">โหวตใหม่อีกครั้ง</button>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </section>
@@ -700,5 +816,7 @@
   <script src="data.js"></script>
   <!-- Application JS containing state and logic -->
   <script src="app.js"></script>
+  <!-- X (Twitter) widgets loader script -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

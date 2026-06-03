@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSeasonExplorer();
   initManagerEras();
   initSquadBuilder();
+  initFanPoll();
 });
 
 // 1. SPA TABS NAVIGATION
@@ -30,6 +31,11 @@ function initTabs() {
       // If charts tab is loaded, make sure charts redraw if container sized changed
       if (targetId === "overview-section") {
         window.dispatchEvent(new Event('resize'));
+      }
+
+      // Reload X (Twitter) widgets if the News tab is clicked to ensure iframe renders correctly
+      if (targetId === "news-section" && window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load();
       }
     });
   });
@@ -105,7 +111,8 @@ const managerColors = {
   "Brendan Rodgers": "rgba(234, 179, 8, 0.85)",  // Yellow
   "Brendan Rodgers / Jürgen Klopp": "rgba(227, 27, 35, 0.85)", // Transition
   "Jürgen Klopp": "rgba(227, 27, 35, 0.85)",     // Crimson Red
-  "Arne Slot": "rgba(16, 185, 129, 0.85)"        // Emerald Green
+  "Arne Slot": "rgba(16, 185, 129, 0.85)",        // Emerald Green
+  "Andoni Iraola": "rgba(14, 165, 233, 0.85)"      // Cyan/Light Blue
 };
 
 function getFilteredData(range) {
@@ -838,4 +845,93 @@ function generateSquadCard() {
   
   // Show output card
   document.getElementById("squad-share-box").classList.remove("hidden");
+}
+
+// 7. INTERACTIVE FAN POLL
+function initFanPoll() {
+  const pollVotedKey = "lfc_fan_poll_voted";
+  const pollOptionKey = "lfc_fan_poll_option";
+
+  // Pre-seed votes data
+  let pollVotes = [
+    542, // Option 0: PL / Quadruple Challenge
+    384, // Option 1: Top 4 & Cup
+    102, // Option 2: Top 4 Only
+    36   // Option 3: Outside Top 4
+  ];
+
+  const votingState = document.getElementById("poll-voting-state");
+  const resultsState = document.getElementById("poll-results-state");
+  const optButtons = document.querySelectorAll(".poll-opt-btn");
+  const resetBtn = document.getElementById("reset-vote-btn");
+
+  const updateResultsUI = (userSelection) => {
+    // If user selection is provided, increment it locally
+    const currentVotes = [...pollVotes];
+    if (userSelection !== null && userSelection !== undefined) {
+      currentVotes[userSelection] += 1;
+    }
+
+    const total = currentVotes.reduce((acc, v) => acc + v, 0);
+    document.getElementById("poll-total-votes").innerText = `Total Votes: ${total.toLocaleString()}`;
+
+    currentVotes.forEach((votesCount, idx) => {
+      const percentage = total > 0 ? Math.round((votesCount / total) * 100) : 0;
+      
+      // Update percentage text
+      document.getElementById(`pct-${idx}`).innerText = `${percentage}%`;
+      // Update count text
+      document.getElementById(`count-${idx}`).innerText = `${votesCount.toLocaleString()} votes`;
+      // Update bar width
+      setTimeout(() => {
+        document.getElementById(`bar-${idx}`).style.width = `${percentage}%`;
+      }, 50 * idx); // stagger animation slightly
+    });
+  };
+
+  const handleVote = (optionIndex) => {
+    localStorage.setItem(pollVotedKey, "true");
+    localStorage.setItem(pollOptionKey, optionIndex.toString());
+
+    // Switch UI state with smooth fade
+    votingState.classList.add("hidden");
+    resultsState.classList.remove("hidden");
+
+    updateResultsUI(optionIndex);
+  };
+
+  // Attach button click listeners
+  optButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const optionIndex = parseInt(btn.getAttribute("data-option"));
+      handleVote(optionIndex);
+    });
+  });
+
+  // Attach reset button listener
+  resetBtn.addEventListener("click", () => {
+    localStorage.removeItem(pollVotedKey);
+    localStorage.removeItem(pollOptionKey);
+
+    // Switch back to voting state
+    resultsState.classList.add("hidden");
+    votingState.classList.remove("hidden");
+
+    // Reset bar widths to 0 first
+    for (let i = 0; i < 4; i++) {
+      document.getElementById(`bar-${i}`).style.width = "0%";
+    }
+  });
+
+  // Initialize display state based on localStorage
+  const hasVoted = localStorage.getItem(pollVotedKey) === "true";
+  if (hasVoted) {
+    votingState.classList.add("hidden");
+    resultsState.classList.remove("hidden");
+    const optionIndex = parseInt(localStorage.getItem(pollOptionKey) || "0");
+    updateResultsUI(optionIndex);
+  } else {
+    resultsState.classList.add("hidden");
+    votingState.classList.remove("hidden");
+  }
 }
