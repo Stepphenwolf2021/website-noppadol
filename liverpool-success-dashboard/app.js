@@ -176,7 +176,7 @@ function initCharts() {
       scales: {
         y: {
           reverse: true, // Invert scale: 1st is top, worst is bottom
-          min: 1,
+          min: 0.2, // Expanded top area above 1st position for breathing room
           max: 22, // Set to standard max size of English first division
           ticks: {
             stepSize: 2,
@@ -187,7 +187,13 @@ function initCharts() {
               return value + (suffixes[value - 1] || "th");
             }
           },
-          grid: { color: "rgba(255, 255, 255, 0.05)" }
+          grid: { color: "rgba(255, 255, 255, 0.05)" },
+          afterBuildTicks: function(scale) {
+            const allTicks = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
+            scale.ticks = allTicks
+              .filter(v => v <= scale.max)
+              .map(v => ({ value: v }));
+          }
         },
         x: {
           ticks: {
