@@ -27,6 +27,107 @@
   --transition-speed: 0.2s; /* Snappier sports-dashboard transitions */
 }
 
+/* -----------------------------------------
+   Light Theme Override Variables
+   ----------------------------------------- */
+body.light-theme {
+  --bg-primary: #ffffff; /* Official white background */
+  --bg-secondary: #f4f5f6; /* Soft light gray */
+  --bg-tertiary: #e9ecef; /* Neutral panel grey */
+  
+  --crimson-primary: #C8102E; /* Keep Liverpool Red */
+  --crimson-glow: rgba(200, 16, 46, 0.12);
+  --crimson-border: rgba(200, 16, 46, 0.08);
+  
+  --gold-primary: #c8a152; /* Darker gold for light bg contrast */
+  --gold-glow: rgba(200, 161, 82, 0.15);
+  --gold-text: #8c6a25; /* Dark brown-gold for high-readability text */
+  
+  --text-primary: #111111; /* Charcoal black text */
+  --text-secondary: #495057; /* Charcoal gray text */
+  --text-muted: #868e96; /* Muted gray text */
+  
+  --glass-bg: rgba(255, 255, 255, 0.85); /* White glass */
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-blur: blur(20px);
+}
+
+/* Theme Toggle Button Styling */
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--crimson-primary);
+  transform: scale(1.05);
+}
+
+body.light-theme .theme-toggle-btn {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+body.light-theme .theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Toggle icon visibility based on body class */
+body.light-theme .theme-toggle-btn .theme-icon-sun {
+  display: none;
+}
+body:not(.light-theme) .theme-toggle-btn .theme-icon-moon {
+  display: none;
+}
+
+/* Light Theme overrides for blobs and panels */
+body.light-theme .glow-blob {
+  opacity: 0.05; /* Soften glowing background blobs */
+}
+
+body.light-theme .dashboard-panel {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .panel-header {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .card-icon {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Under development banner override for light mode */
+body.light-theme .development-notice-banner {
+  background: rgba(140, 106, 37, 0.05);
+  border-color: rgba(140, 106, 37, 0.2);
+}
+
+/* Make sure dropdowns and text inputs display cleanly in light mode */
+body.light-theme input,
+body.light-theme select {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #111111 !important;
+}
+
+body.light-theme input:focus,
+body.light-theme select:focus {
+  border-color: var(--crimson-primary) !important;
+  box-shadow: 0 0 8px var(--crimson-glow) !important;
+}
+
 /* Reset and Base Styles */
 * {
   margin: 0;

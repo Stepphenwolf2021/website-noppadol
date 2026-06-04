@@ -1,5 +1,11 @@
 // app.js - Main dashboard functionality and state manager
 
+// Check and apply theme preference instantly before rendering layout
+const savedTheme = localStorage.getItem("lfc_dashboard_theme") || "dark";
+if (savedTheme === "light") {
+  document.body.classList.add("light-theme");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
   initCounters();
@@ -10,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFanPoll();
   initTwitterFeed();
   initPredictorSystem();
+  initThemeToggle(); // Initialize theme button and styles
 });
 
 // 1. SPA TABS NAVIGATION
@@ -1776,4 +1783,62 @@ function initPredictorSystem() {
   // Initial runs
   showPredictorState();
   updateUI();
+}
+
+// 10. LIGHT/DARK THEME TOGGLE ENGINE
+function initThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle-btn");
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener("click", () => {
+    const isLight = document.body.classList.toggle("light-theme");
+    const currentTheme = isLight ? "light" : "dark";
+    localStorage.setItem("lfc_dashboard_theme", currentTheme);
+    updateChartsTheme(currentTheme);
+  });
+
+  // Apply chart styles for current theme on boot
+  const currentTheme = document.body.classList.contains("light-theme") ? "light" : "dark";
+  updateChartsTheme(currentTheme);
+}
+
+function updateChartsTheme(theme) {
+  const isLight = theme === "light";
+  const ticksColor = isLight ? "#495057" : "#cccccc";
+  const gridColor = isLight ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.05)";
+  const legendColor = isLight ? "#111111" : "#ffffff";
+  const tooltipBg = isLight ? "#f8f9fa" : "#1c1c1c";
+  const tooltipText = isLight ? "#111111" : "#ffffff";
+
+  const charts = [positionsChartInst, pointsChartInst, goalsChartInst];
+  charts.forEach(chart => {
+    if (!chart) return;
+    
+    // Update Y scale ticks and grid
+    if (chart.options.scales.y) {
+      if (chart.options.scales.y.ticks) chart.options.scales.y.ticks.color = ticksColor;
+      if (chart.options.scales.y.grid) chart.options.scales.y.grid.color = gridColor;
+    }
+    
+    // Update X scale ticks and grid
+    if (chart.options.scales.x) {
+      if (chart.options.scales.x.ticks) chart.options.scales.x.ticks.color = ticksColor;
+      if (chart.options.scales.x.grid) chart.options.scales.x.grid.color = gridColor;
+    }
+
+    // Update legend labels color
+    if (chart.options.plugins.legend && chart.options.plugins.legend.labels) {
+      chart.options.plugins.legend.labels.color = legendColor;
+    }
+
+    // Update tooltip colors
+    if (chart.options.plugins.tooltip) {
+      chart.options.plugins.tooltip.backgroundColor = tooltipBg;
+      chart.options.plugins.tooltip.titleColor = isLight ? "#C8102E" : "#E3D4AD";
+      chart.options.plugins.tooltip.bodyColor = tooltipText;
+      chart.options.plugins.tooltip.borderColor = isLight ? "rgba(200, 16, 46, 0.2)" : "rgba(227, 27, 35, 0.3)";
+    }
+
+    chart.update();
+  });
 }
