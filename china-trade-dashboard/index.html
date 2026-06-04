@@ -6,6 +6,15 @@
 <title>จีนนำเข้าอะไร — โอกาสส่งออกของผู้ประกอบการไทย</title>
 <meta name="description" content="แดชบอร์ดเจาะลึกการนำเข้าสินค้าของจีน สำหรับผู้ประกอบการไทย: สินค้าที่ผู้บริโภคจีนต้องการ อาหารพรีเมียม สินค้าหรู และโอกาสในการส่งออก พร้อมแหล่งอ้างอิงครบถ้วน" />
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+<!-- Google tag (gtag.js) — Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLT9EBV5LN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // send_page_view:false — the dashboard fires a page_view per tab itself (each tab has its own URL)
+  gtag('config', 'G-HLT9EBV5LN', { send_page_view: false });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
@@ -432,6 +441,15 @@ function activateTab(id, doScroll){
   document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x.dataset.tab === id));
   document.querySelectorAll('section.panel').forEach(x => x.classList.toggle('active', x.id === id));
   if(doScroll) window.scrollTo({top:0, behavior:'smooth'});
+  // GA4 virtual pageview per tab (each tab has its own URL)
+  if(typeof gtag === 'function'){
+    const btn = document.querySelector('nav.tabs button[data-tab="'+id+'"]');
+    gtag('event', 'page_view', {
+      page_location: location.href,
+      page_path: location.pathname + '#' + id,
+      page_title: 'China Trade Dashboard — ' + (btn ? btn.textContent.trim() : id)
+    });
+  }
 }
 document.querySelectorAll('nav.tabs button').forEach(b => {
   b.addEventListener('click', () => {
