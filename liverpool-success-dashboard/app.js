@@ -1843,6 +1843,11 @@ function updateChartsTheme(theme) {
 
     chart.update();
   });
+
+  // Dynamically update wallpaper thumbnails to match the new theme
+  if (typeof renderWallpaperThumbnails === "function") {
+    setTimeout(renderWallpaperThumbnails, 200);
+  }
 }
 
 // 11. NEWSLETTER SUBSCRIBE & FEEDBACK SUGGESTIONS FORM
@@ -2158,6 +2163,9 @@ function initWallpaperPreview() {
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
   if (overlay) overlay.addEventListener("click", closeModal);
+
+  // Initial render of thumbnails after charts load
+  setTimeout(renderWallpaperThumbnails, 800);
 }
 
 // Generate the high-resolution wallpaper on an offscreen canvas
@@ -2310,6 +2318,25 @@ window.downloadWallpaper = function(deviceType) {
     link.download = filename;
     link.href = canvas.toDataURL("image/png");
     link.click();
+  });
+};
+
+function renderWallpaperThumbnails() {
+  const pcThumb = document.getElementById("pc-wallpaper-thumb");
+  const mobileThumb = document.getElementById("mobile-wallpaper-thumb");
+
+  if (!pcThumb || !mobileThumb) return;
+
+  // Render PC thumbnail dynamically from canvas
+  generateWallpaperCanvas("pc", (canvas) => {
+    pcThumb.src = canvas.toDataURL("image/png");
+    pcThumb.style.opacity = "1";
+  });
+
+  // Render Mobile thumbnail dynamically from canvas
+  generateWallpaperCanvas("mobile", (canvas) => {
+    mobileThumb.src = canvas.toDataURL("image/png");
+    mobileThumb.style.opacity = "1";
   });
 }
 

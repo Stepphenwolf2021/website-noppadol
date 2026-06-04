@@ -329,11 +329,7 @@
             <!-- Wallpaper 1: PC Desktop -->
             <div class="wallpaper-card" style="width: 100%; max-width: 320px; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 16px; text-align: center; box-sizing: border-box;">
               <div class="wallpaper-thumb-wrapper" onclick="previewWallpaper('pc')">
-                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; font-family: 'Montserrat', sans-serif;">
-                  <span style="font-size: 36px; margin-bottom: 6px;">🖥️</span>
-                  <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">PC Desktop Version</span>
-                  <span style="font-size: 10px; opacity: 0.7; margin-top: 4px; font-family: 'Inter', sans-serif;">1920 x 1080 (16:9)</span>
-                </div>
+                <img id="pc-wallpaper-thumb" class="wallpaper-thumb-img wallpaper-thumb" data-title="PC Desktop Version" alt="PC Desktop Wallpaper Preview" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.5s ease, transform 0.3s ease;">
                 <div class="wallpaper-zoom-overlay">
                   <span>🔍 Preview</span>
                 </div>
@@ -346,11 +342,7 @@
             <!-- Wallpaper 2: Mobile Phone -->
             <div class="wallpaper-card" style="width: 100%; max-width: 320px; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 16px; text-align: center; box-sizing: border-box;">
               <div class="wallpaper-thumb-wrapper mobile-ratio" onclick="previewWallpaper('mobile')">
-                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; font-family: 'Montserrat', sans-serif;">
-                  <span style="font-size: 36px; margin-bottom: 6px;">📱</span>
-                  <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Mobile Edition</span>
-                  <span style="font-size: 10px; opacity: 0.7; margin-top: 4px; font-family: 'Inter', sans-serif;">1080 x 1920 (9:16)</span>
-                </div>
+                <img id="mobile-wallpaper-thumb" class="wallpaper-thumb-img wallpaper-thumb" data-title="Mobile Version" alt="Mobile Wallpaper Preview" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.5s ease, transform 0.3s ease;">
                 <div class="wallpaper-zoom-overlay">
                   <span>🔍 Preview</span>
                 </div>
@@ -1371,7 +1363,7 @@
   <!-- Data.js containing the statistical models -->
   <script src="data.js"></script>
   <!-- Application JS containing state and logic -->
-  <script src="app.js?v=1.0.6"></script>
+  <script src="app.js?v=1.0.7"></script>
   <!-- X (Twitter) widgets loader script -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
