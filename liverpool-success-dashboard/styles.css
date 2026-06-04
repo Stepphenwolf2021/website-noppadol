@@ -1,31 +1,30 @@
-/* CSS variables defining our premium dark-mode, velvet-crimson, and gold design system */
 :root {
-  --bg-primary: #0a0304;
-  --bg-secondary: #14080a;
-  --bg-tertiary: #1f0d10;
+  --bg-primary: #111111; /* LFC Charcoal Black */
+  --bg-secondary: #181818; /* LFC Secondary Dark */
+  --bg-tertiary: #222222; /* LFC Panel Dark Gray */
   
-  --crimson-primary: #e31b23;
-  --crimson-glow: rgba(227, 27, 35, 0.4);
-  --crimson-border: rgba(227, 27, 35, 0.15);
+  --crimson-primary: #C8102E; /* Official Liverpool Red */
+  --crimson-glow: rgba(200, 16, 46, 0.4);
+  --crimson-border: rgba(200, 16, 46, 0.15);
   
-  --gold-primary: #c8a152;
-  --gold-glow: rgba(200, 161, 82, 0.4);
-  --gold-text: #e2c07d;
+  --gold-primary: #E3D4AD; /* Official LFC Gold/Sand */
+  --gold-glow: rgba(227, 212, 173, 0.4);
+  --gold-text: #E3D4AD; /* Official LFC Gold/Sand Text */
   
   --blue-primary: #1e3a8a;
   --blue-glow: rgba(30, 58, 138, 0.4);
   
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
+  --text-primary: #ffffff; /* High contrast white */
+  --text-secondary: #cccccc; /* Midtone grey */
+  --text-muted: #888888; /* Muted grey */
   
-  --glass-bg: rgba(20, 8, 10, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(24, 24, 24, 0.75); /* Charcoal glass */
+  --glass-border: rgba(255, 255, 255, 0.06);
   --glass-blur: blur(20px);
   
-  --font-title: 'Cinzel', serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-  --transition-speed: 0.3s;
+  --font-title: 'Montserrat', sans-serif; /* Inspired by LFC Sans */
+  --font-body: 'Inter', sans-serif; /* Highly readable body sans-serif */
+  --transition-speed: 0.2s; /* Snappier sports-dashboard transitions */
 }
 
 /* Reset and Base Styles */
@@ -179,27 +178,25 @@ body {
 .logo-main {
   font-family: var(--font-title);
   font-size: 24px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, var(--text-primary) 50%, var(--gold-text) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
 }
 
 .logo-sub {
   font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--text-secondary);
-  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gold-text);
+  font-weight: 700;
 }
 
 /* Navigation Tabs */
 .header-nav {
   display: flex;
-  background: rgba(20, 8, 10, 0.4);
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--glass-border);
   padding: 4px;
-  border-radius: 30px;
+  border-radius: 8px;
   gap: 4px;
   backdrop-filter: blur(8px);
 }
@@ -208,32 +205,34 @@ body {
   background: transparent;
   border: none;
   color: var(--text-secondary);
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 20px;
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all var(--transition-speed);
 }
 
 .nav-tab:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-tab.active {
-  color: var(--text-primary);
+  color: #ffffff;
   background: var(--crimson-primary);
-  box-shadow: 0 0 15px var(--crimson-glow);
+  box-shadow: 0 0 12px var(--crimson-glow);
 }
 
 .meta-season-badge {
-  background: linear-gradient(135deg, rgba(200, 161, 82, 0.1) 0%, rgba(200, 161, 82, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(227, 212, 173, 0.05) 0%, rgba(227, 212, 173, 0.15) 100%);
   border: 1px solid var(--gold-primary);
   color: var(--gold-text);
   padding: 8px 16px;
-  border-radius: 30px;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 1px;

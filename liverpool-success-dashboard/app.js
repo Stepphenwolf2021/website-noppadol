@@ -222,8 +222,8 @@ function initCharts() {
           max: 22, // Set to standard max size of English first division
           ticks: {
             stepSize: 2,
-            color: "#a1a1aa",
-            font: { family: "Plus Jakarta Sans", weight: 600 },
+            color: "#cccccc",
+            font: { family: "Inter", weight: 600 },
             callback: function(value) {
               const suffixes = ["st", "nd", "rd", "th"];
               return value + (suffixes[value - 1] || "th");
@@ -239,8 +239,8 @@ function initCharts() {
         },
         x: {
           ticks: {
-            color: "#a1a1aa",
-            font: { family: "Plus Jakarta Sans" },
+            color: "#cccccc",
+            font: { family: "Inter" },
             maxRotation: 45,
             minRotation: 45,
             callback: function(val, index) {
@@ -254,11 +254,11 @@ function initCharts() {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: "#14080a",
-          titleColor: "#e2c07d",
-          titleFont: { family: "Cinzel", weight: "bold" },
-          bodyColor: "#f5f5f7",
-          bodyFont: { family: "Plus Jakarta Sans" },
+          backgroundColor: "#1c1c1c",
+          titleColor: "#E3D4AD",
+          titleFont: { family: "Montserrat", weight: "bold" },
+          bodyColor: "#ffffff",
+          bodyFont: { family: "Inter" },
           borderColor: "rgba(227, 27, 35, 0.3)",
           borderWidth: 1,
           callbacks: {
@@ -303,15 +303,15 @@ function initCharts() {
           min: 0,
           max: 100,
           ticks: {
-            color: "#a1a1aa",
-            font: { family: "Plus Jakarta Sans" }
+            color: "#cccccc",
+            font: { family: "Inter" }
           },
           grid: { color: "rgba(255, 255, 255, 0.05)" }
         },
         x: {
           ticks: {
-            color: "#a1a1aa",
-            font: { family: "Plus Jakarta Sans" },
+            color: "#cccccc",
+            font: { family: "Inter" },
             maxRotation: 45,
             minRotation: 45,
             callback: function(val, index) {
@@ -324,10 +324,10 @@ function initCharts() {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: "#14080a",
-          titleColor: "#e2c07d",
-          titleFont: { family: "Cinzel", weight: "bold" },
-          bodyColor: "#f5f5f7",
+          backgroundColor: "#1c1c1c",
+          titleColor: "#E3D4AD",
+          titleFont: { family: "Montserrat", weight: "bold" },
+          bodyColor: "#ffffff",
           borderColor: "rgba(227, 27, 35, 0.3)",
           borderWidth: 1,
           callbacks: {
@@ -374,13 +374,13 @@ function initCharts() {
       maintainAspectRatio: false,
       scales: {
         y: {
-          ticks: { color: "#a1a1aa", font: { family: "Plus Jakarta Sans" } },
+          ticks: { color: "#cccccc", font: { family: "Inter" } },
           grid: { color: "rgba(255, 255, 255, 0.05)" }
         },
         x: {
           ticks: {
-            color: "#a1a1aa",
-            font: { family: "Plus Jakarta Sans" },
+            color: "#cccccc",
+            font: { family: "Inter" },
             maxRotation: 45,
             minRotation: 45,
             callback: function(val, index) {
@@ -393,13 +393,13 @@ function initCharts() {
       plugins: {
         legend: {
           labels: {
-            color: "#f5f5f7",
-            font: { family: "Plus Jakarta Sans", weight: 600 }
+            color: "#ffffff",
+            font: { family: "Montserrat", weight: 600 }
           }
         },
         tooltip: {
-          backgroundColor: "#14080a",
-          bodyColor: "#f5f5f7",
+          backgroundColor: "#1c1c1c",
+          bodyColor: "#ffffff",
           borderColor: "rgba(227, 27, 35, 0.3)",
           borderWidth: 1,
           callbacks: {
