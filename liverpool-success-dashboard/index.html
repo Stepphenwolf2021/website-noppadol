@@ -915,7 +915,10 @@
                 <span id="saved-email-lbl">Email: user@example.com</span>
                 <span id="saved-feedback-lbl">Suggestion recorded!</span>
               </div>
-              <button id="reset-newsletter-btn" class="secondary-btn reset-sim-btn" style="margin-top: 14px;">
+              <button id="view-emails-console-btn" class="primary-btn submit-btn" style="margin-top: 14px; background: var(--gold-primary); color: #111111; font-weight: 700;">
+                👁️ View Dispatched Emails (Console Preview)
+              </button>
+              <button id="reset-newsletter-btn" class="secondary-btn reset-sim-btn" style="margin-top: 10px;">
                 Change Email / Submit More Suggestions
               </button>
             </div>
@@ -1218,6 +1221,38 @@
       <p>&copy; 2026 Liverpool FC Success Tracker. All data compiled from official records and updated as of May 2026. Made with ❤️ for Liverpool supporters.</p>
     </footer>
 
+  </div>
+
+  <!-- Email Dispatch Console Modal (Sandbox Mode) -->
+  <div id="email-console-modal" class="email-modal hidden">
+    <div class="email-modal-overlay"></div>
+    <div class="email-modal-content">
+      <div class="email-modal-header">
+        <h4>📬 Sandbox Outbound Mail Server Logs</h4>
+        <button id="close-email-modal-btn" class="close-modal-btn">&times;</button>
+      </div>
+      <div class="email-modal-body">
+        <div class="server-status-bar">
+          <span class="status-indicator-dot"></span>
+          <span>SMTP RELAY STATUS: <strong>SUCCESS (2 Emails Dispatched)</strong></span>
+        </div>
+        <p class="console-notice">Since this is a client-side prototype, we simulated the outbound SMTP dispatch. Below are the actual formatted HTML emails sent out:</p>
+        
+        <div class="email-tabs">
+          <button class="email-tab-btn active" data-email-target="user-email-preview">Recipient: You (Feedback Receipt)</button>
+          <button class="email-tab-btn" data-email-target="admin-email-preview">Recipient: Admin (noppadol@neogens.co)</button>
+        </div>
+
+        <div class="email-preview-container">
+          <div id="user-email-preview" class="email-preview-pane">
+            <iframe id="user-email-iframe" class="email-iframe" title="User Email Preview"></iframe>
+          </div>
+          <div id="admin-email-preview" class="email-preview-pane hidden">
+            <iframe id="admin-email-iframe" class="email-iframe" title="Admin Email Preview"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Data.js containing the statistical models -->

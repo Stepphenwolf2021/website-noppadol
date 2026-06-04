@@ -1889,13 +1889,98 @@ function initNewsletterSubscribe() {
     }
 
     localStorage.setItem(newsletterKey, email);
+    const feedbackText = feedback.length > 0 ? feedback : "No suggestions provided. Subscribed for news updates.";
     if (feedback.length > 0) {
       localStorage.setItem(feedbackKey, feedback);
     } else {
       localStorage.removeItem(feedbackKey);
     }
 
+    const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" }) + " (ICT)";
+
+    // Outbound API Submit Dispatch Alert (Web3Forms endpoint to send real emails to Admin)
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        access_key: "3c3efbf2-72ec-499f-9f79-c5c2d33cbdf8", // Sandbox Web3Forms Redirect key
+        subject: `[LFC Tracker Feedback] Suggestions from ${email}`,
+        from_name: "LFC Dashboard User",
+        email: email,
+        message: `Dear Administrator,\n\nWe have received a new feature suggestion/feedback submission on the Liverpool FC All-Time Success Dashboard.\n\nUser Email: ${email}\nTime: ${timestamp}\n\nFeedback / Suggestion:\n"${feedbackText}"\n\nThis is an automated notification.`,
+        to_email: "noppadol@neogens.co"
+      })
+    })
+    .then(res => res.json())
+    .then(data => console.log("Outbound Admin Alert Dispatched:", data))
+    .catch(err => console.error("Outbound Admin Alert Error:", err));
+
     showState();
+  });
+
+  const viewConsoleBtn = document.getElementById("view-emails-console-btn");
+  const modal = document.getElementById("email-console-modal");
+  const closeModalBtn = document.getElementById("close-email-modal-btn");
+  const emailTabs = document.querySelectorAll(".email-tab-btn");
+  const emailPanes = document.querySelectorAll(".email-preview-pane");
+  const userIframe = document.getElementById("user-email-iframe");
+  const adminIframe = document.getElementById("admin-email-iframe");
+
+  if (viewConsoleBtn && modal) {
+    viewConsoleBtn.addEventListener("click", () => {
+      const savedEmail = localStorage.getItem(newsletterKey) || "supporter@example.com";
+      const savedFeedback = localStorage.getItem(feedbackKey) || "No suggestions provided. Subscribed for news updates.";
+      const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" }) + " (ICT)";
+
+      const userEmailHTML = getUserEmailHTML(savedEmail, savedFeedback);
+      const adminEmailHTML = getAdminEmailHTML(savedEmail, savedFeedback, timestamp);
+
+      if (userIframe) {
+        const doc = userIframe.contentDocument || userIframe.contentWindow.document;
+        doc.open();
+        doc.write(userEmailHTML);
+        doc.close();
+      }
+      if (adminIframe) {
+        const doc = adminIframe.contentDocument || adminIframe.contentWindow.document;
+        doc.open();
+        doc.write(adminEmailHTML);
+        doc.close();
+      }
+
+      modal.classList.remove("hidden");
+    });
+  }
+
+  if (closeModalBtn && modal) {
+    closeModalBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+    const overlay = modal.querySelector(".email-modal-overlay");
+    if (overlay) {
+      overlay.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+    }
+  }
+
+  emailTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      emailTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const targetId = tab.getAttribute("data-email-target");
+      emailPanes.forEach(pane => {
+        if (pane.id === targetId) {
+          pane.classList.remove("hidden");
+        } else {
+          pane.classList.add("hidden");
+        }
+      });
+    });
   });
 
   if (resetBtn) {
@@ -1909,4 +1994,94 @@ function initNewsletterSubscribe() {
   }
 
   showState();
+}
+
+function getUserEmailHTML(email, feedback) {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f5f6; margin: 0; padding: 20px; }
+        .email-card { max-width: 600px; background-color: #ffffff; margin: 0 auto; border: 1px solid #e9ecef; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .header { background-color: #C8102E; padding: 24px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: 1.5px; }
+        .content { padding: 28px; color: #333333; line-height: 1.6; font-size: 14px; }
+        .feedback-quote { background-color: #f8f9fa; border-left: 4px solid #C8102E; padding: 15px; margin: 20px 0; font-style: italic; border-radius: 4px; color: #555555; }
+        .footer { background-color: #111111; color: #888888; text-align: center; padding: 20px; font-size: 11px; }
+        .footer p { margin: 4px 0; }
+        .footer a { color: #E3D4AD; text-decoration: none; font-weight: 700; }
+      </style>
+    </head>
+    <body>
+      <div class="email-card">
+        <div class="header">
+          <h1>LIVERPOOL FC SUCCESS TRACKER</h1>
+        </div>
+        <div class="content">
+          <p>Dear LFC Supporter,</p>
+          <p>Thank you for subscribing to our news updates and sharing your valuable feedback with us. Your suggestions are essential to making the Liverpool FC All-Time Success Tracker a better experience for fans worldwide.</p>
+          <p>Here is a summary of the feature suggestion you submitted:</p>
+          <div class="feedback-quote">
+            "${feedback}"
+          </div>
+          <p>Our development team has received your suggestion and will review it for our upcoming feature roadmap. We will keep you updated on our progress and notify you when new modules are ready for testing.</p>
+          <p>Should you have any further ideas or inquiries, please do not hesitate to reach out.</p>
+          <p>Best regards,<br><strong>LFC Success Tracker Development Team</strong></p>
+        </div>
+        <div class="footer">
+          <p>&copy; 2026 Liverpool FC Success Tracker. You'll Never Walk Alone.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+function getAdminEmailHTML(email, feedback, timestamp) {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f5f6; margin: 0; padding: 20px; }
+        .email-card { max-width: 600px; background-color: #ffffff; margin: 0 auto; border: 1px solid #e9ecef; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .header { background-color: #111111; padding: 20px; text-align: center; color: #ffffff; border-bottom: 3px solid #C8102E; }
+        .header h1 { margin: 0; font-size: 15px; font-weight: 700; color: #E3D4AD; letter-spacing: 1px; }
+        .content { padding: 28px; color: #333333; line-height: 1.6; font-size: 14px; }
+        .meta-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .meta-table th, .meta-table td { padding: 12px; border-bottom: 1px solid #e9ecef; text-align: left; }
+        .meta-table th { width: 30%; color: #888888; font-weight: 700; font-size: 11px; text-transform: uppercase; }
+        .meta-table td { font-size: 13px; color: #333333; }
+      </style>
+    </head>
+    <body>
+      <div class="email-card">
+        <div class="header">
+          <h1>LFC TRACKER - ADMIN NOTIFICATION</h1>
+        </div>
+        <div class="content">
+          <p>Hello Administrator,</p>
+          <p>A new feature suggestion and subscription request has been submitted on the Liverpool FC Success Tracker dashboard.</p>
+          <table class="meta-table">
+             <tr>
+               <th>Source Email</th>
+               <td><strong>${email}</strong></td>
+             </tr>
+             <tr>
+               <th>Submission Time</th>
+               <td>${timestamp}</td>
+             </tr>
+             <tr>
+               <th>Feedback / Suggestions</th>
+               <td>${feedback}</td>
+             </tr>
+          </table>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
 }

@@ -3213,3 +3213,172 @@ body.light-theme .submitted-details-box {
 .submitted-details-box span {
   word-break: break-all;
 }
+
+/* Email Console Modal Style */
+.email-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-speed);
+}
+
+.email-modal.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.email-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.email-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 650px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  z-index: 1001;
+  overflow: hidden;
+  animation: modalFadeIn 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes modalFadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.email-modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email-modal-header h4 {
+  font-family: var(--font-title);
+  color: var(--gold-text);
+  font-size: 14px;
+  margin: 0;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+.close-modal-btn:hover {
+  color: var(--crimson-primary);
+}
+
+.email-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.server-status-bar {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse 1.5s infinite;
+}
+
+.console-notice {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.email-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 8px;
+}
+
+.email-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all var(--transition-speed);
+}
+
+.email-tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.email-tab-btn.active {
+  background: var(--crimson-primary);
+  color: #ffffff;
+}
+
+.email-preview-container {
+  flex-grow: 1;
+  height: 380px;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  background: #ffffff; /* White background inside frame for high contrast email preview */
+  overflow: hidden;
+}
+
+.email-preview-pane {
+  width: 100%;
+  height: 100%;
+}
+
+.email-preview-pane.hidden {
+  display: none;
+}
+
+.email-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
