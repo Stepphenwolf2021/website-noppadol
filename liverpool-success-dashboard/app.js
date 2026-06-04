@@ -17,30 +17,71 @@ function initTabs() {
   const tabs = document.querySelectorAll(".nav-tab");
   const contents = document.querySelectorAll(".tab-content");
 
+  const tabMap = {
+    "#overview": { sectionId: "overview-section", tabId: "tab-overview" },
+    "#seasons": { sectionId: "seasons-section", tabId: "tab-seasons" },
+    "#managers": { sectionId: "managers-section", tabId: "tab-managers" },
+    "#squad": { sectionId: "squad-section", tabId: "tab-squad" },
+    "#moments": { sectionId: "moments-section", tabId: "tab-moments" },
+    "#news": { sectionId: "news-section", tabId: "tab-news" },
+    "#predictor": { sectionId: "predictor-section", tabId: "tab-predictor" }
+  };
+
+  const switchTab = (hash) => {
+    const activeRoute = tabMap[hash] || tabMap["#overview"];
+    
+    // Remove active from all tabs
+    tabs.forEach(t => t.classList.remove("active"));
+    // Hide all contents
+    contents.forEach(c => c.classList.remove("active"));
+
+    // Add active to current tab button
+    const targetTabBtn = document.getElementById(activeRoute.tabId);
+    if (targetTabBtn) targetTabBtn.classList.add("active");
+
+    // Show matching content
+    const targetContent = document.getElementById(activeRoute.sectionId);
+    if (targetContent) targetContent.classList.add("active");
+
+    // Specific triggers for chart and twitter widget load
+    if (activeRoute.sectionId === "overview-section") {
+      window.dispatchEvent(new Event('resize'));
+    }
+
+    if (activeRoute.sectionId === "news-section" && window.twttr && window.twttr.widgets) {
+      window.twttr.widgets.load();
+    }
+  };
+
+  // Change hash when a tab is clicked
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-      // Remove active from all tabs
-      tabs.forEach(t => t.classList.remove("active"));
-      // Add active to current
-      tab.classList.add("active");
-
-      // Hide all contents
-      contents.forEach(c => c.classList.remove("active"));
-      // Show matching content
-      const targetId = tab.getAttribute("data-tab");
-      document.getElementById(targetId).classList.add("active");
-      
-      // If charts tab is loaded, make sure charts redraw if container sized changed
-      if (targetId === "overview-section") {
-        window.dispatchEvent(new Event('resize'));
-      }
-
-      // Reload X (Twitter) widgets if the News tab is clicked to ensure iframe renders correctly
-      if (targetId === "news-section" && window.twttr && window.twttr.widgets) {
-        window.twttr.widgets.load();
+      const dataTab = tab.getAttribute("data-tab");
+      // Find matching hash
+      const matchedHash = Object.keys(tabMap).find(key => tabMap[key].sectionId === dataTab);
+      if (matchedHash) {
+        window.location.hash = matchedHash;
       }
     });
   });
+
+  // Listen to hash change
+  window.addEventListener("hashchange", () => {
+    switchTab(window.location.hash);
+  });
+
+  // Initialize on load
+  const initialHash = window.location.hash;
+  if (initialHash && tabMap[initialHash]) {
+    switchTab(initialHash);
+  } else {
+    // If no hash or invalid hash, default to #overview
+    switchTab("#overview");
+    if (!initialHash) {
+      // Replace state to avoid adding history entry on boot
+      history.replaceState(null, null, "#overview");
+    }
+  }
 }
 
 // 2. ANIMATED NUMERICAL COUNTERS
