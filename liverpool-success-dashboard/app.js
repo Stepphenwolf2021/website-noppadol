@@ -183,10 +183,15 @@ function getFilteredData(range) {
       const year = parseInt(s.season.split('–')[0]);
       return year >= 1985 && year < 2004;
     });
-  } else if (range === "modern-era") {
+  } else if (range === "benitez-rodgers") {
     return seasonsData.filter(s => {
       const year = parseInt(s.season.split('–')[0]);
-      return year >= 2004;
+      return year >= 2004 && year < 2015;
+    });
+  } else if (range === "klopp-slot") {
+    return seasonsData.filter(s => {
+      const year = parseInt(s.season.split('–')[0]);
+      return year >= 2015;
     });
   }
   return seasonsData; // "all"
