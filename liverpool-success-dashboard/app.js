@@ -55,6 +55,14 @@ function initTabs() {
     // Specific triggers for chart and twitter widget load
     if (activeRoute.sectionId === "overview-section") {
       window.dispatchEvent(new Event('resize'));
+      
+      // Ensure all counters are run when Overview becomes visible
+      const counters = document.querySelectorAll(".counter");
+      counters.forEach(counter => {
+        if (counter.getAttribute("data-started") !== "true") {
+          window.runCounter(counter);
+        }
+      });
     }
 
     if (activeRoute.sectionId === "news-section" && window.twttr && window.twttr.widgets) {
@@ -94,35 +102,39 @@ function initTabs() {
 }
 
 // 2. ANIMATED NUMERICAL COUNTERS
+window.runCounter = function(counter) {
+  if (counter.getAttribute("data-started") === "true") return;
+  counter.setAttribute("data-started", "true");
+
+  const targetStr = counter.getAttribute("data-target");
+  const hasDecimal = targetStr.includes(".");
+  const target = parseFloat(targetStr);
+  let count = 0;
+  
+  const speed = 200; // lower is faster
+  const increment = hasDecimal ? target / speed : Math.max(1, Math.ceil(target / speed));
+
+  const updateCount = () => {
+    count += increment;
+    if (count < target) {
+      counter.innerText = hasDecimal ? count.toFixed(1) : Math.floor(count);
+      setTimeout(updateCount, 1);
+    } else {
+      counter.innerText = hasDecimal ? target.toFixed(1) : target;
+    }
+  };
+
+  updateCount();
+};
+
 function initCounters() {
   const counters = document.querySelectorAll(".counter");
-  const speed = 200; // lower is faster
-
-  const runCounter = (counter) => {
-    const target = +counter.getAttribute("data-target");
-    let count = 0;
-    
-    // Smooth increment
-    const increment = Math.max(1, Math.ceil(target / speed));
-
-    const updateCount = () => {
-      count += increment;
-      if (count < target) {
-        counter.innerText = count;
-        setTimeout(updateCount, 1);
-      } else {
-        counter.innerText = target;
-      }
-    };
-
-    updateCount();
-  };
 
   // IntersectionObserver to start counting only when visible
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        runCounter(entry.target);
+        window.runCounter(entry.target);
         observer.unobserve(entry.target);
       }
     });
