@@ -50,6 +50,7 @@
         <button class="nav-tab" id="tab-squad" data-tab="squad-section">Best XI Builder</button>
         <button class="nav-tab" id="tab-moments" data-tab="moments-section">Key Moments</button>
         <button class="nav-tab" id="tab-news" data-tab="news-section">Live News</button>
+        <button class="nav-tab" id="tab-predictor" data-tab="predictor-section">Kop Predictor</button>
       </nav>
       
       <!-- Meta Information (Current Time / Context) -->
@@ -874,6 +875,288 @@
               </div>
 
             </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- 7. KOP PREDICTOR & LOYALTY SECTION -->
+      <section id="predictor-section" class="tab-content">
+        
+        <div class="predictor-intro-header">
+          <h2>Anfield Fan Roster & Kop Predictor</h2>
+          <p>Test your football knowledge, earn Kop Points on match days, level up your fan tier, and unlock digital rewards!</p>
+        </div>
+
+        <div class="predictor-grid">
+          
+          <!-- Left Column: User Profile & Rewards Shop -->
+          <div class="predictor-col-left">
+            
+            <!-- Anfield Fan Roster Profile Card -->
+            <div class="dashboard-panel fan-profile-card">
+              <div class="panel-header">
+                <h3>Anfield Fan Profile</h3>
+                <p>Track your level, wallet points, and daily check-ins</p>
+              </div>
+              
+              <div class="profile-display-row">
+                <div class="profile-avatar-wrapper">
+                  <div id="user-profile-avatar" class="profile-avatar-circle">KF</div>
+                  <span class="avatar-badge" id="user-tier-badge">Kopite</span>
+                </div>
+                <div class="profile-details-column">
+                  <div class="profile-name-edit">
+                    <input type="text" id="user-display-name" value="KopiteFan" maxlength="12">
+                    <button id="save-username-btn" class="username-save-btn">Save</button>
+                  </div>
+                  <div class="profile-stats-mini">
+                    <div class="mini-stat">
+                      <span class="lbl">Wallet Balance</span>
+                      <span class="val" id="user-wallet-points">0 pts</span>
+                    </div>
+                    <div class="mini-stat">
+                      <span class="lbl">Lifetime Points</span>
+                      <span class="val" id="user-lifetime-points">0 pts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tier Progress Meter -->
+              <div class="tier-progress-container">
+                <div class="tier-labels-row">
+                  <span id="current-tier-name">Kopite</span>
+                  <span id="points-to-next-tier">1,000 pts to Red</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" id="tier-progress-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Daily Check-in Button -->
+              <button id="daily-checkin-btn" class="primary-btn checkin-btn">
+                <span>🚶‍♂️ Claim Daily Anfield Walk</span>
+                <span class="checkin-reward-badge">+10 Points</span>
+              </button>
+            </div>
+
+            <!-- Anfield Reward Shop Card -->
+            <div class="dashboard-panel reward-shop-card">
+              <div class="panel-header">
+                <h3>Anfield Digital Reward Shop</h3>
+                <p>Spend your Kop Points to unlock premium digital assets</p>
+              </div>
+              
+              <div class="rewards-grid">
+                
+                <!-- Reward Item 1 -->
+                <div class="reward-item" data-reward-id="wallpaper-gates">
+                  <div class="reward-thumb wallpaper-thumb-1">📱</div>
+                  <div class="reward-info">
+                    <h5>Anfield Gates HD Wallpaper</h5>
+                    <p>Exclusive lockscreen for mobile</p>
+                    <span class="reward-price">50 Kop Points</span>
+                  </div>
+                  <button class="redeem-btn" data-cost="50">Redeem</button>
+                </div>
+
+                <!-- Reward Item 2 -->
+                <div class="reward-item" data-reward-id="frame-crimson">
+                  <div class="reward-thumb frame-thumb-1">⭕</div>
+                  <div class="reward-info">
+                    <h5>Crimson Glow Avatar Frame</h5>
+                    <p>Special border on profile card</p>
+                    <span class="reward-price">120 Kop Points</span>
+                  </div>
+                  <button class="redeem-btn" data-cost="120">Redeem</button>
+                </div>
+
+                <!-- Reward Item 3 -->
+                <div class="reward-item" data-reward-id="ballot-raffle">
+                  <div class="reward-thumb ballot-thumb-1">🎫</div>
+                  <div class="reward-info">
+                    <h5>Anfield Ticket Ballot Entry</h5>
+                    <p>Monthly raffle for home match tickets</p>
+                    <span class="reward-price">250 Kop Points</span>
+                  </div>
+                  <button class="redeem-btn" data-cost="250">Redeem</button>
+                </div>
+
+              </div>
+              
+              <!-- Redemptions List -->
+              <div id="redemption-success-box" class="redemption-success hidden">
+                <h5>🎉 Reward Redeemed Successfully!</h5>
+                <p id="redemption-success-message">Your digital asset is ready for download.</p>
+                <div id="redeemed-code-container" class="redeemed-code">XXXX-XXXX</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Predictor Form & Leaderboard -->
+          <div class="predictor-col-right">
+            
+            <!-- Match Predictor Card -->
+            <div class="dashboard-panel match-predictor-card">
+              <div class="panel-header">
+                <h3>Match Day Predictor</h3>
+                <p>Submit predictions before kickoff and claim points</p>
+              </div>
+              
+              <div id="prediction-form-container">
+                <div class="upcoming-match-header">
+                  <div class="team-badge-row">
+                    <span class="team-lbl">LIVERPOOL FC</span>
+                    <span class="vs-lbl">VS</span>
+                    <span class="team-lbl" id="opponent-name-label">REAL MADRID</span>
+                  </div>
+                  <div class="match-countdown" id="match-countdown-timer">Kickoff in 1d 4h 12m</div>
+                </div>
+
+                <!-- Prediction Inputs -->
+                <div class="prediction-inputs-row">
+                  <div class="score-input-col">
+                    <label>LFC Score</label>
+                    <input type="number" id="pred-lfc-score" min="0" max="9" value="0">
+                  </div>
+                  <div class="score-separator">:</div>
+                  <div class="score-input-col">
+                    <label>Opponent Score</label>
+                    <input type="number" id="pred-opp-score" min="0" max="9" value="0">
+                  </div>
+                </div>
+
+                <div class="predictor-fields-group">
+                  <div class="pred-select-field">
+                    <label for="pred-goalscorer">First Goalscorer</label>
+                    <select id="pred-goalscorer">
+                      <option value="none">— Select Player —</option>
+                      <option value="Mohamed Salah">Mohamed Salah</option>
+                      <option value="Cody Gakpo">Cody Gakpo</option>
+                      <option value="Luis Díaz">Luis Díaz</option>
+                      <option value="Darwin Núñez">Darwin Núñez</option>
+                      <option value="Diogo Jota">Diogo Jota</option>
+                      <option value="Dominik Szoboszlai">Dominik Szoboszlai</option>
+                      <option value="Alexis Mac Allister">Alexis Mac Allister</option>
+                      <option value="Virgil van Dijk">Virgil van Dijk</option>
+                    </select>
+                  </div>
+
+                  <div class="pred-checkbox-field">
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="pred-clean-sheet">
+                      <span class="slider"></span>
+                    </label>
+                    <span class="checkbox-lbl">Predict Liverpool Keeps a Clean Sheet</span>
+                  </div>
+                </div>
+
+                <button id="submit-prediction-btn" class="primary-btn submit-btn">Submit Prediction</button>
+              </div>
+
+              <!-- Post-Submission Simulator Console (Shown when submitted) -->
+              <div id="simulator-console-container" class="simulator-console hidden">
+                <div class="prediction-locked-banner">
+                  🔒 Prediction Locked! Outcomes evaluated after simulation.
+                </div>
+                
+                <div class="user-locked-choices">
+                  <h5>Your Prediction:</h5>
+                  <p id="locked-prediction-summary">Liverpool 0 - 0 Opponent | Scorer: None</p>
+                </div>
+
+                <div class="simulator-actions-box">
+                  <p class="sim-notice">Test the engine: Click below to simulate the match results instantly and calculate your score points!</p>
+                  <button id="simulate-match-btn" class="primary-btn sim-btn">⚡ Simulate Match Result</button>
+                </div>
+              </div>
+
+              <!-- Simulation Result Summary Panel -->
+              <div id="simulation-result-panel" class="simulation-result-card hidden">
+                <h4>Match Result Concluded</h4>
+                <div class="simulation-outcome-row">
+                  <div class="outcome-score" id="sim-final-score">LFC 3 - 1 RMA</div>
+                  <div class="outcome-details">
+                    <div id="sim-goalscorer">First Scorer: Mohamed Salah</div>
+                    <div id="sim-cleansheet">Clean Sheet: No</div>
+                  </div>
+                </div>
+                
+                <div class="points-awarded-details" id="points-awarded-box">
+                  <h5>Points Earned: <span class="pts-total" id="sim-pts-total">+95 pts</span></h5>
+                  <ul class="points-breakdown-list">
+                    <li id="pts-outcome">Correct Outcome: +20 pts</li>
+                    <li id="pts-score">Exact Score: +50 pts</li>
+                    <li id="pts-scorer">First Scorer: +30 pts</li>
+                    <li id="pts-cleansheet">Clean Sheet: +0 pts</li>
+                  </ul>
+                </div>
+                <button id="reset-simulator-btn" class="secondary-btn reset-sim-btn">Play Next Match</button>
+              </div>
+
+            </div>
+
+            <!-- Global Leaderboard Card -->
+            <div class="dashboard-panel leaderboard-card">
+              <div class="panel-header">
+                <h3>Global Leaderboard</h3>
+                <p>Compare standings with fellow fans globally</p>
+              </div>
+              <div class="leaderboard-table-wrapper">
+                <table class="leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Fan Name</th>
+                      <th>Tier</th>
+                      <th>Points</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaderboard-body">
+                    <tr>
+                      <td>1</td>
+                      <td>KopKing99</td>
+                      <td><span class="badge tier-centenary">Centenary</span></td>
+                      <td>42,500 pts</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>ScousePride</td>
+                      <td><span class="badge tier-gold">Gold</span></td>
+                      <td>16,800 pts</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>AnfieldHustler</td>
+                      <td><span class="badge tier-gold">Gold</span></td>
+                      <td>15,200 pts</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>SalahMagic</td>
+                      <td><span class="badge tier-silver">Silver</span></td>
+                      <td>8,450 pts</td>
+                    </tr>
+                    <tr class="user-row" id="leaderboard-user-row">
+                      <td id="user-leaderboard-rank">5</td>
+                      <td id="user-leaderboard-name">KopiteFan (You)</td>
+                      <td><span class="badge tier-kopite" id="user-leaderboard-tier">Kopite</span></td>
+                      <td id="user-leaderboard-points">0 pts</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>MacAllisterClass</td>
+                      <td><span class="badge tier-kopite">Kopite</span></td>
+                      <td>350 pts</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
           </div>
 
         </div>

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSquadBuilder();
   initFanPoll();
   initTwitterFeed();
+  initPredictorSystem();
 });
 
 // 1. SPA TABS NAVIGATION
@@ -1093,4 +1094,461 @@ function initTwitterFeed() {
       }
     });
   });
+}
+
+// 9. KOP PREDICTOR & LOYALTY SYSTEM
+function initPredictorSystem() {
+  const localStorageKeys = {
+    username: "lfc_loyalty_username",
+    walletBalance: "lfc_loyalty_balance",
+    lifetimePoints: "lfc_loyalty_lifetime",
+    lastCheckin: "lfc_loyalty_checkin",
+    predictionSubmitted: "lfc_loyalty_pred_sub",
+    predictionLfcScore: "lfc_loyalty_pred_lfc",
+    predictionOppScore: "lfc_loyalty_pred_opp",
+    predictionGoalscorer: "lfc_loyalty_pred_scorer",
+    predictionCleanSheet: "lfc_loyalty_pred_clean",
+    redeemedWallpapers: "lfc_loyalty_redeemed_wallpapers",
+    redeemedFrames: "lfc_loyalty_redeemed_frames",
+    redeemedBallots: "lfc_loyalty_redeemed_ballots"
+  };
+
+  // DOM Elements
+  const displayNameInput = document.getElementById("user-display-name");
+  const saveUsernameBtn = document.getElementById("save-username-btn");
+  const walletPointsEl = document.getElementById("user-wallet-points");
+  const lifetimePointsEl = document.getElementById("user-lifetime-points");
+  const avatarCircleEl = document.getElementById("user-profile-avatar");
+  const tierBadgeEl = document.getElementById("user-tier-badge");
+  const currentTierNameEl = document.getElementById("current-tier-name");
+  const pointsToNextTierEl = document.getElementById("points-to-next-tier");
+  const tierProgressBarEl = document.getElementById("tier-progress-bar");
+  const dailyCheckinBtn = document.getElementById("daily-checkin-btn");
+
+  const submitPredBtn = document.getElementById("submit-prediction-btn");
+  const predLfcScoreInput = document.getElementById("pred-lfc-score");
+  const predOppScoreInput = document.getElementById("pred-opp-score");
+  const predGoalscorerSelect = document.getElementById("pred-goalscorer");
+  const predCleanSheetCheck = document.getElementById("pred-clean-sheet");
+
+  const predictionFormContainer = document.getElementById("prediction-form-container");
+  const simulatorConsoleContainer = document.getElementById("simulator-console-container");
+  const lockedPredSummaryEl = document.getElementById("locked-prediction-summary");
+  const simulateMatchBtn = document.getElementById("simulate-match-btn");
+
+  const simulationResultPanel = document.getElementById("simulation-result-panel");
+  const simFinalScoreEl = document.getElementById("sim-final-score");
+  const simGoalscorerEl = document.getElementById("sim-goalscorer");
+  const simCleanSheetEl = document.getElementById("sim-cleansheet");
+  const simPtsTotalEl = document.getElementById("sim-pts-total");
+  const ptsOutcomeEl = document.getElementById("pts-outcome");
+  const ptsScoreEl = document.getElementById("pts-score");
+  const ptsScorerEl = document.getElementById("pts-scorer");
+  const ptsCleanSheetEl = document.getElementById("pts-cleansheet");
+  const resetSimulatorBtn = document.getElementById("reset-simulator-btn");
+
+  const redeemButtons = document.querySelectorAll(".redeem-btn");
+  const successBox = document.getElementById("redemption-success-box");
+  const successMessage = document.getElementById("redemption-success-message");
+  const codeContainer = document.getElementById("redeemed-code-container");
+
+  const userLeaderboardRankEl = document.getElementById("user-leaderboard-rank");
+  const userLeaderboardNameEl = document.getElementById("user-leaderboard-name");
+  const userLeaderboardTierEl = document.getElementById("user-leaderboard-tier");
+  const userLeaderboardPointsEl = document.getElementById("user-leaderboard-points");
+
+  // Load state or set defaults
+  let username = localStorage.getItem(localStorageKeys.username) || "KopiteFan";
+  let balance = parseInt(localStorage.getItem(localStorageKeys.walletBalance)) || 0;
+  let lifetime = parseInt(localStorage.getItem(localStorageKeys.lifetimePoints)) || 0;
+  let lastCheckin = parseInt(localStorage.getItem(localStorageKeys.lastCheckin)) || 0;
+
+  // Initialize UI Values
+  const updateUI = () => {
+    // 1. Profile Name
+    if (displayNameInput) displayNameInput.value = username;
+    if (userLeaderboardNameEl) userLeaderboardNameEl.innerText = `${username} (You)`;
+    
+    // Avatar initials
+    if (avatarCircleEl) {
+      avatarCircleEl.innerText = username.substring(0, 2).toUpperCase();
+    }
+
+    // 2. Wallets
+    if (walletPointsEl) walletPointsEl.innerText = `${balance.toLocaleString()} pts`;
+    if (lifetimePointsEl) lifetimePointsEl.innerText = `${lifetime.toLocaleString()} pts`;
+    if (userLeaderboardPointsEl) userLeaderboardPointsEl.innerText = `${lifetime.toLocaleString()} pts`;
+
+    // 3. Tier calculation
+    let tier = "Kopite";
+    let nextTier = "Red";
+    let nextPoints = 1000;
+    let prevPoints = 0;
+
+    if (lifetime >= 50000) {
+      tier = "Centenary";
+      nextTier = "Max Tier";
+      nextPoints = 50000;
+      prevPoints = 50000;
+    } else if (lifetime >= 15000) {
+      tier = "Gold";
+      nextTier = "Centenary";
+      nextPoints = 50000;
+      prevPoints = 15000;
+    } else if (lifetime >= 5000) {
+      tier = "Silver";
+      nextTier = "Gold";
+      nextPoints = 15000;
+      prevPoints = 5000;
+    } else if (lifetime >= 1000) {
+      tier = "Red";
+      nextTier = "Silver";
+      nextPoints = 5000;
+      prevPoints = 1000;
+    }
+
+    // Badge CSS update
+    if (tierBadgeEl) {
+      tierBadgeEl.innerText = tier;
+      tierBadgeEl.className = "avatar-badge"; // reset classes
+      
+      // Update badge style mapping
+      if (tier === "Kopite") tierBadgeEl.style.background = "rgba(113, 113, 122, 0.15)";
+      if (tier === "Red") tierBadgeEl.style.background = "var(--crimson-primary)";
+      if (tier === "Silver") tierBadgeEl.style.background = "rgba(255, 255, 255, 0.08)";
+      if (tier === "Gold") tierBadgeEl.style.background = "var(--gold-primary)";
+      if (tier === "Centenary") tierBadgeEl.style.background = "linear-gradient(135deg, var(--crimson-primary) 0%, var(--gold-primary) 100%)";
+      if (tier === "Kopite" || tier === "Silver") {
+        tierBadgeEl.style.color = "var(--text-primary)";
+      } else {
+        tierBadgeEl.style.color = "var(--bg-primary)";
+      }
+    }
+
+    if (userLeaderboardTierEl) {
+      userLeaderboardTierEl.innerText = tier;
+      userLeaderboardTierEl.className = `badge tier-${tier.toLowerCase()}`;
+    }
+
+    if (currentTierNameEl) currentTierNameEl.innerText = tier;
+    
+    if (nextTier === "Max Tier") {
+      if (pointsToNextTierEl) pointsToNextTierEl.innerText = "Centenary (Ultimate Tier)";
+      if (tierProgressBarEl) tierProgressBarEl.style.width = "100%";
+    } else {
+      const needed = nextPoints - lifetime;
+      if (pointsToNextTierEl) pointsToNextTierEl.innerText = `${needed.toLocaleString()} pts to ${nextTier}`;
+      const progress = ((lifetime - prevPoints) / (nextPoints - prevPoints)) * 100;
+      if (tierProgressBarEl) tierProgressBarEl.style.width = `${progress}%`;
+    }
+
+    // Update leaderboard rank dynamically (simplified sorting for mockup)
+    if (userLeaderboardRankEl) {
+      if (lifetime >= 42500) userLeaderboardRankEl.innerText = "1";
+      else if (lifetime >= 16800) userLeaderboardRankEl.innerText = "2";
+      else if (lifetime >= 15200) userLeaderboardRankEl.innerText = "3";
+      else if (lifetime >= 8450) userLeaderboardRankEl.innerText = "4";
+      else if (lifetime >= 350) userLeaderboardRankEl.innerText = "5";
+      else userLeaderboardRankEl.innerText = "6";
+    }
+
+    // Sort leaderboard row visually inside DOM
+    const leaderboardBody = document.getElementById("leaderboard-body");
+    const userRow = document.getElementById("leaderboard-user-row");
+    if (leaderboardBody && userRow) {
+      const rows = Array.from(leaderboardBody.querySelectorAll("tr"));
+      // remove user row from rows array temporarily
+      const otherRows = rows.filter(r => r !== userRow);
+      
+      // score map including current mock values
+      const scores = {
+        "KopKing99": 42500,
+        "ScousePride": 16800,
+        "AnfieldHustler": 15200,
+        "SalahMagic": 8450,
+        "MacAllisterClass": 350
+      };
+      
+      // Sort other rows based on score
+      otherRows.sort((a, b) => {
+        const nameA = a.cells[1].innerText;
+        const nameB = b.cells[1].innerText;
+        return (scores[nameB] || 0) - (scores[nameA] || 0);
+      });
+
+      // Find where to insert user row
+      let inserted = false;
+      leaderboardBody.innerHTML = "";
+      
+      let rank = 1;
+      otherRows.forEach(row => {
+        const name = row.cells[1].innerText;
+        const score = scores[name] || 0;
+        
+        if (lifetime >= score && !inserted) {
+          userRow.cells[0].innerText = rank;
+          leaderboardBody.appendChild(userRow);
+          rank++;
+          inserted = true;
+        }
+        
+        row.cells[0].innerText = rank;
+        leaderboardBody.appendChild(row);
+        rank++;
+      });
+
+      if (!inserted) {
+        userRow.cells[0].innerText = rank;
+        leaderboardBody.appendChild(userRow);
+      }
+    }
+
+    // 4. Daily Check-in Lockouts
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+    if (now - lastCheckin < oneDay) {
+      if (dailyCheckinBtn) {
+        dailyCheckinBtn.disabled = true;
+        dailyCheckinBtn.querySelector("span").innerText = "🚶‍♂️ Claimed Daily Walk";
+      }
+    } else {
+      if (dailyCheckinBtn) {
+        dailyCheckinBtn.disabled = false;
+        dailyCheckinBtn.querySelector("span").innerText = "🚶‍♂️ Claim Daily Anfield Walk";
+      }
+    }
+
+    // 5. Reward Buttons State
+    redeemButtons.forEach(btn => {
+      const cost = parseInt(btn.getAttribute("data-cost"));
+      const rewardItem = btn.closest(".reward-item");
+      const rewardId = rewardItem.getAttribute("data-reward-id");
+      const redeemed = localStorage.getItem(`lfc_redeemed_${rewardId}`) === "true";
+      
+      if (redeemed) {
+        btn.disabled = true;
+        btn.innerText = "Redeemed";
+        btn.style.borderColor = "#10b981";
+        btn.style.color = "#10b981";
+      } else if (balance < cost) {
+        btn.disabled = true;
+        btn.innerText = "Locked";
+      } else {
+        btn.disabled = false;
+        btn.innerText = "Redeem";
+        btn.style.borderColor = "var(--gold-primary)";
+        btn.style.color = "var(--gold-text)";
+      }
+    });
+  };
+
+  // Bind Username edits
+  if (saveUsernameBtn && displayNameInput) {
+    saveUsernameBtn.addEventListener("click", () => {
+      const val = displayNameInput.value.trim();
+      if (val.length > 0) {
+        username = val;
+        localStorage.setItem(localStorageKeys.username, username);
+        
+        // Show saved state
+        saveUsernameBtn.innerText = "Saved!";
+        setTimeout(() => {
+          saveUsernameBtn.innerText = "Save";
+        }, 1500);
+
+        updateUI();
+      }
+    });
+  }
+
+  // Bind Daily checkin button click
+  if (dailyCheckinBtn) {
+    dailyCheckinBtn.addEventListener("click", () => {
+      const now = Date.now();
+      lastCheckin = now;
+      localStorage.setItem(localStorageKeys.lastCheckin, now.toString());
+
+      balance += 10;
+      lifetime += 10;
+      localStorage.setItem(localStorageKeys.walletBalance, balance.toString());
+      localStorage.setItem(localStorageKeys.lifetimePoints, lifetime.toString());
+
+      updateUI();
+    });
+  }
+
+  // Manage Predictor submissions flow states
+  const showPredictorState = () => {
+    const isSubmitted = localStorage.getItem(localStorageKeys.predictionSubmitted) === "true";
+    if (isSubmitted) {
+      if (predictionFormContainer) predictionFormContainer.classList.add("hidden");
+      if (simulatorConsoleContainer) simulatorConsoleContainer.classList.remove("hidden");
+      if (simulationResultPanel) simulationResultPanel.classList.add("hidden");
+
+      const predLfc = localStorage.getItem(localStorageKeys.predictionLfcScore) || "0";
+      const predOpp = localStorage.getItem(localStorageKeys.predictionOppScore) || "0";
+      const predScorer = localStorage.getItem(localStorageKeys.predictionGoalscorer) || "None";
+      const predClean = localStorage.getItem(localStorageKeys.predictionCleanSheet) === "true" ? "Yes" : "No";
+
+      if (lockedPredSummaryEl) {
+        lockedPredSummaryEl.innerHTML = `
+          <strong>Liverpool ${predLfc} - ${predOpp} Real Madrid</strong><br>
+          <span style="font-size: 11px; color: var(--text-secondary);">
+            First Scorer: ${predScorer} | Clean Sheet: ${predClean}
+          </span>
+        `;
+      }
+    } else {
+      if (predictionFormContainer) predictionFormContainer.classList.remove("hidden");
+      if (simulatorConsoleContainer) simulatorConsoleContainer.classList.add("hidden");
+      if (simulationResultPanel) simulationResultPanel.classList.add("hidden");
+    }
+  };
+
+  if (submitPredBtn) {
+    submitPredBtn.addEventListener("click", () => {
+      localStorage.setItem(localStorageKeys.predictionSubmitted, "true");
+      localStorage.setItem(localStorageKeys.predictionLfcScore, predLfcScoreInput.value);
+      localStorage.setItem(localStorageKeys.predictionOppScore, predOppScoreInput.value);
+      localStorage.setItem(localStorageKeys.predictionGoalscorer, predGoalscorerSelect.value);
+      localStorage.setItem(localStorageKeys.predictionCleanSheet, predCleanSheetCheck.checked.toString());
+
+      showPredictorState();
+    });
+  }
+
+  // Simulator Engine calculation
+  if (simulateMatchBtn) {
+    simulateMatchBtn.addEventListener("click", () => {
+      // Mock random match conclusion score generator
+      // LFC score is slightly biased to win
+      const lfcScore = Math.floor(Math.random() * 4); // 0 to 3
+      const oppScore = Math.floor(Math.random() * 3); // 0 to 2
+      const isCleanSheet = lfcScore > 0 && oppScore === 0;
+
+      // Select goalscorer if LFC scored
+      const scorersPool = ["Mohamed Salah", "Cody Gakpo", "Luis Díaz", "Darwin Núñez", "Diogo Jota"];
+      const actualScorer = lfcScore > 0 ? scorersPool[Math.floor(Math.random() * scorersPool.length)] : "None";
+
+      // Load user prediction parameters
+      const predLfc = parseInt(localStorage.getItem(localStorageKeys.predictionLfcScore)) || 0;
+      const predOpp = parseInt(localStorage.getItem(localStorageKeys.predictionOppScore)) || 0;
+      const predScorer = localStorage.getItem(localStorageKeys.predictionGoalscorer) || "none";
+      const predClean = localStorage.getItem(localStorageKeys.predictionCleanSheet) === "true";
+
+      // Calculate points breakdown
+      let pointsOutcome = 0;
+      let pointsScore = 0;
+      let pointsScorer = 0;
+      let pointsClean = 0;
+
+      // Correct Outcome checks (Win / Draw / Loss)
+      const predDiff = predLfc - predOpp;
+      const actualDiff = lfcScore - oppScore;
+      const isOutcomeCorrect = (predDiff > 0 && actualDiff > 0) || (predDiff === 0 && actualDiff === 0) || (predDiff < 0 && actualDiff < 0);
+      if (isOutcomeCorrect) pointsOutcome = 20;
+
+      // Exact score checks
+      if (predLfc === lfcScore && predOpp === oppScore) pointsScore = 50;
+
+      // First Goalscorer check
+      if (predScorer === actualScorer && actualScorer !== "None") pointsScorer = 30;
+
+      // Clean sheet check
+      if (predClean === isCleanSheet) pointsClean = 15;
+
+      const totalEarned = pointsOutcome + pointsScore + pointsScorer + pointsClean;
+
+      // Grant points and balance wallets
+      balance += totalEarned;
+      lifetime += totalEarned;
+      localStorage.setItem(localStorageKeys.walletBalance, balance.toString());
+      localStorage.setItem(localStorageKeys.lifetimePoints, lifetime.toString());
+
+      // Show Simulation concluding UI
+      if (simulatorConsoleContainer) simulatorConsoleContainer.classList.add("hidden");
+      if (simulationResultPanel) simulationResultPanel.classList.remove("hidden");
+
+      if (simFinalScoreEl) simFinalScoreEl.innerText = `LFC ${lfcScore} - ${oppScore} RMA`;
+      if (simGoalscorerEl) simGoalscorerEl.innerText = `First Scorer: ${actualScorer}`;
+      if (simCleanSheetEl) simCleanSheetEl.innerText = `Clean Sheet: ${isCleanSheet ? "Yes" : "No"}`;
+
+      if (simPtsTotalEl) simPtsTotalEl.innerText = `+${totalEarned} pts`;
+      if (ptsOutcomeEl) ptsOutcomeEl.innerHTML = `Correct Outcome: <span>+${pointsOutcome} pts</span>`;
+      if (ptsScoreEl) ptsScoreEl.innerHTML = `Exact Score: <span>+${pointsScore} pts</span>`;
+      if (ptsScorerEl) ptsScorerEl.innerHTML = `First Scorer: <span>+${pointsScorer} pts</span>`;
+      if (ptsCleanSheetEl) ptsCleanSheetEl.innerHTML = `Clean Sheet: <span>+${pointsClean} pts</span>`;
+
+      updateUI();
+    });
+  }
+
+  // Reset/Play next match button
+  if (resetSimulatorBtn) {
+    resetSimulatorBtn.addEventListener("click", () => {
+      localStorage.removeItem(localStorageKeys.predictionSubmitted);
+      localStorage.removeItem(localStorageKeys.predictionLfcScore);
+      localStorage.removeItem(localStorageKeys.predictionOppScore);
+      localStorage.removeItem(localStorageKeys.predictionGoalscorer);
+      localStorage.removeItem(localStorageKeys.predictionCleanSheet);
+
+      // Reset Form fields
+      if (predLfcScoreInput) predLfcScoreInput.value = "0";
+      if (predOppScoreInput) predOppScoreInput.value = "0";
+      if (predGoalscorerSelect) predGoalscorerSelect.value = "none";
+      if (predCleanSheetCheck) predCleanSheetCheck.checked = false;
+
+      // Reset upcoming match randomly to make it look active
+      const teamsList = ["CHELSEA", "MAN CITY", "AC MILAN", "ARSENAL", "MAN UNITED", "BARCELONA"];
+      const randTeam = teamsList[Math.floor(Math.random() * teamsList.length)];
+      const oppLabel = document.getElementById("opponent-name-label");
+      if (oppLabel) oppLabel.innerText = randTeam;
+
+      // Mock random kickoff timers
+      const countdownTimer = document.getElementById("match-countdown-timer");
+      if (countdownTimer) {
+        const randDays = Math.floor(Math.random() * 5) + 1;
+        const randHours = Math.floor(Math.random() * 24);
+        countdownTimer.innerText = `Kickoff in ${randDays}d ${randHours}h 30m`;
+      }
+
+      showPredictorState();
+    });
+  }
+
+  // Redeem buttons listener
+  redeemButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cost = parseInt(btn.getAttribute("data-cost"));
+      const rewardItem = btn.closest(".reward-item");
+      const rewardId = rewardItem.getAttribute("data-reward-id");
+      const rewardName = rewardItem.querySelector("h5").innerText;
+
+      if (balance >= cost) {
+        balance -= cost;
+        localStorage.setItem(localStorageKeys.walletBalance, balance.toString());
+        localStorage.setItem(`lfc_redeemed_${rewardId}`, "true");
+
+        // Display success alert coupon code
+        if (successBox && successMessage && codeContainer) {
+          successMessage.innerText = `You have successfully unlocked "${rewardName}". Code is ready!`;
+          
+          // Generate mockup hash code
+          const randHex = Math.random().toString(36).substr(2, 8).toUpperCase();
+          codeContainer.innerText = `${randHex.substring(0, 4)}-${randHex.substring(4, 8)}`;
+          
+          successBox.classList.remove("hidden");
+          
+          // Smooth scroll to success box
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        updateUI();
+      }
+    });
+  });
+
+  // Initial runs
+  showPredictorState();
+  updateUI();
 }
