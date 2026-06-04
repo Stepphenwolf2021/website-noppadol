@@ -183,6 +183,7 @@
     <button data-tab="food">อาหาร &amp; สินค้าพรีเมียม</button>
     <button data-tab="origin">แยกตามประเทศต้นทาง</button>
     <button data-tab="luxury">สินค้าหรู</button>
+    <button data-tab="region">ดีมานด์รายมณฑล</button>
     <button data-tab="thai">โอกาสของไทย</button>
     <button data-tab="events">เหตุการณ์การค้า</button>
     <button data-tab="sources">แหล่งอ้างอิง</button>
@@ -306,6 +307,26 @@
         <div class="chartbox"><canvas id="chartWatch"></canvas></div>
         <div class="srcline">ที่มา [10] <a href="https://www.fhs.swiss/file/8081/communique_250112_e.pdf" target="_blank" rel="noopener">Federation of the Swiss Watch Industry ↗</a></div>
       </div>
+    </div>
+  </section>
+
+  <!-- REGION / PROVINCE DEMAND -->
+  <section class="panel" id="region">
+    <h2 class="sec">ดีมานด์สินค้า แยกตามมณฑล/ภูมิภาคของจีน</h2>
+    <p class="lead">ความต้องการสินค้านำเข้าของจีนกระจุกตัวอยู่ในไม่กี่มณฑล รู้ว่า "สินค้าเข้าทางไหน" และ "ใครคือผู้บริโภคหลัก" ช่วยให้ผู้ส่งออกไทยเลือกประตูนำเข้าและตลาดเป้าหมายได้แม่นยำขึ้น</p>
+
+    <div class="detgrid" id="regionGrid"></div>
+
+    <div class="callout">
+      <h3>🚪 ประตูนำเข้าผลไม้สำหรับสินค้าไทย</h3>
+      <p>ผลไม้ไทยส่วนใหญ่เข้าจีนผ่าน 3 เส้นทางหลัก: <strong>กว่างซี</strong> (ท่าเรือชินโจว &amp; ด่านโหย่วอี้กวาน — รับกว่า 1 ใน 3 ของผลไม้อาเซียน), <strong>กวางตุ้ง</strong> (ท่าเรือหนานซา — "ขบวนทุเรียนด่วน" ทางทะเลจากไทย) และ <strong>ยูนนาน</strong> (ทางบกผ่านลาวด้วยรถไฟจีน-ลาว ด่านโม่ฮาน) การเลือกเส้นทางมีผลต่อต้นทุนและความสดของสินค้า</p>
+    </div>
+
+    <div class="card">
+      <h3>ค่าใช้จ่ายเฉลี่ยต่อการซื้อสินค้าหรู รายเมือง (2023)</h3>
+      <div class="hint">หน่วยพันหยวนต่อครั้ง · ปี 2024 เมืองระดับสอง(เช่น หนานจิง) แซงหน้าเมืองระดับหนึ่งแล้ว</div>
+      <div class="chartbox"><canvas id="chartCityLux"></canvas></div>
+      <div class="srcline">ที่มา [18] <a href="https://jingdaily.com/posts/small-cities-big-spenders-china-s-new-luxury-hubs" target="_blank" rel="noopener">Jing Daily / Statista ↗</a></div>
     </div>
   </section>
 
@@ -459,8 +480,24 @@ const sources = [
   {n:11, title:'Winesinfo / Vino Joy — China Wine Imports', url:'https://en.winesinfo.com/html/2026/3/189-88560.html', covers:'นำเข้าไวน์ปี 2025 (−14.6% มูลค่า) ผู้นำคือออสเตรเลีย (€516M, 41%) ฝรั่งเศส ชิลี หลังเลิกภาษีปี 2024'},
   {n:12, title:'Nation Thailand — China Coffee & Tropical-Fruit Market', url:'https://www.nationthailand.com/business/economy/40065518', covers:'กาแฟนำเข้าโตราว 290% ในรอบ 10 ปี (59,100t → 230,700t) และดีมานด์วัตถุดิบผลไม้เมืองร้อน'},
   {n:13, title:'China-Global South Project / SCMP — Durian Imports 2024', url:'https://chinaglobalsouth.com/2025/01/23/chinas-7-billion-durian-imports-in-2024-fuel-vietnam-malaysia-rivalry-thailand-top-exporter/', covers:'ทุเรียนแยกตามประเทศ 2024: รวม $6.99B; ไทย $4.0B (57%, −12%), เวียดนาม $2.9B (41.5%, +37.6%), ฟิลิปปินส์ +144%'},
-  {n:14, title:'Euromeatnews — China Beef Import Ranking 2024', url:'https://www.euromeatnews.com/Article-China:-Beef-import-ranking,-January-to-October-2024/8023', covers:'เนื้อวัวแยกตามประเทศ/ปริมาณ 2024: บราซิล 47%, อาร์เจนตินา 21%, อุรุกวัย 8.5%, ออสเตรเลีย 7.5%, นิวซีแลนด์ 5%, สหรัฐฯ 5%'}
+  {n:14, title:'Euromeatnews — China Beef Import Ranking 2024', url:'https://www.euromeatnews.com/Article-China:-Beef-import-ranking,-January-to-October-2024/8023', covers:'เนื้อวัวแยกตามประเทศ/ปริมาณ 2024: บราซิล 47%, อาร์เจนตินา 21%, อุรุกวัย 8.5%, ออสเตรเลีย 7.5%, นิวซีแลนด์ 5%, สหรัฐฯ 5%'},
+  {n:15, title:'GDToday / newsgd — Guangdong Foreign Trade 2024', url:'https://www.newsgd.com/node_99363c4f3b/5a6d02b537.shtml', covers:'กวางตุ้งนำเข้า-ส่งออกปี 2024 เกิน 9.11 ล้านล้านหยวน (นำเข้า 3.22 ล้านล้าน +12.5%) อันดับ 1 ของจีน 39 ปีติด อิเล็กทรอนิกส์ 66.8% ของการนำเข้า'},
+  {n:16, title:'China Daily (Invest in China) — Guangxi ASEAN Fruit Hub', url:'https://investinchina.chinadaily.com.cn/s/202509/04/WS68b954f5498e23165e067862/port-in-s-chinas-guangxi-becomes-major-hub-for-asean-fruit-imports.html', covers:'กว่างซี (ท่าเรือชินโจว) รับผลไม้อาเซียน 2.488 ล้านตัน มูลค่า 34.89 พันล้านหยวนในปี 2024 — กว่า 1 ใน 3 ของผลไม้อาเซียนทั้งหมด'},
+  {n:17, title:'Produce Report — Yunnan, China’s 2nd-Largest Durian Gateway', url:'https://www.producereport.com/article/yunnan-booms-chinas-second-largest-gateway-durian-imports', covers:'ยูนนานเป็นประตูทุเรียนทางบกอันดับ 2 ของจีน ผ่านลาว/รถไฟจีน-ลาว (ด่านโม่ฮาน)'},
+  {n:18, title:'Jing Daily / Statista — China Luxury by City & Tier', url:'https://jingdaily.com/posts/small-cities-big-spenders-china-s-new-luxury-hubs', covers:'ค่าใช้จ่ายเฉลี่ยต่อการซื้อสินค้าหรูรายเมือง (หางโจว 31k, เซี่ยงไฮ้ 28k, ปักกิ่ง 26k หยวน) และการเติบโตของเมืองระดับสองในปี 2024'},
+  {n:19, title:'USDA FAS — East China Led US Consumer Ag Imports 2024', url:'https://www.fas.usda.gov/data/china-east-china-led-us-consumer-ag-product-imports-2024', covers:'มณฑลจีนตะวันออก (เซี่ยงไฮ้/เจียงซู/เจ้อเจียง) นำการนำเข้าสินค้าเกษตรเพื่อผู้บริโภคในปี 2024'}
 ];
+
+// Demand by province / region
+const provinces = [
+  {ic:'🏭', name:'กวางตุ้ง (Guangdong)', big:'อันดับ 1', yr:'นำเข้า 3.22 ล้านล้านหยวน', note:'ผู้นำเข้าอันดับ 1 ของจีน 39 ปีติด · ประตูผลไม้ทางทะเล (ท่าเรือหนานซา) · อิเล็กทรอนิกส์ 66.8% ของการนำเข้า', src:15},
+  {ic:'🚢', name:'กว่างซี (Guangxi)', big:'1/3', yr:'ผลไม้อาเซียน', note:'ประตูผลไม้อาเซียนหลัก — ท่าเรือชินโจว & ด่านโหย่วอี้กวาน รับผลไม้ 2.49 ล้านตันจากอาเซียน', src:16},
+  {ic:'🌄', name:'ยูนนาน (Yunnan)', big:'อันดับ 2', yr:'ประตูทุเรียน', note:'ประตูทุเรียนทางบกอันดับ 2 ผ่านลาว ด้วยรถไฟจีน-ลาว (ด่านโม่ฮาน)', src:17},
+  {ic:'🏙️', name:'เซี่ยงไฮ้ (Shanghai)', big:'อันดับ 1', yr:'ยอดสินค้าหรูรวม', note:'ศูนย์กลางนำเข้าอาหารพรีเมียมและสินค้าหรู ยอดบริโภครวมสูงสุดของประเทศ', src:18},
+  {ic:'🌾', name:'จีนตะวันออก (เจียงซู/เจ้อเจียง)', big:'ผู้นำ', yr:'สินค้าอุปโภคบริโภค', note:'มณฑลจีนตะวันออกนำการนำเข้าสินค้าเกษตร-อาหารเพื่อผู้บริโภค', src:19},
+  {ic:'🏛️', name:'ปักกิ่ง (Beijing)', big:'ระดับบน', yr:'สินค้าหรู/นำเข้า', note:'ตลาดผู้บริโภคระดับบนและสินค้าหรูสำคัญของจีนตอนเหนือ', src:18}
+];
+const cityLux = { labels:['หางโจว','เซี่ยงไฮ้','ปักกิ่ง'], values:[31, 28, 26] };
 
 /* ---------- Render lists ---------- */
 function bar(name, pct, label){
@@ -483,6 +520,7 @@ function detCard(d){
 document.getElementById('gourmetGrid').innerHTML = gourmet.map(detCard).join('');
 document.getElementById('luxuryGrid').innerHTML = luxury.map(detCard).join('');
 document.getElementById('thaiGrid').innerHTML = thaiOps.map(detCard).join('');
+document.getElementById('regionGrid').innerHTML = provinces.map(detCard).join('');
 
 document.getElementById('timelineList').innerHTML =
   timeline.map(t=>`<div class="tl-item"><div class="tl-date">${t.date}</div>
@@ -585,6 +623,13 @@ new Chart(document.getElementById('chartWatch'), {
   type:'bar',
   data:{ labels:watchGC.labels, datasets:[{label:'พันล้าน CHF', data:watchGC.values,
     backgroundColor:[ '#c9c4b6', GOLD, RED, '#7a5cff'], borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartCityLux'), {
+  type:'bar',
+  data:{ labels:cityLux.labels, datasets:[{label:'พันหยวน/ครั้ง', data:cityLux.values,
+    backgroundColor:[GOLD,RED,'#7a5cff'], borderRadius:6}]},
   options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
 });
 
