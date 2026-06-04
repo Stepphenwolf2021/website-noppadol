@@ -1078,63 +1078,247 @@ function initFanPoll() {
 // 8. TWITTER FEED SKELETON LOADER & SOURCE SWITCHER
 function initTwitterFeed() {
   const skeleton = document.getElementById("x-feed-skeleton");
-  if (!skeleton) return;
+  const container = document.querySelector(".x-feed-container");
+  if (!skeleton || !container) return;
 
-  const hideSkeleton = () => {
-    skeleton.classList.add("hidden");
+  const mockFeeds = {
+    "LFC": [
+      {
+        displayName: "Liverpool FC",
+        handle: "LFC",
+        verified: true,
+        avatar: "🔴",
+        time: "2h",
+        text: "Pre-season training commences next week at the AXA Training Centre! 🔴 The lads are ready to gear up for the 2026/27 campaign. #LFC",
+        replies: "124",
+        retweets: "482",
+        likes: "5.2K"
+      },
+      {
+        displayName: "Liverpool FC",
+        handle: "LFC",
+        verified: true,
+        avatar: "🔴",
+        time: "5h",
+        text: "Mo Salah on the upcoming season: 'We have new energy, new ideas, and we want to fight for all trophies. The fans deserve our absolute best.' 🇪🇬👑",
+        replies: "340",
+        retweets: "1.2K",
+        likes: "18.4K"
+      },
+      {
+        displayName: "Liverpool FC",
+        handle: "LFC",
+        verified: true,
+        avatar: "🔴",
+        time: "1d",
+        text: "Tickets for our pre-season friendly matches are now on general sale. Secure your seat to see Andoni Iraola's side in action! 🎟️🔴",
+        replies: "89",
+        retweets: "156",
+        likes: "2.1K"
+      }
+    ],
+    "AnfieldWatch": [
+      {
+        displayName: "Anfield Watch",
+        handle: "AnfieldWatch",
+        verified: true,
+        avatar: "👀",
+        time: "45m",
+        text: "Liverpool are reportedly monitoring the situation of several key targets as Iraola looks to bolster his midfield ahead of the new season. Thoughts, Reds? 🔴✍️",
+        replies: "56",
+        retweets: "72",
+        likes: "945"
+      },
+      {
+        displayName: "Anfield Watch",
+        handle: "AnfieldWatch",
+        verified: true,
+        avatar: "👀",
+        time: "3h",
+        text: "Virgil van Dijk has reiterated his commitment to the club, stating he is 'extremely excited' to work under the new manager. Captain. 🫡🔴",
+        replies: "18",
+        retweets: "45",
+        likes: "1.8K"
+      },
+      {
+        displayName: "Anfield Watch",
+        handle: "AnfieldWatch",
+        verified: true,
+        avatar: "👀",
+        time: "6h",
+        text: "LFC's opening fixtures of the 2026/27 season look challenging. Here is the full rundown of our first 5 games... Full schedule details coming soon. 👇",
+        replies: "89",
+        retweets: "102",
+        likes: "1.2K"
+      }
+    ],
+    "thisisanfield": [
+      {
+        displayName: "This Is Anfield",
+        handle: "thisisanfield",
+        verified: true,
+        avatar: "🔴",
+        time: "1h",
+        text: "Tactical Analysis: How Andoni Iraola's high-pressing style will fit the current Liverpool squad. Can he replicate his Bournemouth success? 🧠⚽",
+        replies: "12",
+        retweets: "34",
+        likes: "420"
+      },
+      {
+        displayName: "This Is Anfield",
+        handle: "thisisanfield",
+        verified: true,
+        avatar: "🔴",
+        time: "4h",
+        text: "Pre-season schedule in full: Dates, venues, and where to watch the Reds' preparation matches. 📺🔴",
+        replies: "8",
+        retweets: "19",
+        likes: "310"
+      },
+      {
+        displayName: "This Is Anfield",
+        handle: "thisisanfield",
+        verified: true,
+        avatar: "🔴",
+        time: "8h",
+        text: "Five Academy stars who could break into the first team under the new coaching staff this summer. 💫",
+        replies: "24",
+        retweets: "55",
+        likes: "890"
+      }
+    ],
+    "JamesPearceLFC": [
+      {
+        displayName: "James Pearce",
+        handle: "JamesPearceLFC",
+        verified: true,
+        avatar: "📝",
+        time: "2h",
+        text: "Liverpool pre-season starts on July 6th. Expected to see a few new faces by then. The club is actively working on two key defensive signings. 🔴 #LFC",
+        replies: "145",
+        retweets: "210",
+        likes: "3.4K"
+      },
+      {
+        displayName: "James Pearce",
+        handle: "JamesPearceLFC",
+        verified: true,
+        avatar: "📝",
+        time: "5h",
+        text: "Understand Andoni Iraola has already held individual calls with senior players. Initial feedback has been incredibly positive. Exciting times ahead.",
+        replies: "78",
+        retweets: "120",
+        likes: "2.8K"
+      },
+      {
+        displayName: "James Pearce",
+        handle: "JamesPearceLFC",
+        verified: true,
+        avatar: "📝",
+        time: "1d",
+        text: "No truth in rumors linking Luis Diaz with a move away this summer. He is fully in Iraola's plans for the upcoming campaign. 🇨🇴🔴",
+        replies: "92",
+        retweets: "140",
+        likes: "3.1K"
+      }
+    ]
+  };
+
+  let fallbackTimeout;
+  let hasRendered = false;
+
+  const renderMockTweets = (username) => {
+    const tweets = mockFeeds[username] || mockFeeds["LFC"];
+    const html = `
+      <div class="mock-tweets-list">
+        ${tweets.map(t => `
+          <div class="mock-tweet">
+            <div class="tweet-header">
+              <div class="tweet-avatar">${t.avatar}</div>
+              <div class="tweet-user-info">
+                <div class="tweet-user-row-top">
+                  <span class="tweet-display-name">${t.displayName}</span>
+                  ${t.verified ? '<span class="tweet-verified-badge" style="color: #1d9bf0;">✔</span>' : ''}
+                  <span class="tweet-handle">@${t.handle}</span>
+                  <span class="tweet-time">· ${t.time}</span>
+                </div>
+              </div>
+              <span class="tweet-x-logo">𝕏</span>
+            </div>
+            <div class="tweet-text">${t.text}</div>
+            <div class="tweet-actions">
+              <span class="tweet-action">💬 ${t.replies}</span>
+              <span class="tweet-action">🔁 ${t.retweets}</span>
+              <span class="tweet-action">❤️ ${t.likes}</span>
+            </div>
+          </div>
+        `).join('')}
+        <div style="text-align: center; padding: 12px; font-size: 11px;">
+          <a href="https://twitter.com/${username}" target="_blank" style="color: var(--gold-text); text-decoration: underline; font-weight: 700;">
+            View Live @${username} on X.com
+          </a>
+        </div>
+      </div>
+    `;
+    container.innerHTML = html;
+  };
+
+  const loadFeed = (username) => {
+    hasRendered = false;
+    skeleton.classList.remove("hidden");
+    container.innerHTML = `
+      <a class="twitter-timeline" 
+         data-theme="dark" 
+         data-height="650" 
+         data-chrome="noheader nofooter noborders transparent"
+         data-link-color="#e2c07d"
+         href="https://twitter.com/${username}?ref_src=twsrc%5Etfw">
+        Loading Tweets by @${username}...
+      </a>
+    `;
+
+    clearTimeout(fallbackTimeout);
+
+    if (window.twttr && window.twttr.widgets) {
+      window.twttr.widgets.load();
+    }
+
+    // Set fallback timeout to render mock tweets if official widget takes too long (1.5s)
+    fallbackTimeout = setTimeout(() => {
+      if (!hasRendered) {
+        skeleton.classList.add("hidden");
+        renderMockTweets(username);
+      }
+    }, 1500);
   };
 
   // Listen to Twitter's widgets rendered event
   if (window.twttr) {
     twttr.ready(function (t) {
       t.events.bind("rendered", function (event) {
-        hideSkeleton();
+        hasRendered = true;
+        skeleton.classList.add("hidden");
       });
     });
   }
 
-  // Safety fallback timeout (4s) to hide skeleton if ad-blockers block widgets.js
-  let fallbackTimeout = setTimeout(hideSkeleton, 4000);
-
   // Setup tab switcher buttons
   const tabButtons = document.querySelectorAll(".feed-tab-btn");
-  const container = document.querySelector(".x-feed-container");
 
   tabButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Avoid reloading if clicking the active feed
       if (btn.classList.contains("active")) return;
 
-      // Update active state
       tabButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
-      // Show skeleton
-      skeleton.classList.remove("hidden");
-
-      // Clear previous timeout and set a new safety fallback
-      clearTimeout(fallbackTimeout);
-      fallbackTimeout = setTimeout(hideSkeleton, 4000);
-
-      // Re-create the timeline anchor pointing to the selected account
       const username = btn.getAttribute("data-username");
-      container.innerHTML = `
-        <a class="twitter-timeline" 
-           data-theme="dark" 
-           data-height="650" 
-           data-chrome="noheader nofooter noborders transparent"
-           data-link-color="#e2c07d"
-           href="https://twitter.com/${username}?ref_src=twsrc%5Etfw">
-          Loading Tweets by @${username}...
-        </a>
-      `;
-
-      // Reload Twitter widgets to parse the new anchor
-      if (window.twttr && window.twttr.widgets) {
-        window.twttr.widgets.load();
-      }
+      loadFeed(username);
     });
   });
+
+  // Start initial feed loading
+  loadFeed("LFC");
 }
 
 // 9. KOP PREDICTOR & LOYALTY SYSTEM
