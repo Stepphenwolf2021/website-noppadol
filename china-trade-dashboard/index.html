@@ -228,7 +228,7 @@
       </div>
       <div class="card">
         <h3>ประเทศต้นทางสินค้าเกษตร-อาหารหลัก</h3>
-        <div class="hint">สัดส่วนการนำเข้าสินค้าเกษตรของจีน — 5 อันดับแรกรวมกัน ≈ 50%</div>
+        <div class="hint">สัดส่วนการนำเข้าสินค้าเกษตร — บราซิล/สหรัฐฯ อ้างอิงตรงจาก [7]; ไทย/ออสเตรเลีย/อินโดนีเซีย เป็น "ค่าประมาณ" (5 อันดับแรกรวม ≈ 50%)</div>
         <div class="chartbox"><canvas id="chartFoodSources"></canvas></div>
         <div class="srcline">ที่มา [7] <a href="https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market" target="_blank" rel="noopener">USDA FAS ↗</a></div>
       </div>
@@ -279,7 +279,7 @@
     <div class="grid2">
       <div class="card">
         <h3>🍷 นำเข้าไวน์ แยกตามประเทศ (2025)</h3>
-        <div class="hint">หน่วยล้านยูโร — ออสเตรเลียกลับมาอันดับ 1 หลังจีนยกเลิกภาษีปี 2024</div>
+        <div class="hint">หน่วยล้านยูโร — ออสเตรเลีย/ฝรั่งเศส/ชิลี อ้างอิงตรงจาก [11]; "อื่นๆ (≈€257M)" เป็นยอดส่วนที่เหลือโดยประมาณ</div>
         <div class="chartbox"><canvas id="chartWineCountry"></canvas></div>
         <div class="srcline">ที่มา [11] <a href="https://en.winesinfo.com/html/2026/3/189-88560.html" target="_blank" rel="noopener">Winesinfo / Vino Joy ↗</a></div>
       </div>
@@ -316,13 +316,13 @@
     <div class="grid2">
       <div class="card">
         <h3>สัดส่วนตลาดสินค้าหรูตามหมวด (2025)</h3>
-        <div class="hint">สัดส่วนโดยประมาณของตลาดสินค้าหรูในจีนแผ่นดินใหญ่</div>
+        <div class="hint">สัดส่วนหมวดสินค้า "ค่าประมาณ" จากช่วงที่ Bain &amp; Company รายงาน (ไม่ใช่ตัวเลขแยกหมวดเฉพาะจีนแบบตายตัว)</div>
         <div class="chartbox"><canvas id="chartLuxuryCat"></canvas></div>
         <div class="srcline">ที่มา [9] <a href="https://www.bain.com/insights/the-2025-chinese-personal-luxury-goods-market/" target="_blank" rel="noopener">Bain &amp; Company ↗</a></div>
       </div>
       <div class="card">
         <h3>นาฬิกาสวิสที่ส่งเข้าจีน-ฮ่องกง</h3>
-        <div class="hint">หน่วยพันล้านฟรังก์สวิส (CHF) ต่อปี — ลดลงแรงสองปีติด</div>
+        <div class="hint">หน่วยพันล้านฟรังก์สวิส (CHF) ต่อปี — ปี 2025 อ้างอิงตรงจาก [10]; ปี 2023* (ดอกจัน) และ 2024 เป็น "ค่าประมาณจากการคำนวณย้อน" (อิงอัตราลดลง −36% เทียบ 2023)</div>
         <div class="chartbox"><canvas id="chartWatch"></canvas></div>
         <div class="srcline">ที่มา [10] <a href="https://www.fhs.swiss/file/8081/communique_250112_e.pdf" target="_blank" rel="noopener">Federation of the Swiss Watch Industry ↗</a></div>
       </div>
@@ -365,7 +365,7 @@
       <h3>คำแนะนำเชิงปฏิบัติก่อนส่งออกเข้าจีน</h3>
       <div class="hint">ประเด็นที่ผู้ประกอบการไทยควรเตรียม</div>
       <ul class="barlist" id="thaiTips"></ul>
-      <div class="srcline">ที่มา [7] <a href="https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market" target="_blank" rel="noopener">USDA FAS ↗</a> · [12] <a href="https://www.nationthailand.com/business/economy/40065518" target="_blank" rel="noopener">Nation Thailand ↗</a></div>
+      <div class="srcline">ที่มา [23] <a href="https://www.fas.usda.gov/data/china-decrees-248-and-249-status-update-facilities-registration-and-food-safety-measures" target="_blank" rel="noopener">USDA FAS — GACC Decree 248/249 ↗</a> · [7] <a href="https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market" target="_blank" rel="noopener">USDA FAS ↗</a> · [12] <a href="https://www.nationthailand.com/business/economy/40065518" target="_blank" rel="noopener">Nation Thailand ↗</a></div>
     </div>
   </section>
 
@@ -456,7 +456,7 @@ const luxury = [
   {ic:'⌚', name:'นาฬิกา', big:'25–30%', yr:'ของตลาด', note:'เผชิญแรงกดดันหนัก ลดลง 14–17% ในปี 2025', src:9},
   {ic:'💍', name:'เครื่องประดับ', big:'10–15%', yr:'ของตลาด', note:'ทรงตัวดีที่สุดในปี 2025 (ลดเหลือ 0–5%)', src:9},
   {ic:'👗', name:'เสื้อผ้าสำเร็จรูป', big:'10–15%', yr:'ของตลาด', note:'แฟชั่น/เครื่องแต่งกาย เคลื่อนไหวตามภาวะตลาดรวม', src:9},
-  {ic:'👩', name:'ผู้ซื้อหญิง', big:'54.3%', yr:'สัดส่วน 2025', note:'ผู้หญิงครองการใช้จ่ายสินค้าหรูส่วนใหญ่ในจีน', src:9},
+  {ic:'👩', name:'ผู้ซื้อหญิง', big:'ราว 54%', yr:'ประมาณการ 2025', note:'ผู้หญิงครองการใช้จ่ายสินค้าหรูส่วนใหญ่ในจีน (ตัวเลขเป็นค่าประมาณจากผลสำรวจตลาด)', src:9},
   {ic:'🌏', name:'การช้อปต่างประเทศ', big:'ลดลง', yr:'2025', note:'เงินหยวนอ่อนทำให้ส่วนต่างราคาแคบ คนกลับมาซื้อในประเทศ', src:9}
 ];
 
@@ -508,7 +508,8 @@ const sources = [
   {n:19, title:'USDA FAS — East China Led US Consumer Ag Imports 2024', url:'https://www.fas.usda.gov/data/china-east-china-led-us-consumer-ag-product-imports-2024', covers:'มณฑลจีนตะวันออก (เซี่ยงไฮ้/เจียงซู/เจ้อเจียง) นำการนำเข้าสินค้าเกษตรเพื่อผู้บริโภคในปี 2024'},
   {n:20, title:'SCIO / China Customs — Q1 2026 Foreign Trade', url:'http://english.scio.gov.cn/m/pressroom/2026-05/18/content_118501318.html', covers:'การค้าจีนไตรมาส 1/2026: รวม 11.84 ล้านล้านหยวน (+15%), ส่งออก 6.85 ล้านล้าน (+11.9%), นำเข้า 4.99 ล้านล้าน (+19.6%) — สถิติสูงสุด โตเร็วสุดในรอบ 5 ปี'},
   {n:21, title:'The Star / Economic Watch — China Durian Supply Chain 2026', url:'https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/29/china039s-durian-boom-is-ripening-into-a-regional-supply-chain-story-economic-watch', covers:'แนวโน้มทุเรียนปี 2026: เวียดนาม Q1 +230% (~$222M), ทุเรียนทางรถไฟจีน-ลาว +94.2% (ม.ค.–เม.ย. 2026)'},
-  {n:22, title:'Bain & Company / Altagamma — Global Luxury 2026 Outlook', url:'https://www.bain.com/about/media-center/press-releases/20252/global-luxury-stays-resilient-despite-economic-headwinds-and-shifting-consumer-trends-that-reshape-marketbain--company-and-altagamma/', covers:'คาดการณ์ตลาดสินค้าหรูทั่วโลกกลับมาโต low-to-mid single digit ในปี 2026 หลังหดตัวสองปี'}
+  {n:22, title:'Bain & Company / Altagamma — Global Luxury 2026 Outlook', url:'https://www.bain.com/about/media-center/press-releases/20252/global-luxury-stays-resilient-despite-economic-headwinds-and-shifting-consumer-trends-that-reshape-marketbain--company-and-altagamma/', covers:'คาดการณ์ตลาดสินค้าหรูทั่วโลกกลับมาโต low-to-mid single digit ในปี 2026 หลังหดตัวสองปี'},
+  {n:23, title:'USDA FAS — China: Decrees 248 & 249 (Facility Registration)', url:'https://www.fas.usda.gov/data/china-decrees-248-and-249-status-update-facilities-registration-and-food-safety-measures', covers:'ระเบียบ GACC Decree 248/249: การขึ้นทะเบียนโรงงาน/ผู้ผลิตอาหารต่างชาติผ่าน CIFER/China Single Window ก่อนส่งออกเข้าจีน'}
 ];
 
 // Demand by province / region
