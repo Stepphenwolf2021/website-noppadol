@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initPredictorSystem();
   initThemeToggle(); // Initialize theme button and styles
   initNewsletterSubscribe(); // Initialize email newsletter & suggestions form
+  initWallpaperPreview(); // Initialize wallpaper download preview lightbox
 });
 
 // 1. SPA TABS NAVIGATION
@@ -2137,3 +2138,36 @@ function getAdminEmailHTML(email, feedback, timestamp) {
     </html>
   `;
 }
+
+function initWallpaperPreview() {
+  const thumbs = document.querySelectorAll(".wallpaper-thumb");
+  const modal = document.getElementById("wallpaper-preview-modal");
+  const previewImg = document.getElementById("wallpaper-preview-img");
+  const previewTitle = document.getElementById("wallpaper-preview-title");
+  const closeBtn = document.getElementById("close-wallpaper-modal-btn");
+  const overlay = document.getElementById("wallpaper-preview-overlay");
+
+  if (!modal || !previewImg) return;
+
+  thumbs.forEach(thumb => {
+    const wrapper = thumb.closest(".wallpaper-thumb-wrapper");
+    const triggerElement = wrapper || thumb;
+
+    triggerElement.addEventListener("click", () => {
+      const src = thumb.getAttribute("src");
+      const title = thumb.getAttribute("data-title") || "Wallpaper Preview";
+      previewImg.setAttribute("src", src);
+      if (previewTitle) previewTitle.innerText = title;
+      modal.classList.remove("hidden");
+    });
+  });
+
+  const closeModal = () => {
+    modal.classList.add("hidden");
+    if (previewImg) previewImg.setAttribute("src", "");
+  };
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (overlay) overlay.addEventListener("click", closeModal);
+}
+
