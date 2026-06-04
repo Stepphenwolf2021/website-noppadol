@@ -1857,6 +1857,22 @@ function initNewsletterSubscribe() {
 
   if (!submitBtn || !emailInput || !formContainer || !successState) return;
 
+  // --- PRODUCTION OUTBOUND SERVICES CONFIGURATION ---
+  // 1. Web3Forms: Sends suggestions and email info to admin at noppadol@neogens.co
+  const WEB3FORMS_ACCESS_KEY = "1143c093-6170-477e-a936-808e00939171";
+
+  // 2. EmailJS: Sends auto-response directly to the user (e.g. gmail/smtp)
+  // Register a free account at https://www.emailjs.com/ to get your credentials.
+  // In your EmailJS dashboard:
+  // - Create an Email Service (e.g., Service ID: "service_lfc_tracker")
+  // - Create an Email Template (e.g., Template ID: "template_lfc_autoresponse")
+  // - Set the dynamic parameters inside the template template: 
+  //   {{user_email}} (for To Email), {{feedback_text}}, {{timestamp}}
+  // - Find your Public Key under Account > API Keys
+  const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // Replace with your Service ID
+  const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Replace with your Template ID
+  const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // Replace with your Public Key
+
   const newsletterKey = "lfc_newsletter_email";
   const feedbackKey = "lfc_newsletter_feedback";
 
@@ -1898,7 +1914,7 @@ function initNewsletterSubscribe() {
 
     const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" }) + " (ICT)";
 
-    // Outbound API Submit Dispatch Alert (Web3Forms endpoint to send real emails to Admin)
+    // A. Outbound API Submit Dispatch Alert (Web3Forms to send suggestions to Admin)
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -1906,17 +1922,50 @@ function initNewsletterSubscribe() {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        access_key: "3c3efbf2-72ec-499f-9f79-c5c2d33cbdf8", // Sandbox Web3Forms Redirect key
+        access_key: WEB3FORMS_ACCESS_KEY,
         subject: `[LFC Tracker Feedback] Suggestions from ${email}`,
         from_name: "LFC Dashboard User",
         email: email,
-        message: `Dear Administrator,\n\nWe have received a new feature suggestion/feedback submission on the Liverpool FC All-Time Success Dashboard.\n\nUser Email: ${email}\nTime: ${timestamp}\n\nFeedback / Suggestion:\n"${feedbackText}"\n\nThis is an automated notification.`,
-        to_email: "noppadol@neogens.co"
+        message: `Dear Administrator,\n\nWe have received a new feature suggestion/feedback submission on the Liverpool FC All-Time Success Dashboard.\n\nUser Email: ${email}\nTime: ${timestamp}\n\nFeedback / Suggestion:\n"${feedbackText}"\n\nThis is an automated notification.`
       })
     })
     .then(res => res.json())
-    .then(data => console.log("Outbound Admin Alert Dispatched:", data))
-    .catch(err => console.error("Outbound Admin Alert Error:", err));
+    .then(data => console.log("Outbound Admin Alert (Web3Forms) Dispatched:", data))
+    .catch(err => console.error("Outbound Admin Alert (Web3Forms) Error:", err));
+
+    // B. Outbound Auto-Response Email to User (EmailJS REST API)
+    if (
+      EMAILJS_SERVICE_ID && EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID" &&
+      EMAILJS_TEMPLATE_ID && EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID" &&
+      EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY"
+    ) {
+      fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          service_id: EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id: EMAILJS_PUBLIC_KEY,
+          template_params: {
+            user_email: email,
+            feedback_text: feedbackText,
+            timestamp: timestamp
+          }
+        })
+      })
+      .then(res => {
+        if (!res.ok) {
+          return res.text().then(text => { throw new Error(text || res.statusText); });
+        }
+        return res.text();
+      })
+      .then(data => console.log("Outbound User Auto-Response (EmailJS) Dispatched:", data))
+      .catch(err => console.error("Outbound User Auto-Response (EmailJS) Error:", err));
+    } else {
+      console.log("EmailJS auto-responder is in sandbox mode or not configured. To send real auto-responses to users, please update EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, and EMAILJS_PUBLIC_KEY in app.js.");
+    }
 
     showState();
   });
