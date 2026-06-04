@@ -117,6 +117,18 @@
   .subhead { font-size:20px; font-weight:800; margin:8px 0 4px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
   .subhead .chip { font-size:11px; font-weight:800; letter-spacing:.03em; padding:4px 10px; border-radius:999px; background:rgba(240,180,41,.18); color:var(--gold-soft); }
   .detgrid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:22px; }
+  .acc { background:var(--card); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); margin-bottom:12px; overflow:hidden; }
+  .acc summary { cursor:pointer; padding:14px 18px; font-weight:800; font-size:15px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .acc summary::-webkit-details-marker { display:none; }
+  .acc summary .arr { color:var(--ink-soft); font-size:13px; }
+  .acc[open] summary { border-bottom:1px solid var(--line); }
+  .acc .body { padding:14px 18px 16px; }
+  .acc ol { margin:0 0 0 20px; }
+  .acc ol li { font-size:13.5px; color:var(--ink-soft); margin-bottom:7px; }
+  .acc ol li strong { color:var(--ink); font-weight:700; }
+  .acc .src { font-size:11.5px; margin-top:10px; color:var(--ink-soft); }
+  .acc .src a { font-weight:700; text-decoration:none; }
+  .acc .src a:hover { text-decoration:underline; }
   .det { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); }
   .det .ic { font-size:26px; line-height:1; }
   .det h4 { font-size:15px; font-weight:800; margin:8px 0 2px; }
@@ -197,7 +209,7 @@
     <div class="stats">
       <div class="stat"><div class="label">มูลค่านำเข้ารวม ปี 2025</div><div class="value">$2.65 ล้านล้าน</div><div class="delta up">▲ ราว 1% YoY</div></div>
       <div class="stat"><div class="label">นำเข้าอาหาร ปี 2024</div><div class="value">$127,000 ล้าน</div><div class="delta up">▲ โต 9.3%/ปี (10 ปี)</div></div>
-      <div class="stat"><div class="label">นำเข้าทุเรียน ปี 2024</div><div class="value">$6,990 ล้าน</div><div class="delta up">▲ สถิติสูงสุด (+4.1%)</div></div>
+      <div class="stat"><div class="label">นำเข้าทุเรียน ปี 2025</div><div class="value">$7,490 ล้าน</div><div class="delta up">▲ สถิติสูงสุด (+7.1%)</div></div>
       <div class="stat"><div class="label">ตลาดสินค้าหรู ปี 2025</div><div class="value">~$46,000 ล้าน</div><div class="delta down">▼ 3–5% YoY</div></div>
     </div>
 
@@ -242,8 +254,10 @@
 
     <div class="detgrid" id="gourmetGrid"></div>
 
+    <div class="srcnote">📅 ความเป็นปัจจุบันของข้อมูล: <strong>ผลไม้/ทุเรียน/เชอร์รี่ = ปี 2025</strong> (ล่าสุด) · <strong>อาหารทะเล/เนื้อวัว/นม = ปี 2024</strong> เพราะตัวเลขแยกหมวดปี 2025 ของกลุ่มนี้ยังไม่เผยแพร่อย่างเป็นทางการ · ภาพรวมนำเข้าอาหาร-เกษตรรวมปี 2025 อยู่ที่ ~$207 พันล้าน (ลดจาก $237 พันล้านปี 2024) — ที่มา [26] <a href="https://www.trade.gov/country-commercial-guides/china-agriculture" target="_blank" rel="noopener">Trade.gov / USDA ↗</a></div>
+
     <div class="card">
-      <h3>มูลค่าการนำเข้าอาหารพรีเมียม (ปี 2024–25)</h3>
+      <h3>มูลค่าการนำเข้าอาหารพรีเมียม (ปี 2024–2025)</h3>
       <div class="hint">หมวดอาหารคุณภาพที่เลือก หน่วยพันล้านดอลลาร์สหรัฐ</div>
       <div class="chartbox"><canvas id="chartGourmet"></canvas></div>
       <div class="srcline">ที่มา [7] <a href="https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market" target="_blank" rel="noopener">USDA FAS ↗</a> · [8] <a href="https://www.producereport.com/article/chinas-2025-fruit-import-statistics-released" target="_blank" rel="noopener">Produce Report ↗</a></div>
@@ -263,16 +277,16 @@
 
     <div class="grid2">
       <div class="card">
-        <h3>🟡 นำเข้าทุเรียน แยกตามประเทศ (2024)</h3>
-        <div class="hint">หน่วยพันล้านดอลลาร์ — ไทย+เวียดนามรวมกัน 99.5%</div>
+        <h3>🟡 นำเข้าทุเรียน แยกตามประเทศ (2025)</h3>
+        <div class="hint">หน่วยพันล้านดอลลาร์ — รวมทุเรียนสด $7.49B; เวียดนามแซงไทยด้านปริมาณเป็นครั้งแรก</div>
         <div class="chartbox"><canvas id="chartDurianCountry"></canvas></div>
-        <div class="srcline">ที่มา [13] <a href="https://chinaglobalsouth.com/2025/01/23/chinas-7-billion-durian-imports-in-2024-fuel-vietnam-malaysia-rivalry-thailand-top-exporter/" target="_blank" rel="noopener">China-Global South / SCMP ↗</a></div>
+        <div class="srcline">ที่มา [8] <a href="https://www.producereport.com/article/chinas-2025-fruit-import-statistics-released" target="_blank" rel="noopener">Produce Report (สถิติผลไม้ 2025) ↗</a></div>
       </div>
       <div class="card">
-        <h3>🟡 อัตราเติบโตซัพพลายเออร์ทุเรียน (2024 YoY)</h3>
-        <div class="hint">ไทยกำลังเสียส่วนแบ่งให้เวียดนามและฟิลิปปินส์</div>
+        <h3>🟡 อัตราเติบโตซัพพลายเออร์ทุเรียน (2025 YoY มูลค่า)</h3>
+        <div class="hint">ไทยทรงตัว (−0.4%) ขณะที่เวียดนามยังโตต่อ (+17.1%) และนำด้านปริมาณ</div>
         <div class="chartbox"><canvas id="chartDurianGrowth"></canvas></div>
-        <div class="srcline">ที่มา [13] <a href="https://chinaglobalsouth.com/2025/01/23/chinas-7-billion-durian-imports-in-2024-fuel-vietnam-malaysia-rivalry-thailand-top-exporter/" target="_blank" rel="noopener">China-Global South / SCMP ↗</a></div>
+        <div class="srcline">ที่มา [8] <a href="https://www.producereport.com/article/chinas-2025-fruit-import-statistics-released" target="_blank" rel="noopener">Produce Report (สถิติผลไม้ 2025) ↗</a></div>
       </div>
     </div>
 
@@ -336,16 +350,21 @@
 
     <div class="detgrid" id="regionGrid"></div>
 
+    <div class="subhead">📦 สินค้านำเข้าเด่นรายมณฑล <span class="chip">กดเพื่อกาง</span></div>
+    <p class="lead">รายการสินค้านำเข้า "เด่น" ของแต่ละมณฑล (Leading Imports) — ข้อมูลระดับมณฑลแบบจัดอันดับครบ Top 10 พร้อมมูลค่าทุกรายการไม่มีเผยแพร่สาธารณะ จึงแสดงเท่าที่อ้างอิงได้: บางรายการเป็นตัวเลขจริง (ครึ่งปี/11 เดือน 2024) บางรายการเป็น "เชิงโครงสร้าง" ตามฐานเศรษฐกิจของมณฑล (กำกับไว้ชัดเจน)</p>
+
+    <div id="provImports"></div>
+
     <div class="callout">
       <h3>🚪 ประตูนำเข้าผลไม้สำหรับสินค้าไทย</h3>
       <p>ผลไม้ไทยส่วนใหญ่เข้าจีนผ่าน 3 เส้นทางหลัก: <strong>กว่างซี</strong> (ท่าเรือชินโจว &amp; ด่านโหย่วอี้กวาน — รับกว่า 1 ใน 3 ของผลไม้อาเซียน), <strong>กวางตุ้ง</strong> (ท่าเรือหนานซา — "ขบวนทุเรียนด่วน" ทางทะเลจากไทย) และ <strong>ยูนนาน</strong> (ทางบกผ่านลาวด้วยรถไฟจีน-ลาว ด่านโม่ฮาน) การเลือกเส้นทางมีผลต่อต้นทุนและความสดของสินค้า</p>
     </div>
 
     <div class="card">
-      <h3>ค่าใช้จ่ายเฉลี่ยต่อการซื้อสินค้าหรู รายเมือง (ปี 2023)</h3>
-      <div class="hint">แท่งกราฟ: ค่าเฉลี่ยต่อการซื้อ 1 ครั้ง ปี 2023 (พันหยวน) — หมายเหตุแยกต่างหาก: ในปี 2024 เมืองระดับสอง (เช่น หนานจิง) มียอดใช้จ่ายเฉลี่ยรวมแซงเมืองระดับหนึ่งแล้ว</div>
+      <h3>ค่าใช้จ่ายเฉลี่ยต่อการซื้อสินค้าหรู รายเมือง</h3>
+      <div class="hint">แท่งกราฟ = ค่าเฉลี่ยต่อการซื้อ 1 ครั้ง ปี 2023 (พันหยวน, ตัวเลขล่าสุดที่เผยแพร่) — <strong>เทรนด์ปี 2025:</strong> เมืองระดับสอง (หนานจิง ฉางซา เฉิงตู หางโจว อู่ฮั่น) มียอดใช้จ่ายสินค้าหรูแซงปักกิ่ง-เซี่ยงไฮ้ และร้านหรูเปิดใหม่ +45%</div>
       <div class="chartbox"><canvas id="chartCityLux"></canvas></div>
-      <div class="srcline">ที่มา [18] <a href="https://jingdaily.com/posts/small-cities-big-spenders-china-s-new-luxury-hubs" target="_blank" rel="noopener">Jing Daily / Statista ↗</a></div>
+      <div class="srcline">ที่มา [18] <a href="https://jingdaily.com/posts/small-cities-big-spenders-china-s-new-luxury-hubs" target="_blank" rel="noopener">Jing Daily / Statista (2023) ↗</a> · [28] <a href="https://www.businessoffashion.com/news/global-markets/second-tier-cities-are-critical-to-reviving-luxury-growth-in-china/" target="_blank" rel="noopener">BoF / Reuters (2025) ↗</a></div>
     </div>
   </section>
 
@@ -356,7 +375,7 @@
 
     <div class="callout">
       <h3>ภาพรวมจุดยืนของไทย</h3>
-      <p>ไทยเป็นซัพพลายเออร์สินค้าเกษตรอันดับ 3 ของจีน (รองจากบราซิลและสหรัฐฯ) และเป็นผู้ส่งออกทุเรียนอันดับ 1 เข้าจีน แต่ส่วนแบ่งทุเรียนของไทยลดจาก 68% (ปี 2023) เหลือ 57% (ปี 2024) ในปีเดียว เพราะเวียดนามเร่งตัวขึ้น — โอกาสยังมาก แต่ต้องรักษาคุณภาพและความเร็วในการส่งมอบ</p>
+      <p>ไทยเป็นซัพพลายเออร์สินค้าเกษตรอันดับ 3 ของจีน (รองจากบราซิลและสหรัฐฯ) และยังเป็นผู้ส่งออกทุเรียนอันดับ 1 เข้าจีนด้านมูลค่า แต่ส่วนแบ่งของไทยลดลงต่อเนื่อง: 68% (2023) → 57% (2024) → ~53% (2025) และในปี 2025 เวียดนามแซงไทยด้านปริมาณเป็นครั้งแรก — โอกาสยังสูงแต่ต้องเร่งรักษาคุณภาพและความเร็วส่งมอบ — โอกาสยังมาก แต่ต้องรักษาคุณภาพและความเร็วในการส่งมอบ</p>
     </div>
 
     <div class="detgrid" id="thaiGrid"></div>
@@ -430,12 +449,12 @@ const importCats = [
 ];
 
 const foodSources = { labels:['บราซิล','สหรัฐฯ','ไทย','ออสเตรเลีย','อินโดนีเซีย','อื่นๆ'], values:[24.9,14.0,8.0,7.0,6.0,40.1] };
-const gourmetVals = { labels:['อาหารทะเล','ผลไม้สด','เนื้อวัว','นม','ทุเรียน','เชอร์รี่'], values:[22.1,15.9,13.9,12.3,6.99,3.43] };
+const gourmetVals = { labels:['อาหารทะเล','ผลไม้สด','เนื้อวัว','นม','ทุเรียน','เชอร์รี่'], values:[22.1,18.8,13.9,12.3,7.49,3.43] };
 const luxuryCat = { labels:['กระเป๋า & เครื่องหนัง','นาฬิกา','เครื่องประดับ','เสื้อผ้าสำเร็จรูป'], values:[53,27,12,8] };
 const watchGC = { labels:['จีน 2023*','จีน 2024','จีน 2025','ฮ่องกง 2025'], values:[2.6,2.0,1.66,1.64] };
 
-const durianCountry = { labels:['ไทย','เวียดนาม','มาเลเซีย+ฟิลิปปินส์'], values:[4.00, 2.90, 0.04] };
-const durianGrowth  = { labels:['ไทย','เวียดนาม','ฟิลิปปินส์'], values:[-12.0, 37.6, 144.4] };
+const durianCountry = { labels:['ไทย','เวียดนาม','อื่นๆ'], values:[4.00, 3.44, 0.05] };
+const durianGrowth  = { labels:['ไทย','เวียดนาม'], values:[-0.4, 17.1] };
 const wineCountry   = { labels:['ออสเตรเลีย','ฝรั่งเศส','ชิลี','อื่นๆ'], values:[516, 370, 115, 257] };
 const beefCountry   = { labels:['บราซิล','อาร์เจนตินา','อุรุกวัย','ออสเตรเลีย','นิวซีแลนด์','สหรัฐฯ','อื่นๆ'], values:[47, 21, 8.5, 7.5, 5, 5, 6] };
 const cherryCountry = { labels:['ชิลี','ประเทศอื่นๆ'], values:[99, 1] };
@@ -444,11 +463,11 @@ const gourmet = [
   {ic:'🦞', name:'อาหารทะเล', big:'$22.1B', yr:'2024', note:'โปรตีนนำเข้ามูลค่าสูงสุด — กุ้ง ล็อบสเตอร์ แซลมอน ปู', src:7},
   {ic:'🥩', name:'เนื้อวัว', big:'$13.9B', yr:'2024', note:'นำเข้าจากบราซิล อาร์เจนตินา ออสเตรเลีย และอุรุกวัย', src:7},
   {ic:'🧀', name:'ผลิตภัณฑ์นม', big:'$12.3B', yr:'2024', note:'นมผง ชีส และนมผงเด็ก — นิวซีแลนด์และ EU เป็นผู้นำ', src:7},
-  {ic:'🟡', name:'ทุเรียนสด', big:'$6.99B', yr:'2024', note:'สถิติสูงสุด — ไทยอันดับ 1 (~$4B, 57%) เวียดนาม-มาเลเซียมาแรง', src:13},
-  {ic:'🍒', name:'เชอร์รี่', big:'$3.43B', yr:'2025', note:'ผลไม้นำเข้าอันดับ 2 — ชิลีครองราว 99%', src:8},
+  {ic:'🟡', name:'ทุเรียนสด', big:'$7.49B', yr:'2025', note:'สถิติสูงสุด (+7.1%) — ไทยอันดับ 1 ($4.0B) แต่เวียดนามแซงด้านปริมาณครั้งแรก', src:8},
+  {ic:'🍒', name:'เชอร์รี่', big:'$3.43B', yr:'2025', note:'ผลไม้นำเข้าอันดับ 2 (−6.2%) — ชิลีครองราว 99%', src:8},
   {ic:'🍷', name:'ไวน์', big:'−14.6%', yr:'มูลค่า 2025', note:'ออสเตรเลียอันดับ 1 (€516M, 41%) หลังเลิกภาษีปี 2024 ตามด้วยฝรั่งเศส ชิลี', src:11},
   {ic:'☕', name:'กาแฟ', big:'230,700 ตัน', yr:'2025', note:'โตราว 290% ในรอบ 10 ปี ตามกระแสคาเฟ่', src:12},
-  {ic:'🍇', name:'ผลไม้สด (รวม)', big:'$15.9B', yr:'2024', note:'ส่วนใหญ่เป็นผลไม้เมืองร้อน — ทุเรียนและเชอร์รี่นำมูลค่า', src:7}
+  {ic:'🍇', name:'ผลไม้สด (รวม)', big:'≈$18.8B', yr:'2025 (ประมาณ)', note:'ประมาณการจาก 9 หมวดหลัก = 84% ของมูลค่า; ทุเรียน-เชอร์รี่-กล้วย-มังคุด-ลำไย-มะพร้าวนำ', src:8}
 ];
 
 const luxury = [
@@ -461,8 +480,8 @@ const luxury = [
 ];
 
 const thaiOps = [
-  {ic:'🟡', name:'ทุเรียน — รักษาแชมป์', big:'$4B', yr:'ไทย #1', note:'ส่วนแบ่งลดจาก 68%→57% เพราะเวียดนาม โอกาสยังสูงแต่ต้องเร่งคุณภาพ-โลจิสติกส์', src:13},
-  {ic:'🥭', name:'ผลไม้เมืองร้อน', big:'$15.9B', yr:'ตลาดรวม', note:'มังคุด ลำไย มะม่วง มะพร้าว — จีนนำเข้าผลไม้สดมหาศาล', src:7},
+  {ic:'🟡', name:'ทุเรียน — รักษาแชมป์', big:'$4.0B', yr:'ไทย #1 (2025)', note:'ส่วนแบ่งมูลค่าเหลือ ~53% และเวียดนามแซงด้านปริมาณแล้ว — ต้องเร่งคุณภาพ-โลจิสติกส์', src:8},
+  {ic:'🥭', name:'ผลไม้เมืองร้อน', big:'≈$18.8B', yr:'ตลาดรวม 2025', note:'มังคุด ($590M) ลำไย ($500M) มะพร้าวอ่อน ($580M) กล้วย ($1.06B) — จีนนำเข้าผลไม้สดมหาศาล', src:8},
   {ic:'☕', name:'วัตถุดิบเครื่องดื่ม', big:'+290%', yr:'กาแฟ 10 ปี', note:'ส่งผลไม้แปรรูป (purée/แช่แข็ง) ป้อนอุตสาหกรรมกาแฟ-ชานมจีน', src:12},
   {ic:'🍚', name:'ข้าว & อาหารแปรรูป', big:'โอกาส', yr:'มูลค่าเพิ่ม', note:'ข้าวหอมมะลิ อาหารพร้อมทาน เครื่องปรุง — เน้นแบรนด์และมูลค่าเพิ่ม', src:7},
   {ic:'🦐', name:'อาหารทะเลแปรรูป', big:'$22.1B', yr:'ตลาดรวม', note:'กุ้ง ปลา อาหารทะเลแช่แข็ง/แปรรูป มีดีมานด์ต่อเนื่อง', src:7},
@@ -509,12 +528,61 @@ const sources = [
   {n:20, title:'SCIO / China Customs — Q1 2026 Foreign Trade', url:'http://english.scio.gov.cn/m/pressroom/2026-05/18/content_118501318.html', covers:'การค้าจีนไตรมาส 1/2026: รวม 11.84 ล้านล้านหยวน (+15%), ส่งออก 6.85 ล้านล้าน (+11.9%), นำเข้า 4.99 ล้านล้าน (+19.6%) — สถิติสูงสุด โตเร็วสุดในรอบ 5 ปี'},
   {n:21, title:'The Star / Economic Watch — China Durian Supply Chain 2026', url:'https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/29/china039s-durian-boom-is-ripening-into-a-regional-supply-chain-story-economic-watch', covers:'แนวโน้มทุเรียนปี 2026: เวียดนาม Q1 +230% (~$222M), ทุเรียนทางรถไฟจีน-ลาว +94.2% (ม.ค.–เม.ย. 2026)'},
   {n:22, title:'Bain & Company / Altagamma — Global Luxury 2026 Outlook', url:'https://www.bain.com/about/media-center/press-releases/20252/global-luxury-stays-resilient-despite-economic-headwinds-and-shifting-consumer-trends-that-reshape-marketbain--company-and-altagamma/', covers:'คาดการณ์ตลาดสินค้าหรูทั่วโลกกลับมาโต low-to-mid single digit ในปี 2026 หลังหดตัวสองปี'},
-  {n:23, title:'USDA FAS — China: Decrees 248 & 249 (Facility Registration)', url:'https://www.fas.usda.gov/data/china-decrees-248-and-249-status-update-facilities-registration-and-food-safety-measures', covers:'ระเบียบ GACC Decree 248/249: การขึ้นทะเบียนโรงงาน/ผู้ผลิตอาหารต่างชาติผ่าน CIFER/China Single Window ก่อนส่งออกเข้าจีน'}
+  {n:23, title:'USDA FAS — China: Decrees 248 & 249 (Facility Registration)', url:'https://www.fas.usda.gov/data/china-decrees-248-and-249-status-update-facilities-registration-and-food-safety-measures', covers:'ระเบียบ GACC Decree 248/249: การขึ้นทะเบียนโรงงาน/ผู้ผลิตอาหารต่างชาติผ่าน CIFER/China Single Window ก่อนส่งออกเข้าจีน'},
+  {n:24, title:'International Trade Council / GDFAO — Guangdong Imports H1 2024', url:'https://tradecouncil.org/significant-import-growth/', covers:'โครงสร้างนำเข้ากวางตุ้งครึ่งปีแรก 2024: วงจรรวม 527 พันล้านหยวน, เครื่องประมวลผลข้อมูล 105.6 พันล้าน, เครื่องจักรเซมิคอนดักเตอร์ 29.5 พันล้าน, สินค้าเครื่องกล-ไฟฟ้า 64.2%, พลังงาน 49.6 ล้านตัน'},
+  {n:25, title:'Shanghai Municipal Government — Shanghai Foreign Trade 2024', url:'https://english.shanghai.gov.cn/en-Latest-WhatsNew/20241224/002f37c98df74f5cb8c5078acc1dbb22.html', covers:'โครงสร้างนำเข้าเซี่ยงไฮ้ 2024: วงจรรวม 252.7 พันล้านหยวน (อันดับ 1), รถยนต์นำเข้า, เครื่องสำอาง/สินค้าอุปโภคบริโภคพรีเมียม'},
+  {n:26, title:'USDA / Trade.gov — China Agriculture Country Guide', url:'https://www.trade.gov/country-commercial-guides/china-agriculture', covers:'ภาพรวมการนำเข้าสินค้าเกษตร-อาหาร: รวมปี 2025 ~$207.4 พันล้าน (ลดจาก $237 พันล้านปี 2024) — ตัวเลขแยกรายหมวดปี 2025 บางส่วนยังไม่เผยแพร่'},
+  {n:27, title:'GDToday / newsgd — Guangdong Foreign Trade 2025', url:'https://www.newsgd.com/node_99363c4f3b/9c1434f324.shtml', covers:'กวางตุ้งปี 2025: การค้ารวม 9.49 ล้านล้านหยวน (+4.4%, สถิติสูงสุด), ส่งออก 6.03 ล้านล้าน (+2.5%), นำเข้า 3.46 ล้านล้าน (+7.8%)'},
+  {n:28, title:'Business of Fashion / Reuters — China Tier-2 Luxury 2025', url:'https://www.businessoffashion.com/news/global-markets/second-tier-cities-are-critical-to-reviving-luxury-growth-in-china/', covers:'ปี 2025 เมืองระดับสอง (หนานจิง ฉางซา เฉิงตู หางโจว อู่ฮั่น) มียอดใช้จ่ายสินค้าหรูแซงปักกิ่ง-เซี่ยงไฮ้ ร้านหรูเปิดใหม่ +45%'}
+];
+
+// Leading imports per province (sourced where possible; structural items labeled)
+const provImports = [
+  {prov:'🏭 กวางตุ้ง (Guangdong)', yr:'ครึ่งปีแรก 2024', src:24, items:[
+    '<strong>วงจรรวม / ชิป (IC)</strong> — 527 พันล้านหยวน (+21.3%)',
+    '<strong>เครื่องประมวลผลข้อมูลอัตโนมัติ & ชิ้นส่วน</strong> — 105.6 พันล้านหยวน',
+    '<strong>เครื่องจักรผลิตเซมิคอนดักเตอร์</strong> — 29.5 พันล้านหยวน (+2.4 เท่า)',
+    '<strong>พลังงาน</strong> (ถ่านหิน/น้ำมันดิบ/ก๊าซ) — 49.6 ล้านตัน ~68.9 พันล้านหยวน',
+    'สินค้าเครื่องกล-ไฟฟ้า (รวม) = 64.2% ของการนำเข้าทั้งหมด',
+    'ผลไม้นำเข้าทางทะเล — ทุเรียน ฯลฯ (ผ่านท่าเรือหนานซา)'
+  ]},
+  {prov:'🚢 กว่างซี (Guangxi)', yr:'ปี 2024', src:16, items:[
+    '<strong>ผลไม้อาเซียน</strong> — 2.488 ล้านตัน / 34.89 พันล้านหยวน (ทุเรียน มังคุด ลำไย กล้วย)',
+    'สินค้าเกษตรอื่นๆ จากอาเซียน (มันสำปะหลัง ข้าว)',
+    'แร่/สินแร่โลหะ (นำเข้าทางบก/ทะเลจากเวียดนาม) — เชิงโครงสร้าง',
+    'ชิ้นส่วนอิเล็กทรอนิกส์เพื่อประกอบส่งออก — เชิงโครงสร้าง'
+  ]},
+  {prov:'🌄 ยูนนาน (Yunnan)', yr:'ครึ่งปีแรก 2024', src:17, items:[
+    '<strong>ทุเรียน</strong> — 151,000 ตัน / 5.03 พันล้านหยวน (+24.3%) ผ่านรถไฟจีน-ลาว',
+    'สินค้าเกษตรทางบกจากลาว/เมียนมา/เวียดนาม (ผลไม้ ธัญพืช)',
+    'แร่โลหะนอกกลุ่มเหล็ก (Yunnan เป็นฐานอุตสาหกรรมโลหะ) — เชิงโครงสร้าง',
+    'สินค้าการค้าชายแดน — เชิงโครงสร้าง'
+  ]},
+  {prov:'🏙️ เซี่ยงไฮ้ (Shanghai)', yr:'11 เดือน 2024', src:25, items:[
+    '<strong>วงจรรวม / ชิป (IC)</strong> — 252.7 พันล้านหยวน (สินค้านำเข้าอันดับ 1)',
+    '<strong>เครื่องสำอาง & personal care</strong> — ~$10 พันล้าน (โตต่อเนื่อง)',
+    'รถยนต์นำเข้า (รถหรู/รถยุโรป)',
+    'อาหารนำเข้าพรีเมียม & สินค้าอุปโภคบริโภคระดับบน',
+    'อุปกรณ์การแพทย์/เครื่องบิน (ศูนย์กลาง CIIE) — เชิงโครงสร้าง'
+  ]},
+  {prov:'🌾 จีนตะวันออก — เจียงซู/เจ้อเจียง', yr:'เชิงโครงสร้าง', src:19, items:[
+    'ชิป & อุปกรณ์อิเล็กทรอนิกส์ (ฐานการผลิตส่งออก)',
+    'เครื่องจักรกล & ชิ้นส่วน',
+    '<strong>สินค้าเกษตร-อาหารเพื่อผู้บริโภค</strong> (มณฑลจีนตะวันออกนำการนำเข้ากลุ่มนี้)',
+    'เคมีภัณฑ์ & พลาสติก',
+    'แร่/วัตถุดิบอุตสาหกรรม'
+  ]},
+  {prov:'🏛️ ปักกิ่ง (Beijing)', yr:'เชิงโครงสร้าง', src:18, items:[
+    'รถยนต์หรู & สินค้าหรู (ตลาดผู้บริโภคระดับบน)',
+    'น้ำมันดิบ/พลังงาน (สำนักงานใหญ่บริษัทพลังงานรัฐ)',
+    'สินค้าอุปโภคบริโภคพรีเมียม & อาหารนำเข้า',
+    'อุปกรณ์ไฮเทค/เครื่องบิน'
+  ]}
 ];
 
 // Demand by province / region
 const provinces = [
-  {ic:'🏭', name:'กวางตุ้ง (Guangdong)', big:'อันดับ 1', yr:'นำเข้า 3.22 ล้านล้านหยวน', note:'ผู้นำเข้าอันดับ 1 ของจีน 39 ปีติด · ประตูผลไม้ทางทะเล (ท่าเรือหนานซา) · อิเล็กทรอนิกส์ 66.8% ของการนำเข้า', src:15},
+  {ic:'🏭', name:'กวางตุ้ง (Guangdong)', big:'อันดับ 1', yr:'นำเข้า 3.46 ล้านล้านหยวน (2025, +7.8%)', note:'ผู้นำเข้าอันดับ 1 ของจีน · การค้ารวม 9.49 ล้านล้านหยวน (สถิติสูงสุด) · ประตูผลไม้ทางทะเล (ท่าเรือหนานซา) · อิเล็กทรอนิกส์เป็นหมวดนำเข้าหลัก', src:27},
   {ic:'🚢', name:'กว่างซี (Guangxi)', big:'1/3', yr:'ผลไม้อาเซียน', note:'ประตูผลไม้อาเซียนหลัก — ท่าเรือชินโจว & ด่านโหย่วอี้กวาน รับผลไม้ 2.49 ล้านตันจากอาเซียน', src:16},
   {ic:'🌄', name:'ยูนนาน (Yunnan)', big:'อันดับ 2', yr:'ประตูทุเรียน', note:'ประตูทุเรียนทางบกอันดับ 2 ผ่านลาว ด้วยรถไฟจีน-ลาว (ด่านโม่ฮาน)', src:17},
   {ic:'🏙️', name:'เซี่ยงไฮ้ (Shanghai)', big:'อันดับ 1', yr:'ยอดสินค้าหรูรวม', note:'ศูนย์กลางนำเข้าอาหารพรีเมียมและสินค้าหรู ยอดบริโภครวมสูงสุดของประเทศ', src:18},
@@ -545,6 +613,11 @@ document.getElementById('gourmetGrid').innerHTML = gourmet.map(detCard).join('')
 document.getElementById('luxuryGrid').innerHTML = luxury.map(detCard).join('');
 document.getElementById('thaiGrid').innerHTML = thaiOps.map(detCard).join('');
 document.getElementById('regionGrid').innerHTML = provinces.map(detCard).join('');
+
+document.getElementById('provImports').innerHTML = provImports.map(p=>
+  `<details class="acc"><summary>${p.prov} <span class="arr">${p.yr} ▾</span></summary>
+    <div class="body"><ol>${p.items.map(i=>`<li>${i}</li>`).join('')}</ol>
+    <div class="src">ที่มา [${p.src}] <a href="${srcUrl(p.src)}" target="_blank" rel="noopener">ดูแหล่งข้อมูล ↗</a> · รายการที่ระบุ "เชิงโครงสร้าง" เป็นการประเมินตามฐานเศรษฐกิจของมณฑล</div></div></details>`).join('');
 
 document.getElementById('timelineList').innerHTML =
   timeline.map(t=>`<div class="tl-item"><div class="tl-date">${t.date}</div>
