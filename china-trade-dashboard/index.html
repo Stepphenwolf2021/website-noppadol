@@ -13,6 +13,7 @@
   window.gaConsentGranted = false;
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root {
     --red: #c8102e;
@@ -179,8 +180,25 @@
 
   footer { border-top:1px solid var(--line); padding: 26px 0 50px; color: var(--ink-soft); font-size: 13px; text-align:center; }
 
+  /* Contact / feedback form */
+  .form-card { max-width:640px; }
+  .field { margin-bottom:16px; }
+  .field label { display:block; font-size:13.5px; font-weight:700; margin-bottom:6px; }
+  .field input, .field select, .field textarea { width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:10px; background:var(--bg-soft); color:var(--ink); font-size:14px; font-family:inherit; box-sizing:border-box; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:var(--red); }
+  .field textarea { min-height:120px; resize:vertical; }
+  .field .req { color:var(--red); }
+  .form-btn { background:var(--red); color:#fff; border:none; border-radius:999px; padding:12px 30px; font-size:15px; font-weight:800; cursor:pointer; transition:transform .15s; }
+  .form-btn:hover { transform:translateY(-1px); }
+  .form-btn:disabled { opacity:.6; cursor:default; }
+  .form-msg { margin-top:14px; font-size:14px; font-weight:700; }
+  .form-msg.ok { color:var(--pos); }
+  .form-msg.err { color:var(--neg); }
+  .hp { position:absolute !important; left:-9999px !important; }
+
   /* Cookie consent banner */
   .cookie-banner { position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--card); border-top:1px solid var(--line); box-shadow:0 -6px 24px rgba(0,0,0,.18); padding:14px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:center; }
+  .cookie-banner[hidden] { display:none !important; }
   .cookie-banner p { font-size:13px; color:var(--ink-soft); margin:0; max-width:740px; }
   .cookie-banner a { font-weight:700; }
   .cookie-banner .btns { display:flex; gap:10px; flex-shrink:0; }
@@ -215,6 +233,7 @@
     <button data-tab="thai">โอกาสของไทย</button>
     <button data-tab="events">เหตุการณ์การค้า</button>
     <button data-tab="sources">แหล่งอ้างอิง</button>
+    <button data-tab="contact">ติดต่อ / ฟีดแบ็ก</button>
   </div>
 </nav>
 
@@ -418,6 +437,24 @@
     <ul class="srclist" id="sourcesList"></ul>
   </section>
 
+  <!-- CONTACT / FEEDBACK -->
+  <section class="panel" id="contact">
+    <h2 class="sec">ติดต่อ &amp; ฟีดแบ็ก</h2>
+    <p class="lead">อยากได้ข้อมูลด้านไหนเพิ่ม? สินค้าตัวไหน มณฑลไหน ช่องทางใด หรือมีข้อเสนอแนะ — บอกเราได้เลย ฟีดแบ็กของคุณจะช่วยให้ Dashboard นี้มีประโยชน์กับผู้ประกอบการและนักธุรกิจไทยมากขึ้น (เว็บอยู่ในช่วงพัฒนา 🚧)</p>
+    <div class="card form-card">
+      <form id="feedbackForm" novalidate>
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label for="f-name">ชื่อ</label><input id="f-name" type="text" name="name" placeholder="ชื่อของคุณ (ไม่บังคับ)"></div>
+        <div class="field"><label for="f-business">ธุรกิจ / อุตสาหกรรม</label><input id="f-business" type="text" name="business" placeholder="เช่น ส่งออกผลไม้, อาหารแปรรูป, โลจิสติกส์ (ไม่บังคับ)"></div>
+        <div class="field"><label for="f-email">อีเมล <span class="req">*</span></label><input id="f-email" type="email" name="email" required placeholder="you@example.com"></div>
+        <div class="field"><label for="f-message">อยากได้ข้อมูลอะไรเพิ่ม / ข้อเสนอแนะ <span class="req">*</span></label><textarea id="f-message" name="message" required placeholder="เช่น อยากเห็นข้อมูลนำเข้ามังคุด/ลำไยรายมณฑล, ช่องทาง e-commerce, อัตราภาษีรายสินค้า, ขั้นตอนขึ้นทะเบียน GACC ฯลฯ"></textarea></div>
+        <button type="submit" class="form-btn" id="feedbackBtn">ส่งฟีดแบ็ก</button>
+        <div class="form-msg" id="formMsg" role="status"></div>
+      </form>
+      <div class="srcline">ข้อมูลของคุณจะถูกส่งถึงทีมพัฒนาโดยตรงผ่าน EmailJS และใช้เพื่อพัฒนาเนื้อหาเท่านั้น · ต้องกรอกอีเมลที่ใช้งานได้เพื่อให้เราติดต่อกลับได้</div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -450,7 +487,7 @@ tbtn.addEventListener('click', () => {
 });
 
 /* ---------- Tabs + URL routing (each tab has its own URL via #hash) ---------- */
-const validTabs = ['overview','food','origin','luxury','region','thai','events','sources'];
+const validTabs = ['overview','food','origin','luxury','region','thai','events','sources','contact'];
 function activateTab(id, doScroll){
   if(!validTabs.includes(id)) id = 'overview';
   document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x.dataset.tab === id));
@@ -767,6 +804,37 @@ new Chart(document.getElementById('chartCityLux'), {
     backgroundColor:[GOLD,RED,'#7a5cff'], borderRadius:6}]},
   options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
 });
+
+/* ---------- Contact / feedback form (EmailJS) ---------- */
+(function(){
+  const form = document.getElementById('feedbackForm');
+  if(!form) return;
+  const EMAILJS_PUBLIC_KEY  = 'EMAILJS_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'EMAILJS_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'EMAILJS_TEMPLATE_ID';
+  const configured = EMAILJS_PUBLIC_KEY.indexOf('EMAILJS_') !== 0;
+  const msg = document.getElementById('formMsg');
+  const btn = document.getElementById('feedbackBtn');
+  if(window.emailjs && configured){ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+  function setMsg(t, ok){ msg.textContent = t; msg.className = 'form-msg ' + (ok ? 'ok' : 'err'); }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(form.botcheck && form.botcheck.checked) return; // honeypot
+    const email = (form.email.value || '').trim();
+    const message = (form.message.value || '').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setMsg('⚠️ กรุณากรอกอีเมลที่ใช้งานได้', false); form.email.focus(); return; }
+    if(!message){ setMsg('⚠️ กรุณาระบุข้อมูลที่อยากได้เพิ่ม', false); form.message.focus(); return; }
+    if(!window.emailjs || !configured){ setMsg('⚠️ ระบบฟอร์มยังไม่ถูกตั้งค่า กรุณาอีเมลมาที่ noppadol@neogens.co', false); return; }
+    btn.disabled = true; const orig = btn.textContent; btn.textContent = 'กำลังส่ง...';
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form).then(function(){
+      setMsg('✅ ขอบคุณครับ! ได้รับฟีดแบ็กของคุณแล้ว เราจะนำไปพัฒนาต่อ', true);
+      form.reset();
+      if(typeof gtag === 'function' && window.gaConsentGranted) gtag('event', 'generate_lead', { method: 'feedback_form' });
+    }, function(){
+      setMsg('❌ ส่งไม่สำเร็จ ลองใหม่อีกครั้ง หรืออีเมลมาที่ noppadol@neogens.co', false);
+    }).finally(function(){ btn.disabled = false; btn.textContent = orig; });
+  });
+})();
 
 /* ---------- Cookie consent + Google Analytics loader ---------- */
 function sendTabPageView(id){
