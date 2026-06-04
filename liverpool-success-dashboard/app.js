@@ -2226,7 +2226,7 @@ function generateWallpaperCanvas(deviceType, callback) {
       ctx.fillText("© 2026 noppadol.online/liverpool-success-dashboard | You'll Never Walk Alone", canvas.width / 2, 1015);
 
     } else {
-      // Mobile: 1080x1920 resolution
+      // Mobile: 1080x1920 resolution (Vertical 9:16)
       canvas.width = 1080;
       canvas.height = 1920;
 
@@ -2238,42 +2238,52 @@ function generateWallpaperCanvas(deviceType, callback) {
       ctx.save();
       ctx.globalAlpha = isLight ? 0.05 : 0.08;
       const logoSize = 750;
-      ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2 - 120, logoSize, logoSize);
+      ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2, logoSize, logoSize);
       ctx.restore();
 
-      // 3. Header Texts
+      // 3. Header Texts (Shifted up to fit vertical design)
       ctx.fillStyle = isLight ? "#111111" : "#ffffff";
       ctx.font = "bold 52px Montserrat, Arial, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText("LIVERPOOL FC", canvas.width / 2, 280);
+      ctx.fillText("LIVERPOOL FC", canvas.width / 2, 160);
 
       ctx.fillStyle = "#C8102E"; // LFC Red
       ctx.font = "bold 22px Montserrat, Arial, sans-serif";
-      ctx.fillText("LEAGUE FINISHES HISTORY", canvas.width / 2, 335);
+      ctx.fillText("LEAGUE FINISHES HISTORY", canvas.width / 2, 215);
 
-      // 4. Draw Chart Canvas (centered vertically)
-      const chartWidth = 980;
-      const chartHeight = 550;
-      const chartX = (canvas.width - chartWidth) / 2;
-      const chartY = (canvas.height - chartHeight) / 2 - 80;
+      // 4. Draw Rotated Chart Canvas (Counter-Clockwise 90 degrees)
+      // This rotates the landscape chart to fit portrait vertical layouts beautifully
+      ctx.save();
+      const chartWidth = 1420;  // Will run vertically along the height of the phone (1920)
+      const chartHeight = 880;  // Will run horizontally along the width of the phone (1080)
+      
+      // Translate to the center of the chart area on phone
+      const chartCenterX = canvas.width / 2;
+      const chartCenterY = canvas.height / 2 + 30; // Centered with slight downward shift
+      ctx.translate(chartCenterX, chartCenterY);
+      
+      // Rotate 90 degrees counter-clockwise
+      ctx.rotate(-Math.PI / 2);
 
       // Draw chart border
       ctx.strokeStyle = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
       ctx.lineWidth = 1;
-      ctx.strokeRect(chartX - 10, chartY - 10, chartWidth + 20, chartHeight + 20);
+      ctx.strokeRect(-chartWidth / 2 - 10, -chartHeight / 2 - 10, chartWidth + 20, chartHeight + 20);
 
-      ctx.drawImage(chartCanvas, chartX, chartY, chartWidth, chartHeight);
+      // Draw the chart canvas centered at rotated coordinates
+      ctx.drawImage(chartCanvas, -chartWidth / 2, -chartHeight / 2, chartWidth, chartHeight);
+      ctx.restore();
 
       // 5. YNWA Watermark Large at the bottom
       ctx.fillStyle = isLight ? "rgba(200, 16, 46, 0.06)" : "rgba(227, 27, 35, 0.06)";
-      ctx.font = "bold 68px Montserrat, Arial, sans-serif";
-      ctx.fillText("YOU'LL NEVER WALK ALONE", canvas.width / 2, canvas.height - 420);
+      ctx.font = "bold 54px Montserrat, Arial, sans-serif";
+      ctx.fillText("YOU'LL NEVER WALK ALONE", canvas.width / 2, canvas.height - 180);
 
       // 6. Copyright & URL
       ctx.fillStyle = isLight ? "#555555" : "#999999";
-      ctx.font = "20px Inter, Arial, sans-serif";
-      ctx.fillText("noppadol.online/liverpool-success-dashboard", canvas.width / 2, canvas.height - 180);
-      ctx.fillText("© 2026 LFC Success Tracker", canvas.width / 2, canvas.height - 145);
+      ctx.font = "18px Inter, Arial, sans-serif";
+      ctx.fillText("noppadol.online/liverpool-success-dashboard", canvas.width / 2, canvas.height - 100);
+      ctx.fillText("© 2026 LFC Success Tracker", canvas.width / 2, canvas.height - 65);
     }
 
     callback(canvas);
