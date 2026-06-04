@@ -6,14 +6,11 @@
 <title>จีนนำเข้าอะไร — โอกาสส่งออกของผู้ประกอบการไทย</title>
 <meta name="description" content="แดชบอร์ดเจาะลึกการนำเข้าสินค้าของจีน สำหรับผู้ประกอบการไทย: สินค้าที่ผู้บริโภคจีนต้องการ อาหารพรีเมียม สินค้าหรู และโอกาสในการส่งออก พร้อมแหล่งอ้างอิงครบถ้วน" />
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-<!-- Google tag (gtag.js) — Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLT9EBV5LN"></script>
+<!-- Google Analytics 4 — loaded ONLY after the user accepts cookies (see consent banner) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  // send_page_view:false — the dashboard fires a page_view per tab itself (each tab has its own URL)
-  gtag('config', 'G-HLT9EBV5LN', { send_page_view: false });
+  window.gaConsentGranted = false;
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -181,6 +178,16 @@
   .callout p { font-size:14px; color:var(--ink-soft); }
 
   footer { border-top:1px solid var(--line); padding: 26px 0 50px; color: var(--ink-soft); font-size: 13px; text-align:center; }
+
+  /* Cookie consent banner */
+  .cookie-banner { position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--card); border-top:1px solid var(--line); box-shadow:0 -6px 24px rgba(0,0,0,.18); padding:14px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:center; }
+  .cookie-banner p { font-size:13px; color:var(--ink-soft); margin:0; max-width:740px; }
+  .cookie-banner a { font-weight:700; }
+  .cookie-banner .btns { display:flex; gap:10px; flex-shrink:0; }
+  .cookie-banner button { border:none; border-radius:999px; padding:9px 20px; font-size:13.5px; font-weight:700; cursor:pointer; transition:transform .15s; }
+  .cookie-banner .accept { background:var(--red); color:#fff; }
+  .cookie-banner .decline { background:var(--line); color:var(--ink); }
+  .cookie-banner button:hover { transform:translateY(-1px); }
 
   @media (max-width: 860px) { .stats { grid-template-columns: 1fr 1fr; } .grid2 { grid-template-columns: 1fr; } }
 </style>
@@ -421,6 +428,14 @@
   </div>
 </footer>
 
+<div id="cookieBanner" class="cookie-banner" hidden>
+  <p>🍪 เว็บนี้ใช้คุกกี้เพื่อวิเคราะห์การเข้าชม (Google Analytics) ช่วยให้เราพัฒนาเนื้อหาให้ดีขึ้น — คุณยินยอมให้เก็บข้อมูลการใช้งานแบบไม่ระบุตัวตนหรือไม่? (เลือก "ปฏิเสธ" ได้ โดยเว็บยังใช้งานได้ตามปกติ)</p>
+  <div class="btns">
+    <button class="decline" id="cookieDecline">ปฏิเสธ</button>
+    <button class="accept" id="cookieAccept">ยอมรับ</button>
+  </div>
+</div>
+
 <script>
 /* ---------- Theme ---------- */
 const root = document.documentElement;
@@ -441,15 +456,9 @@ function activateTab(id, doScroll){
   document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x.dataset.tab === id));
   document.querySelectorAll('section.panel').forEach(x => x.classList.toggle('active', x.id === id));
   if(doScroll) window.scrollTo({top:0, behavior:'smooth'});
-  // GA4 virtual pageview per tab (each tab has its own URL)
-  if(typeof gtag === 'function'){
-    const btn = document.querySelector('nav.tabs button[data-tab="'+id+'"]');
-    gtag('event', 'page_view', {
-      page_location: location.href,
-      page_path: location.pathname + '#' + id,
-      page_title: 'China Trade Dashboard — ' + (btn ? btn.textContent.trim() : id)
-    });
-  }
+  // GA4 virtual pageview per tab (fires only after cookie consent)
+  window.__activeTab = id;
+  sendTabPageView(id);
 }
 document.querySelectorAll('nav.tabs button').forEach(b => {
   b.addEventListener('click', () => {
@@ -758,6 +767,37 @@ new Chart(document.getElementById('chartCityLux'), {
     backgroundColor:[GOLD,RED,'#7a5cff'], borderRadius:6}]},
   options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
 });
+
+/* ---------- Cookie consent + Google Analytics loader ---------- */
+function sendTabPageView(id){
+  if(!window.gaConsentGranted || typeof gtag !== 'function') return;
+  const btn = document.querySelector('nav.tabs button[data-tab="'+id+'"]');
+  gtag('event', 'page_view', {
+    page_location: location.href,
+    page_path: location.pathname + '#' + id,
+    page_title: 'China Trade Dashboard — ' + (btn ? btn.textContent.trim() : id)
+  });
+}
+function loadGA(){
+  if(window.__gaLoaded) return; window.__gaLoaded = true;
+  const s = document.createElement('script'); s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HLT9EBV5LN';
+  document.head.appendChild(s);
+  gtag('js', new Date());
+  gtag('config', 'G-HLT9EBV5LN', { send_page_view: false });
+  window.gaConsentGranted = true;
+  sendTabPageView(window.__activeTab || 'overview');
+}
+(function initConsent(){
+  const banner = document.getElementById('cookieBanner');
+  let c = null; try { c = localStorage.getItem('ga-consent'); } catch(e){}
+  if(c === 'granted'){ loadGA(); }
+  else if(c !== 'denied' && banner){ banner.hidden = false; }
+  const acc = document.getElementById('cookieAccept');
+  const dec = document.getElementById('cookieDecline');
+  if(acc) acc.addEventListener('click', () => { try{localStorage.setItem('ga-consent','granted');}catch(e){} if(banner) banner.hidden = true; loadGA(); });
+  if(dec) dec.addEventListener('click', () => { try{localStorage.setItem('ga-consent','denied');}catch(e){} if(banner) banner.hidden = true; });
+})();
 
 /* init theme from system */
 setTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
