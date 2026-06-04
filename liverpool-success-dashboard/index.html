@@ -273,11 +273,6 @@
             position: relative;
             background: linear-gradient(135deg, #181818, #C8102E);
           }
-          .wallpaper-thumb-wrapper.mobile-ratio {
-            aspect-ratio: 9/16;
-            width: 60%;
-            background: linear-gradient(135deg, #111111, #E3D4AD);
-          }
           .wallpaper-zoom-overlay {
             position: absolute;
             top: 0;
@@ -324,32 +319,19 @@
               <p>Download premium high-resolution wallpapers showing Liverpool FC's historic finishing positions. Generated dynamically based on your active screen theme!</p>
             </div>
           </div>
-          <div class="wallpapers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 20px 0; justify-items: center;">
+          <div class="wallpapers-grid" style="display: flex; justify-content: center; padding: 20px 0;">
             
             <!-- Wallpaper 1: PC Desktop -->
-            <div class="wallpaper-card" style="width: 100%; max-width: 320px; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 16px; text-align: center; box-sizing: border-box;">
-              <div class="wallpaper-thumb-wrapper" onclick="previewWallpaper('pc')">
+            <div class="wallpaper-card" style="width: 100%; max-width: 420px; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center; box-sizing: border-box; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+              <div class="wallpaper-thumb-wrapper" onclick="previewWallpaper('pc')" style="width: 100%; aspect-ratio: 16/9;">
                 <img id="pc-wallpaper-thumb" class="wallpaper-thumb-img wallpaper-thumb" data-title="PC Desktop Version" alt="PC Desktop Wallpaper Preview" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.5s ease, transform 0.3s ease;">
                 <div class="wallpaper-zoom-overlay">
                   <span>🔍 Preview</span>
                 </div>
               </div>
-              <h5 style="margin: 0 0 6px 0; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--text-color);">PC Desktop Edition</h5>
-              <p style="margin: 0 0 12px 0; font-size: 12px; color: var(--text-muted); font-family: 'Inter', sans-serif;">Generated dynamically from active theme</p>
-              <button onclick="downloadWallpaper('pc')" class="primary-btn" style="width: 100%; box-sizing: border-box; border: none; cursor: pointer; display: inline-block; font-size: 13px; font-weight: 700; padding: 10px 0; border-radius: 6px;">📥 Download Wallpaper</button>
-            </div>
-
-            <!-- Wallpaper 2: Mobile Phone -->
-            <div class="wallpaper-card" style="width: 100%; max-width: 320px; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 16px; text-align: center; box-sizing: border-box;">
-              <div class="wallpaper-thumb-wrapper mobile-ratio" onclick="previewWallpaper('mobile')">
-                <img id="mobile-wallpaper-thumb" class="wallpaper-thumb-img wallpaper-thumb" data-title="Mobile Version" alt="Mobile Wallpaper Preview" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.5s ease, transform 0.3s ease;">
-                <div class="wallpaper-zoom-overlay">
-                  <span>🔍 Preview</span>
-                </div>
-              </div>
-              <h5 style="margin: 0 0 6px 0; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--text-color);">Mobile Phone Edition</h5>
-              <p style="margin: 0 0 12px 0; font-size: 12px; color: var(--text-muted); font-family: 'Inter', sans-serif;">Generated dynamically from active theme</p>
-              <button onclick="downloadWallpaper('mobile')" class="primary-btn" style="width: 100%; box-sizing: border-box; border: none; cursor: pointer; display: inline-block; font-size: 13px; font-weight: 700; padding: 10px 0; border-radius: 6px;">📥 Download Wallpaper</button>
+              <h5 style="margin: 0 0 8px 0; font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--text-color);">PC Desktop Edition (4K UHD)</h5>
+              <p style="margin: 0 0 16px 0; font-size: 12px; color: var(--text-muted); font-family: 'Inter', sans-serif;">High-resolution 3840 x 2160 wallpaper generated dynamically</p>
+              <button onclick="downloadWallpaper('pc')" class="primary-btn" style="width: 100%; box-sizing: border-box; border: none; cursor: pointer; display: inline-block; font-size: 14px; font-weight: 700; padding: 12px 0; border-radius: 6px;">📥 Download 4K Wallpaper</button>
             </div>
 
           </div>

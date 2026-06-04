@@ -2170,9 +2170,8 @@ function initWallpaperPreview() {
 
 // Generate the high-resolution wallpaper on an offscreen canvas
 function generateWallpaperCanvas(deviceType, callback) {
-  const chartCanvas = document.getElementById("positionsChart");
-  if (!chartCanvas) {
-    alert("Chart not found. Please load the Overview tab first.");
+  if (!positionsChartInst) {
+    alert("Chart is not initialized yet. Please wait a moment.");
     return;
   }
 
@@ -2181,110 +2180,129 @@ function generateWallpaperCanvas(deviceType, callback) {
   const ctx = canvas.getContext("2d");
 
   const buildWallpaper = () => {
-    if (deviceType === "pc") {
-      // 1920x1080 resolution
-      canvas.width = 1920;
-      canvas.height = 1080;
+    // Generate 4K Ultra HD Resolution: 3840 x 2160 pixels
+    canvas.width = 3840;
+    canvas.height = 2160;
 
-      // 1. Background
-      ctx.fillStyle = isLight ? "#ffffff" : "#111111";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // 1. Background
+    ctx.fillStyle = isLight ? "#ffffff" : "#111111";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // 2. Faint Watermark Logo
-      ctx.save();
-      ctx.globalAlpha = isLight ? 0.04 : 0.07;
-      const logoSize = 650;
-      ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2, logoSize, logoSize);
-      ctx.restore();
+    // 2. Faint Watermark Logo (Centered)
+    ctx.save();
+    ctx.globalAlpha = isLight ? 0.04 : 0.07;
+    const logoSize = 1300;
+    ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2, logoSize, logoSize);
+    ctx.restore();
 
-      // 3. Header Texts
-      ctx.fillStyle = isLight ? "#111111" : "#ffffff";
-      ctx.font = "bold 56px Montserrat, Arial, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText("LIVERPOOL FC", canvas.width / 2, 120);
+    // 3. Header Texts (4K Optimized font size and scaling)
+    ctx.fillStyle = isLight ? "#111111" : "#ffffff";
+    ctx.font = "bold 112px Montserrat, Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("LIVERPOOL FC", canvas.width / 2, 240);
 
-      ctx.fillStyle = "#C8102E"; // Official LFC Red
-      ctx.font = "bold 24px Montserrat, Arial, sans-serif";
-      ctx.fillText("HISTORICAL LEAGUE FINISHING POSITIONS (1892 - 2026)", canvas.width / 2, 175);
+    ctx.fillStyle = "#C8102E"; // Official LFC Red
+    ctx.font = "bold 48px Montserrat, Arial, sans-serif";
+    ctx.fillText("HISTORICAL LEAGUE FINISHING POSITIONS (1892 - 2026)", canvas.width / 2, 350);
 
-      // 4. Draw Chart Canvas (Inverted, standard LFC chart)
-      const chartWidth = 1520;
-      const chartHeight = 720;
-      const chartX = (canvas.width - chartWidth) / 2;
-      const chartY = 220;
+    // 4. Create High-Resolution Offscreen Chart (3040x1440)
+    const chartWidth = 3040;
+    const chartHeight = 1440;
+    const chartX = (canvas.width - chartWidth) / 2;
+    const chartY = 440;
 
-      // Draw chart border
-      ctx.strokeStyle = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(chartX - 10, chartY - 10, chartWidth + 20, chartHeight + 20);
+    const tempCanvas = document.createElement("canvas");
+    tempCanvas.width = chartWidth;
+    tempCanvas.height = chartHeight;
 
-      ctx.drawImage(chartCanvas, chartX, chartY, chartWidth, chartHeight);
+    // Retrieve active chart configuration data and settings
+    const labels = positionsChartInst.data.labels;
+    const chartData = positionsChartInst.data.datasets[0].data;
+    const pointBackgroundColor = positionsChartInst.data.datasets[0].pointBackgroundColor;
+    const maxY = positionsChartInst.options.scales.y.max || 22;
 
-      // 5. Copyright & Website URL
-      ctx.fillStyle = isLight ? "#555555" : "#999999";
-      ctx.font = "18px Inter, Arial, sans-serif";
-      ctx.fillText("© 2026 noppadol.online/liverpool-success-dashboard | You'll Never Walk Alone", canvas.width / 2, 1015);
+    // Render a high-res chart matching active filters with scaled-up font size and line thickness
+    const tempChart = new Chart(tempCanvas, {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Finish Position",
+          data: chartData,
+          borderColor: "rgba(227, 27, 35, 0.8)",
+          borderWidth: 6, // 3x standard thickness
+          pointBackgroundColor: pointBackgroundColor,
+          pointBorderColor: isLight ? "#ffffff" : "#111111",
+          pointBorderWidth: 4, // 3x thickness
+          pointRadius: 12, // 3x size
+          fill: false,
+          tension: 0.15
+        }]
+      },
+      options: {
+        responsive: false,
+        animation: false,
+        devicePixelRatio: 1, // Keep canvas backing store exact
+        scales: {
+          y: {
+            reverse: true,
+            min: 0.2,
+            max: maxY,
+            ticks: {
+              stepSize: 2,
+              color: isLight ? "#495057" : "#cccccc",
+              font: { family: "Inter, sans-serif", size: 36, weight: 600 },
+              callback: function(value) {
+                const suffixes = ["st", "nd", "rd", "th"];
+                return value + (suffixes[value - 1] || "th");
+              }
+            },
+            grid: {
+              color: isLight ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.08)",
+              lineWidth: 2
+            },
+            afterBuildTicks: function(scale) {
+              const allTicks = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
+              scale.ticks = allTicks
+                .filter(v => v <= scale.max)
+                .map(v => ({ value: v }));
+            }
+          },
+          x: {
+            ticks: {
+              color: isLight ? "#495057" : "#cccccc",
+              font: { family: "Inter, sans-serif", size: 28 },
+              maxRotation: 45,
+              minRotation: 45,
+              callback: function(val, index) {
+                return index % 5 === 0 ? this.getLabelForValue(val) : '';
+              }
+            },
+            grid: { display: false }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        }
+      }
+    });
 
-    } else {
-      // Mobile: 1080x1920 resolution (Vertical 9:16)
-      canvas.width = 1080;
-      canvas.height = 1920;
+    // Draw the high-res chart canvas to the main wallpaper canvas
+    ctx.drawImage(tempCanvas, chartX, chartY, chartWidth, chartHeight);
+    
+    // Clean up temporary chart resources
+    tempChart.destroy();
 
-      // 1. Background
-      ctx.fillStyle = isLight ? "#ffffff" : "#111111";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Draw chart border
+    ctx.strokeStyle = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(chartX - 20, chartY - 20, chartWidth + 40, chartHeight + 40);
 
-      // 2. Faint Watermark Logo (Center background)
-      ctx.save();
-      ctx.globalAlpha = isLight ? 0.05 : 0.08;
-      const logoSize = 750;
-      ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2, logoSize, logoSize);
-      ctx.restore();
-
-      // 3. Header Texts (Shifted up to fit vertical design)
-      ctx.fillStyle = isLight ? "#111111" : "#ffffff";
-      ctx.font = "bold 52px Montserrat, Arial, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText("LIVERPOOL FC", canvas.width / 2, 160);
-
-      ctx.fillStyle = "#C8102E"; // LFC Red
-      ctx.font = "bold 22px Montserrat, Arial, sans-serif";
-      ctx.fillText("LEAGUE FINISHES HISTORY", canvas.width / 2, 215);
-
-      // 4. Draw Rotated Chart Canvas (Counter-Clockwise 90 degrees)
-      // This rotates the landscape chart to fit portrait vertical layouts beautifully
-      ctx.save();
-      const chartWidth = 1420;  // Will run vertically along the height of the phone (1920)
-      const chartHeight = 880;  // Will run horizontally along the width of the phone (1080)
-      
-      // Translate to the center of the chart area on phone
-      const chartCenterX = canvas.width / 2;
-      const chartCenterY = canvas.height / 2 + 30; // Centered with slight downward shift
-      ctx.translate(chartCenterX, chartCenterY);
-      
-      // Rotate 90 degrees counter-clockwise
-      ctx.rotate(-Math.PI / 2);
-
-      // Draw chart border
-      ctx.strokeStyle = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(-chartWidth / 2 - 10, -chartHeight / 2 - 10, chartWidth + 20, chartHeight + 20);
-
-      // Draw the chart canvas centered at rotated coordinates
-      ctx.drawImage(chartCanvas, -chartWidth / 2, -chartHeight / 2, chartWidth, chartHeight);
-      ctx.restore();
-
-      // 5. YNWA Watermark Large at the bottom
-      ctx.fillStyle = isLight ? "rgba(200, 16, 46, 0.06)" : "rgba(227, 27, 35, 0.06)";
-      ctx.font = "bold 54px Montserrat, Arial, sans-serif";
-      ctx.fillText("YOU'LL NEVER WALK ALONE", canvas.width / 2, canvas.height - 180);
-
-      // 6. Copyright & URL
-      ctx.fillStyle = isLight ? "#555555" : "#999999";
-      ctx.font = "18px Inter, Arial, sans-serif";
-      ctx.fillText("noppadol.online/liverpool-success-dashboard", canvas.width / 2, canvas.height - 100);
-      ctx.fillText("© 2026 LFC Success Tracker", canvas.width / 2, canvas.height - 65);
-    }
+    // 5. Copyright & Website URL
+    ctx.fillStyle = isLight ? "#555555" : "#999999";
+    ctx.font = "36px Inter, Arial, sans-serif";
+    ctx.fillText("© 2026 noppadol.online/liverpool-success-dashboard | You'll Never Walk Alone", canvas.width / 2, 2030);
 
     callback(canvas);
   };
@@ -2309,10 +2327,9 @@ window.previewWallpaper = function(deviceType) {
   generateWallpaperCanvas(deviceType, (canvas) => {
     const isLight = document.body.classList.contains("light-theme");
     const modeName = isLight ? "Light Mode" : "Dark Mode";
-    const deviceName = deviceType === "pc" ? "PC Desktop" : "Mobile Screen";
 
     previewImg.setAttribute("src", canvas.toDataURL("image/png"));
-    if (previewTitle) previewTitle.innerText = `${deviceName} (${modeName}) - Real-time Preview`;
+    if (previewTitle) previewTitle.innerText = `PC Desktop (4K UHD) - ${modeName} Real-time Preview`;
     modal.classList.remove("hidden");
   });
 };
@@ -2322,7 +2339,7 @@ window.downloadWallpaper = function(deviceType) {
   generateWallpaperCanvas(deviceType, (canvas) => {
     const isLight = document.body.classList.contains("light-theme");
     const themeName = isLight ? "light" : "dark";
-    const filename = `lfc_league_finishes_${themeName}_${deviceType}.png`;
+    const filename = `lfc_league_finishes_${themeName}_4k.png`;
 
     const link = document.createElement("a");
     link.download = filename;
@@ -2333,20 +2350,12 @@ window.downloadWallpaper = function(deviceType) {
 
 function renderWallpaperThumbnails() {
   const pcThumb = document.getElementById("pc-wallpaper-thumb");
-  const mobileThumb = document.getElementById("mobile-wallpaper-thumb");
-
-  if (!pcThumb || !mobileThumb) return;
+  if (!pcThumb) return;
 
   // Render PC thumbnail dynamically from canvas
   generateWallpaperCanvas("pc", (canvas) => {
     pcThumb.src = canvas.toDataURL("image/png");
     pcThumb.style.opacity = "1";
-  });
-
-  // Render Mobile thumbnail dynamically from canvas
-  generateWallpaperCanvas("mobile", (canvas) => {
-    mobileThumb.src = canvas.toDataURL("image/png");
-    mobileThumb.style.opacity = "1";
   });
 }
 
