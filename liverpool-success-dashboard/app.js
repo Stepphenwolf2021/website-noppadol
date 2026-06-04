@@ -2139,35 +2139,178 @@ function getAdminEmailHTML(email, feedback, timestamp) {
   `;
 }
 
+// Preload LFC Logo SVG for dynamic wallpaper rendering
+const lfcLogoImg = new Image();
+lfcLogoImg.src = "liverpool_fc_official.svg";
+
 function initWallpaperPreview() {
-  const thumbs = document.querySelectorAll(".wallpaper-thumb");
   const modal = document.getElementById("wallpaper-preview-modal");
   const previewImg = document.getElementById("wallpaper-preview-img");
-  const previewTitle = document.getElementById("wallpaper-preview-title");
   const closeBtn = document.getElementById("close-wallpaper-modal-btn");
   const overlay = document.getElementById("wallpaper-preview-overlay");
 
   if (!modal || !previewImg) return;
 
-  thumbs.forEach(thumb => {
-    const wrapper = thumb.closest(".wallpaper-thumb-wrapper");
-    const triggerElement = wrapper || thumb;
-
-    triggerElement.addEventListener("click", () => {
-      const src = thumb.getAttribute("src");
-      const title = thumb.getAttribute("data-title") || "Wallpaper Preview";
-      previewImg.setAttribute("src", src);
-      if (previewTitle) previewTitle.innerText = title;
-      modal.classList.remove("hidden");
-    });
-  });
-
   const closeModal = () => {
     modal.classList.add("hidden");
-    if (previewImg) previewImg.setAttribute("src", "");
+    previewImg.setAttribute("src", "");
   };
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
   if (overlay) overlay.addEventListener("click", closeModal);
 }
+
+// Generate the high-resolution wallpaper on an offscreen canvas
+function generateWallpaperCanvas(deviceType, callback) {
+  const chartCanvas = document.getElementById("positionsChart");
+  if (!chartCanvas) {
+    alert("Chart not found. Please load the Overview tab first.");
+    return;
+  }
+
+  const isLight = document.body.classList.contains("light-theme");
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const buildWallpaper = () => {
+    if (deviceType === "pc") {
+      // 1920x1080 resolution
+      canvas.width = 1920;
+      canvas.height = 1080;
+
+      // 1. Background
+      ctx.fillStyle = isLight ? "#ffffff" : "#111111";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 2. Faint Watermark Logo
+      ctx.save();
+      ctx.globalAlpha = isLight ? 0.04 : 0.07;
+      const logoSize = 650;
+      ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2, logoSize, logoSize);
+      ctx.restore();
+
+      // 3. Header Texts
+      ctx.fillStyle = isLight ? "#111111" : "#ffffff";
+      ctx.font = "bold 56px Montserrat, Arial, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("LIVERPOOL FC", canvas.width / 2, 120);
+
+      ctx.fillStyle = "#C8102E"; // Official LFC Red
+      ctx.font = "bold 24px Montserrat, Arial, sans-serif";
+      ctx.fillText("HISTORICAL LEAGUE FINISHING POSITIONS (1892 - 2026)", canvas.width / 2, 175);
+
+      // 4. Draw Chart Canvas (Inverted, standard LFC chart)
+      const chartWidth = 1520;
+      const chartHeight = 720;
+      const chartX = (canvas.width - chartWidth) / 2;
+      const chartY = 220;
+
+      // Draw chart border
+      ctx.strokeStyle = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(chartX - 10, chartY - 10, chartWidth + 20, chartHeight + 20);
+
+      ctx.drawImage(chartCanvas, chartX, chartY, chartWidth, chartHeight);
+
+      // 5. Copyright & Website URL
+      ctx.fillStyle = isLight ? "#555555" : "#999999";
+      ctx.font = "18px Inter, Arial, sans-serif";
+      ctx.fillText("© 2026 noppadol.online/liverpool-success-dashboard | You'll Never Walk Alone", canvas.width / 2, 1015);
+
+    } else {
+      // Mobile: 1080x1920 resolution
+      canvas.width = 1080;
+      canvas.height = 1920;
+
+      // 1. Background
+      ctx.fillStyle = isLight ? "#ffffff" : "#111111";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 2. Faint Watermark Logo (Center background)
+      ctx.save();
+      ctx.globalAlpha = isLight ? 0.05 : 0.08;
+      const logoSize = 750;
+      ctx.drawImage(lfcLogoImg, (canvas.width - logoSize) / 2, (canvas.height - logoSize) / 2 - 120, logoSize, logoSize);
+      ctx.restore();
+
+      // 3. Header Texts
+      ctx.fillStyle = isLight ? "#111111" : "#ffffff";
+      ctx.font = "bold 52px Montserrat, Arial, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("LIVERPOOL FC", canvas.width / 2, 280);
+
+      ctx.fillStyle = "#C8102E"; // LFC Red
+      ctx.font = "bold 22px Montserrat, Arial, sans-serif";
+      ctx.fillText("LEAGUE FINISHES HISTORY", canvas.width / 2, 335);
+
+      // 4. Draw Chart Canvas (centered vertically)
+      const chartWidth = 980;
+      const chartHeight = 550;
+      const chartX = (canvas.width - chartWidth) / 2;
+      const chartY = (canvas.height - chartHeight) / 2 - 80;
+
+      // Draw chart border
+      ctx.strokeStyle = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(chartX - 10, chartY - 10, chartWidth + 20, chartHeight + 20);
+
+      ctx.drawImage(chartCanvas, chartX, chartY, chartWidth, chartHeight);
+
+      // 5. YNWA Watermark Large at the bottom
+      ctx.fillStyle = isLight ? "rgba(200, 16, 46, 0.06)" : "rgba(227, 27, 35, 0.06)";
+      ctx.font = "bold 68px Montserrat, Arial, sans-serif";
+      ctx.fillText("YOU'LL NEVER WALK ALONE", canvas.width / 2, canvas.height - 420);
+
+      // 6. Copyright & URL
+      ctx.fillStyle = isLight ? "#555555" : "#999999";
+      ctx.font = "20px Inter, Arial, sans-serif";
+      ctx.fillText("noppadol.online/liverpool-success-dashboard", canvas.width / 2, canvas.height - 180);
+      ctx.fillText("© 2026 LFC Success Tracker", canvas.width / 2, canvas.height - 145);
+    }
+
+    callback(canvas);
+  };
+
+  // Wait for logo to load if not cached/loaded yet
+  if (lfcLogoImg.complete) {
+    buildWallpaper();
+  } else {
+    lfcLogoImg.onload = buildWallpaper;
+    lfcLogoImg.onerror = buildWallpaper;
+  }
+}
+
+// Global hook for wallpaper preview button click
+window.previewWallpaper = function(deviceType) {
+  const modal = document.getElementById("wallpaper-preview-modal");
+  const previewImg = document.getElementById("wallpaper-preview-img");
+  const previewTitle = document.getElementById("wallpaper-preview-title");
+
+  if (!modal || !previewImg) return;
+
+  generateWallpaperCanvas(deviceType, (canvas) => {
+    const isLight = document.body.classList.contains("light-theme");
+    const modeName = isLight ? "Light Mode" : "Dark Mode";
+    const deviceName = deviceType === "pc" ? "PC Desktop" : "Mobile Screen";
+
+    previewImg.setAttribute("src", canvas.toDataURL("image/png"));
+    if (previewTitle) previewTitle.innerText = `${deviceName} (${modeName}) - Real-time Preview`;
+    modal.classList.remove("hidden");
+  });
+};
+
+// Global hook for wallpaper download button click
+window.downloadWallpaper = function(deviceType) {
+  generateWallpaperCanvas(deviceType, (canvas) => {
+    const isLight = document.body.classList.contains("light-theme");
+    const themeName = isLight ? "light" : "dark";
+    const filename = `lfc_league_finishes_${themeName}_${deviceType}.png`;
+
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
 
