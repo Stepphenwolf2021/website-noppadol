@@ -1950,7 +1950,10 @@ function initNewsletterSubscribe() {
           user_id: EMAILJS_PUBLIC_KEY,
           template_params: {
             user_email: email,
+            to_email: email,
+            email: email,
             feedback_text: feedbackText,
+            message: feedbackText,
             timestamp: timestamp
           }
         })
