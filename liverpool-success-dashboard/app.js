@@ -1870,8 +1870,8 @@ function initNewsletterSubscribe() {
   //   {{user_email}} (for To Email), {{feedback_text}}, {{timestamp}}
   // - Find your Public Key under Account > API Keys
   const EMAILJS_SERVICE_ID = "service_h1pu116"; // Replace with your Service ID
-  const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Replace with your Template ID
-  const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // Replace with your Public Key
+  const EMAILJS_TEMPLATE_ID = "template_ih5521c"; // Replace with your Template ID
+  const EMAILJS_PUBLIC_KEY = "aCKSHdQwOTZesYRSv"; // Replace with your Public Key
 
   const newsletterKey = "lfc_newsletter_email";
   const feedbackKey = "lfc_newsletter_feedback";
