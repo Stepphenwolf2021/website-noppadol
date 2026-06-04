@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>China Trade Dashboard — Exports & Imports (Last 10 Years)</title>
+<meta name="description" content="An interactive premium dashboard tracking China's exports, imports, trade balance, top partners and key trade events from the Reform era to 2026." />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #c8102e;
+    --red-deep: #9a0c23;
+    --gold: #ffcd00;
+    --gold-soft: #f0b429;
+    --bg: #f4f1ea;
+    --bg-soft: #ffffff;
+    --card: #ffffff;
+    --ink: #1b1b1f;
+    --ink-soft: #5a5a66;
+    --line: #e3ddd1;
+    --pos: #1a8f5a;
+    --neg: #c8102e;
+    --shadow: 0 8px 30px rgba(0,0,0,.08);
+    --radius: 18px;
+  }
+  html[data-theme="dark"] {
+    --bg: #0e0d12;
+    --bg-soft: #16151c;
+    --card: #1b1a22;
+    --ink: #f3f1ea;
+    --ink-soft: #a7a3b2;
+    --line: #2c2a36;
+    --shadow: 0 8px 30px rgba(0,0,0,.45);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    transition: background .4s ease, color .4s ease;
+  }
+  a { color: var(--red); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+
+  /* Hero */
+  header.hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(255,205,0,.18), transparent),
+      linear-gradient(135deg, var(--red-deep), var(--red));
+    color: #fff;
+    padding: 46px 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .stars { position:absolute; top:24px; right:34px; font-size:30px; letter-spacing:6px; opacity:.9; }
+  .kicker { letter-spacing:.32em; font-size:12px; text-transform:uppercase; opacity:.85; font-weight:700; }
+  .hero h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; margin: 10px 0 6px; line-height:1.08; }
+  .hero p.sub { max-width: 620px; opacity:.92; font-size:16px; }
+  .range-pill { display:inline-block; margin-top:18px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3); padding:7px 16px; border-radius:999px; font-weight:700; font-size:14px; }
+
+  /* Theme toggle */
+  .toggle {
+    position: fixed; top: 18px; right: 18px; z-index: 50;
+    background: var(--card); color: var(--ink); border:1px solid var(--line);
+    border-radius: 999px; padding: 9px 14px; cursor: pointer; font-size:15px; font-weight:600;
+    box-shadow: var(--shadow); transition: transform .2s;
+  }
+  .toggle:hover { transform: translateY(-2px); }
+
+  /* Nav */
+  nav.tabs {
+    position: sticky; top: 0; z-index: 40; background: var(--bg-soft);
+    border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
+  }
+  nav.tabs .wrap { display:flex; gap:4px; overflow-x:auto; }
+  nav.tabs button {
+    background: none; border: none; color: var(--ink-soft); cursor: pointer;
+    padding: 16px 16px; font-size: 15px; font-weight: 600; white-space: nowrap;
+    border-bottom: 3px solid transparent; transition: color .2s, border-color .2s;
+  }
+  nav.tabs button.active { color: var(--red); border-color: var(--red); }
+  nav.tabs button:hover { color: var(--ink); }
+
+  section.panel { display: none; padding: 40px 0 60px; }
+  section.panel.active { display: block; animation: fade .5s ease; }
+  @keyframes fade { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+
+  h2.sec { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+  p.lead { color: var(--ink-soft); margin-bottom: 26px; max-width: 760px; }
+
+  /* Stat cards */
+  .stats { display:grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: -54px 0 38px; position: relative; z-index: 5; }
+  .stat {
+    background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; box-shadow: var(--shadow);
+  }
+  .stat .label { font-size: 12.5px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; font-weight:700; }
+  .stat .value { font-size: 30px; font-weight: 800; margin: 8px 0 2px; }
+  .stat .delta { font-size: 13.5px; font-weight: 700; }
+  .delta.up { color: var(--pos); }
+  .delta.down { color: var(--neg); }
+
+  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .card {
+    background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; box-shadow: var(--shadow); margin-bottom: 22px;
+  }
+  .card h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+  .card .hint { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; }
+  .chartbox { position: relative; height: 320px; }
+  .chartbox.tall { height: 360px; }
+
+  /* Category list */
+  .barlist { list-style:none; }
+  .barlist li { margin-bottom: 14px; }
+  .barlist .row { display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:5px; }
+  .barlist .track { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .barlist .fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--red), var(--gold-soft)); }
+
+  /* Timeline */
+  .timeline { position: relative; margin-left: 8px; padding-left: 28px; border-left: 3px solid var(--line); }
+  .tl-item { position: relative; margin-bottom: 30px; }
+  .tl-item::before {
+    content:""; position:absolute; left:-37px; top:4px; width:16px; height:16px; border-radius:50%;
+    background: var(--gold); border: 3px solid var(--red); box-shadow: var(--shadow);
+  }
+  .tl-date { font-size: 13px; font-weight: 800; color: var(--red); letter-spacing:.04em; }
+  .tl-card { background: var(--card); border:1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); margin-top:6px; }
+  .tl-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 5px; }
+  .tl-card p { font-size: 14px; color: var(--ink-soft); }
+  .tag { display:inline-block; margin-top:10px; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:4px 10px; border-radius:999px; background: rgba(200,16,46,.1); color: var(--red); }
+
+  /* Detail grid (gourmet & luxury) */
+  .subhead { font-size:20px; font-weight:800; margin:8px 0 4px; display:flex; align-items:center; gap:9px; }
+  .subhead .chip { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; padding:4px 10px; border-radius:999px; background:rgba(240,180,41,.18); color:var(--gold-soft); }
+  .detgrid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:22px; }
+  .det { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); }
+  .det .ic { font-size:26px; line-height:1; }
+  .det h4 { font-size:15px; font-weight:800; margin:8px 0 2px; }
+  .det .big { font-size:22px; font-weight:800; color:var(--red); }
+  .det .yr { font-size:11.5px; color:var(--ink-soft); font-weight:700; }
+  .det p { font-size:12.5px; color:var(--ink-soft); margin:6px 0 0; }
+  .det a { font-size:11.5px; font-weight:700; text-decoration:none; }
+  .det a:hover { text-decoration:underline; }
+  @media (max-width:860px){ .detgrid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .detgrid{ grid-template-columns:1fr; } }
+
+  /* Source citations */
+  .srcline { margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 12px; color: var(--ink-soft); }
+  .srcline a { font-weight: 700; text-decoration: none; }
+  .srcline a:hover { text-decoration: underline; }
+  .srcnote { font-size: 12.5px; color: var(--ink-soft); margin: -24px 0 30px; padding: 12px 16px; background: var(--card); border:1px solid var(--line); border-radius: 12px; }
+  .srcnote a { font-weight: 700; text-decoration: none; }
+  .srcnote a:hover { text-decoration: underline; }
+  .srclist { list-style: none; display: grid; gap: 14px; }
+  .srcitem { background: var(--card); border:1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .srcitem h4 { display:flex; align-items:center; font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+  .srcitem .num { display:inline-flex; width:26px; height:26px; flex:0 0 26px; align-items:center; justify-content:center; border-radius:50%; background:var(--red); color:#fff; font-weight:800; font-size:13px; margin-right:10px; }
+  .srcitem p { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 8px 36px; }
+  .srcitem a.url { margin-left: 36px; font-size: 13px; font-weight: 700; word-break: break-all; text-decoration: none; }
+  .srcitem a.url:hover { text-decoration: underline; }
+
+  footer { border-top:1px solid var(--line); padding: 26px 0 50px; color: var(--ink-soft); font-size: 13px; text-align:center; }
+  footer a { font-weight:600; }
+
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .grid2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<button class="toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="stars">★ ★★★★</div>
+    <div class="kicker">People's Republic of China · Customs Trade Data</div>
+    <h1>China Trade Dashboard</h1>
+    <p class="sub">Exports, imports, the world's largest goods-trade surplus, and the milestones that shaped it — over the past decade.</p>
+    <span class="range-pill">Last 10 Years · 2016 – 2025</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="active" data-tab="overview">Overview</button>
+    <button data-tab="trends">Trade Trends</button>
+    <button data-tab="partners">Partners &amp; Products</button>
+    <button data-tab="gourmet">Gourmet &amp; Luxury</button>
+    <button data-tab="timeline">Key Events</button>
+    <button data-tab="sources">Sources</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- OVERVIEW -->
+  <section class="panel active" id="overview">
+    <div class="stats">
+      <div class="stat">
+        <div class="label">Total Trade 2025</div>
+        <div class="value">$6.36T</div>
+        <div class="delta up">▲ 3.8% YoY · record high</div>
+      </div>
+      <div class="stat">
+        <div class="label">Exports 2025</div>
+        <div class="value">$3.77T</div>
+        <div class="delta up">▲ 6.1% YoY</div>
+      </div>
+      <div class="stat">
+        <div class="label">Imports 2025</div>
+        <div class="value">$2.65T</div>
+        <div class="delta up">▲ ~1% YoY</div>
+      </div>
+      <div class="stat">
+        <div class="label">Trade Surplus 2025</div>
+        <div class="value">$1.19T</div>
+        <div class="delta up">▲ first ever &gt;$1T</div>
+      </div>
+    </div>
+
+    <div class="srcnote">All four headline figures (2025 total trade, exports, imports, surplus &amp; the December record) — Source [1]: <a href="https://www.china-briefing.com/news/chinas-import-export-2025/" target="_blank" rel="noopener">China Briefing — China's Import-Export in 2025 ↗</a></div>
+
+    <h2 class="sec">The World's Manufacturing Powerhouse</h2>
+    <p class="lead">In 2025 China's combined goods trade reached a record US$6.36 trillion. Exports outpaced a modest rise in imports, pushing the annual goods-trade surplus past US$1 trillion for the first time. December alone set a single-month record of US$617 billion.</p>
+
+    <div class="card">
+      <h3>Exports vs. Imports vs. Surplus</h3>
+      <div class="hint">Goods trade, US$ trillions (customs basis). Surplus shown as the gap between the two lines.</div>
+      <div class="chartbox tall"><canvas id="chartOverview"></canvas></div>
+      <div class="srcline">Source [1] <a href="https://www.china-briefing.com/news/chinas-import-export-2025/" target="_blank" rel="noopener">China Briefing ↗</a> · [4] <a href="https://www.macrotrends.net/global-metrics/countries/chn/china/exports" target="_blank" rel="noopener">Macrotrends ↗</a></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Export Destinations by Region (2025)</h3>
+        <div class="hint">Share of total export value by buyer region.</div>
+        <div class="chartbox"><canvas id="chartRegion"></canvas></div>
+        <div class="srcline">Source [3] <a href="https://www.worldstopexports.com/chinas-top-10-exports/" target="_blank" rel="noopener">World's Top Exports ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>What's Driving Growth</h3>
+        <div class="hint">The "new three" — EVs, batteries, solar — plus a record auto-export year.</div>
+        <ul class="barlist" id="growthList"></ul>
+        <div class="srcline">Source [3] <a href="https://www.worldstopexports.com/chinas-top-10-exports/" target="_blank" rel="noopener">World's Top Exports ↗</a> · [1] <a href="https://www.china-briefing.com/news/chinas-import-export-2025/" target="_blank" rel="noopener">China Briefing ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDS -->
+  <section class="panel" id="trends">
+    <h2 class="sec">A Decade of Trade Growth</h2>
+    <p class="lead">From roughly US$3.7 trillion in total goods trade in 2016 to a record US$6.36 trillion in 2025 — driven by the post-pandemic export surge and the rise of advanced, high-value manufacturing.</p>
+
+    <div class="card">
+      <h3>Annual Exports &amp; Imports</h3>
+      <div class="hint">Goods, US$ trillions (customs basis). Select milestone years.</div>
+      <div class="chartbox tall"><canvas id="chartTrend"></canvas></div>
+      <div class="srcline">Source [4] <a href="https://www.macrotrends.net/global-metrics/countries/chn/china/exports" target="_blank" rel="noopener">Macrotrends ↗</a> · [1] <a href="https://www.china-briefing.com/news/chinas-import-export-2025/" target="_blank" rel="noopener">China Briefing ↗</a></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Trade Balance Over Time</h3>
+        <div class="hint">Annual goods-trade surplus, US$ trillions.</div>
+        <div class="chartbox"><canvas id="chartBalance"></canvas></div>
+        <div class="srcline">Source [4] <a href="https://www.macrotrends.net/global-metrics/countries/chn/china/exports" target="_blank" rel="noopener">Macrotrends ↗</a> · [1] <a href="https://www.china-briefing.com/news/chinas-import-export-2025/" target="_blank" rel="noopener">China Briefing ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>Export Growth Rate (YoY)</h3>
+        <div class="hint">Year-on-year change in export value, %.</div>
+        <div class="chartbox"><canvas id="chartGrowth"></canvas></div>
+        <div class="srcline">Source [4] <a href="https://www.macrotrends.net/global-metrics/countries/chn/china/exports" target="_blank" rel="noopener">Macrotrends ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="panel" id="partners">
+    <h2 class="sec">Who China Trades With — and What It Sells</h2>
+    <p class="lead">In 2025 ASEAN overtook all others as China's largest trading partner, the EU ranked second, and exports to the United States fell sharply amid tariffs. Electrical machinery dominates the export mix; energy and chips dominate imports.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Top Export Partners (2025)</h3>
+        <div class="hint">Approximate export value, US$ billions. US trade fell ~18% YoY on tariffs.</div>
+        <div class="chartbox"><canvas id="chartPartners"></canvas></div>
+        <div class="srcline">Source [2] <a href="https://www.visualcapitalist.com/chinas-largest-trading-partners-in-2025/" target="_blank" rel="noopener">Visual Capitalist ↗</a> · [1] <a href="https://www.china-briefing.com/news/chinas-import-export-2025/" target="_blank" rel="noopener">China Briefing ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>Top Export Categories (2025)</h3>
+        <div class="hint">Share of total export value.</div>
+        <ul class="barlist" id="exportCats"></ul>
+        <div class="srcline">Source [3] <a href="https://www.worldstopexports.com/chinas-top-10-exports/" target="_blank" rel="noopener">World's Top Exports ↗</a></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Top Import Categories</h3>
+        <div class="hint">China is the world's #1 buyer of crude oil, chips and iron ore.</div>
+        <ul class="barlist" id="importCats"></ul>
+        <div class="srcline">Source [6] <a href="https://oec.world/en/profile/country/chn" target="_blank" rel="noopener">OEC ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>Export Mix by Product Group (2025)</h3>
+        <div class="hint">US$ billions across the largest goods groups.</div>
+        <div class="chartbox"><canvas id="chartProducts"></canvas></div>
+        <div class="srcline">Source [3] <a href="https://www.worldstopexports.com/chinas-top-10-exports/" target="_blank" rel="noopener">World's Top Exports ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOURMET & LUXURY -->
+  <section class="panel" id="gourmet">
+    <h2 class="sec">Gourmet Food &amp; Luxury Imports</h2>
+    <p class="lead">China is the world's largest food importer and, despite a recent slowdown, one of the largest luxury markets. Below: a detailed look at premium food commodities and personal luxury goods — what's bought, how much, and from where.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="label">Imported Food 2024</div><div class="value">$127B</div><div class="delta up">▲ 9.3% 10-yr CAGR</div></div>
+      <div class="stat"><div class="label">Durian Imports 2025</div><div class="value">$7.5B</div><div class="delta up">▲ record · +32% CAGR</div></div>
+      <div class="stat"><div class="label">Personal Luxury 2025</div><div class="value">~$46B</div><div class="delta down">▼ 3–5% YoY</div></div>
+      <div class="stat"><div class="label">Swiss Watches → China</div><div class="value">CHF 1.66B</div><div class="delta down">▼ −36% vs 2023</div></div>
+    </div>
+
+    <div class="subhead">🍽️ Gourmet &amp; Premium Food Commodities <span class="chip">Imports</span></div>
+    <p class="lead">Rising incomes have made China the top destination for premium proteins, fresh fruit, dairy, wine and specialty coffee. Total imported food reached US$127 billion in 2024.</p>
+
+    <div class="detgrid" id="gourmetGrid"></div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Premium Food Imports by Value (2024–25)</h3>
+        <div class="hint">Selected gourmet categories, US$ billions.</div>
+        <div class="chartbox"><canvas id="chartGourmet"></canvas></div>
+        <div class="srcline">Source [7] <a href="https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market" target="_blank" rel="noopener">USDA FAS ↗</a> · [8] <a href="https://www.producereport.com/article/chinas-2025-fruit-import-statistics-released" target="_blank" rel="noopener">Produce Report ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>Top Agri-Food Supplier Countries</h3>
+        <div class="hint">Share of China's agricultural imports (recent years). Top 5 ≈ 50%.</div>
+        <div class="chartbox"><canvas id="chartFoodSources"></canvas></div>
+        <div class="srcline">Source [7] <a href="https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market" target="_blank" rel="noopener">USDA FAS ↗</a></div>
+      </div>
+    </div>
+
+    <div class="subhead">🌍 High-Value Imports by Source Country <span class="chip">Origin</span></div>
+    <p class="lead">Where China's fastest-growing and highest-value gourmet imports actually come from — and how supplier shares are shifting.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>🟡 Durian Imports by Source (2024)</h3>
+        <div class="hint">US$ billions. Thailand &amp; Vietnam together supply 99.5%.</div>
+        <div class="chartbox"><canvas id="chartDurianCountry"></canvas></div>
+        <div class="srcline">Source [13] <a href="https://chinaglobalsouth.com/2025/01/23/chinas-7-billion-durian-imports-in-2024-fuel-vietnam-malaysia-rivalry-thailand-top-exporter/" target="_blank" rel="noopener">China-Global South / SCMP ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>🟡 Durian Supplier Growth (2024 YoY)</h3>
+        <div class="hint">Thailand is losing share as Vietnam &amp; the Philippines surge.</div>
+        <div class="chartbox"><canvas id="chartDurianGrowth"></canvas></div>
+        <div class="srcline">Source [13] <a href="https://chinaglobalsouth.com/2025/01/23/chinas-7-billion-durian-imports-in-2024-fuel-vietnam-malaysia-rivalry-thailand-top-exporter/" target="_blank" rel="noopener">China-Global South / SCMP ↗</a></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>🍷 Wine Imports by Source (2025)</h3>
+        <div class="hint">€ millions. Australia regained #1 after 2024 tariff removal.</div>
+        <div class="chartbox"><canvas id="chartWineCountry"></canvas></div>
+        <div class="srcline">Source [11] <a href="https://en.winesinfo.com/html/2026/3/189-88560.html" target="_blank" rel="noopener">Winesinfo / Vino Joy ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>🥩 Beef Imports by Source (2024)</h3>
+        <div class="hint">Share of import volume. Mercosur (BR+AR+UY) ≈ 76%.</div>
+        <div class="chartbox"><canvas id="chartBeefCountry"></canvas></div>
+        <div class="srcline">Source [14] <a href="https://www.euromeatnews.com/Article-China:-Beef-import-ranking,-January-to-October-2024/8023" target="_blank" rel="noopener">Euromeatnews ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🍒 Cherries — A Single-Origin Story</h3>
+      <div class="hint">Of China's US$3.43B cherry imports in 2025, Chile supplies about 99% — one of the most concentrated premium-food trades in the world.</div>
+      <div class="chartbox"><canvas id="chartCherryCountry"></canvas></div>
+      <div class="srcline">Source [8] <a href="https://www.producereport.com/article/chinas-2025-fruit-import-statistics-released" target="_blank" rel="noopener">Produce Report ↗</a></div>
+    </div>
+
+    <div class="subhead">👜 Personal Luxury Goods <span class="chip">Market</span></div>
+    <p class="lead">After a steep 2024 (−17% to −19%), mainland China's personal luxury market softened more gently in 2025 (−3% to −5%) to about US$46 billion. Leather goods dominate; watches remain under pressure. Women account for ~54% of luxury buyers.</p>
+
+    <div class="detgrid" id="luxuryGrid"></div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Personal Luxury Market by Category (2025)</h3>
+        <div class="hint">Approximate share of the mainland personal luxury market.</div>
+        <div class="chartbox"><canvas id="chartLuxuryCat"></canvas></div>
+        <div class="srcline">Source [9] <a href="https://www.bain.com/insights/the-2025-chinese-personal-luxury-goods-market/" target="_blank" rel="noopener">Bain &amp; Company ↗</a></div>
+      </div>
+      <div class="card">
+        <h3>Swiss Watch Exports to Greater China</h3>
+        <div class="hint">CHF billions per year — two years of sharp decline.</div>
+        <div class="chartbox"><canvas id="chartWatch"></canvas></div>
+        <div class="srcline">Source [10] <a href="https://www.fhs.swiss/file/8081/communique_250112_e.pdf" target="_blank" rel="noopener">Federation of the Swiss Watch Industry ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="panel" id="timeline">
+    <h2 class="sec">Milestones in China's Trade Story (2018–2026)</h2>
+    <p class="lead">The policy decisions, agreements and disputes that shaped the world's largest exporter.</p>
+    <div class="timeline" id="timelineList"></div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="panel" id="sources">
+    <h2 class="sec">Sources &amp; Methodology</h2>
+    <p class="lead">Every figure in this dashboard traces back to a public source below. Each card also carries an inline "Source" link. Numbers are approximate and reported on a goods / customs basis unless stated otherwise; values mixing balance-of-payments and customs bases are reconciled to the customs series for consistency.</p>
+    <ul class="srclist" id="sourcesList"></ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Data compiled from China's General Administration of Customs, World Bank, OEC and trade-press reporting (as of early 2026).
+    Figures are approximate and on a goods/customs basis unless noted. Built as a demo dashboard.<br/>
+    © 2026 China Trade Dashboard.
+  </div>
+</footer>
+
+<script>
+/* ---------- Theme ---------- */
+const root = document.documentElement;
+const tbtn = document.getElementById('themeToggle');
+function setTheme(t){
+  root.setAttribute('data-theme', t);
+  tbtn.textContent = t === 'dark' ? '☀️ Light' : '🌙 Dark';
+  Object.values(Chart.instances).forEach(c => applyChartTheme(c));
+}
+tbtn.addEventListener('click', () => {
+  setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('nav.tabs button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('nav.tabs button').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('section.panel').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+/* ---------- Data ---------- */
+// Last 10 years (customs goods basis, US$ trillions)
+const years = ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+const exportsT = [2.098,2.263,2.487,2.499,2.590,3.364,3.594,3.380,3.577,3.770];
+const importsT = [1.587,1.844,2.136,2.078,2.060,2.687,2.716,2.557,2.585,2.650];
+const balanceT = exportsT.map((e,i)=> +(e-importsT[i]).toFixed(3));
+const growthYoY = [-7.7,7.9,9.9,0.5,3.6,29.9,6.8,-4.7,5.8,6.1]; // export value YoY %, approximate
+
+const regionData = { labels:['Asia','Europe','North America','Other'], values:[50.5,20.7,14.8,14.0] };
+
+const partners = { labels:['ASEAN','EU','United States','Japan','South Korea'], values:[596,505,385,150,140] };
+
+const exportCats = [
+  {name:'Electrical machinery & equipment', share:26.9},
+  {name:'Machinery incl. computers', share:16.0},
+  {name:'Textiles', share:10.8},
+  {name:'Base metals', share:10.1},
+  {name:'Chemicals', share:9.8},
+  {name:'Vehicles & transport', share:7.8}
+];
+const importCats = [
+  {name:'Integrated circuits (chips)', share:15.0},
+  {name:'Crude petroleum', share:11.5},
+  {name:'Iron ore', share:5.0},
+  {name:'Cars & auto parts', share:3.2},
+  {name:'Soybeans & agri', share:2.6}
+];
+const products = { labels:['Electrical mach.','Machinery/IT','Textiles','Metals','Chemicals','Vehicles'], values:[1000,604,408,380,371,294] };
+
+const growthList = [
+  {name:'Vehicle exports (fastest top-10 grower)', val:'▲ 14.9%'},
+  {name:'Clean tech "new three" (EV · battery · solar)', val:'record'},
+  {name:'Cars exported in 2025', val:'~6.5M (world #1)'},
+  {name:'BYD overtakes Tesla as top EV maker', val:'2025'}
+];
+
+const timeline = [
+  {date:'March 2018', title:'US–China Trade War Begins', body:'The US imposes Section 301 tariffs on hundreds of billions of Chinese goods over technology and IP disputes; China retaliates in kind.', tag:'Trade War', src:5},
+  {date:'January 2020', title:'Phase One Trade Deal', body:'The US and China sign a partial agreement, with China pledging to boost purchases of US goods. Many tariffs remain in place.', tag:'Agreement', src:5},
+  {date:'January 2022', title:'RCEP Enters Into Force', body:'The Regional Comprehensive Economic Partnership — the world’s largest free-trade bloc — takes effect, deepening China’s ties across the Asia-Pacific.', tag:'Trade Bloc', src:5},
+  {date:'May 2024', title:'New US Tariffs on Clean Tech', body:'Washington raises tariffs on Chinese EVs to 100%, solar cells to 50% and semiconductors to 50%, targeting strategic industries.', tag:'Tariffs', src:5},
+  {date:'January 2025', title:'Tariff Escalation', body:'A blanket 145% US tariff on nearly all Chinese imports is announced; China retaliates with 125% tariffs, sharply cutting bilateral trade.', tag:'Trade War', src:5},
+  {date:'October 2025', title:'Trump–Xi Meeting & Truce', body:'The two leaders meet in South Korea and extend the Geneva trade truce by another year, easing some tension without a formal deal.', tag:'De-escalation', src:5},
+  {date:'January 2026', title:'Record Surplus Confirmed', body:'Customs data confirm 2025 total trade of US$6.36 trillion and a record goods-trade surplus above US$1.19 trillion despite the US slump.', tag:'Record', src:1}
+];
+
+const sources = [
+  {n:1, title:'China Briefing — China’s Import-Export in 2025', url:'https://www.china-briefing.com/news/chinas-import-export-2025/', covers:'2025 headline totals: total trade US$6.36T, exports US$3.77T, imports US$2.65T, record surplus US$1.19T, December monthly record, ASEAN/EU/US partner growth.'},
+  {n:2, title:'Visual Capitalist — China’s Largest Trading Partners in 2025', url:'https://www.visualcapitalist.com/chinas-largest-trading-partners-in-2025/', covers:'Top export-partner ranking and approximate values (ASEAN, EU, US, Japan, South Korea); US trade decline.'},
+  {n:3, title:'World’s Top Exports — China’s Top Exports 2025', url:'https://www.worldstopexports.com/chinas-top-10-exports/', covers:'Export category shares (electrical machinery, machinery/IT, textiles, metals, chemicals, vehicles), regional export shares, vehicle/clean-tech growth.'},
+  {n:4, title:'Macrotrends — China Exports & Imports (Historical)', url:'https://www.macrotrends.net/global-metrics/countries/chn/china/exports', covers:'Annual exports/imports time series used for the 10-year trend, balance and YoY-growth charts.'},
+  {n:5, title:'Wikipedia — China–United States Trade War', url:'https://en.wikipedia.org/wiki/China%E2%80%93United_States_trade_war', covers:'Timeline of trade-policy events: 2018 Section 301 tariffs, 2020 Phase One deal, 2022 RCEP, 2024/2025 tariff rounds, 2025 truce.'},
+  {n:6, title:'OEC — China Trade Profile', url:'https://oec.world/en/profile/country/chn', covers:'Top import categories: integrated circuits, crude petroleum, iron ore, cars, soybeans.'},
+  {n:7, title:'USDA FAS — China: World’s Largest Agricultural Import Market', url:'https://www.fas.usda.gov/data/china-evolving-demand-world-s-largest-agricultural-import-market', covers:'Total food/agri imports (US$127B food in 2024), category values (seafood, beef, dairy, fruit) and top supplier countries (Brazil, US, Thailand, Australia, Indonesia).'},
+  {n:8, title:'Produce Report — China’s 2025 Fruit Import Statistics', url:'https://www.producereport.com/article/chinas-2025-fruit-import-statistics-released', covers:'Durian record imports (US$7.5B 2025, Thailand #1), cherries (US$3.43B, Chile ~99%) and premium fruit growth.'},
+  {n:9, title:'Bain & Company — 2025 Chinese Personal Luxury Goods Market', url:'https://www.bain.com/insights/the-2025-chinese-personal-luxury-goods-market/', covers:'Personal luxury market size (~US$46B), 2024/2025 declines, category shares (leather goods, watches, jewelry, RTW) and buyer demographics.'},
+  {n:10, title:'Federation of the Swiss Watch Industry (FH) — 2025 Exports', url:'https://www.fhs.swiss/file/8081/communique_250112_e.pdf', covers:'Swiss watch exports to China (CHF 1.66B, −36% vs 2023) and Hong Kong; loss of Greater China’s lead to the US.'},
+  {n:11, title:'Winesinfo / Vino Joy — China Wine Imports', url:'https://en.winesinfo.com/html/2026/3/189-88560.html', covers:'China wine imports 2025 (−14.6% value); top suppliers Australia (€516M, 41%), France, Chile after 2024 tariff removal.'},
+  {n:12, title:'Nation Thailand — China Coffee & Tropical-Fruit Market', url:'https://www.nationthailand.com/business/economy/40065518', covers:'China coffee imports up ~290% over a decade (59,100t → 230,700t) and demand for tropical-fruit ingredients.'},
+  {n:13, title:'China-Global South Project / SCMP — Durian Imports 2024', url:'https://chinaglobalsouth.com/2025/01/23/chinas-7-billion-durian-imports-in-2024-fuel-vietnam-malaysia-rivalry-thailand-top-exporter/', covers:'Durian imports by source country 2024: total US$6.99B; Thailand US$4.0B (57%, −12%), Vietnam US$2.9B (41.5%, +37.6%), Philippines +144%, Malaysia newly approved.'},
+  {n:14, title:'Euromeatnews — China Beef Import Ranking 2024', url:'https://www.euromeatnews.com/Article-China:-Beef-import-ranking,-January-to-October-2024/8023', covers:'China beef imports by source country/volume 2024: Brazil 47%, Argentina 21%, Uruguay 8.5%, Australia 7.5%, New Zealand 5%, US 5%.'}
+];
+
+// Per-country breakdowns for high-value / high-growth gourmet imports
+const durianCountry = { labels:['Thailand','Vietnam','Malaysia + Philippines'], values:[4.00, 2.90, 0.04] };
+const durianGrowth  = { labels:['Thailand','Vietnam','Philippines'], values:[-12.0, 37.6, 144.4] };
+const wineCountry   = { labels:['Australia','France','Chile','Others'], values:[516, 370, 115, 257] };
+const beefCountry   = { labels:['Brazil','Argentina','Uruguay','Australia','New Zealand','United States','Others'], values:[47, 21, 8.5, 7.5, 5, 5, 6] };
+const cherryCountry = { labels:['Chile','All other origins'], values:[99, 1] };
+
+// Gourmet / premium food detail (values US$ unless noted)
+const gourmet = [
+  {ic:'🦞', name:'Seafood &amp; Aquatic', big:'$22.1B', yr:'2024', note:'Largest premium-protein import — lobster, salmon, crab, shrimp.', src:7},
+  {ic:'🥩', name:'Beef &amp; Beef Products', big:'$13.9B', yr:'2024', note:'Sourced from Brazil, Argentina, Australia &amp; Uruguay.', src:7},
+  {ic:'🧀', name:'Dairy', big:'$12.3B', yr:'2024', note:'Milk powder, cheese &amp; infant formula — NZ &amp; EU led.', src:7},
+  {ic:'🟡', name:'Durian (fresh)', big:'$7.5B', yr:'2025', note:'Record; Thailand #1 (~$4B), Vietnam &amp; Malaysia rising fast.', src:8},
+  {ic:'🍒', name:'Cherries', big:'$3.43B', yr:'2025', note:'2nd-largest imported fruit — Chile supplies ~99%.', src:8},
+  {ic:'🍷', name:'Wine', big:'−14.6%', yr:'2025 value', note:'Australia #1 (€516M, 41%) after 2024 tariff removal; then France, Chile.', src:11},
+  {ic:'☕', name:'Coffee', big:'230,700 t', yr:'2025', note:'Up ~290% in a decade as café culture booms.', src:12},
+  {ic:'🍇', name:'Fresh Fruit (total)', big:'$15.9B', yr:'2024', note:'Mostly tropical fruit; durian &amp; cherries lead by value.', src:7}
+];
+
+// Luxury detail
+const luxury = [
+  {ic:'👜', name:'Leather Goods &amp; Handbags', big:'50–55%', yr:'of market', note:'The dominant category and the resilient core of demand.', src:9},
+  {ic:'⌚', name:'Watches', big:'25–30%', yr:'of market', note:'Under severe pressure, −14% to −17% in 2025.', src:9},
+  {ic:'💍', name:'Jewelry', big:'10–15%', yr:'of market', note:'Most resilient in 2025 (decline narrowed to 0–5%).', src:9},
+  {ic:'👗', name:'Ready-to-Wear', big:'10–15%', yr:'of market', note:'Apparel &amp; fashion; tracks the broader slowdown.', src:9},
+  {ic:'👩', name:'Women Buyers', big:'54.3%', yr:'2025 share', note:'Women command the majority of China luxury spend.', src:9},
+  {ic:'🌏', name:'Overseas Spending', big:'falling', yr:'2025', note:'Weaker renminbi narrowed price gaps, pulling spend back onshore.', src:9}
+];
+
+const foodSources = { labels:['Brazil','United States','Thailand','Australia','Indonesia','Others'], values:[24.9,14.0,8.0,7.0,6.0,40.1] };
+const gourmetVals = { labels:['Seafood','Fresh fruit','Beef','Dairy','Durian','Cherries'], values:[22.1,15.9,13.9,12.3,7.5,3.43] };
+const luxuryCat = { labels:['Leather goods & bags','Watches','Jewelry','Ready-to-wear'], values:[53,27,12,8] };
+const watchGC = { labels:['China 2023*','China 2024','China 2025','HK 2025'], values:[2.6,2.0,1.66,1.64] };
+
+/* ---------- Render lists ---------- */
+function bar(name, pct, label){
+  return `<li><div class="row"><span>${name}</span><span>${label}</span></div>
+    <div class="track"><div class="fill" style="width:${pct}%"></div></div></li>`;
+}
+document.getElementById('exportCats').innerHTML =
+  exportCats.map(c=>bar(c.name, c.share*3.2, c.share+'%')).join('');
+document.getElementById('importCats').innerHTML =
+  importCats.map(c=>bar(c.name, c.share*5, c.share+'%')).join('');
+document.getElementById('growthList').innerHTML =
+  growthList.map((g,i)=>bar(g.name, [70,90,80,60][i], g.val)).join('');
+function srcUrl(n){ const s = sources.find(x=>x.n===n); return s ? s.url : '#sources'; }
+document.getElementById('timelineList').innerHTML =
+  timeline.map(t=>`<div class="tl-item"><div class="tl-date">${t.date}</div>
+    <div class="tl-card"><h4>${t.title}</h4><p>${t.body}</p><span class="tag">${t.tag}</span>
+    <div class="srcline">Source [${t.src}] <a href="${srcUrl(t.src)}" target="_blank" rel="noopener">view ↗</a></div></div></div>`).join('');
+
+document.getElementById('sourcesList').innerHTML =
+  sources.map(s=>`<li class="srcitem"><h4><span class="num">${s.n}</span>${s.title}</h4>
+    <p>${s.covers}</p><a class="url" href="${s.url}" target="_blank" rel="noopener">${s.url} ↗</a></li>`).join('');
+
+function detCard(d){
+  return `<div class="det"><div class="ic">${d.ic}</div><h4>${d.name}</h4>
+    <span class="big">${d.big}</span> <span class="yr">${d.yr}</span>
+    <p>${d.note}</p>
+    <p><a href="${srcUrl(d.src)}" target="_blank" rel="noopener">Source [${d.src}] ↗</a></p></div>`;
+}
+document.getElementById('gourmetGrid').innerHTML = gourmet.map(detCard).join('');
+document.getElementById('luxuryGrid').innerHTML = luxury.map(detCard).join('');
+
+/* ---------- Charts ---------- */
+const RED='#c8102e', GOLD='#f0b429', GREEN='#1a8f5a';
+function gridColor(){ return getComputedStyle(root).getPropertyValue('--line').trim(); }
+function inkColor(){ return getComputedStyle(root).getPropertyValue('--ink-soft').trim(); }
+
+function applyChartTheme(c){
+  const g = gridColor(), ink = inkColor();
+  if(c.options.scales){
+    Object.values(c.options.scales).forEach(s=>{
+      if(s.grid) s.grid.color = g;
+      if(s.ticks) s.ticks.color = ink;
+    });
+  }
+  if(c.options.plugins && c.options.plugins.legend && c.options.plugins.legend.labels) c.options.plugins.legend.labels.color = ink;
+  c.update();
+}
+const baseOpts = { responsive:true, maintainAspectRatio:false,
+  plugins:{ legend:{ labels:{ color:'#5a5a66', font:{weight:'600'} } } },
+  scales:{ x:{ grid:{color:'#e3ddd1'}, ticks:{color:'#5a5a66'} },
+           y:{ grid:{color:'#e3ddd1'}, ticks:{color:'#5a5a66'} } } };
+
+new Chart(document.getElementById('chartOverview'), {
+  type:'line',
+  data:{ labels:years, datasets:[
+    {label:'Exports', data:exportsT, borderColor:RED, backgroundColor:'rgba(200,16,46,.08)', fill:true, tension:.35, borderWidth:3, pointRadius:2},
+    {label:'Imports', data:importsT, borderColor:GOLD, backgroundColor:'rgba(240,180,41,.06)', fill:true, tension:.35, borderWidth:3, pointRadius:2}
+  ]},
+  options: JSON.parse(JSON.stringify(baseOpts))
+});
+
+new Chart(document.getElementById('chartRegion'), {
+  type:'doughnut',
+  data:{ labels:regionData.labels, datasets:[{ data:regionData.values,
+    backgroundColor:[RED,GOLD,GREEN,'#9a9aa6'], borderWidth:0 }] },
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ position:'bottom', labels:{color:'#5a5a66', font:{weight:'600'}} } } }
+});
+
+new Chart(document.getElementById('chartTrend'), {
+  type:'bar',
+  data:{ labels:years, datasets:[
+    {label:'Exports', data:exportsT, backgroundColor:RED, borderRadius:5},
+    {label:'Imports', data:importsT, backgroundColor:GOLD, borderRadius:5}
+  ]},
+  options: JSON.parse(JSON.stringify(baseOpts))
+});
+
+new Chart(document.getElementById('chartBalance'), {
+  type:'line',
+  data:{ labels:years, datasets:[
+    {label:'Trade surplus', data:balanceT, borderColor:GREEN, backgroundColor:'rgba(26,143,90,.12)', fill:true, tension:.35, borderWidth:3, pointRadius:2}
+  ]},
+  options: JSON.parse(JSON.stringify(baseOpts))
+});
+
+new Chart(document.getElementById('chartGrowth'), {
+  type:'bar',
+  data:{ labels:years, datasets:[{label:'Export YoY %', data:growthYoY,
+    backgroundColor: growthYoY.map(v=> (v!==null && v<0) ? RED : GREEN), borderRadius:5}]},
+  options: JSON.parse(JSON.stringify(baseOpts))
+});
+
+new Chart(document.getElementById('chartPartners'), {
+  type:'bar',
+  data:{ labels:partners.labels, datasets:[{label:'Exports (US$ bn)', data:partners.values,
+    backgroundColor:[RED,GOLD,'#9a9aa6',GREEN,'#7a5cff'], borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), indexAxis:'y',
+    plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartProducts'), {
+  type:'bar',
+  data:{ labels:products.labels, datasets:[{label:'US$ bn', data:products.values,
+    backgroundColor:GOLD, borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartGourmet'), {
+  type:'bar',
+  data:{ labels:gourmetVals.labels, datasets:[{label:'US$ bn', data:gourmetVals.values,
+    backgroundColor:RED, borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), indexAxis:'y', plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartFoodSources'), {
+  type:'doughnut',
+  data:{ labels:foodSources.labels, datasets:[{ data:foodSources.values,
+    backgroundColor:[GREEN,'#9a9aa6',RED,GOLD,'#7a5cff','#c9c4b6'], borderWidth:0 }] },
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ position:'bottom', labels:{color:'#5a5a66', font:{weight:'600'}} } } }
+});
+
+new Chart(document.getElementById('chartLuxuryCat'), {
+  type:'doughnut',
+  data:{ labels:luxuryCat.labels, datasets:[{ data:luxuryCat.values,
+    backgroundColor:[RED,GOLD,GREEN,'#9a9aa6'], borderWidth:0 }] },
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ position:'bottom', labels:{color:'#5a5a66', font:{weight:'600'}} } } }
+});
+
+new Chart(document.getElementById('chartWatch'), {
+  type:'bar',
+  data:{ labels:watchGC.labels, datasets:[{label:'CHF bn', data:watchGC.values,
+    backgroundColor:[ '#c9c4b6', GOLD, RED, '#7a5cff'], borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartDurianCountry'), {
+  type:'bar',
+  data:{ labels:durianCountry.labels, datasets:[{label:'US$ bn', data:durianCountry.values,
+    backgroundColor:[RED,GOLD,'#9a9aa6'], borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartDurianGrowth'), {
+  type:'bar',
+  data:{ labels:durianGrowth.labels, datasets:[{label:'YoY %', data:durianGrowth.values,
+    backgroundColor: durianGrowth.values.map(v=> v<0 ? RED : GREEN), borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartWineCountry'), {
+  type:'bar',
+  data:{ labels:wineCountry.labels, datasets:[{label:'€ million', data:wineCountry.values,
+    backgroundColor:[RED,GOLD,GREEN,'#9a9aa6'], borderRadius:6}]},
+  options:{ ...JSON.parse(JSON.stringify(baseOpts)), indexAxis:'y', plugins:{ legend:{display:false} } }
+});
+
+new Chart(document.getElementById('chartBeefCountry'), {
+  type:'doughnut',
+  data:{ labels:beefCountry.labels, datasets:[{ data:beefCountry.values,
+    backgroundColor:[GREEN,RED,GOLD,'#7a5cff','#3aa0ff','#9a9aa6','#c9c4b6'], borderWidth:0 }] },
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ position:'bottom', labels:{color:'#5a5a66', font:{weight:'600'}} } } }
+});
+
+new Chart(document.getElementById('chartCherryCountry'), {
+  type:'doughnut',
+  data:{ labels:cherryCountry.labels, datasets:[{ data:cherryCountry.values,
+    backgroundColor:[RED,'#c9c4b6'], borderWidth:0 }] },
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ position:'bottom', labels:{color:'#5a5a66', font:{weight:'600'}} } } }
+});
+
+/* init theme from system */
+setTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+</script>
+</body>
+</html>
