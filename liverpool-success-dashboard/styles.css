@@ -3127,3 +3127,89 @@ body {
 .tweet-action:hover {
   color: var(--crimson-primary);
 }
+
+/* Subscribe & Feedback Card Styling */
+.subscribe-feedback-card {
+  margin-top: 20px;
+}
+
+.subscribe-feedback-card label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.subscribe-feedback-card input,
+.subscribe-feedback-card textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  transition: all var(--transition-speed);
+}
+
+body.light-theme .subscribe-feedback-card input,
+body.light-theme .subscribe-feedback-card textarea {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #111111;
+}
+
+.subscribe-feedback-card input:focus,
+.subscribe-feedback-card textarea:focus {
+  outline: none;
+  border-color: var(--crimson-primary);
+  box-shadow: 0 0 8px var(--crimson-glow);
+}
+
+.newsletter-success {
+  text-align: center;
+  padding: 16px 0;
+  animation: fadeIn var(--transition-speed) ease;
+}
+
+.success-icon-badge {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.newsletter-success h5 {
+  font-family: var(--font-title);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-text);
+  margin-bottom: 6px;
+}
+
+.newsletter-success p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.submitted-details-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  text-align: left;
+}
+
+body.light-theme .submitted-details-box {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.submitted-details-box span {
+  word-break: break-all;
+}

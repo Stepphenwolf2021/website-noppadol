@@ -881,6 +881,46 @@
             </div>
           </div>
 
+          <!-- Subscribe & Feedback Card -->
+          <div class="dashboard-panel subscribe-feedback-card" id="subscribe-feedback-panel">
+            <div class="panel-header">
+              <h3>Newsletter & Suggestions</h3>
+              <p>Subscribe to news updates and suggest features you want to see!</p>
+            </div>
+            
+            <div id="newsletter-form-container">
+              <div class="form-group-row">
+                <div class="form-field-col">
+                  <label for="newsletter-email">Email Address</label>
+                  <input type="email" id="newsletter-email" placeholder="enter your email..." required>
+                </div>
+              </div>
+              <div class="form-group-row" style="margin-top: 14px;">
+                <div class="form-field-col">
+                  <label for="feedback-features">Feature Suggestion / Feedback</label>
+                  <textarea id="feedback-features" rows="3" placeholder="What feature would you like us to build next?..." style="width: 100%; min-height: 80px;"></textarea>
+                </div>
+              </div>
+              <button id="subscribe-submit-btn" class="primary-btn submit-btn" style="margin-top: 16px;">
+                📬 Subscribe & Submit Suggestions
+              </button>
+            </div>
+
+            <!-- Success State (hidden initially) -->
+            <div id="newsletter-success-state" class="newsletter-success hidden">
+              <div class="success-icon-badge">🎉</div>
+              <h5>Subscription Confirmed!</h5>
+              <p>Thank you for subscribing to our news updates and submitting your suggestions.</p>
+              <div class="submitted-details-box">
+                <span id="saved-email-lbl">Email: user@example.com</span>
+                <span id="saved-feedback-lbl">Suggestion recorded!</span>
+              </div>
+              <button id="reset-newsletter-btn" class="secondary-btn reset-sim-btn" style="margin-top: 14px;">
+                Change Email / Submit More Suggestions
+              </button>
+            </div>
+          </div>
+
         </div>
 
       </section>

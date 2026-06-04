@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTwitterFeed();
   initPredictorSystem();
   initThemeToggle(); // Initialize theme button and styles
+  initNewsletterSubscribe(); // Initialize email newsletter & suggestions form
 });
 
 // 1. SPA TABS NAVIGATION
@@ -1841,4 +1842,71 @@ function updateChartsTheme(theme) {
 
     chart.update();
   });
+}
+
+// 11. NEWSLETTER SUBSCRIBE & FEEDBACK SUGGESTIONS FORM
+function initNewsletterSubscribe() {
+  const emailInput = document.getElementById("newsletter-email");
+  const feedbackInput = document.getElementById("feedback-features");
+  const submitBtn = document.getElementById("subscribe-submit-btn");
+  const formContainer = document.getElementById("newsletter-form-container");
+  const successState = document.getElementById("newsletter-success-state");
+  const savedEmailLbl = document.getElementById("saved-email-lbl");
+  const savedFeedbackLbl = document.getElementById("saved-feedback-lbl");
+  const resetBtn = document.getElementById("reset-newsletter-btn");
+
+  if (!submitBtn || !emailInput || !formContainer || !successState) return;
+
+  const newsletterKey = "lfc_newsletter_email";
+  const feedbackKey = "lfc_newsletter_feedback";
+
+  const showState = () => {
+    const savedEmail = localStorage.getItem(newsletterKey);
+    if (savedEmail) {
+      formContainer.classList.add("hidden");
+      successState.classList.remove("hidden");
+      if (savedEmailLbl) savedEmailLbl.innerText = `Email: ${savedEmail}`;
+      
+      const savedFeedback = localStorage.getItem(feedbackKey) || "None";
+      if (savedFeedbackLbl) {
+        savedFeedbackLbl.innerText = savedFeedback !== "None" ? `Suggestion: "${savedFeedback}"` : "No suggestions submitted.";
+      }
+    } else {
+      formContainer.classList.remove("hidden");
+      successState.classList.add("hidden");
+    }
+  };
+
+  submitBtn.addEventListener("click", () => {
+    const email = emailInput.value.trim();
+    const feedback = feedbackInput.value.trim();
+
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    localStorage.setItem(newsletterKey, email);
+    if (feedback.length > 0) {
+      localStorage.setItem(feedbackKey, feedback);
+    } else {
+      localStorage.removeItem(feedbackKey);
+    }
+
+    showState();
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      localStorage.removeItem(newsletterKey);
+      localStorage.removeItem(feedbackKey);
+      emailInput.value = "";
+      feedbackInput.value = "";
+      showState();
+    });
+  }
+
+  showState();
 }
