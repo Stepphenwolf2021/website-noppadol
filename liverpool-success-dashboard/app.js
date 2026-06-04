@@ -1869,7 +1869,7 @@ function initNewsletterSubscribe() {
   // - Set the dynamic parameters inside the template template: 
   //   {{user_email}} (for To Email), {{feedback_text}}, {{timestamp}}
   // - Find your Public Key under Account > API Keys
-  const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // Replace with your Service ID
+  const EMAILJS_SERVICE_ID = "service_h1pu116"; // Replace with your Service ID
   const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Replace with your Template ID
   const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // Replace with your Public Key
 
