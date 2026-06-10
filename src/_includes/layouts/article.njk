@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+---
+{% set dept = site.departments[department] %}
+<article class="article">
+
+  <header>
+    <div class="eyebrow">
+      <span class="dept-tag">{{ dept.en }} <span class="dept-th">· {{ dept.th }}</span></span>
+      {% if featured %}
+      <span class="rule" aria-hidden="true"></span>
+      <span class="kicker">{{ kicker or 'เรื่องเด่นประจำฉบับ' }}</span>
+      {% endif %}
+    </div>
+
+    <h1 class="headline">{{ title | safe }}</h1>
+
+    {% if subtitle %}<p class="deck">{{ subtitle | safe }}</p>{% endif %}
+
+    <div class="byline-row">
+      <span class="byline"><span class="by">โดย</span> <span class="name">{{ author or site.author.name }}</span></span>
+      {% if reading_time %}
+      <span class="meta-dot" aria-hidden="true"></span>
+      <span class="read-time">อ่าน {{ reading_time }} นาที</span>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if hero_image %}
+  <figure class="lead-figure">
+    <img src="/assets/img/{{ issue_dir }}/{{ hero_image }}" alt="{{ hero_alt }}">
+    {% if hero_caption %}
+    <figcaption>
+      {% if hero_credit %}<span class="credit">{{ hero_credit }}</span>{% endif %}
+      {{ hero_caption }}
+    </figcaption>
+    {% endif %}
+  </figure>
+  {% endif %}
+
+  <div class="body">
+    {{ content | safe }}
+    <div class="endmark" aria-hidden="true">◆</div>
+  </div>
+
+  <footer class="colophon">
+    {% if author_note %}<p class="author-note">{{ author_note }}</p>{% endif %}
+    <a class="dept-return" href="/#{{ department }}">
+      <span class="label">อ่านเรื่องอื่นใน {{ dept.en }}</span>
+      <span class="ar" aria-hidden="true">→</span>
+    </a>
+  </footer>
+
+  <div class="page-foot">
+    <div class="mast">Seize <span class="the">the</span> Day</div>
+    <div class="fineprint">ฉบับที่ {{ issue }} · {{ issue_label }} · {{ issue_code }}</div>
+  </div>
+
+</article>

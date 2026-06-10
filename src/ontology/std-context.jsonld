@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "std": "https://noppadol.online/ns/std#",
+    "@vocab": "https://schema.org/",
+    "department": { "@id": "std:department", "@type": "@id" },
+    "craftDiscipline": "std:craftDiscipline",
+    "coffeeOrigin": "std:coffeeOrigin",
+    "brewMethod": "std:brewMethod",
+    "season": "std:season",
+    "about": { "@id": "schema:about", "@type": "@id" },
+    "mentions": { "@id": "schema:mentions", "@type": "@id" },
+    "isRelatedTo": { "@id": "schema:isRelatedTo", "@type": "@id" }
+  }
+}

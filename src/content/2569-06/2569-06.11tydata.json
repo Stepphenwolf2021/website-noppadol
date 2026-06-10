@@ -1,0 +1,15 @@
+{
+  "layout": "layouts/article.njk",
+  "issue": 1,
+  "issue_label": "มิถุนายน 2569",
+  "issue_code": "STD·2569·06·001",
+  "issue_dir": "2569-06",
+  "palette": {
+    "cover_green": "#014330",
+    "cover_green_deep": "#00301F",
+    "cover_green_light": "#0A5740",
+    "issue_green": "#0A5037",
+    "issue_orange": "#F04A12",
+    "issue_red": "#BE0120"
+  }
+}
