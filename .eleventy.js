@@ -54,6 +54,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("commaList", (arr) =>
     Array.isArray(arr) ? arr.join(", ") : (arr || "")
   );
+  // เลือกบทความที่เป็นปก (featured) หรือชิ้นแรกของฉบับ — ใช้ทำหน้าปก
+  eleventyConfig.addFilter("coverOf", (items) =>
+    (items || []).find((i) => i.data.featured) || (items || [])[0]
+  );
+
   // ปีพ.ศ. จากปีค.ศ.
   eleventyConfig.addFilter("toBE", (iso) => {
     const y = new Date(iso).getFullYear();

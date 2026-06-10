@@ -11,5 +11,11 @@
     "issue_green": "#0A5037",
     "issue_orange": "#F04A12",
     "issue_red": "#BE0120"
+  },
+  "cover": {
+    "title": "The Steppenwolf",
+    "image": "profile-color.png",
+    "blurb": "ว่าด้วยการยอมเป็นคนใหม่ ในยุคที่เครื่องจักรรู้แทบทุกอย่าง — บทสนทนากับชายหมาป่าทุ่งของ แฮร์มันน์ เฮสเส",
+    "credit": "ภาพปก: The Steppenwolf"
   }
 }
