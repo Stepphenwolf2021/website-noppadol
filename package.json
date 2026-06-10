@@ -1,0 +1,19 @@
+{
+  "name": "noppadol-online",
+  "version": "1.0.0",
+  "description": "Seize the Day — นิตยสารออนไลน์รายเดือน (noppadol.online)",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy && node tools/build-graph.js",
+    "graph": "node tools/build-graph.js",
+    "clean": "rm -rf _site"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "js-yaml": "^4.1.0",
+    "markdown-it-attrs": "^4.3.1"
+  }
+}

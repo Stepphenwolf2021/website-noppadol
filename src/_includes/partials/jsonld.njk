@@ -1,0 +1,33 @@
+{# พ่น schema.org JSON-LD จาก front matter — เฉพาะหน้าบทความ #}
+{% if department and title %}
+{% set ld = {
+  site_url: site.url,
+  slug: slug,
+  title: title,
+  subtitle: subtitle,
+  lang: lang,
+  date_published: date_published,
+  issue: issue,
+  issue_label: issue_label,
+  issue_code: issue_code,
+  issue_dir: issue_dir,
+  department: department,
+  dept_en: site.departments[department].en,
+  content_type: content_type,
+  author: author or site.author.name,
+  author_id: author_id or site.author.id,
+  reading_time: reading_time,
+  hero_image: hero_image,
+  hero_caption: hero_caption,
+  about: about,
+  mentions: mentions,
+  related: related,
+  tags: tags,
+  review_item: review_item,
+  review_rating: review_rating,
+  review_best: review_best
+} %}
+<script type="application/ld+json">
+{{ ld | buildJsonLd | safe }}
+</script>
+{% endif %}

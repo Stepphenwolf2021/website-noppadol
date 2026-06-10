@@ -1,36 +1,54 @@
-# My Portfolio Website
+# noppadol-online — Seize the Day
 
-This is a static portfolio website showcasing my work and skills.
+นิตยสารออนไลน์รายเดือน สร้างด้วย [Eleventy](https://www.11ty.dev/) เนื้อหาเขียนใน Scrivener → compile เป็น Markdown → build เป็นเว็บ + Knowledge Graph
 
-## Directory Structure
+## รันในเครื่อง
 
-```
-my_website/
-├── index.html          # Home page
-├── about.html          # About me page
-├── portfolio.html      # Portfolio/projects page
-├── blog.html           # Blog/articles page
-├── contact.html        # Contact page
-├── css/
-│   └── style.css       # Main stylesheet
-├── js/
-│   └── main.js         # JavaScript functionality
-└── images/             # Images directory
+```bash
+npm install
+npm start            # เปิด http://localhost:8080 (live reload)
 ```
 
-## Features
+## build เว็บ + กราฟ
 
-- Responsive design that works on all devices
-- Modern, clean layout
-- Mobile-friendly navigation
-- Contact form functionality
-- Project showcase
-- Blog section
+```bash
+npm run build        # → _site/  (เว็บ) + _site/knowledge-graph.jsonld (กราฟรวม)
+```
 
-## How to Use
+## โครงสร้าง
 
-1. Open `index.html` in a web browser to view the site
-2. All pages are linked together for easy navigation
-3. Customize content by editing the HTML files
-4. Update styling in `css/style.css`
-5. Add interactivity in `js/main.js`
+```
+src/
+  _data/site.js                 ค่าคงที่ทั้งเว็บ (masthead, palette ฐาน)
+  _includes/
+    layouts/base.njk            <head>, ฟอนต์, grain, utility bar, set palette ต่อฉบับ
+    layouts/article.njk         หน้าบทความ (เดิมคือ article.html)
+    partials/jsonld.njk         พ่น schema.org JSON-LD จาก front matter
+  content/<ฉบับ>/               หนึ่งโฟลเดอร์ = หนึ่งฉบับ
+    <ฉบับ>.11tydata.json        palette + ค่า default ของฉบับนั้น
+    *.md                        บทความ (compile จาก Scrivener)
+  assets/css/seize.css          design system
+  assets/img/<ฉบับ>/            ภาพต่อฉบับ
+  ontology/std-context.jsonld   @context กลางของ JSON-LD
+tools/build-graph.js            รวม front matter ทุกไฟล์ → knowledge-graph.jsonld
+```
+
+## เพิ่มบทความใหม่
+
+1. ใน Scrivener: `New From Template` เลือกแผนก → เขียน → compile เป็น `.md`
+   (ดู `templates/` และ `docs/WORKFLOW-scrivener-to-web.md`)
+2. วางไฟล์ใน `src/content/<ฉบับ>/`
+3. `git commit && git push` → GitHub Actions build + deploy เอง
+
+## เพิ่มฉบับใหม่
+
+สร้างโฟลเดอร์ `src/content/<ปีพ.ศ.-เดือน>/` + ไฟล์ `<ชื่อ>.11tydata.json`
+กำหนด palette 3 สีของฉบับ แล้ววางบทความ — หน้า Back Issues อัปเดตเอง
+
+## หมายเหตุ deploy บน repo นี้
+
+- โดเมน **noppadol.online** (ไฟล์ `CNAME`) — คงเดิม
+- โปรเจกต์เดิมยัง live ครบ: `/liverpool-success-dashboard/`, `/china-trade-dashboard/`
+  (Eleventy ก๊อปผ่านโดยไม่ประมวลผล ดู `.eleventyignore` + passthrough ใน `.eleventy.js`)
+- หน้าแรก `/` = นิตยสาร Seize the Day (แทน redirect เดิม)
+- การ deploy ใช้ GitHub Actions (`.github/workflows/deploy.yml`) — ดู `DEPLOY.md`
