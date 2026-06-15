@@ -13,7 +13,7 @@ export default function (eleventyConfig) {
 
   // --- ไฟล์/โฟลเดอร์ static ระดับ repo (มีเฉพาะตอน deploy บน repo จริง) ---
   // คงโดเมน + 404 + dashboard เดิมไว้ครบ (ก๊อปเข้า _site ถ้าไฟล์มีอยู่)
-  for (const p of ["CNAME", "404.html", "liverpool-success-dashboard", "china-trade-dashboard"]) {
+  for (const p of ["CNAME", "404.html", "liverpool-success-dashboard", "china-trade-dashboard", "worldcup-2026-dashboard"]) {
     if (fs.existsSync(p)) eleventyConfig.addPassthroughCopy(p);
   }
 
