@@ -3,3 +3,4 @@ _site/
 dist-pdf/
 .DS_Store
 *.log
+/supabase/.temp
