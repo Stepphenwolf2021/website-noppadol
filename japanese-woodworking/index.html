@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daiku Hub - Japanese Woodworking Resources</title>
+  <meta name="description" content="A curated directory of the best Japanese woodworking websites, YouTube channels, museums, and blogs in multiple languages.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-section">
+        <div class="logo-kanji">木工</div>
+        <div class="logo-text">
+          <h1>Daiku Hub</h1>
+          <p>Japanese Woodworking Directory & Resource Dashboard</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <!-- Joint Animation Widget -->
+        <div class="joint-widget-container" id="joint-widget" title="Click to disassemble/assemble the joint">
+          <span>Joint: <strong id="joint-status">Locked</strong></span>
+          <svg class="joint-svg" viewBox="0 0 120 50" id="joint-svg" aria-label="Traditional Wood Joint Animation">
+            <path id="joint-left" d="M 10,10 H 55 L 65,25 L 55,40 H 10 Z" fill="var(--accent-hover)" />
+            <path id="joint-right" d="M 110,10 H 55 L 65,25 L 55,40 H 110 Z" fill="var(--accent)" opacity="0.8" />
+          </svg>
+        </div>
+        
+        <button id="add-resource-trigger" class="btn btn-primary" commandfor="add-resource-modal" command="show-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Add Resource
+        </button>
+
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="sun-moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Search & Filters -->
+    <section class="search-filter-panel">
+      <div class="search-row">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Search resources by title, author, description, tags...">
+        </div>
+        <button id="favorites-toggle" class="btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Bookmarks Only
+        </button>
+      </div>
+
+      <div class="filter-row">
+        <div class="filter-groups">
+          <div class="filter-group">
+            <label for="filter-category">Category</label>
+            <select id="filter-category" class="filter-select">
+              <option value="all">All Categories</option>
+              <option value="furniture">Furniture Making</option>
+              <option value="joinery">Joinery & Carpentry</option>
+              <option value="tools">Tools & Maintenance</option>
+              <option value="architecture">Traditional Architecture</option>
+              <option value="boatbuilding">Boat Building</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-language">Language</label>
+            <select id="filter-language" class="filter-select">
+              <option value="all">All Languages</option>
+              <option value="ja">日本語 (Japanese)</option>
+              <option value="en">English</option>
+              <option value="multi">Bilingual / Visual</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-type">Resource Type</label>
+            <select id="filter-type" class="filter-select">
+              <option value="all">All Types</option>
+              <option value="youtube">YouTube Channels</option>
+              <option value="website">Websites / Portals</option>
+              <option value="blog">Blogs</option>
+              <option value="museum">Museums / Institutes</option>
+              <option value="book">Reference Books</option>
+              <option value="archive">Historical Art & Scrolls</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sort-order">Sort By</label>
+            <select id="sort-order" class="filter-select">
+              <option value="default">Curated Order</option>
+              <option value="az">Title A-Z</option>
+              <option value="popularity">Popularity / Subs</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="stats-count">
+          Showing <strong id="visible-count">0</strong> of <strong id="total-count">0</strong> resources
+        </div>
+      </div>
+
+      <!-- Quick Tag Filter -->
+      <div class="filter-group" style="margin-top: 1.2rem;">
+        <label style="margin-bottom: 0.4rem;">Filter by Popular Tags</label>
+        <div class="tag-cloud" id="tag-cloud">
+          <!-- Dynamically populated tags -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Grid -->
+    <main class="dashboard-grid" id="resources-grid">
+      <!-- Cards will be dynamically injected here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 Daiku Hub. Handcrafted with precision & traditional values. Inspired by Japanese Carpentry.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+        Data is curated locally. Created for woodworking enthusiasts worldwide.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Resource Details Modal -->
+  <dialog id="details-modal" closedby="any" aria-labelledby="details-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="details-title">Resource Name</h2>
+        <div class="modal-subtitle">
+          <span id="details-type" class="type-badge youtube">YouTube</span>
+          <span id="details-author" class="card-author">Author Name</span>
+          <span id="details-subs" class="stats-count">Subs/Popularity</span>
+        </div>
+      </div>
+      <button class="close-modal-btn" commandfor="details-modal" command="close" aria-label="Close details">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <!-- Video Embed (Dynamic iframe container) -->
+      <div class="video-container" id="modal-video-container" style="display: none;">
+        <!-- iframe will be dynamically added here -->
+      </div>
+      
+      <p id="details-description" class="modal-desc">Detailed description goes here...</p>
+      
+      <div class="modal-tags" id="details-tags">
+        <!-- Tags will go here -->
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn" commandfor="details-modal" command="close">Close</button>
+      <a id="details-visit-link" href="#" target="_blank" class="btn btn-primary">
+        Visit Resource
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </div>
+  </dialog>
+
+  <!-- Add Resource Modal -->
+  <dialog id="add-resource-modal" closedby="any" aria-labelledby="add-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="add-title">Submit New Woodworking Resource</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Contribute to our directory. Added resources are saved locally in your browser.</p>
+      </div>
+      <button class="close-modal-btn" commandfor="add-resource-modal" command="close" aria-label="Close form">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <form id="add-resource-form" method="dialog">
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="form-title">Resource / Channel Title *</label>
+          <input type="text" id="form-title" class="form-control" placeholder="e.g., Ishitani Furniture" required>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-author">Creator / Host *</label>
+            <input type="text" id="form-author" class="form-control" placeholder="e.g., Natsuki Ishitani" required>
+          </div>
+          <div class="form-group">
+            <label for="form-url">Resource URL (Website or Channel) *</label>
+            <input type="url" id="form-url" class="form-control" placeholder="https://youtube.com/..." required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-type">Resource Type *</label>
+            <select id="form-type" class="form-control" required>
+              <option value="youtube">YouTube Channel</option>
+              <option value="website">Website / Portal</option>
+              <option value="blog">Blog</option>
+              <option value="museum">Museum / Institute</option>
+              <option value="book">Reference Book</option>
+              <option value="archive">Historical Art & Scroll</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-category">Primary Category *</label>
+            <select id="form-category" class="form-control" required>
+              <option value="joinery">Joinery & Carpentry</option>
+              <option value="furniture">Furniture Making</option>
+              <option value="tools">Tools & Maintenance</option>
+              <option value="architecture">Traditional Architecture</option>
+              <option value="boatbuilding">Boat Building</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-youtube-id">Featured YouTube Video ID (Optional)</label>
+            <input type="text" id="form-youtube-id" class="form-control" placeholder="e.g., u83_G4VbQWc (11-character code)">
+          </div>
+          <div class="form-group">
+            <label for="form-popularity">Subscribers / Popularity Info (Optional)</label>
+            <input type="text" id="form-popularity" class="form-control" placeholder="e.g., 500k+ subscribers or Blog">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Languages Supported (Select at least one) *</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="ja"> 日本語 (Japanese)
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="en" checked> English
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="th"> ภาษาไทย (Thai)
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="de"> Deutsch (German)
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="fr"> Français (French)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-tags">Tags (Comma separated)</label>
+          <input type="text" id="form-tags" class="form-control" placeholder="e.g., Hand Tools, ASMR, Timber Framing">
+        </div>
+
+        <div class="form-group">
+          <label for="form-description">Short Description *</label>
+          <textarea id="form-description" class="form-control" rows="3" placeholder="Explain what this resource offers..." required></textarea>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn" commandfor="add-resource-modal" command="close">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit Resource</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- JavaScript Polyfill & App code -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
