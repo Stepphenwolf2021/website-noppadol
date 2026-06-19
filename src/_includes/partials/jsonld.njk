@@ -16,6 +16,8 @@
   content_type: content_type,
   author: author or site.author.name,
   author_id: author_id or site.author.id,
+  author_same_as: site.author.same_as,
+  org_same_as: site.org_same_as,
   reading_time: reading_time,
   hero_image: hero_image,
   hero_caption: hero_caption,
@@ -25,7 +27,8 @@
   tags: tags,
   review_item: review_item,
   review_rating: review_rating,
-  review_best: review_best
+  review_best: review_best,
+  entities: entities
 } %}
 <script type="application/ld+json">
 {{ ld | buildJsonLd | safe }}
