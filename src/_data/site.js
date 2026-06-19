@@ -4,15 +4,9 @@ export default {
   tagline: "นิตยสารออนไลน์รายเดือน",
   url: "https://noppadol.online",
   orgId: "https://noppadol.online/#org",
-  org_same_as: [], // โซเชียลของแบรนด์ Seize the Day (เติมเพื่อ brand knowledge panel)
   author: {
     name: "นพดล วีรกิตติ",
     id: "person/noppadol-weerakitti",
-    // โปรไฟล์ที่ยืนยันตัวตน (E-E-A-T) — เติม URL จริงเพื่อช่วยสร้าง knowledge panel
-    same_as: [
-      // "https://www.facebook.com/...",
-      // "https://www.linkedin.com/in/...",
-    ],
   },
   // สีพื้นฐาน (คงที่ทุกฉบับ) — สีประจำฉบับอยู่ใน <ฉบับ>.11tydata.json
   base: {

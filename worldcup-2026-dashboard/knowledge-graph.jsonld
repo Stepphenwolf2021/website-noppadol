@@ -1,0 +1,992 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "@vocab": "https://schema.org/",
+    "std": "https://noppadol.online/ns/std#"
+  },
+  "@graph": [
+    {
+      "@type": [
+        "SportsEvent",
+        "Event"
+      ],
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament",
+      "name": "FIFA World Cup 2026",
+      "alternateName": "ฟุตบอลโลก 2026",
+      "description": "การแข่งขันฟุตบอลโลก 2026 — 48 ทีม 104 นัด เจ้าภาพร่วม สหรัฐอเมริกา แคนาดา เม็กซิโก",
+      "sport": "Association football",
+      "startDate": "2026-06-11",
+      "endDate": "2026-07-19",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "organizer": {
+        "@type": "SportsOrganization",
+        "name": "FIFA",
+        "url": "https://www.fifa.com/"
+      },
+      "location": [
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        },
+        {
+          "@type": "Country",
+          "name": "Mexico"
+        }
+      ],
+      "url": "https://noppadol.online/worldcup-2026-dashboard/",
+      "subEvent": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-A"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-B"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-C"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-D"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-E"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-F"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-G"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-H"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-I"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-J"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-K"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-L"
+        }
+      ],
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-mexico"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-south-korea"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-czech-republic"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-south-africa"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-canada"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-switzerland"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-qatar"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uefa-play-off-a-winner"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-brazil"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-scotland"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-morocco"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-haiti"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-usa"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-australia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-turkey"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-paraguay"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-germany"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ivory-coast"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ecuador"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-cura-ao"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-netherlands"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-japan"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-tunisia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uefa-play-off-b-winner"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-belgium"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-iran"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-egypt"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-new-zealand"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-spain"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uruguay"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-saudi-arabia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-cape-verde"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-france"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-senegal"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-norway"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-inter-confederation-play-off-2-winner"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-argentina"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-austria"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-algeria"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-jordan"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-portugal"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-colombia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uzbekistan"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-dr-congo"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-england"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-croatia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ghana"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-panama"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-A",
+      "name": "Group A",
+      "alternateName": "กลุ่ม A",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-mexico"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-south-korea"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-czech-republic"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-south-africa"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-B",
+      "name": "Group B",
+      "alternateName": "กลุ่ม B",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-canada"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-switzerland"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-qatar"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uefa-play-off-a-winner"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-C",
+      "name": "Group C",
+      "alternateName": "กลุ่ม C",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-brazil"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-scotland"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-morocco"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-haiti"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-D",
+      "name": "Group D",
+      "alternateName": "กลุ่ม D",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-usa"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-australia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-turkey"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-paraguay"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-E",
+      "name": "Group E",
+      "alternateName": "กลุ่ม E",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-germany"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ivory-coast"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ecuador"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-cura-ao"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-F",
+      "name": "Group F",
+      "alternateName": "กลุ่ม F",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-netherlands"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-japan"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-tunisia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uefa-play-off-b-winner"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-G",
+      "name": "Group G",
+      "alternateName": "กลุ่ม G",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-belgium"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-iran"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-egypt"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-new-zealand"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-H",
+      "name": "Group H",
+      "alternateName": "กลุ่ม H",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-spain"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uruguay"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-saudi-arabia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-cape-verde"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-I",
+      "name": "Group I",
+      "alternateName": "กลุ่ม I",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-france"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-senegal"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-norway"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-inter-confederation-play-off-2-winner"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-J",
+      "name": "Group J",
+      "alternateName": "กลุ่ม J",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-argentina"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-austria"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-algeria"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-jordan"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-K",
+      "name": "Group K",
+      "alternateName": "กลุ่ม K",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-portugal"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-colombia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uzbekistan"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-dr-congo"
+        }
+      ]
+    },
+    {
+      "@type": "SportsEvent",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-L",
+      "name": "Group L",
+      "alternateName": "กลุ่ม L",
+      "superEvent": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#tournament"
+      },
+      "sport": "Association football",
+      "competitor": [
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-england"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-croatia"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ghana"
+        },
+        {
+          "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-panama"
+        }
+      ]
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-mexico",
+      "name": "Mexico",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-A"
+      },
+      "alternateName": "เม็กซิโก"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-south-korea",
+      "name": "South Korea",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-A"
+      },
+      "alternateName": "เกาหลีใต้"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-czech-republic",
+      "name": "Czech Republic",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-A"
+      },
+      "alternateName": "เช็ก"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-south-africa",
+      "name": "South Africa",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-A"
+      },
+      "alternateName": "แอฟริกาใต้"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-canada",
+      "name": "Canada",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-B"
+      },
+      "alternateName": "แคนาดา"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-switzerland",
+      "name": "Switzerland",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-B"
+      },
+      "alternateName": "สวิตเซอร์แลนด์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-qatar",
+      "name": "Qatar",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-B"
+      },
+      "alternateName": "กาตาร์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uefa-play-off-a-winner",
+      "name": "UEFA Play-off A winner",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-B"
+      }
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-brazil",
+      "name": "Brazil",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-C"
+      },
+      "alternateName": "บราซิล"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-scotland",
+      "name": "Scotland",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-C"
+      },
+      "alternateName": "สกอตแลนด์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-morocco",
+      "name": "Morocco",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-C"
+      },
+      "alternateName": "โมร็อกโก"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-haiti",
+      "name": "Haiti",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-C"
+      },
+      "alternateName": "เฮติ"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-usa",
+      "name": "USA",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-D"
+      },
+      "alternateName": "สหรัฐอเมริกา"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-australia",
+      "name": "Australia",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-D"
+      },
+      "alternateName": "ออสเตรเลีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-turkey",
+      "name": "Turkey",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-D"
+      },
+      "alternateName": "ตุรกี"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-paraguay",
+      "name": "Paraguay",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-D"
+      },
+      "alternateName": "ปารากวัย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-germany",
+      "name": "Germany",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-E"
+      },
+      "alternateName": "เยอรมนี"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ivory-coast",
+      "name": "Ivory Coast",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-E"
+      },
+      "alternateName": "ไอวอรีโคสต์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ecuador",
+      "name": "Ecuador",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-E"
+      },
+      "alternateName": "เอกวาดอร์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-cura-ao",
+      "name": "Curaçao",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-E"
+      },
+      "alternateName": "กือราเซา"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-netherlands",
+      "name": "Netherlands",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-F"
+      },
+      "alternateName": "เนเธอร์แลนด์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-japan",
+      "name": "Japan",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-F"
+      },
+      "alternateName": "ญี่ปุ่น"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-tunisia",
+      "name": "Tunisia",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-F"
+      },
+      "alternateName": "ตูนิเซีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uefa-play-off-b-winner",
+      "name": "UEFA Play-off B winner",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-F"
+      }
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-belgium",
+      "name": "Belgium",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-G"
+      },
+      "alternateName": "เบลเยียม"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-iran",
+      "name": "Iran",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-G"
+      },
+      "alternateName": "อิหร่าน"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-egypt",
+      "name": "Egypt",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-G"
+      },
+      "alternateName": "อียิปต์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-new-zealand",
+      "name": "New Zealand",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-G"
+      },
+      "alternateName": "นิวซีแลนด์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-spain",
+      "name": "Spain",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-H"
+      },
+      "alternateName": "สเปน"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uruguay",
+      "name": "Uruguay",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-H"
+      },
+      "alternateName": "อุรุกวัย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-saudi-arabia",
+      "name": "Saudi Arabia",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-H"
+      },
+      "alternateName": "ซาอุดีอาระเบีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-cape-verde",
+      "name": "Cape Verde",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-H"
+      },
+      "alternateName": "เคปเวิร์ด"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-france",
+      "name": "France",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-I"
+      },
+      "alternateName": "ฝรั่งเศส"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-senegal",
+      "name": "Senegal",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-I"
+      },
+      "alternateName": "เซเนกัล"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-norway",
+      "name": "Norway",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-I"
+      },
+      "alternateName": "นอร์เวย์"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-inter-confederation-play-off-2-winner",
+      "name": "Inter-confederation Play-off 2 winner",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-I"
+      }
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-argentina",
+      "name": "Argentina",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-J"
+      },
+      "alternateName": "อาร์เจนตินา"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-austria",
+      "name": "Austria",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-J"
+      },
+      "alternateName": "ออสเตรีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-algeria",
+      "name": "Algeria",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-J"
+      },
+      "alternateName": "แอลจีเรีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-jordan",
+      "name": "Jordan",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-J"
+      },
+      "alternateName": "จอร์แดน"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-portugal",
+      "name": "Portugal",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-K"
+      },
+      "alternateName": "โปรตุเกส"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-colombia",
+      "name": "Colombia",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-K"
+      },
+      "alternateName": "โคลอมเบีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-uzbekistan",
+      "name": "Uzbekistan",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-K"
+      },
+      "alternateName": "อุซเบกิสถาน"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-dr-congo",
+      "name": "DR Congo",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-K"
+      },
+      "alternateName": "ดีอาร์ คองโก"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-england",
+      "name": "England",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-L"
+      },
+      "alternateName": "อังกฤษ"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-croatia",
+      "name": "Croatia",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-L"
+      },
+      "alternateName": "โครเอเชีย"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-ghana",
+      "name": "Ghana",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-L"
+      },
+      "alternateName": "กานา"
+    },
+    {
+      "@type": "SportsTeam",
+      "@id": "https://noppadol.online/worldcup-2026-dashboard/#team-panama",
+      "name": "Panama",
+      "sport": "Association football",
+      "memberOf": {
+        "@id": "https://noppadol.online/worldcup-2026-dashboard/#group-L"
+      },
+      "alternateName": "ปานามา"
+    }
+  ]
+}
