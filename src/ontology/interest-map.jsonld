@@ -1,0 +1,452 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "std": "https://noppadol.online/ns/std#",
+    "dct": "http://purl.org/dc/terms/",
+    "topic": "https://noppadol.online/topic/",
+    "con": "https://noppadol.online/concept/",
+    "person": "https://noppadol.online/person/",
+    "related": {
+      "@id": "skos:related",
+      "@type": "@id"
+    },
+    "relatedMatch": {
+      "@id": "skos:relatedMatch",
+      "@type": "@id"
+    },
+    "closeMatch": {
+      "@id": "skos:closeMatch",
+      "@type": "@id"
+    },
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
+    "inScheme": {
+      "@id": "skos:inScheme",
+      "@type": "@id"
+    },
+    "topConceptOf": {
+      "@id": "skos:topConceptOf",
+      "@type": "@id"
+    },
+    "hasTopConcept": {
+      "@id": "skos:hasTopConcept",
+      "@type": "@id"
+    },
+    "prefLabel": "skos:prefLabel",
+    "definition": "skos:definition",
+    "inDefinedTermSet": {
+      "@type": "@id"
+    },
+    "hasDefinedTerm": {
+      "@type": "@id"
+    },
+    "knowsAbout": {
+      "@type": "@id"
+    },
+    "creator": {
+      "@id": "dct:creator",
+      "@type": "@id"
+    },
+    "isBasedOn": {
+      "@type": "@id"
+    },
+    "author": {
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://noppadol.online/#site",
+      "name": "noppadol.online",
+      "description": "บันทึกความคิดและความสนใจส่วนตัว",
+      "inLanguage": "th",
+      "author": "https://noppadol.online/person/noppadol-weerakitti"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://noppadol.online/person/noppadol-weerakitti",
+      "name": "นพดล วีรกิตติ",
+      "url": "https://noppadol.online/",
+      "knowsAbout": [
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/screen",
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/wood",
+        "https://noppadol.online/topic/tech"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTermSet",
+        "skos:ConceptScheme"
+      ],
+      "@id": "https://noppadol.online/ns/std#InterestMap",
+      "name": "แผนที่ความสนใจ noppadol.online",
+      "creator": "https://noppadol.online/person/noppadol-weerakitti",
+      "hasDefinedTerm": [
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/screen",
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/wood",
+        "https://noppadol.online/topic/tech"
+      ],
+      "hasTopConcept": [
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/screen",
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/wood",
+        "https://noppadol.online/topic/tech"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/coffee",
+      "name": "กาแฟ",
+      "alternateName": "Coffee",
+      "description": "การคั่ว ดริป รสนิยม และพิธีกรรมประจำวัน",
+      "prefLabel": [
+        {
+          "@value": "กาแฟ",
+          "@language": "th"
+        },
+        {
+          "@value": "Coffee",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "การคั่ว ดริป รสนิยม และพิธีกรรมประจำวัน",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/screen",
+        "https://noppadol.online/topic/tech",
+        "https://noppadol.online/topic/wood"
+      ],
+      "closeMatch": [
+        "https://noppadol.online/concept/coffee"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/screen",
+      "name": "ดูหนังฟังเพลง",
+      "alternateName": "Screen & Sound",
+      "description": "เรื่องเล่า ภาพ และเสียงที่ติดอยู่ในหัว",
+      "prefLabel": [
+        {
+          "@value": "ดูหนังฟังเพลง",
+          "@language": "th"
+        },
+        {
+          "@value": "Screen & Sound",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "เรื่องเล่า ภาพ และเสียงที่ติดอยู่ในหัว",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/coffee"
+      ],
+      "relatedMatch": [
+        "https://noppadol.online/concept/creative-economy",
+        "https://noppadol.online/concept/sensory"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/books",
+      "name": "หนังสือ",
+      "alternateName": "Reading",
+      "description": "สิ่งที่อ่าน บันทึก และคิดต่อ",
+      "prefLabel": [
+        {
+          "@value": "หนังสือ",
+          "@language": "th"
+        },
+        {
+          "@value": "Reading",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "สิ่งที่อ่าน บันทึก และคิดต่อ",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/screen",
+        "https://noppadol.online/topic/tech"
+      ],
+      "relatedMatch": [
+        "https://noppadol.online/concept/learning"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/photo",
+      "name": "ถ่ายภาพ",
+      "alternateName": "Photography",
+      "description": "การมอง แสง และการหยุดเวลา",
+      "prefLabel": [
+        {
+          "@value": "ถ่ายภาพ",
+          "@language": "th"
+        },
+        {
+          "@value": "Photography",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "การมอง แสง และการหยุดเวลา",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/wood"
+      ],
+      "relatedMatch": [
+        "https://noppadol.online/concept/sensory"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/living",
+      "name": "เดินทาง · ใช้ชีวิต",
+      "alternateName": "Travel & Living",
+      "description": "ที่ทาง ผู้คน และข้อสังเกตระหว่างทาง",
+      "prefLabel": [
+        {
+          "@value": "เดินทาง · ใช้ชีวิต",
+          "@language": "th"
+        },
+        {
+          "@value": "Travel & Living",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "ที่ทาง ผู้คน และข้อสังเกตระหว่างทาง",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/tech"
+      ],
+      "relatedMatch": [
+        "https://noppadol.online/concept/health-and-wellbeing"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/farm",
+      "name": "การเกษตร",
+      "alternateName": "Growing",
+      "description": "ดิน การหมัก และอาหารที่ปลูกเอง",
+      "prefLabel": [
+        {
+          "@value": "การเกษตร",
+          "@language": "th"
+        },
+        {
+          "@value": "Growing",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "ดิน การหมัก และอาหารที่ปลูกเอง",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/wood"
+      ],
+      "closeMatch": [
+        "https://noppadol.online/concept/food-and-agriculture"
+      ],
+      "relatedMatch": [
+        "https://noppadol.online/concept/sustainability"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/wood",
+      "name": "งานไม้",
+      "alternateName": "Woodworking",
+      "description": "เครื่องมือ เนื้อไม้ และงานคราฟต์",
+      "prefLabel": [
+        {
+          "@value": "งานไม้",
+          "@language": "th"
+        },
+        {
+          "@value": "Woodworking",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "เครื่องมือ เนื้อไม้ และงานคราฟต์",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/farm",
+        "https://noppadol.online/topic/photo",
+        "https://noppadol.online/topic/tech"
+      ],
+      "closeMatch": [
+        "https://noppadol.online/concept/craft"
+      ]
+    },
+    {
+      "@type": [
+        "DefinedTerm",
+        "skos:Concept"
+      ],
+      "@id": "https://noppadol.online/topic/tech",
+      "name": "เทคโนโลยี",
+      "alternateName": "Technology",
+      "description": "เอไอ ความรู้ และวิธีคิดเชิงระบบ",
+      "prefLabel": [
+        {
+          "@value": "เทคโนโลยี",
+          "@language": "th"
+        },
+        {
+          "@value": "Technology",
+          "@language": "en"
+        }
+      ],
+      "definition": {
+        "@value": "เอไอ ความรู้ และวิธีคิดเชิงระบบ",
+        "@language": "th"
+      },
+      "inDefinedTermSet": "https://noppadol.online/ns/std#InterestMap",
+      "inScheme": "https://noppadol.online/ns/std#InterestMap",
+      "topConceptOf": "https://noppadol.online/ns/std#InterestMap",
+      "related": [
+        "https://noppadol.online/topic/books",
+        "https://noppadol.online/topic/coffee",
+        "https://noppadol.online/topic/living",
+        "https://noppadol.online/topic/wood"
+      ],
+      "closeMatch": [
+        "https://noppadol.online/concept/artificial-intelligence"
+      ],
+      "relatedMatch": [
+        "https://noppadol.online/concept/knowledge-management"
+      ]
+    },
+    {
+      "@id": "https://noppadol.online/ns/std#Comment",
+      "@type": "skos:Concept",
+      "broader": "https://noppadol.online/topic/living"
+    },
+    {
+      "@id": "https://noppadol.online/ns/std#Bench",
+      "@type": "skos:Concept",
+      "broader": "https://noppadol.online/topic/wood"
+    },
+    {
+      "@id": "https://noppadol.online/ns/std#Cup",
+      "@type": "skos:Concept",
+      "broader": "https://noppadol.online/topic/coffee"
+    },
+    {
+      "@id": "https://noppadol.online/ns/std#Garden",
+      "@type": "skos:Concept",
+      "broader": "https://noppadol.online/topic/farm"
+    },
+    {
+      "@id": "https://noppadol.online/ns/std#Annals",
+      "@type": "skos:Concept",
+      "broader": "https://noppadol.online/topic/tech"
+    },
+    {
+      "@id": "https://noppadol.online/ns/std#Critics",
+      "@type": "skos:Concept",
+      "broader": "https://noppadol.online/topic/screen"
+    },
+    {
+      "@type": [
+        "Book",
+        "CreativeWorkSeries"
+      ],
+      "@id": "https://noppadol.online/book/seize-the-day",
+      "name": "Seize the Day",
+      "description": "ชุดบทความคัดสรรที่นำมารวมเล่มเป็นหนังสือ",
+      "inLanguage": "th",
+      "author": "https://noppadol.online/person/noppadol-weerakitti",
+      "isBasedOn": "https://noppadol.online/#site"
+    }
+  ]
+}

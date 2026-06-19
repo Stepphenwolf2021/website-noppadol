@@ -4,10 +4,10 @@
    ============================================================ */
 
 :root{
-  --ink:#171513;
-  --paper:#FAF7F1;
-  --espresso:#4A3327;
-  --hairline:#D8D2C6;
+  --ink:#2D3952;
+  --paper:#FAFBFD;
+  --espresso:#43506B;
+  --hairline:#E1E6EF;
 
   --grid:8px;
   --measure:38rem;
@@ -44,7 +44,8 @@ a{color:inherit}
 }
 .back-btn:hover .arrow{transform:translateX(-3px)}
 .back-btn .arrow{transition:transform .2s ease;color:var(--issue-orange)}
-.mini-mast{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.01em}
+.mini-mast{font-family:"Space Grotesk","Inter",sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.middot{color:var(--issue-orange)}
 .mini-mast .the,.page-foot .mast .the{
   font-style:italic;color:var(--issue-orange);font-size:.72em;vertical-align:.18em;margin:0 .04em;font-weight:600;
 }
@@ -131,7 +132,7 @@ a{color:inherit}
 }
 .dept-return:hover .ar{transform:translateX(3px)}
 .page-foot{text-align:center;margin-top:calc(var(--grid)*10);padding-top:calc(var(--grid)*4);border-top:1px solid var(--hairline)}
-.page-foot .mast{font-family:var(--display);font-weight:700;font-size:20px}
+.page-foot .mast{font-family:"Space Grotesk","Inter",sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em}
 .page-foot .fineprint{margin-top:6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--espresso)}
 
 /* ---- responsive ---- */

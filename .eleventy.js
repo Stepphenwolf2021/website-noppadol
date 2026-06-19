@@ -92,7 +92,7 @@ export default function (eleventyConfig) {
         "@id": id(d.author_id),
         name: d.author,
       },
-      publisher: { "@type": "Organization", "@id": `${base}/#org`, name: "Seize the Day" },
+      publisher: { "@type": "Organization", "@id": `${base}/#org`, name: "noppadol.online" },
       articleSection: d.dept_en || undefined,
       department: d.department ? `${base}/ns/std#${cap(d.department)}` : undefined,
       timeRequired: d.reading_time ? `PT${parseInt(d.reading_time, 10)}M` : undefined,

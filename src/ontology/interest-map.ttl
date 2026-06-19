@@ -1,0 +1,126 @@
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <https://schema.org/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix std:    <https://noppadol.online/ns/std#> .
+@prefix topic:  <https://noppadol.online/topic/> .
+@prefix con:    <https://noppadol.online/concept/> .
+@prefix person: <https://noppadol.online/person/> .
+
+# ── Concept Scheme / DefinedTermSet : แผนที่ความสนใจ (Interest Map) ──
+std:InterestMap a skos:ConceptScheme, schema:DefinedTermSet ;
+    dct:title "noppadol.online — Interest Map"@en ;
+    skos:prefLabel "แผนที่ความสนใจ noppadol.online"@th ;
+    schema:name "แผนที่ความสนใจ noppadol.online"@th ;
+    dct:creator person:noppadol-weerakitti ;
+    skos:hasTopConcept topic:coffee ;
+    skos:hasTopConcept topic:screen ;
+    skos:hasTopConcept topic:books ;
+    skos:hasTopConcept topic:photo ;
+    skos:hasTopConcept topic:living ;
+    skos:hasTopConcept topic:farm ;
+    skos:hasTopConcept topic:wood ;
+    skos:hasTopConcept topic:tech .
+
+topic:coffee a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "กาแฟ"@th, "Coffee"@en ;
+    schema:name "กาแฟ"@th ;
+    skos:definition "การคั่ว ดริป รสนิยม และพิธีกรรมประจำวัน"@th ;
+    skos:related topic:books, topic:farm, topic:screen, topic:tech, topic:wood ;
+    skos:closeMatch con:coffee .
+
+topic:screen a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "ดูหนังฟังเพลง"@th, "Screen & Sound"@en ;
+    schema:name "ดูหนังฟังเพลง"@th ;
+    skos:definition "เรื่องเล่า ภาพ และเสียงที่ติดอยู่ในหัว"@th ;
+    skos:related topic:books, topic:coffee ;
+    skos:relatedMatch con:creative-economy, con:sensory .
+
+topic:books a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "หนังสือ"@th, "Reading"@en ;
+    schema:name "หนังสือ"@th ;
+    skos:definition "สิ่งที่อ่าน บันทึก และคิดต่อ"@th ;
+    skos:related topic:coffee, topic:living, topic:photo, topic:screen, topic:tech ;
+    skos:relatedMatch con:learning .
+
+topic:photo a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "ถ่ายภาพ"@th, "Photography"@en ;
+    schema:name "ถ่ายภาพ"@th ;
+    skos:definition "การมอง แสง และการหยุดเวลา"@th ;
+    skos:related topic:books, topic:farm, topic:living, topic:wood ;
+    skos:relatedMatch con:sensory .
+
+topic:living a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "เดินทาง · ใช้ชีวิต"@th, "Travel & Living"@en ;
+    schema:name "เดินทาง · ใช้ชีวิต"@th ;
+    skos:definition "ที่ทาง ผู้คน และข้อสังเกตระหว่างทาง"@th ;
+    skos:related topic:books, topic:farm, topic:photo, topic:tech ;
+    skos:relatedMatch con:health-and-wellbeing .
+
+topic:farm a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "การเกษตร"@th, "Growing"@en ;
+    schema:name "การเกษตร"@th ;
+    skos:definition "ดิน การหมัก และอาหารที่ปลูกเอง"@th ;
+    skos:related topic:coffee, topic:living, topic:photo, topic:wood ;
+    skos:closeMatch con:food-and-agriculture ;
+    skos:relatedMatch con:sustainability .
+
+topic:wood a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "งานไม้"@th, "Woodworking"@en ;
+    schema:name "งานไม้"@th ;
+    skos:definition "เครื่องมือ เนื้อไม้ และงานคราฟต์"@th ;
+    skos:related topic:coffee, topic:farm, topic:photo, topic:tech ;
+    skos:closeMatch con:craft .
+
+topic:tech a skos:Concept, schema:DefinedTerm ;
+    skos:inScheme std:InterestMap ;
+    skos:topConceptOf std:InterestMap ;
+    schema:inDefinedTermSet std:InterestMap ;
+    skos:prefLabel "เทคโนโลยี"@th, "Technology"@en ;
+    schema:name "เทคโนโลยี"@th ;
+    skos:definition "เอไอ ความรู้ และวิธีคิดเชิงระบบ"@th ;
+    skos:related topic:books, topic:coffee, topic:living, topic:wood ;
+    skos:closeMatch con:artificial-intelligence ;
+    skos:relatedMatch con:knowledge-management .
+
+# ── Crosswalk : แผนก (เดิม) อยู่ใต้หมวดความสนใจ (ใหม่) ──
+std:Comment skos:broader topic:living .
+std:Bench skos:broader topic:wood .
+std:Cup skos:broader topic:coffee .
+std:Garden skos:broader topic:farm .
+std:Annals skos:broader topic:tech .
+std:Critics skos:broader topic:screen .
+
+# ── ผู้เขียน (โหนดกลาง = The Thinker) ──
+person:noppadol-weerakitti a schema:Person ;
+    schema:name "นพดล วีรกิตติ"@th ;
+    schema:url <https://noppadol.online/> ;
+    schema:knowsAbout topic:coffee, topic:screen, topic:books, topic:photo, topic:living, topic:farm, topic:wood, topic:tech .
+
+# ── ชุดรวมเล่มอนาคต (ไม่เน้นบนเว็บ) ──
+std:SeizeTheDayBook a schema:Book, schema:CreativeWorkSeries ;
+    schema:name "Seize the Day" ;
+    schema:description "ชุดบทความคัดสรรที่นำมารวมเล่มเป็นหนังสือ"@th ;
+    schema:inLanguage "th" ;
+    schema:author person:noppadol-weerakitti ;
+    schema:isBasedOn <https://noppadol.online/> .

@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 ---
 {% set dept = site.departments[department] %}
+{% if not dept and topic %}{% set dept = site.topics[topic] %}{% endif %}
 <article class="article">
 
   <header>
@@ -45,15 +46,15 @@ layout: layouts/base.njk
 
   <footer class="colophon">
     {% if author_note %}<p class="author-note">{{ author_note }}</p>{% endif %}
-    <a class="dept-return" href="/#{{ department }}">
+    <a class="dept-return" href="/#{{ department or topic }}">
       <span class="label">อ่านเรื่องอื่นใน {{ dept.en }}</span>
       <span class="ar" aria-hidden="true">→</span>
     </a>
   </footer>
 
   <div class="page-foot">
-    <div class="mast">Seize <span class="the">the</span> Day</div>
-    <div class="fineprint">ฉบับที่ {{ issue }} · {{ issue_label }} · {{ issue_code }}</div>
+    <div class="mast">noppadol<span class="middot">·</span>online</div>
+    <div class="fineprint">{{ issue_label }}</div>
   </div>
 
 </article>
