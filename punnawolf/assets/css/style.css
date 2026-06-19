@@ -142,7 +142,7 @@ section { padding-block: clamp(56px, 9vw, 132px); }
 
 /* spinning vinyl */
 .vinyl {
-  position: absolute; right: -22px; top: 56%; width: clamp(76px, 10.5vw, 116px); aspect-ratio: 1; border-radius: 50%;
+  position: absolute; right: -34px; top: 46%; width: clamp(80px, 11vw, 122px); aspect-ratio: 1; border-radius: 50%;
   background:
     radial-gradient(circle at center, #2a2a2a 0 16%, transparent 16.4%),
     repeating-radial-gradient(circle at center, #141414 0 1.4px, #060606 1.6px 3px),
@@ -319,7 +319,7 @@ form textarea { resize: vertical; min-height: 130px; }
   .burger { display: block; }
   .hero__grid { grid-template-columns: 1fr; align-items: start; }
   .hero__media { max-width: 440px; }
-  .vinyl { right: 6px; top: 58%; }
+  .vinyl { right: -10px; top: 48%; }
   .philo { grid-template-columns: 1fr; }
   .release__grid { grid-template-columns: 1fr; }
   .release__player { order: -1; }
