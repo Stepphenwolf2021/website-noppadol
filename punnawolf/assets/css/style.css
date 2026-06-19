@@ -127,7 +127,7 @@ section { padding-block: clamp(56px, 9vw, 132px); }
 .hero { padding-top: clamp(28px, 5vw, 64px); padding-bottom: clamp(24px, 4vw, 48px); position: relative; }
 .hero__grid { display: grid; grid-template-columns: 1.35fr 0.9fr; gap: clamp(24px, 4vw, 56px); align-items: end; }
 .hero__mega {
-  font-size: clamp(58px, 13.5vw, 200px);
+  font-size: clamp(40px, 9.5vw, 140px);
   line-height: 0.86; letter-spacing: -0.035em; font-weight: 900; text-transform: uppercase;
   margin: 22px 0 0;
 }
@@ -142,7 +142,7 @@ section { padding-block: clamp(56px, 9vw, 132px); }
 
 /* spinning vinyl */
 .vinyl {
-  position: absolute; right: -34px; top: -34px; width: clamp(86px, 12vw, 132px); aspect-ratio: 1; border-radius: 50%;
+  position: absolute; right: -22px; top: 56%; width: clamp(76px, 10.5vw, 116px); aspect-ratio: 1; border-radius: 50%;
   background:
     radial-gradient(circle at center, #2a2a2a 0 16%, transparent 16.4%),
     repeating-radial-gradient(circle at center, #141414 0 1.4px, #060606 1.6px 3px),
@@ -319,7 +319,7 @@ form textarea { resize: vertical; min-height: 130px; }
   .burger { display: block; }
   .hero__grid { grid-template-columns: 1fr; align-items: start; }
   .hero__media { max-width: 440px; }
-  .vinyl { right: 8px; top: 8px; }
+  .vinyl { right: 6px; top: 58%; }
   .philo { grid-template-columns: 1fr; }
   .release__grid { grid-template-columns: 1fr; }
   .release__player { order: -1; }
