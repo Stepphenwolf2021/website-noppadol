@@ -334,7 +334,7 @@ form textarea { resize: vertical; min-height: 130px; }
   .news a, .news .row { grid-template-columns: 1fr auto; }
   .news__date { grid-column: 1 / -1; }
   .gallery { columns: 2 140px; }
-  .scrollcue { display: none; }
+  .scrollcue { display: block; width: 72px; height: 72px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto; }
