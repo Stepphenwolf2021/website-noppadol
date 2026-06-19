@@ -1,0 +1,2645 @@
+[
+  {
+    "name": "ChatGPT",
+    "count": 4,
+    "chosen": "Q115564437",
+    "candidates": [
+      {
+        "qid": "Q115564437",
+        "label": "ChatGPT",
+        "desc": "artificial intelligence chatbot developed by OpenAI"
+      },
+      {
+        "qid": "Q125764297",
+        "label": "ChatGPT",
+        "desc": "iOS app"
+      },
+      {
+        "qid": "Q125774522",
+        "label": "ChatGPT",
+        "desc": "official Android app developed by OpenAI"
+      }
+    ]
+  },
+  {
+    "name": "Andrew Ng",
+    "count": 3,
+    "chosen": "Q2846695",
+    "candidates": [
+      {
+        "qid": "Q2846695",
+        "label": "Andrew Y. Ng",
+        "desc": "American artificial intelligence researcher"
+      },
+      {
+        "qid": "Q96647693",
+        "label": "Andrew Ng",
+        "desc": "researcher"
+      },
+      {
+        "qid": "Q96315704",
+        "label": "Andrew Ng",
+        "desc": "physicist"
+      }
+    ]
+  },
+  {
+    "name": "TCDC",
+    "count": 3,
+    "chosen": "Q6632289",
+    "candidates": [
+      {
+        "qid": "Q17280566",
+        "label": "Centers for Disease Control",
+        "desc": "governmental medical research institute with headquarters in Taipei, Taiwan"
+      },
+      {
+        "qid": "Q23205923",
+        "label": "toxin gene expression negative regulator CD630_06640",
+        "desc": "microbial gene found in Clostridioides difficile 630"
+      },
+      {
+        "qid": "Q23534173",
+        "label": "Toxin gene expression negative regulator CD630_06640",
+        "desc": "microbial protein found in Clostridioides difficile 630"
+      }
+    ]
+  },
+  {
+    "name": "ญี่ปุ่น",
+    "count": 3,
+    "chosen": "Q17",
+    "candidates": [
+      {
+        "qid": "Q17",
+        "label": "Japan",
+        "desc": "island country in East Asia"
+      },
+      {
+        "qid": "Q5287",
+        "label": "Japanese",
+        "desc": "language spoken in East Asia"
+      },
+      {
+        "qid": "Q1046461",
+        "label": "postwar Japan",
+        "desc": "historical period"
+      }
+    ]
+  },
+  {
+    "name": "John Searle",
+    "count": 2,
+    "chosen": "Q295012",
+    "candidates": [
+      {
+        "qid": "Q295012",
+        "label": "John Searle",
+        "desc": "American philosopher (1932–2025)"
+      },
+      {
+        "qid": "Q18527575",
+        "label": "John Searle",
+        "desc": "gardener"
+      },
+      {
+        "qid": "Q75466092",
+        "label": "John Searle",
+        "desc": "Peerage person ID=159651"
+      }
+    ]
+  },
+  {
+    "name": "Anthropic",
+    "count": 2,
+    "chosen": "Q116758847",
+    "candidates": [
+      {
+        "qid": "Q116758847",
+        "label": "Anthropic",
+        "desc": "American artificial intelligence corporation"
+      },
+      {
+        "qid": "Q118876059",
+        "label": "Claude",
+        "desc": "large language model family developed by Anthropic"
+      },
+      {
+        "qid": "Q240581",
+        "label": "anthropic principle",
+        "desc": "philosophical consideration that observations of the Universe must be compatible with the conscious and sapient life that observes it"
+      }
+    ]
+  },
+  {
+    "name": "Dario Amodei",
+    "count": 2,
+    "chosen": "Q103335665",
+    "candidates": [
+      {
+        "qid": "Q103335665",
+        "label": "Dario Amodei",
+        "desc": "CEO and co-founder of Anthropic, Ph.D. Princeton University 2011"
+      }
+    ]
+  },
+  {
+    "name": "พันศักดิ์ วิญญรัตน์",
+    "count": 2,
+    "chosen": "Q13018115",
+    "candidates": [
+      {
+        "qid": "Q13018115",
+        "label": "Pansak Vinyaratn",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "เยอรมัน",
+    "count": 2,
+    "chosen": "Q183",
+    "candidates": [
+      {
+        "qid": "Q188",
+        "label": "German",
+        "desc": "West Germanic language native to Central Europe"
+      },
+      {
+        "qid": "Q713750",
+        "label": "West Germany",
+        "desc": "Federal Republic of Germany in the period between its formation on 23 May 1949 and German reunification on 3 October 1990"
+      },
+      {
+        "qid": "Q38280",
+        "label": "German Shepherd",
+        "desc": "German breed of dog"
+      }
+    ]
+  },
+  {
+    "name": "สมศักดิ์ ศรีมูล",
+    "count": 2,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "PMI",
+    "count": 2,
+    "chosen": "Q1545010",
+    "candidates": [
+      {
+        "qid": "Q3407935",
+        "label": "Protection maternelle et infantile",
+        "desc": ""
+      },
+      {
+        "qid": "Q1852556",
+        "label": "Philip Morris International",
+        "desc": "American global cigarette and tobacco company"
+      },
+      {
+        "qid": "Q656993",
+        "label": "Palma de Mallorca Airport",
+        "desc": "international airport in Palma, Spain"
+      }
+    ]
+  },
+  {
+    "name": "PMP",
+    "count": 2,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q574694",
+        "label": "pseudomyxoma peritonei",
+        "desc": "appendix cancer that is characterized by progressive accumulation of mucus-secreting tumor cells within the abdomen and pelvis"
+      },
+      {
+        "qid": "Q15732550",
+        "label": "People's Movement Party",
+        "desc": "political party in Romania"
+      },
+      {
+        "qid": "Q10872571",
+        "label": "portable media player",
+        "desc": "portable device capable of storing and playing digital media such as audio, images, and video files"
+      }
+    ]
+  },
+  {
+    "name": "สิทธารถะ",
+    "count": 2,
+    "chosen": "Q457289",
+    "candidates": [
+      {
+        "qid": "Q457289",
+        "label": "Siddhartha",
+        "desc": "novel by Hermann Hesse"
+      },
+      {
+        "qid": "Q7508053",
+        "label": "Siddhartha",
+        "desc": "Father of Mahavira, the 24th and last Jain Tirthankara"
+      }
+    ]
+  },
+  {
+    "name": "Claudia Roden",
+    "count": 2,
+    "chosen": "Q2307955",
+    "candidates": [
+      {
+        "qid": "Q2307955",
+        "label": "Claudia Roden",
+        "desc": "British writer"
+      }
+    ]
+  },
+  {
+    "name": "Michael Schrage",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "MIT Sloan",
+    "count": 1,
+    "chosen": "Q142740",
+    "candidates": [
+      {
+        "qid": "Q142740",
+        "label": "MIT Sloan School of Management",
+        "desc": "business school of the Massachusetts Institute of Technology"
+      },
+      {
+        "qid": "Q6716324",
+        "label": "MIT Sloan Management Review",
+        "desc": "journal"
+      },
+      {
+        "qid": "Q6716325",
+        "label": "MIT Sloan Sports Analytics Conference",
+        "desc": "organization"
+      }
+    ]
+  },
+  {
+    "name": "Metaculus",
+    "count": 1,
+    "chosen": "Q65086363",
+    "candidates": [
+      {
+        "qid": "Q21227157",
+        "label": "Metaculus",
+        "desc": "genus of arachnids"
+      },
+      {
+        "qid": "Q65086363",
+        "label": "Metaculus",
+        "desc": "prediction website"
+      },
+      {
+        "qid": "Q21318927",
+        "label": "Metaculus lepidifolii",
+        "desc": "species of arachnid"
+      }
+    ]
+  },
+  {
+    "name": "FabCafe",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "ODC 25 ASEAN",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Hans Rosling",
+    "count": 1,
+    "chosen": "Q588259",
+    "candidates": [
+      {
+        "qid": "Q588259",
+        "label": "Hans Rosling",
+        "desc": "Swedish medical doctor, academic, statistician and public speaker"
+      },
+      {
+        "qid": "Q22947936",
+        "label": "Hans Rosling: New insights on poverty",
+        "desc": "TED2007"
+      },
+      {
+        "qid": "Q22949095",
+        "label": "Hans Rosling: The best stats you've ever seen",
+        "desc": "TED2006"
+      }
+    ]
+  },
+  {
+    "name": "GPT-4",
+    "count": 1,
+    "chosen": "Q116709136",
+    "candidates": [
+      {
+        "qid": "Q116709136",
+        "label": "GPT-4",
+        "desc": "OpenAI multimodal large language model"
+      },
+      {
+        "qid": "Q125919502",
+        "label": "GPT-4o",
+        "desc": "large multimodal model from OpenAI"
+      },
+      {
+        "qid": "Q133893610",
+        "label": "GPT-4.1",
+        "desc": "large language model within OpenAI's GPT series"
+      }
+    ]
+  },
+  {
+    "name": "Mark Zuckerberg",
+    "count": 1,
+    "chosen": "Q36215",
+    "candidates": [
+      {
+        "qid": "Q36215",
+        "label": "Mark Zuckerberg",
+        "desc": "American Internet entrepreneur"
+      },
+      {
+        "qid": "Q115785690",
+        "label": "Mark Zuckerberg",
+        "desc": "Australian mathematician"
+      },
+      {
+        "qid": "Q62397788",
+        "label": "Mark Zuckerberg",
+        "desc": "painting by Sami Lukkarinen"
+      }
+    ]
+  },
+  {
+    "name": "Meta",
+    "count": 1,
+    "chosen": "Q380",
+    "candidates": [
+      {
+        "qid": "Q380",
+        "label": "Meta",
+        "desc": "American technology company"
+      },
+      {
+        "qid": "Q12796400",
+        "label": "Meta",
+        "desc": "female given name"
+      },
+      {
+        "qid": "Q140566",
+        "label": "Meta",
+        "desc": "genus of arachnids"
+      }
+    ]
+  },
+  {
+    "name": "TH-AI Passport",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Midjourney",
+    "count": 1,
+    "chosen": "Q113070628",
+    "candidates": [
+      {
+        "qid": "Q113070628",
+        "label": "Midjourney",
+        "desc": "AI art generator"
+      },
+      {
+        "qid": "Q116956702",
+        "label": "Midjourney, Inc.",
+        "desc": "Artificial intelligence company in the United States"
+      },
+      {
+        "qid": "Q139324261",
+        "label": "Fast Hours",
+        "desc": "podcast about AI image and video generation, and generative AI application for creatives"
+      }
+    ]
+  },
+  {
+    "name": "Dr. Vivian Balakrishnan",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "สิงคโปร์",
+    "count": 1,
+    "chosen": "Q334",
+    "candidates": [
+      {
+        "qid": "Q32245",
+        "label": "Singapore Airlines",
+        "desc": "the flag carrier airline of Singapore"
+      },
+      {
+        "qid": "Q209973",
+        "label": "Onward Singapore",
+        "desc": "national anthem of Singapore"
+      },
+      {
+        "qid": "Q752407",
+        "label": "Singapore Flyer",
+        "desc": "Ferris wheel in Singapore"
+      }
+    ]
+  },
+  {
+    "name": "Leonardo da Vinci",
+    "count": 1,
+    "chosen": "Q762",
+    "candidates": [
+      {
+        "qid": "Q762",
+        "label": "Leonardo da Vinci",
+        "desc": "Italian Renaissance polymath (1452−1519)"
+      },
+      {
+        "qid": "Q2530641",
+        "label": "Leonardo da Vinci",
+        "desc": "1911 Conte di Cavour-class battleship"
+      },
+      {
+        "qid": "Q2115987",
+        "label": "Leonardo Da Vinci",
+        "desc": "1982 Sauro-class submarine"
+      }
+    ]
+  },
+  {
+    "name": "NVIDIA",
+    "count": 1,
+    "chosen": "Q182477",
+    "candidates": [
+      {
+        "qid": "Q182477",
+        "label": "Nvidia",
+        "desc": "American multinational technology company"
+      },
+      {
+        "qid": "Q56274119",
+        "label": "Nvidia RTX",
+        "desc": "development platform for rendering graphics"
+      },
+      {
+        "qid": "Q114062792",
+        "label": "GeForce RTX 4080",
+        "desc": "graphics card"
+      }
+    ]
+  },
+  {
+    "name": "Earth-2",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q1752718",
+        "label": "Earth-Two",
+        "desc": "fictional universe appearing in American comic book stories published by DC Comics"
+      },
+      {
+        "qid": "Q2361677",
+        "label": "Earth 2160",
+        "desc": "2006 video game"
+      },
+      {
+        "qid": "Q92296817",
+        "label": "Earth-2",
+        "desc": "fictional planet, setting of the 2020 Stargirl television series"
+      }
+    ]
+  },
+  {
+    "name": "Gemini",
+    "count": 1,
+    "chosen": "Q116698014",
+    "candidates": [
+      {
+        "qid": "Q8923",
+        "label": "Gemini",
+        "desc": "zodiac constellation in the northern hemisphere"
+      },
+      {
+        "qid": "Q94638515",
+        "label": "Gemini",
+        "desc": "internet protocol"
+      },
+      {
+        "qid": "Q851834",
+        "label": "Gemini",
+        "desc": "Swedish pop duo"
+      }
+    ]
+  },
+  {
+    "name": "Galactica",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q5517810",
+        "label": "Galactica",
+        "desc": "genus of insects"
+      },
+      {
+        "qid": "Q318",
+        "label": "galaxy",
+        "desc": "large gravitationally bound system of stars and interstellar matter"
+      },
+      {
+        "qid": "Q126187807",
+        "label": "Galactica",
+        "desc": "2021 video game"
+      }
+    ]
+  },
+  {
+    "name": "Everything Everywhere All At Once",
+    "count": 1,
+    "chosen": "Q83808444",
+    "candidates": [
+      {
+        "qid": "Q83808444",
+        "label": "Everything Everywhere All at Once",
+        "desc": "2022 film by Daniel Kwan and Daniel Scheinert"
+      },
+      {
+        "qid": "Q111942240",
+        "label": "Everything Everywhere All at Once – Original Motion Picture Soundtrack",
+        "desc": "2022 soundtrack album by Son Lux"
+      }
+    ]
+  },
+  {
+    "name": "China Post",
+    "count": 1,
+    "chosen": "Q1066476",
+    "candidates": [
+      {
+        "qid": "Q1066476",
+        "label": "China Post",
+        "desc": "Chinese state-owned postal services company"
+      },
+      {
+        "qid": "Q30296542",
+        "label": "China Postdoctoral Science Foundation",
+        "desc": "nonprofit organization in Beijing, China"
+      },
+      {
+        "qid": "Q709259",
+        "label": "Chunghwa Post",
+        "desc": "Postal services provider of the Republic of China"
+      }
+    ]
+  },
+  {
+    "name": "Ule",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q47048",
+        "label": "Oulu",
+        "desc": "city in the North Ostrobothnia region, Finland"
+      },
+      {
+        "qid": "Q113449379",
+        "label": "Ule",
+        "desc": "subdistrict in Bima City, West Nusa Tenggara, Indonesia"
+      },
+      {
+        "qid": "Q161794",
+        "label": "Ulex europaeus",
+        "desc": "species of plant"
+      }
+    ]
+  },
+  {
+    "name": "Li Ka-shing",
+    "count": 1,
+    "chosen": "Q20151",
+    "candidates": [
+      {
+        "qid": "Q20151",
+        "label": "Li Ka-shing",
+        "desc": "Hong Kong entrepreneur"
+      },
+      {
+        "qid": "Q4164603",
+        "label": "Li Ka Shing Faculty of Medicine",
+        "desc": "Faculty of medicine of the University of Hong Kong"
+      },
+      {
+        "qid": "Q6538902",
+        "label": "Li Ka Shing Foundation",
+        "desc": "Hong Kong-based charitable organization"
+      }
+    ]
+  },
+  {
+    "name": "WeLab",
+    "count": 1,
+    "chosen": "Q28134242",
+    "candidates": [
+      {
+        "qid": "Q28134242",
+        "label": "WeLab",
+        "desc": "Hong Kong financial technology company"
+      },
+      {
+        "qid": "Q96419643",
+        "label": "WeLab Bank",
+        "desc": "virtual bank in Hong Kong"
+      },
+      {
+        "qid": "Q1540065",
+        "label": "swap body",
+        "desc": "freight container"
+      }
+    ]
+  },
+  {
+    "name": "Shermin Voshmgir",
+    "count": 1,
+    "chosen": "Q60920763",
+    "candidates": [
+      {
+        "qid": "Q60920763",
+        "label": "Shermin Voshmgir",
+        "desc": "researcher"
+      },
+      {
+        "qid": "Q133396838",
+        "label": "Shermin Voshmgir",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "BlockchainHub",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "เอสโตเนีย",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "The Age of AI and Our Human Future",
+    "count": 1,
+    "chosen": "Q135486655",
+    "candidates": [
+      {
+        "qid": "Q135486655",
+        "label": "The Age Of AI And Our Human Future",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "BirdNet-Pi",
+    "count": 1,
+    "chosen": "Q136282724",
+    "candidates": [
+      {
+        "qid": "Q136282724",
+        "label": "BirdNET-PI",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "Cornell",
+    "count": 1,
+    "chosen": "Q49115",
+    "candidates": [
+      {
+        "qid": "Q49115",
+        "label": "Cornell University",
+        "desc": "private and statutory land-grant research university in Ithaca, New York, USA"
+      },
+      {
+        "qid": "Q37067124",
+        "label": "Cornell",
+        "desc": "family name"
+      },
+      {
+        "qid": "Q21137056",
+        "label": "Cornell",
+        "desc": "male given name"
+      }
+    ]
+  },
+  {
+    "name": "Ark Investment Management",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Isaac Asimov",
+    "count": 1,
+    "chosen": "Q34981",
+    "candidates": [
+      {
+        "qid": "Q34981",
+        "label": "Isaac Asimov",
+        "desc": "American writer and biochemist (1920–1992)"
+      },
+      {
+        "qid": "Q913482",
+        "label": "Robot series",
+        "desc": "series of stories by Isaac Asimov"
+      },
+      {
+        "qid": "Q55614645",
+        "label": "Isaac Asimov's Science Adventure",
+        "desc": "1992 educational video game"
+      }
+    ]
+  },
+  {
+    "name": "Arthur C. Clarke",
+    "count": 1,
+    "chosen": "Q47087",
+    "candidates": [
+      {
+        "qid": "Q47087",
+        "label": "Arthur C. Clarke",
+        "desc": "British science fiction writer, inventor, and futurist (1917–2008)"
+      },
+      {
+        "qid": "Q708830",
+        "label": "Arthur C. Clarke Award",
+        "desc": "Award for best SF novel published in the UK in the previous year"
+      },
+      {
+        "qid": "Q139667973",
+        "label": "Arthur C. Clarke",
+        "desc": "non-fiction work by Gary Westfahl"
+      }
+    ]
+  },
+  {
+    "name": "Frank Herbert",
+    "count": 1,
+    "chosen": "Q7934",
+    "candidates": [
+      {
+        "qid": "Q7934",
+        "label": "Frank Herbert",
+        "desc": "American writer (1920–1986)"
+      },
+      {
+        "qid": "Q112366531",
+        "label": "Frank Herbert",
+        "desc": ""
+      },
+      {
+        "qid": "Q102115669",
+        "label": "Frank Herbert Brownell, III",
+        "desc": "Ph.D. Princeton University 1949"
+      }
+    ]
+  },
+  {
+    "name": "HAL 9000",
+    "count": 1,
+    "chosen": "Q833933",
+    "candidates": [
+      {
+        "qid": "Q833933",
+        "label": "HAL 9000",
+        "desc": "fictional character in Arthur C. Clarke's Space Odyssey series"
+      }
+    ]
+  },
+  {
+    "name": "Endrit Restelica",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Sean Grove",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q62081699",
+        "label": "Sean Grover",
+        "desc": "American psychotherapist"
+      }
+    ]
+  },
+  {
+    "name": "Todd Park",
+    "count": 1,
+    "chosen": "Q7812553",
+    "candidates": [
+      {
+        "qid": "Q7812553",
+        "label": "Todd Park",
+        "desc": "chief technology officer"
+      },
+      {
+        "qid": "Q21935981",
+        "label": "Todd Park",
+        "desc": "park in New South Wales, Australia"
+      },
+      {
+        "qid": "Q21936207",
+        "label": "Todd Park",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "Barack Obama",
+    "count": 1,
+    "chosen": "Q76",
+    "candidates": [
+      {
+        "qid": "Q76",
+        "label": "Barack Obama",
+        "desc": "president of the United States from 2009 to 2017 (born 1961)"
+      },
+      {
+        "qid": "Q649593",
+        "label": "Barack Obama Sr.",
+        "desc": "economist and father of Barack Obama Jr. (1934–1982)"
+      },
+      {
+        "qid": "Q59661289",
+        "label": "Barack Obama Presidential Library",
+        "desc": "reference unit of the National Archives and Records Administration"
+      }
+    ]
+  },
+  {
+    "name": "ชัชชาติ สิทธิพันธุ์",
+    "count": 1,
+    "chosen": "Q16307757",
+    "candidates": [
+      {
+        "qid": "Q16307757",
+        "label": "Chadchart Sittipunt",
+        "desc": "Thai politician"
+      }
+    ]
+  },
+  {
+    "name": "เว่ยเจิง",
+    "count": 1,
+    "chosen": "Q378356",
+    "candidates": [
+      {
+        "qid": "Q378356",
+        "label": "Wei Zheng",
+        "desc": "Tang Dynasty chancellor (580-643)"
+      }
+    ]
+  },
+  {
+    "name": "ถังไท่จง",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "OpenAI GPT Store",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Ethan Mollick",
+    "count": 1,
+    "chosen": "Q109621287",
+    "candidates": [
+      {
+        "qid": "Q109621287",
+        "label": "Ethan Mollick",
+        "desc": "American academic researching entrepreneurship"
+      }
+    ]
+  },
+  {
+    "name": "Wharton School",
+    "count": 1,
+    "chosen": "Q1329269",
+    "candidates": [
+      {
+        "qid": "Q1329269",
+        "label": "The Wharton School",
+        "desc": "business school of the University of Pennsylvania"
+      },
+      {
+        "qid": "Q16967235",
+        "label": "Wharton School Publishing",
+        "desc": "university publishing company"
+      },
+      {
+        "qid": "Q134609106",
+        "label": "Wharton Department of Statistics and Data Science",
+        "desc": "academic department at the Wharton School, University of Pennsylvania"
+      }
+    ]
+  },
+  {
+    "name": "Tetsuji Fujiwara",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Oire Nomi",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Kominka Summit 2024",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Kyoto",
+    "count": 1,
+    "chosen": "Q34600",
+    "candidates": [
+      {
+        "qid": "Q34600",
+        "label": "Kyoto",
+        "desc": "city in the Kyōto Prefecture, Japan"
+      },
+      {
+        "qid": "Q120730",
+        "label": "Kyoto Prefecture",
+        "desc": "prefecture of Japan"
+      },
+      {
+        "qid": "Q336264",
+        "label": "Kyoto University",
+        "desc": "national university located in Kyoto, Japan"
+      }
+    ]
+  },
+  {
+    "name": "Pica",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q271634",
+        "label": "Pica",
+        "desc": "genus of birds in the crow family (Corvidae)"
+      },
+      {
+        "qid": "Q5593",
+        "label": "Pablo Picasso",
+        "desc": "Spanish painter and sculptor (1881–1973)"
+      },
+      {
+        "qid": "Q25307",
+        "label": "Eurasian Magpie",
+        "desc": "species of bird"
+      }
+    ]
+  },
+  {
+    "name": "จีน",
+    "count": 1,
+    "chosen": "Q148",
+    "candidates": [
+      {
+        "qid": "Q148",
+        "label": "People's Republic of China",
+        "desc": "country in East Asia"
+      },
+      {
+        "qid": "Q29520",
+        "label": "China",
+        "desc": "cultural region, ancient civilization, and nation in East Asia; mostly refers to the People's Republic of China in political situation and rarely refers to the Republic of China"
+      },
+      {
+        "qid": "Q34740",
+        "label": "genus",
+        "desc": "taxonomic rank used in the biological classification of living and fossil organisms, and viruses"
+      }
+    ]
+  },
+  {
+    "name": "เบอร์มิงแฮม",
+    "count": 1,
+    "chosen": "Q2256",
+    "candidates": [
+      {
+        "qid": "Q2256",
+        "label": "Birmingham",
+        "desc": "city in the West Midlands, England"
+      },
+      {
+        "qid": "Q79867",
+        "label": "Birmingham",
+        "desc": "city in and county seat of Jefferson County, Alabama, United States"
+      },
+      {
+        "qid": "Q865741",
+        "label": "Birmingham Thunderbolts",
+        "desc": "sports club"
+      }
+    ]
+  },
+  {
+    "name": "ธเนศ อาภรณ์สุวรรณ",
+    "count": 1,
+    "chosen": "Q2886468",
+    "candidates": [
+      {
+        "qid": "Q2886468",
+        "label": "Thanet Aphornsuvan",
+        "desc": "Thai historian"
+      }
+    ]
+  },
+  {
+    "name": "Ohitsu",
+    "count": 1,
+    "chosen": "Q11666417",
+    "candidates": [
+      {
+        "qid": "Q11666417",
+        "label": "ohitsu",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "Hinoki",
+    "count": 1,
+    "chosen": "Q917187",
+    "candidates": [
+      {
+        "qid": "Q917187",
+        "label": "Chamaecyparis obtusa",
+        "desc": "species of plant"
+      },
+      {
+        "qid": "Q11544593",
+        "label": "Japanese destroyer Hinoki (1944)",
+        "desc": "1944 Matsu-class destroyer"
+      },
+      {
+        "qid": "Q39256799",
+        "label": "Hinoki",
+        "desc": "Japanese family name (桧)"
+      }
+    ]
+  },
+  {
+    "name": "สมัยเอโดะ",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Nakiri",
+    "count": 1,
+    "chosen": "Q1566385",
+    "candidates": [
+      {
+        "qid": "Q104837412",
+        "label": "Nakiri",
+        "desc": "dissolved municipality in Shima district, Mie prefecture, Japan"
+      },
+      {
+        "qid": "Q106714182",
+        "label": "Nakiri Ayame",
+        "desc": "Japanese virtual YouTuber"
+      },
+      {
+        "qid": "Q1566385",
+        "label": "nakiri bōchō",
+        "desc": "Japanese knife for cutting vegetables"
+      }
+    ]
+  },
+  {
+    "name": "Usuba",
+    "count": 1,
+    "chosen": "Q1473090",
+    "candidates": [
+      {
+        "qid": "Q14512125",
+        "label": "Usubaia",
+        "desc": "genus of insects"
+      },
+      {
+        "qid": "Q1473090",
+        "label": "usuba bōchō",
+        "desc": "Professional Japanese chef's knife"
+      },
+      {
+        "qid": "Q13935021",
+        "label": "Usubaia liparae",
+        "desc": "species of insect"
+      }
+    ]
+  },
+  {
+    "name": "Deba",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q90265111",
+        "label": "Deba",
+        "desc": "family name"
+      },
+      {
+        "qid": "Q179875",
+        "label": "debate",
+        "desc": "argument, or discussion, usually in an ordered or formal setting, often with more than two people, generally ending with a vote or other decision"
+      },
+      {
+        "qid": "Q1611504",
+        "label": "Deba",
+        "desc": "City from Spain"
+      }
+    ]
+  },
+  {
+    "name": "Gyuto",
+    "count": 1,
+    "chosen": "Q1558651",
+    "candidates": [
+      {
+        "qid": "Q1558651",
+        "label": "gyūtō",
+        "desc": "Japanese chef's knife"
+      },
+      {
+        "qid": "Q3122757",
+        "label": "Gyuto Tantric College",
+        "desc": "monastic institution in Tibet"
+      },
+      {
+        "qid": "Q11265286",
+        "label": "Gyutora",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "ธรรมศักดิ์การช่าง",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "ประพัฒน์ ไหมศรี",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "เกาหลี",
+    "count": 1,
+    "chosen": "Q884",
+    "candidates": [
+      {
+        "qid": "Q9176",
+        "label": "Korean",
+        "desc": "language spoken in Korean Peninsula and some parts of North-eastern China"
+      },
+      {
+        "qid": "Q18097",
+        "label": "Korea",
+        "desc": "region in East Asia"
+      },
+      {
+        "qid": "Q884",
+        "label": "South Korea",
+        "desc": "country in East Asia"
+      }
+    ]
+  },
+  {
+    "name": "Paul Sellers",
+    "count": 1,
+    "chosen": "Q7153520",
+    "candidates": [
+      {
+        "qid": "Q7153520",
+        "label": "Paul Sellers",
+        "desc": "British woodworker"
+      },
+      {
+        "qid": "Q115677536",
+        "label": "Paul Ralph Sellers",
+        "desc": "researcher in particle physics"
+      }
+    ]
+  },
+  {
+    "name": "Palomino Blackwing",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Kittiphol Saragganonda",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Takenaka Carpentry Tools Museum",
+    "count": 1,
+    "chosen": "Q24882700",
+    "candidates": [
+      {
+        "qid": "Q24882700",
+        "label": "Takenaka Carpentry Tools Museum",
+        "desc": "museum in Japan"
+      }
+    ]
+  },
+  {
+    "name": "Lightroom",
+    "count": 1,
+    "chosen": "Q360403",
+    "candidates": [
+      {
+        "qid": "Q360403",
+        "label": "Adobe Photoshop Lightroom",
+        "desc": "photo editing and management computer program"
+      },
+      {
+        "qid": "Q105861156",
+        "label": "Adobe Lightroom Catalog",
+        "desc": "file format"
+      },
+      {
+        "qid": "Q122118095",
+        "label": "Lightroom: Sedmibodový systém",
+        "desc": "book edition published in 2022"
+      }
+    ]
+  },
+  {
+    "name": "Calibrite",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "X-Rite",
+    "count": 1,
+    "chosen": "Q8041522",
+    "candidates": [
+      {
+        "qid": "Q8041522",
+        "label": "X-Rite",
+        "desc": "American color measurement company"
+      },
+      {
+        "qid": "Q132034852",
+        "label": "X-Rite Méditerranée",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "Canon Pixma Pro 10",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Bangkok",
+    "count": 1,
+    "chosen": "Q1861",
+    "candidates": [
+      {
+        "qid": "Q1861",
+        "label": "Bangkok",
+        "desc": "capital of Thailand"
+      },
+      {
+        "qid": "Q13091846",
+        "label": "Bangkok",
+        "desc": "village in Lamongan Regency, East Java, Indonesia"
+      },
+      {
+        "qid": "Q11016342",
+        "label": "Bangkok",
+        "desc": "village in Boyolali Regency, Central Java, Indonesia"
+      }
+    ]
+  },
+  {
+    "name": "Vienna",
+    "count": 1,
+    "chosen": "Q1741",
+    "candidates": [
+      {
+        "qid": "Q1741",
+        "label": "Vienna",
+        "desc": "capital of and state in Austria"
+      },
+      {
+        "qid": "Q1002926",
+        "label": "Vienna",
+        "desc": "town in Fairfax County, Virginia, United States"
+      },
+      {
+        "qid": "Q577544",
+        "label": "Vienna",
+        "desc": "city in Johnson County, Illinois, United States"
+      }
+    ]
+  },
+  {
+    "name": "St. Stephen's Cathedral",
+    "count": 1,
+    "chosen": "Q5943",
+    "candidates": [
+      {
+        "qid": "Q5943",
+        "label": "St. Stephen's Cathedral",
+        "desc": "church in Vienna, Austria"
+      },
+      {
+        "qid": "Q7591734",
+        "label": "St. Stephen's Cathedral",
+        "desc": "cathedral in Owensboro, Kentucky"
+      },
+      {
+        "qid": "Q135934640",
+        "label": "St. Stephen's Cathedral",
+        "desc": "Anglican Church of Kenya cathedral in Nairobi"
+      }
+    ]
+  },
+  {
+    "name": "Zoom IQ7",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Japan",
+    "count": 1,
+    "chosen": "Q17",
+    "candidates": [
+      {
+        "qid": "Q17",
+        "label": "Japan",
+        "desc": "island country in East Asia"
+      },
+      {
+        "qid": "Q5287",
+        "label": "Japanese",
+        "desc": "language spoken in East Asia"
+      },
+      {
+        "qid": "Q188712",
+        "label": "Empire of Japan",
+        "desc": "Empire in the Asia-Pacific region from 1868 to 1947"
+      }
+    ]
+  },
+  {
+    "name": "Black Friday",
+    "count": 1,
+    "chosen": "Q86483",
+    "candidates": [
+      {
+        "qid": "Q86483",
+        "label": "Black Friday",
+        "desc": "the Friday following Thanksgiving, considered the beginning of the Christmas shopping season"
+      },
+      {
+        "qid": "Q15218361",
+        "label": "Black Friday",
+        "desc": "7th episode of the seventeenth season of South Park"
+      },
+      {
+        "qid": "Q1899132",
+        "label": "Black Friday",
+        "desc": "mass shooting of protesters in Pahlavi Iran on 8 September 1978"
+      }
+    ]
+  },
+  {
+    "name": "New York Public Library",
+    "count": 1,
+    "chosen": "Q219555",
+    "candidates": [
+      {
+        "qid": "Q219555",
+        "label": "New York Public Library",
+        "desc": "public library system in New York City"
+      },
+      {
+        "qid": "Q7013887",
+        "label": "New York Public Library Main Branch",
+        "desc": "research library in Manhattan, New York, USA"
+      },
+      {
+        "qid": "Q105027234",
+        "label": "Print Collection",
+        "desc": "collection of the New York Public Library at the Stephen A. Schwarzman Building"
+      }
+    ]
+  },
+  {
+    "name": "หนองคาย",
+    "count": 1,
+    "chosen": "Q327737",
+    "candidates": [
+      {
+        "qid": "Q327737",
+        "label": "Nong Khai",
+        "desc": "province in northeastern Thailand"
+      },
+      {
+        "qid": "Q47545245",
+        "label": "Nongkhai Sor.Prapatsorn",
+        "desc": "Thai kickboxer"
+      },
+      {
+        "qid": "Q2501119",
+        "label": "Nong Khai",
+        "desc": "Wikimedia disambiguation page"
+      }
+    ]
+  },
+  {
+    "name": "ย่างกุ้ง",
+    "count": 1,
+    "chosen": "Q37995",
+    "candidates": [
+      {
+        "qid": "Q37995",
+        "label": "Yangon",
+        "desc": "former capital of Myanmar (Burma) and the current capital of Yangon Region"
+      },
+      {
+        "qid": "Q3267086",
+        "label": "Yangon United F.C.",
+        "desc": "football club"
+      },
+      {
+        "qid": "Q667400",
+        "label": "Air Thanlwin",
+        "desc": "airline"
+      }
+    ]
+  },
+  {
+    "name": "ดานัง",
+    "count": 1,
+    "chosen": "Q25282",
+    "candidates": [
+      {
+        "qid": "Q25282",
+        "label": "Da Nang",
+        "desc": "city of Vietnam"
+      }
+    ]
+  },
+  {
+    "name": "China",
+    "count": 1,
+    "chosen": "Q148",
+    "candidates": [
+      {
+        "qid": "Q148",
+        "label": "People's Republic of China",
+        "desc": "country in East Asia"
+      },
+      {
+        "qid": "Q865",
+        "label": "Taiwan",
+        "desc": "country in East Asia"
+      },
+      {
+        "qid": "Q29520",
+        "label": "China",
+        "desc": "cultural region, ancient civilization, and nation in East Asia; mostly refers to the People's Republic of China in political situation and rarely refers to the Republic of China"
+      }
+    ]
+  },
+  {
+    "name": "โตโกซัง",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "ZEN Chair",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Mount Fuji",
+    "count": 1,
+    "chosen": "Q39231",
+    "candidates": [
+      {
+        "qid": "Q39231",
+        "label": "Mount Fuji",
+        "desc": "volcano in Yamanashi and Shizuoka Prefectures, Japan"
+      },
+      {
+        "qid": "Q17212214",
+        "label": "Fujisan",
+        "desc": ""
+      },
+      {
+        "qid": "Q49392407",
+        "label": "Mount Fuji",
+        "desc": "painting by Minol Araki"
+      }
+    ]
+  },
+  {
+    "name": "กรมโยธาธิการ",
+    "count": 1,
+    "chosen": "Q13012519",
+    "candidates": [
+      {
+        "qid": "Q13012519",
+        "label": "Department of Public Works and Town & Country Planning",
+        "desc": "public works and town planning agency of Thailand"
+      }
+    ]
+  },
+  {
+    "name": "วิทยาลัยดุริยางคศิลป์ มหิดล",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Questacon",
+    "count": 1,
+    "chosen": "Q497181",
+    "candidates": [
+      {
+        "qid": "Q497181",
+        "label": "Questacon",
+        "desc": "science museum in Canberra, Australian Capital Territory, Australia"
+      }
+    ]
+  },
+  {
+    "name": "Steve Jobs",
+    "count": 1,
+    "chosen": "Q19837",
+    "candidates": [
+      {
+        "qid": "Q19837",
+        "label": "Steve Jobs",
+        "desc": "American entrepreneur; co-founder of Apple Inc. (1955–2011)"
+      },
+      {
+        "qid": "Q18754959",
+        "label": "Steve Jobs",
+        "desc": "2015 film directed by Danny Boyle"
+      },
+      {
+        "qid": "Q16460065",
+        "label": "Steve Jobs",
+        "desc": "1st Simon & Schuster hardcover edition"
+      }
+    ]
+  },
+  {
+    "name": "Bhagavad Gita",
+    "count": 1,
+    "chosen": "Q46802",
+    "candidates": [
+      {
+        "qid": "Q46802",
+        "label": "Bhagavad Gita",
+        "desc": "primary holy scripture for Hinduism"
+      },
+      {
+        "qid": "Q63196913",
+        "label": "The Bhagavad-Gita",
+        "desc": "English translation by Annie Besant"
+      },
+      {
+        "qid": "Q50388183",
+        "label": "Bhagavad Gita",
+        "desc": "painting by Kashmiri"
+      }
+    ]
+  },
+  {
+    "name": "The Art of War",
+    "count": 1,
+    "chosen": "Q8251",
+    "candidates": [
+      {
+        "qid": "Q8251",
+        "label": "The Art of War",
+        "desc": "5th century BC Chinese military treatise"
+      },
+      {
+        "qid": "Q909589",
+        "label": "The Art of War",
+        "desc": "2008 studio album by Sabaton"
+      },
+      {
+        "qid": "Q466348",
+        "label": "The Art of War",
+        "desc": "2000 film directed by Christian Duguay"
+      }
+    ]
+  },
+  {
+    "name": "Steve Bannon",
+    "count": 1,
+    "chosen": "Q16146870",
+    "candidates": [
+      {
+        "qid": "Q16146870",
+        "label": "Steve Bannon",
+        "desc": "American media executive & political strategist (born 1953)"
+      },
+      {
+        "qid": "Q63385967",
+        "label": "The Brink",
+        "desc": "2019 documentary"
+      },
+      {
+        "qid": "Q56452591",
+        "label": "American Dharma",
+        "desc": "2018 film directed by Errol Morris"
+      }
+    ]
+  },
+  {
+    "name": "Donald Trump",
+    "count": 1,
+    "chosen": "Q22686",
+    "candidates": [
+      {
+        "qid": "Q22686",
+        "label": "Donald Trump",
+        "desc": "American businessman and politician (born 1946), President of the United States (2017–2021; since 2025)"
+      },
+      {
+        "qid": "Q3713655",
+        "label": "Donald Trump Jr.",
+        "desc": "American businessman and reality television personality (born 1977)"
+      },
+      {
+        "qid": "Q27947481",
+        "label": "Donald Trump",
+        "desc": "American physician"
+      }
+    ]
+  },
+  {
+    "name": "Hermann Hesse",
+    "count": 1,
+    "chosen": "Q25973",
+    "candidates": [
+      {
+        "qid": "Q25973",
+        "label": "Hermann Hesse",
+        "desc": "Nobel Prize winning German-Swiss poet, novelist and painter (1877–1962)"
+      },
+      {
+        "qid": "Q94905070",
+        "label": "Hermann Hesse",
+        "desc": "pastor"
+      },
+      {
+        "qid": "Q16405807",
+        "label": "Hermann Theodor Karl Hesse",
+        "desc": "Baltic German cleric (1884-1921)"
+      }
+    ]
+  },
+  {
+    "name": "The Glass Bead Game",
+    "count": 1,
+    "chosen": "Q836841",
+    "candidates": [
+      {
+        "qid": "Q836841",
+        "label": "The Glass Bead Game",
+        "desc": "novel by Hermann Hesse (1943)"
+      },
+      {
+        "qid": "Q7736695",
+        "label": "The Glass Bead Game",
+        "desc": "album by James Blackshaw"
+      },
+      {
+        "qid": "Q52670795",
+        "label": "The glass bead game",
+        "desc": "scientific article published in May 1985"
+      }
+    ]
+  },
+  {
+    "name": "Garcia Marquez",
+    "count": 1,
+    "chosen": "Q5878",
+    "candidates": [
+      {
+        "qid": "Q49901238",
+        "label": "Villa de García Márquez",
+        "desc": "town in La Barca Municipality, State of Jalisco, Mexico"
+      },
+      {
+        "qid": "Q5878",
+        "label": "Gabriel García Márquez",
+        "desc": "Colombian writer and Nobel laureate (1927–2014)"
+      },
+      {
+        "qid": "Q5875336",
+        "label": "García Márquez: historia de un deicidio",
+        "desc": "in-depth analysis of the work of García Márquez"
+      }
+    ]
+  },
+  {
+    "name": "Temu",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q14751778",
+        "label": "Temu",
+        "desc": "subdistrict in East Sumba Regency, East Nusa Tenggara, Indonesia"
+      },
+      {
+        "qid": "Q87169887",
+        "label": "Temu",
+        "desc": "genus of plants"
+      },
+      {
+        "qid": "Q12520746",
+        "label": "Temu",
+        "desc": "village in Bojonegoro Regency, East Java, Indonesia"
+      }
+    ]
+  },
+  {
+    "name": "Anna Kiesenhofer",
+    "count": 1,
+    "chosen": "Q26792853",
+    "candidates": [
+      {
+        "qid": "Q26792853",
+        "label": "Anna Kiesenhofer",
+        "desc": "Austrian cyclist, mathematician"
+      }
+    ]
+  },
+  {
+    "name": "Ryuichi Sakamoto",
+    "count": 1,
+    "chosen": "Q345494",
+    "candidates": [
+      {
+        "qid": "Q345494",
+        "label": "Ryuichi Sakamoto",
+        "desc": "Japanese composer (1952–2023)"
+      },
+      {
+        "qid": "Q130975463",
+        "label": "Ryuichi Sakamoto",
+        "desc": "researcher (ORCID 0000-0002-2999-100X)"
+      },
+      {
+        "qid": "Q73036718",
+        "label": "Ryuichi Sakamoto",
+        "desc": "Japanese fusion researcher"
+      }
+    ]
+  },
+  {
+    "name": "NHK",
+    "count": 1,
+    "chosen": "Q212128",
+    "candidates": [
+      {
+        "qid": "Q212128",
+        "label": "NHK",
+        "desc": "Japanese broadcasting company"
+      },
+      {
+        "qid": "Q1972204",
+        "label": "Naval Air Station Patuxent River",
+        "desc": "military naval air station and flight test center in Maryland, United States"
+      },
+      {
+        "qid": "Q30932565",
+        "label": "NHK Archives Portal",
+        "desc": "Japan Broadcasting Corporation program archive website"
+      }
+    ]
+  },
+  {
+    "name": "Dayanita Singh",
+    "count": 1,
+    "chosen": "Q1844647",
+    "candidates": [
+      {
+        "qid": "Q1844647",
+        "label": "Dayanita Singh",
+        "desc": "Indian photographer (born 1961)"
+      }
+    ]
+  },
+  {
+    "name": "Steidl",
+    "count": 1,
+    "chosen": "Q324876",
+    "candidates": [
+      {
+        "qid": "Q37043329",
+        "label": "Steidl",
+        "desc": "family name"
+      },
+      {
+        "qid": "Q324876",
+        "label": "Steidl",
+        "desc": "German-language publisher"
+      },
+      {
+        "qid": "Q37147961",
+        "label": "Steidle",
+        "desc": "family name"
+      }
+    ]
+  },
+  {
+    "name": "Vacilando Bookshop",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "Annie Leibovitz",
+    "count": 1,
+    "chosen": "Q225283",
+    "candidates": [
+      {
+        "qid": "Q225283",
+        "label": "Annie Leibovitz",
+        "desc": "American photographer (born 1949)"
+      },
+      {
+        "qid": "Q123288265",
+        "label": "Annie Leibovitz",
+        "desc": "1993 film"
+      },
+      {
+        "qid": "Q11284437",
+        "label": "Annie Leibovitz: Life Through a Lens",
+        "desc": "2008 film"
+      }
+    ]
+  },
+  {
+    "name": "Rolling Stone",
+    "count": 1,
+    "chosen": "Q33511",
+    "candidates": [
+      {
+        "qid": "Q33511",
+        "label": "Rolling Stone",
+        "desc": "American monthly music magazine"
+      },
+      {
+        "qid": "Q6111309",
+        "label": "Rolling Stone",
+        "desc": "Argentinian edition of the American music magazine"
+      },
+      {
+        "qid": "Q39081978",
+        "label": "Rolling Stone",
+        "desc": "Mexican edition of the American music magazine"
+      }
+    ]
+  },
+  {
+    "name": "Henri Cartier-Bresson",
+    "count": 1,
+    "chosen": "Q156567",
+    "candidates": [
+      {
+        "qid": "Q156567",
+        "label": "Henri Cartier-Bresson",
+        "desc": "French photographer (1908–2004)"
+      },
+      {
+        "qid": "Q23947329",
+        "label": "Henri Cartier-Bresson",
+        "desc": "photograph by Beaumont Newhall"
+      },
+      {
+        "qid": "Q110256720",
+        "label": "Henri Cartier-Bresson",
+        "desc": "2008 book by Clément Chéroux, from “Abrams Discoveries” series"
+      }
+    ]
+  },
+  {
+    "name": "James Nachtwey",
+    "count": 1,
+    "chosen": "Q437013",
+    "candidates": [
+      {
+        "qid": "Q437013",
+        "label": "James Nachtwey",
+        "desc": "American photographer (born 1948)"
+      },
+      {
+        "qid": "Q22979952",
+        "label": "James Nachtwey: My wish: Let my photographs bear witness",
+        "desc": "TED2007"
+      },
+      {
+        "qid": "Q23662806",
+        "label": "James Nachtwey: Moving photos of extreme drug-resistant TB",
+        "desc": "TED Prize Wish"
+      }
+    ]
+  },
+  {
+    "name": "Memoria",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q1814263",
+        "label": "Memoria",
+        "desc": "2004 studio album by Erreway"
+      },
+      {
+        "qid": "Q721747",
+        "label": "commemorative plaque",
+        "desc": "plate or tablet, fixed to a surface or freestanding, commemorating an event, person, place, etc."
+      },
+      {
+        "qid": "Q5003624",
+        "label": "memorial",
+        "desc": "area or object, smaller than a monument, which serves as a focus for memory of something"
+      }
+    ]
+  },
+  {
+    "name": "George Santayana",
+    "count": 1,
+    "chosen": "Q237833",
+    "candidates": [
+      {
+        "qid": "Q237833",
+        "label": "George Santayana",
+        "desc": "Spanish-American philosopher"
+      },
+      {
+        "qid": "Q136151330",
+        "label": "George Santayana",
+        "desc": "1938 book"
+      },
+      {
+        "qid": "Q47509295",
+        "label": "George Santayana",
+        "desc": "painting by Harry Wood, Jr."
+      }
+    ]
+  },
+  {
+    "name": "Singapore",
+    "count": 1,
+    "chosen": "Q334",
+    "candidates": [
+      {
+        "qid": "Q334",
+        "label": "Singapore",
+        "desc": "sovereign island country and city-state in maritime Southeast Asia"
+      },
+      {
+        "qid": "Q7522983",
+        "label": "Singapore General Hospital",
+        "desc": "hospital in Singapore"
+      },
+      {
+        "qid": "Q15758715",
+        "label": "Singapore Medical Journal",
+        "desc": "journal"
+      }
+    ]
+  },
+  {
+    "name": "Nespresso",
+    "count": 1,
+    "chosen": "Q301301",
+    "candidates": [
+      {
+        "qid": "Q301301",
+        "label": "Nespresso",
+        "desc": "coffee brand owned by Nestlé S.A."
+      },
+      {
+        "qid": "Q132063426",
+        "label": "Nespresso Belgique Sa",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "Dead Poets Society",
+    "count": 1,
+    "chosen": "Q106316",
+    "candidates": [
+      {
+        "qid": "Q106316",
+        "label": "Dead Poets Society",
+        "desc": "1989 film directed by Peter Weir"
+      },
+      {
+        "qid": "Q134451078",
+        "label": "Dead Poets Society",
+        "desc": "1990 soundtrack album composed by Maurice Jarre"
+      },
+      {
+        "qid": "Q19269799",
+        "label": "Dead Poets Society",
+        "desc": "1990 novel by Nancy H. Kleinbaum"
+      }
+    ]
+  },
+  {
+    "name": "Albert Camus",
+    "count": 1,
+    "chosen": "Q34670",
+    "candidates": [
+      {
+        "qid": "Q34670",
+        "label": "Albert Camus",
+        "desc": "French philosopher, author, and journalist (1913–1960)"
+      },
+      {
+        "qid": "Q123287827",
+        "label": "Albert Camus",
+        "desc": "1973 film"
+      },
+      {
+        "qid": "Q133800431",
+        "label": "Albert Camus",
+        "desc": "2007 paperback edition"
+      }
+    ]
+  },
+  {
+    "name": "Kirin",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q68710874",
+        "label": "Kirin",
+        "desc": "unisex given name"
+      },
+      {
+        "qid": "Q92277",
+        "label": "Jilin City",
+        "desc": "prefecture-level city in Jilin, China"
+      },
+      {
+        "qid": "Q1358636",
+        "label": "Katsukawa Shunshō",
+        "desc": "Japanese artist (1726-1793)"
+      }
+    ]
+  },
+  {
+    "name": "Fancl",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q18041564",
+        "label": "FANCL",
+        "desc": "protein-coding gene in the species Homo sapiens"
+      },
+      {
+        "qid": "Q21115069",
+        "label": "FA complementation group L",
+        "desc": "mammalian protein found in Homo sapiens"
+      },
+      {
+        "qid": "Q21981573",
+        "label": "Fanconi anemia, complementation group L",
+        "desc": "mammalian protein found in Mus musculus"
+      }
+    ]
+  },
+  {
+    "name": "Blackmores",
+    "count": 1,
+    "chosen": "Q48775068",
+    "candidates": [
+      {
+        "qid": "Q735023",
+        "label": "Blackmore's Night",
+        "desc": "British/American traditional folk rock band formed in 1997"
+      },
+      {
+        "qid": "Q48775068",
+        "label": "Blackmores",
+        "desc": "Australian public company"
+      },
+      {
+        "qid": "Q26566460",
+        "label": "Blackmores",
+        "desc": "building in Elsted and Treyford, Chichester, West Sussex, England, UK"
+      }
+    ]
+  },
+  {
+    "name": "Fujitsu",
+    "count": 1,
+    "chosen": "Q186394",
+    "candidates": [
+      {
+        "qid": "Q186394",
+        "label": "Fujitsu",
+        "desc": "Japanese multinational information technology equipment and services company"
+      },
+      {
+        "qid": "Q1132466",
+        "label": "Fujitsu district",
+        "desc": "district in Saga prefecture, Japan"
+      },
+      {
+        "qid": "Q11456247",
+        "label": "Fujitsu Research Institute",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "Hitachi",
+    "count": 1,
+    "chosen": "Q53238",
+    "candidates": [
+      {
+        "qid": "Q53238",
+        "label": "Hitachi",
+        "desc": "Japanese multinational engineering and electronics company"
+      },
+      {
+        "qid": "Q633922",
+        "label": "Hitachi",
+        "desc": "city in Ibaraki Prefecture, Japan"
+      },
+      {
+        "qid": "Q838663",
+        "label": "Hitachiōta-shi",
+        "desc": "city in Ibaraki Prefecture, Japan"
+      }
+    ]
+  },
+  {
+    "name": "Sensory Lab",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q120643835",
+        "label": "Sensory Labyrinth Theatre",
+        "desc": ""
+      },
+      {
+        "qid": "Q128123787",
+        "label": "Sensory labor: considering the work of taste in the food system",
+        "desc": "scholarly article"
+      }
+    ]
+  },
+  {
+    "name": "Bokashi",
+    "count": 1,
+    "chosen": "Q3304587",
+    "candidates": [
+      {
+        "qid": "Q3304587",
+        "label": "Bokashi",
+        "desc": "fermentation process for food waste and similar organic matter"
+      },
+      {
+        "qid": "Q2909205",
+        "label": "bokashi",
+        "desc": "technique in Japanese woodblock printing"
+      },
+      {
+        "qid": "Q212254",
+        "label": "compost",
+        "desc": "rich, moist soil composted from food scraps"
+      }
+    ]
+  },
+  {
+    "name": "เกียวโต",
+    "count": 1,
+    "chosen": "Q34600",
+    "candidates": [
+      {
+        "qid": "Q34600",
+        "label": "Kyoto",
+        "desc": "city in the Kyōto Prefecture, Japan"
+      },
+      {
+        "qid": "Q1047535",
+        "label": "Kyoto Sanga FC",
+        "desc": "Japanese football club"
+      },
+      {
+        "qid": "Q877325",
+        "label": "Kyoto Animation",
+        "desc": "Japanese animation studio"
+      }
+    ]
+  },
+  {
+    "name": "TIMS",
+    "count": 1,
+    "chosen": "",
+    "candidates": [
+      {
+        "qid": "Q131985550",
+        "label": "Trapped Ion Mobility Spectrometry",
+        "desc": ""
+      },
+      {
+        "qid": "Q2254894",
+        "label": "Timsbury",
+        "desc": "village and civil parish in Bath and North East Somerset, Somerset, England"
+      },
+      {
+        "qid": "Q37534089",
+        "label": "Tims",
+        "desc": "family name"
+      }
+    ]
+  },
+  {
+    "name": "อุบลราชธานี",
+    "count": 1,
+    "chosen": "Q629024",
+    "candidates": [
+      {
+        "qid": "Q629024",
+        "label": "Ubon Ratchathani",
+        "desc": "province in northeastern Thailand"
+      },
+      {
+        "qid": "Q1869648",
+        "label": "อุบลราชธานี",
+        "desc": "Wikimedia disambiguation page"
+      }
+    ]
+  },
+  {
+    "name": "Hervé This",
+    "count": 1,
+    "chosen": "Q899511",
+    "candidates": [
+      {
+        "qid": "Q899511",
+        "label": "Hervé This",
+        "desc": "French food scientist"
+      },
+      {
+        "qid": "Q48580207",
+        "label": "Hervé This profile. The joy of evidence-based cooking",
+        "desc": "scientific article"
+      }
+    ]
+  },
+  {
+    "name": "อิเกีย",
+    "count": 1,
+    "chosen": "Q54078",
+    "candidates": [
+      {
+        "qid": "Q54078",
+        "label": "IKEA",
+        "desc": "Swedish multinational furniture store chain"
+      },
+      {
+        "qid": "Q971462",
+        "label": "Gan Ji",
+        "desc": "Chinese Taoist priest (died 200)"
+      }
+    ]
+  },
+  {
+    "name": "Austin Bush",
+    "count": 1,
+    "chosen": "Q120588769",
+    "candidates": [
+      {
+        "qid": "Q120588769",
+        "label": "Austin Bush",
+        "desc": "American writer and photographer"
+      },
+      {
+        "qid": "Q132925400",
+        "label": "Austin Bush",
+        "desc": ""
+      },
+      {
+        "qid": "Q4823195",
+        "label": "Austin McHenry",
+        "desc": "American baseball player"
+      }
+    ]
+  },
+  {
+    "name": "Kinokuniya",
+    "count": 1,
+    "chosen": "Q703227",
+    "candidates": [
+      {
+        "qid": "Q11604928",
+        "label": "Kinokuniya",
+        "desc": "High-end Supermarket Chain fully owned by JR East"
+      },
+      {
+        "qid": "Q703227",
+        "label": "Books Kinokuniya",
+        "desc": "Japanese bookstore chain"
+      },
+      {
+        "qid": "Q11604955",
+        "label": "Kinokuniya",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "กิมจิ",
+    "count": 1,
+    "chosen": "Q141898",
+    "candidates": [
+      {
+        "qid": "Q141898",
+        "label": "Kimchi",
+        "desc": "Traditional Korean dish of fermented vegetables"
+      }
+    ]
+  },
+  {
+    "name": "Yvonne Nolan",
+    "count": 1,
+    "chosen": "Q67224034",
+    "candidates": [
+      {
+        "qid": "Q67224034",
+        "label": "Yvonne M Nolan",
+        "desc": "researcher"
+      },
+      {
+        "qid": "Q64875506",
+        "label": "Yvonne Nolan",
+        "desc": "British Labour politician"
+      }
+    ]
+  },
+  {
+    "name": "J. Kenji López-Alt",
+    "count": 1,
+    "chosen": "Q22278909",
+    "candidates": [
+      {
+        "qid": "Q22278909",
+        "label": "James Kenji López-Alt",
+        "desc": "American chef and food writer"
+      }
+    ]
+  },
+  {
+    "name": "The Food Lab",
+    "count": 1,
+    "chosen": "Q25327111",
+    "candidates": [
+      {
+        "qid": "Q25327111",
+        "label": "The Food Lab",
+        "desc": "2015 cookbook by J. Kenji Lopez-Alt"
+      },
+      {
+        "qid": "Q99960398",
+        "label": "The Food Labelling (Nutrition Information) (Wales) (Amendment) Regulations 2010",
+        "desc": "Wales Statutory Instrument 2010 No. 1069 (W. 100)"
+      },
+      {
+        "qid": "Q99834378",
+        "label": "The Food Labelling (Amendment) (Wales) (No. 2) Regulations 2005",
+        "desc": "Wales Statutory Instrument 2005 No. 2835 (W. 200)"
+      }
+    ]
+  },
+  {
+    "name": "FISKARS",
+    "count": 1,
+    "chosen": "Q1241369",
+    "candidates": [
+      {
+        "qid": "Q3503204",
+        "label": "Fiskars",
+        "desc": "village in Raseborg, Finland"
+      },
+      {
+        "qid": "Q125383962",
+        "label": "Fiskars",
+        "desc": "family name"
+      },
+      {
+        "qid": "Q1241369",
+        "label": "Fiskars",
+        "desc": "Finnish consumer goods company"
+      }
+    ]
+  },
+  {
+    "name": "Servo-Gear Grass Shear GS42",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "A Book of Middle Eastern Food",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "เวียดนาม",
+    "count": 1,
+    "chosen": "Q881",
+    "candidates": [
+      {
+        "qid": "Q881",
+        "label": "Vietnam",
+        "desc": "country in Southeast Asia"
+      },
+      {
+        "qid": "Q846291",
+        "label": "Vietnam Airlines Flight 815",
+        "desc": "aviation accident in 1997"
+      },
+      {
+        "qid": "Q10832852",
+        "label": "เวียดนาม",
+        "desc": "1955 film by Roman Karmen"
+      }
+    ]
+  },
+  {
+    "name": "Koshihikari",
+    "count": 1,
+    "chosen": "Q1204670",
+    "candidates": [
+      {
+        "qid": "Q1204670",
+        "label": "Koshihikari",
+        "desc": "cultivar of Japonica rice created in 1956 in Japan"
+      },
+      {
+        "qid": "Q28690919",
+        "label": "Koshihikari Mochida",
+        "desc": "Japanese comedian"
+      },
+      {
+        "qid": "Q11302046",
+        "label": "Koshihikari BL",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "name": "La Grande Maison Tokyo",
+    "count": 1,
+    "chosen": "Q71965457",
+    "candidates": [
+      {
+        "qid": "Q71965457",
+        "label": "Grand Maison Tokyo",
+        "desc": "Japanese television drama about a fictional Michelin star restaurant"
+      },
+      {
+        "qid": "Q130755544",
+        "label": "La Grande Maison Tokyo Special",
+        "desc": "television special drama"
+      }
+    ]
+  },
+  {
+    "name": "วุฒิชัย อินทร์ประยงค์",
+    "count": 1,
+    "chosen": "",
+    "candidates": []
+  },
+  {
+    "name": "พัทลุง",
+    "count": 1,
+    "chosen": "Q243808",
+    "candidates": [
+      {
+        "qid": "Q243808",
+        "label": "Phatthalung",
+        "desc": "province in southern Thailand"
+      },
+      {
+        "qid": "Q1220342",
+        "label": "Phatthalung",
+        "desc": "Wikimedia disambiguation page"
+      }
+    ]
+  },
+  {
+    "name": "ลำพูน",
+    "count": 1,
+    "chosen": "Q240540",
+    "candidates": [
+      {
+        "qid": "Q240540",
+        "label": "Lamphun",
+        "desc": "province in northern Thailand"
+      },
+      {
+        "qid": "Q136434450",
+        "label": "Lamphun Kittikachorn",
+        "desc": ""
+      },
+      {
+        "qid": "Q1220350",
+        "label": "Lamphun",
+        "desc": "Wikimedia disambiguation page"
+      }
+    ]
+  },
+  {
+    "name": "แพร่",
+    "count": 1,
+    "chosen": "Q244652",
+    "candidates": [
+      {
+        "qid": "Q146281",
+        "label": "Pyrus communis",
+        "desc": "species of plant"
+      },
+      {
+        "qid": "Q244652",
+        "label": "Phrae",
+        "desc": "province in northern Thailand"
+      },
+      {
+        "qid": "Q28575",
+        "label": "county",
+        "desc": "geographical and administrative region in some countries"
+      }
+    ]
+  }
+]

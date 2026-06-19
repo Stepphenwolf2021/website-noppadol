@@ -1,0 +1,8 @@
+{
+  "_comment": "ทะเบียน entity กลาง — reconcile ครั้งเดียวต่อ entity ใช้ได้ทุกบทความ. คีย์ = @id (ส่วน path). sameAs: string|array|null. เพิ่มด้วย tools/register.py",
+  "person/noppadol-weerakitti": { "name": "นพดล วีรกิตติ", "type": "Person", "sameAs": [] },
+  "person/ryuichi-sakamoto":    { "name": "Ryuichi Sakamoto", "type": "Person", "sameAs": "https://www.wikidata.org/wiki/Q345494" },
+  "org/nhk":                    { "name": "NHK", "type": "Organization", "sameAs": "https://www.wikidata.org/wiki/Q212128" },
+  "concept/shokunin":           { "name": "Shokunin", "type": "DefinedTerm", "sameAs": null },
+  "concept/sensory-experience": { "name": "Sensory experience", "type": "DefinedTerm", "sameAs": null }
+}

@@ -13,7 +13,7 @@ export default function (eleventyConfig) {
 
   // --- ไฟล์/โฟลเดอร์ static ระดับ repo (มีเฉพาะตอน deploy บน repo จริง) ---
   // คงโดเมน + 404 + dashboard เดิมไว้ครบ (ก๊อปเข้า _site ถ้าไฟล์มีอยู่)
-  for (const p of ["CNAME", "404.html", "liverpool-success-dashboard", "china-trade-dashboard", "worldcup-2026-dashboard", "japanese-woodworking", "punnawolf"]) {
+  for (const p of ["CNAME", "404.html", "liverpool-success-dashboard", "china-trade-dashboard"]) {
     if (fs.existsSync(p)) eleventyConfig.addPassthroughCopy(p);
   }
 
@@ -54,11 +54,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("commaList", (arr) =>
     Array.isArray(arr) ? arr.join(", ") : (arr || "")
   );
-  // เลือกบทความที่เป็นปก (featured) หรือชิ้นแรกของฉบับ — ใช้ทำหน้าปก
-  eleventyConfig.addFilter("coverOf", (items) =>
-    (items || []).find((i) => i.data.featured) || (items || [])[0]
-  );
-
   // ปีพ.ศ. จากปีค.ศ.
   eleventyConfig.addFilter("toBE", (iso) => {
     const y = new Date(iso).getFullYear();
@@ -92,7 +87,7 @@ export default function (eleventyConfig) {
         "@id": id(d.author_id),
         name: d.author,
       },
-      publisher: { "@type": "Organization", "@id": `${base}/#org`, name: "noppadol.online" },
+      publisher: { "@type": "Organization", "@id": `${base}/#org`, name: "Seize the Day" },
       articleSection: d.dept_en || undefined,
       department: d.department ? `${base}/ns/std#${cap(d.department)}` : undefined,
       timeRequired: d.reading_time ? `PT${parseInt(d.reading_time, 10)}M` : undefined,
