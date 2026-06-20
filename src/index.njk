@@ -100,7 +100,7 @@ function addLine(x1,y1,x2,y2,cls,delay){
 }
 Object.values(TOPICS).forEach((t,i)=>{
   const l=addLine(SELF.x,SELF.y,t.x,t.y,"edge",60+i*25);
-  l.style.stroke="var(--hairline)";
+  l.style.stroke="#CCD4E1";
 });
 EDGES.forEach(([a,b],i)=>{
   const A=TOPICS[a],B=TOPICS[b];
@@ -159,8 +159,18 @@ const THINKER_SRC = "/assets/img/thinker.svg";
   img.setAttribute("preserveAspectRatio","xMidYMid meet");
   img.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",THINKER_SRC);
   img.setAttribute("href",THINKER_SRC);
-  core.append(disc,img);
+  const halo=document.createElementNS(SVGNS,"circle");
+  halo.setAttribute("class","halo");halo.setAttribute("cx",SELF.x);halo.setAttribute("cy",SELF.y);halo.setAttribute("r",50);
+  core.append(halo,disc,img);
   g.appendChild(core);gNodes.appendChild(g);
+  // hover โหนดกลาง: เส้นทั้งกราฟเป็นน้ำเงิน + halo รอบวงกลม (เหมือนโหนดอื่น)
+  g.setAttribute("tabindex","0");
+  const selfOn=()=>graph.classList.add("self-focus");
+  const selfOff=()=>graph.classList.remove("self-focus");
+  g.addEventListener("mouseenter",selfOn);
+  g.addEventListener("mouseleave",selfOff);
+  g.addEventListener("focus",selfOn);
+  g.addEventListener("blur",selfOff);
 })();
 
 /* ---------- interactivity ---------- */
