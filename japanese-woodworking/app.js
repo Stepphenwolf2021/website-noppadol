@@ -506,6 +506,11 @@ function renderDashboard() {
   document.getElementById('visible-count').textContent = filtered.length;
   document.getElementById('total-count').textContent = resources.length;
 
+  if (currentView === 'graph') {
+    updateGraphData(filtered);
+    return;
+  }
+
   // Render Grid Content
   if (filtered.length === 0) {
     grid.innerHTML = `
@@ -808,8 +813,481 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormSubmission();
   setupThemeToggler();
   setupJointAnimation();
+  setupViewSwitcher();
 
   // Initial Renders
   renderDashboard();
   renderTagCloud();
 });
+
+// ==========================================
+// 12. Interactive Canvas Graph View Engine
+// ==========================================
+
+// Graph view state variables
+let currentView = 'grid';
+let canvas = null;
+let ctx = null;
+let graphContainer = null;
+let nodes = [];
+let links = [];
+let isSimulating = false;
+let draggedNode = null;
+let hoveredNode = null;
+let dragStartX = 0;
+let dragStartY = 0;
+let mousePos = { x: 0, y: 0 };
+let hasInitializedGraph = false;
+
+// Physics constants
+const kGravity = 0.012;
+const kRepulsion = 120;
+const kSpring = 0.04;
+const kRestLength = 100;
+const kDamping = 0.85;
+
+function setupViewSwitcher() {
+  const gridBtn = document.getElementById('view-grid-btn');
+  const graphBtn = document.getElementById('view-graph-btn');
+  const gridContainer = document.getElementById('resources-grid');
+  graphContainer = document.getElementById('graph-view-container');
+
+  gridBtn.addEventListener('click', () => {
+    if (currentView === 'grid') return;
+    currentView = 'grid';
+    gridBtn.classList.add('active');
+    graphBtn.classList.remove('active');
+    gridContainer.style.display = 'grid';
+    graphContainer.style.display = 'none';
+    isSimulating = false;
+    renderDashboard();
+  });
+
+  graphBtn.addEventListener('click', () => {
+    if (currentView === 'graph') return;
+    currentView = 'graph';
+    graphBtn.classList.add('active');
+    gridBtn.classList.remove('active');
+    gridContainer.style.display = 'none';
+    graphContainer.style.display = 'block';
+    
+    if (!hasInitializedGraph) {
+      initGraphView();
+      hasInitializedGraph = true;
+    }
+    
+    resizeCanvas();
+    renderDashboard();
+  });
+}
+
+function initGraphView() {
+  canvas = document.getElementById('graph-canvas');
+  ctx = canvas.getContext('2d');
+
+  window.addEventListener('resize', () => {
+    if (currentView === 'graph') {
+      resizeCanvas();
+    }
+  });
+
+  // Mouse event listeners
+  canvas.addEventListener('mousedown', onMouseDown);
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('mouseup', onMouseUp);
+  canvas.addEventListener('mouseleave', onMouseLeave);
+}
+
+function resizeCanvas() {
+  if (!canvas || !graphContainer) return;
+  canvas.width = graphContainer.clientWidth;
+  canvas.height = graphContainer.clientHeight;
+}
+
+function updateGraphData(filteredResources) {
+  // Save current positions of existing nodes
+  const oldNodePos = new Map();
+  nodes.forEach(node => {
+    oldNodePos.set(node.id, { x: node.x, y: node.y });
+  });
+
+  const newNodesMap = new Map();
+  const newLinks = [];
+  const searchInputVal = document.getElementById('search-input').value.toLowerCase();
+
+  // Helper to determine if a string matches search
+  const isMatch = (str) => {
+    if (!searchInputVal) return false;
+    return str.toLowerCase().includes(searchInputVal);
+  };
+
+  // Process filtered resources to generate nodes and links
+  filteredResources.forEach(res => {
+    // 1. Create Resource Node
+    const resId = `res_${res.id}`;
+    const resMatches = isMatch(res.title) || isMatch(res.description) || res.tags.some(isMatch);
+    
+    newNodesMap.set(resId, {
+      id: resId,
+      label: res.title,
+      type: 'resource',
+      refId: res.id,
+      radius: 16,
+      isMatching: resMatches
+    });
+
+    // 2. Create Category Node
+    const catId = `cat_${res.category}`;
+    const catName = getCategoryName(res.category);
+    if (!newNodesMap.has(catId)) {
+      newNodesMap.set(catId, {
+        id: catId,
+        label: catName,
+        type: 'category',
+        radius: 20,
+        isMatching: isMatch(catName)
+      });
+    }
+    newLinks.push({ source: resId, target: catId, highlighted: resMatches || isMatch(catName) });
+
+    // 3. Create Creator Node
+    const creatorId = `creator_${res.author}`;
+    if (!newNodesMap.has(creatorId)) {
+      newNodesMap.set(creatorId, {
+        id: creatorId,
+        label: res.author,
+        type: 'creator',
+        radius: 14,
+        isMatching: isMatch(res.author)
+      });
+    }
+    newLinks.push({ source: resId, target: creatorId, highlighted: resMatches || isMatch(res.author) });
+
+    // 4. Create Tag Nodes
+    res.tags.forEach(tag => {
+      const tagId = `tag_${tag}`;
+      const tagMatches = isMatch(tag);
+      if (!newNodesMap.has(tagId)) {
+        newNodesMap.set(tagId, {
+          id: tagId,
+          label: `#${tag}`,
+          type: 'tag',
+          radius: 11,
+          isMatching: tagMatches
+        });
+      }
+      newLinks.push({ source: resId, target: tagId, highlighted: resMatches || tagMatches });
+    });
+  });
+
+  // Convert map to nodes array and initialize positions
+  if (!canvas) return;
+  const center = { x: canvas.width / 2, y: canvas.height / 2 };
+  nodes = Array.from(newNodesMap.values()).map(node => {
+    if (oldNodePos.has(node.id)) {
+      // Preserve position
+      const pos = oldNodePos.get(node.id);
+      node.x = pos.x;
+      node.y = pos.y;
+    } else {
+      // New node, place with slight random offset from center
+      node.x = center.x + (Math.random() - 0.5) * 150;
+      node.y = center.y + (Math.random() - 0.5) * 150;
+    }
+    node.vx = 0;
+    node.vy = 0;
+    return node;
+  });
+
+  // Map links to node objects
+  links = newLinks.map(link => {
+    const sNode = nodes.find(n => n.id === link.source);
+    const tNode = nodes.find(n => n.id === link.target);
+    return {
+      source: sNode,
+      target: tNode,
+      highlighted: link.highlighted
+    };
+  }).filter(l => l.source && l.target);
+
+  // Restart physics loop if not already simulating
+  if (!isSimulating && nodes.length > 0) {
+    isSimulating = true;
+    requestAnimationFrame(simulationTick);
+  }
+}
+
+function getCategoryName(catId) {
+  const catNames = {
+    furniture: "Furniture Making",
+    joinery: "Joinery & Carpentry",
+    tools: "Tools & Maintenance",
+    architecture: "Traditional Architecture",
+    boatbuilding: "Boat Building"
+  };
+  return catNames[catId] || catId;
+}
+
+function simulationTick() {
+  if (!isSimulating || !canvas) return;
+
+  const w = canvas.width;
+  const h = canvas.height;
+  const center = { x: w / 2, y: h / 2 };
+
+  // 1. Reset force accumulators
+  nodes.forEach(node => {
+    node.fx = 0;
+    node.fy = 0;
+
+    // Pull to center (gravity)
+    node.fx += (center.x - node.x) * kGravity;
+    node.fy += (center.y - node.y) * kGravity;
+  });
+
+  // 2. Repulsion force between all nodes (Coulomb's Law)
+  for (let i = 0; i < nodes.length; i++) {
+    const u = nodes[i];
+    for (let j = i + 1; j < nodes.length; j++) {
+      const v = nodes[j];
+      const dx = v.x - u.x;
+      const dy = v.y - u.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 10;
+      
+      // Stronger push for nodes that are close
+      const repelForce = (kRepulsion * (u.radius * v.radius)) / (dist * dist);
+      const forceX = (dx / dist) * repelForce;
+      const forceY = (dy / dist) * repelForce;
+
+      u.fx -= forceX;
+      u.fy -= forceY;
+      v.fx += forceX;
+      v.fy += forceY;
+    }
+  }
+
+  // 3. Attraction force along links (Hooke's Law)
+  links.forEach(link => {
+    const u = link.source;
+    const v = link.target;
+    const dx = v.x - u.x;
+    const dy = v.y - u.y;
+    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+    const disp = dist - kRestLength;
+    const attractForce = kSpring * disp;
+
+    const forceX = (dx / dist) * attractForce;
+    const forceY = (dy / dist) * attractForce;
+
+    u.fx += forceX;
+    u.fy += forceY;
+    v.fx -= forceX;
+    v.fy -= forceY;
+  });
+
+  // 4. Update velocity and positions
+  nodes.forEach(node => {
+    if (node === draggedNode) {
+      // Lock position to mouse coordinate
+      node.x = mousePos.x;
+      node.y = mousePos.y;
+      node.vx = 0;
+      node.vy = 0;
+    } else {
+      node.vx = (node.vx + node.fx) * kDamping;
+      node.vy = (node.vy + node.fy) * kDamping;
+      node.x += node.vx;
+      node.y += node.vy;
+    }
+
+    // Keep inside boundaries
+    node.x = Math.max(node.radius, Math.min(w - node.radius, node.x));
+    node.y = Math.max(node.radius, Math.min(h - node.radius, node.y));
+  });
+
+  // 5. Draw
+  drawGraph();
+
+  // 6. Continue loop
+  requestAnimationFrame(simulationTick);
+}
+
+function drawGraph() {
+  if (!ctx || !canvas) return;
+
+  // Clear Canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const searchInputVal = document.getElementById('search-input').value.toLowerCase();
+  const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+
+  // Styles based on theme
+  const linkColorNormal = theme === 'light' ? '#e3dcd3' : '#332822';
+  const linkColorHighlight = theme === 'light' ? '#b0693a' : 'var(--accent)';
+  const nodeTextMuted = theme === 'light' ? '#73635a' : '#a89c94';
+  const nodeTextActive = theme === 'light' ? '#2b1f1a' : '#f5efe9';
+  const tagFillColor = theme === 'light' ? 'rgba(109, 162, 248, 0.15)' : 'rgba(109, 162, 248, 0.1)';
+  const tagStrokeColor = '#6da2f8';
+
+  // 1. Draw Links (Edges)
+  links.forEach(link => {
+    const isHighlighted = link.highlighted || 
+      (hoveredNode && (link.source === hoveredNode || link.target === hoveredNode)) ||
+      (searchInputVal && (link.source.isMatching || link.target.isMatching));
+
+    ctx.beginPath();
+    ctx.moveTo(link.source.x, link.source.y);
+    ctx.lineTo(link.target.x, link.target.y);
+    
+    if (isHighlighted) {
+      ctx.strokeStyle = linkColorHighlight;
+      ctx.lineWidth = 2.5;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = linkColorHighlight;
+    } else {
+      ctx.strokeStyle = linkColorNormal;
+      ctx.lineWidth = 1;
+      ctx.shadowBlur = 0;
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0; // Reset shadow
+  });
+
+  // 2. Draw Nodes
+  nodes.forEach(node => {
+    const isNodeHovered = (node === hoveredNode);
+    const isConnectedToHovered = hoveredNode && links.some(l => 
+      (l.source === node && l.target === hoveredNode) || 
+      (l.target === node && l.source === hoveredNode)
+    );
+    
+    const isHighlighted = node.isMatching || isNodeHovered || isConnectedToHovered;
+    const hasActiveSearch = !!searchInputVal;
+
+    // Apply Dimming if search active or node hovered
+    let opacity = 1;
+    if (hasActiveSearch && !node.isMatching) {
+      opacity = 0.35;
+    }
+    if (hoveredNode && !isNodeHovered && !isConnectedToHovered) {
+      opacity = 0.3;
+    }
+
+    ctx.save();
+    ctx.globalAlpha = opacity;
+
+    // Node Style configuration
+    let fillColor = '';
+    let strokeColor = '';
+    let lineWidth = 1.5;
+
+    switch (node.type) {
+      case 'resource':
+        fillColor = 'var(--accent)';
+        strokeColor = 'var(--accent-hover)';
+        break;
+      case 'creator':
+        fillColor = theme === 'light' ? '#f6f1eb' : '#221813';
+        strokeColor = theme === 'light' ? '#73635a' : '#a89c94';
+        break;
+      case 'category':
+        fillColor = '#b0693a';
+        strokeColor = 'var(--accent-hover)';
+        break;
+      case 'tag':
+        fillColor = tagFillColor;
+        strokeColor = tagStrokeColor;
+        break;
+    }
+
+    // Hover / Highlight glowing ring
+    if (isHighlighted) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius + 5, 0, Math.PI * 2);
+      ctx.fillStyle = node.type === 'resource' ? 'rgba(216, 155, 108, 0.2)' : 'rgba(255, 255, 255, 0.1)';
+      ctx.fill();
+    }
+
+    // Core Circle
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    ctx.fillStyle = fillColor;
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = isHighlighted ? 2.5 : lineWidth;
+    ctx.fill();
+    ctx.stroke();
+
+    // Draw Labels
+    ctx.font = isHighlighted ? 'bold 11px var(--font-sans)' : '10px var(--font-sans)';
+    ctx.fillStyle = isHighlighted ? nodeTextActive : nodeTextMuted;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    
+    // Draw background shadow for text readability
+    ctx.shadowColor = theme === 'light' ? '#faf7f4' : '#120e0c';
+    ctx.shadowBlur = 4;
+    
+    // Truncate long labels
+    let labelText = node.label;
+    if (labelText.length > 20) {
+      labelText = labelText.substring(0, 18) + '...';
+    }
+    ctx.fillText(labelText, node.x, node.y + node.radius + 6);
+
+    ctx.restore();
+  });
+}
+
+// Event handlers
+function onMouseDown(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  draggedNode = findNodeAt(x, y);
+  if (draggedNode) {
+    dragStartX = x;
+    dragStartY = y;
+  }
+}
+
+function onMouseMove(e) {
+  const rect = canvas.getBoundingClientRect();
+  mousePos.x = e.clientX - rect.left;
+  mousePos.y = e.clientY - rect.top;
+
+  if (!draggedNode) {
+    hoveredNode = findNodeAt(mousePos.x, mousePos.y);
+  }
+}
+
+function onMouseUp(e) {
+  if (!draggedNode) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const dragDistance = Math.sqrt((x - dragStartX) ** 2 + (y - dragStartY) ** 2);
+  
+  // Click detection (if drag was minor)
+  if (dragDistance < 6) {
+    if (draggedNode.type === 'resource') {
+      openDetailsModal(draggedNode.refId);
+    }
+  }
+
+  draggedNode = null;
+}
+
+function onMouseLeave() {
+  draggedNode = null;
+  hoveredNode = null;
+}
+
+function findNodeAt(x, y) {
+  return nodes.find(node => {
+    const dist = Math.sqrt((node.x - x) ** 2 + (node.y - y) ** 2);
+    return dist <= node.radius + 8; // Margin for click detection
+  });
+}

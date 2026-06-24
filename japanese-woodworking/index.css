@@ -792,3 +792,122 @@ dialog:not([open]) {
     grid-template-columns: 1fr;
   }
 }
+
+/* Graph Visualization Styles */
+.view-switcher .btn.active {
+  background-color: var(--accent);
+  color: #120e0c;
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.25);
+}
+
+.graph-view-container {
+  width: 100%;
+  height: 650px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 3rem;
+  /* Shoji Grid background texture */
+  background-image: 
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: center;
+}
+
+#graph-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#graph-canvas:active {
+  cursor: grabbing;
+}
+
+.graph-legend {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  width: 300px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  pointer-events: none;
+  font-family: var(--font-sans);
+  z-index: 10;
+}
+
+.legend-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 0.4rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-dot.resource {
+  background-color: var(--accent);
+}
+
+.legend-dot.creator {
+  background-color: #a59990;
+  border: 1px solid var(--text-main);
+}
+
+.legend-dot.category {
+  background-color: #b0693a;
+}
+
+.legend-dot.tag {
+  background-color: #6da2f8;
+}
+
+.legend-instructions {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.8rem;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .graph-view-container {
+    height: 500px;
+  }
+  .graph-legend {
+    width: calc(100% - 3rem);
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.8rem;
+  }
+}
