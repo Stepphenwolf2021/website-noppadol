@@ -53,16 +53,6 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           Bookmarks Only
         </button>
-        <div class="view-switcher" style="display: flex; gap: 0.5rem;">
-          <button id="view-grid-btn" class="btn active" title="Show Card Grid">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            Grid View
-          </button>
-          <button id="view-graph-btn" class="btn" title="Show Relationship Graph">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-            Graph View
-          </button>
-        </div>
       </div>
 
       <div class="filter-row">
@@ -126,43 +116,46 @@
       </div>
     </section>
 
-    <!-- Resources Grid -->
-    <main class="dashboard-grid" id="resources-grid">
-      <!-- Cards will be dynamically injected here -->
-    </main>
-
-    <!-- Interactive Relationship Graph -->
-    <main id="graph-view-container" class="graph-view-container" style="display: none;">
-      <canvas id="graph-canvas"></canvas>
-      <div class="graph-legend">
-        <div class="legend-title">Graph Legend</div>
-        <div class="legend-item"><span class="legend-dot resource"></span> Resource</div>
-        <div class="legend-item"><span class="legend-dot creator"></span> Creator</div>
-        <div class="legend-item"><span class="legend-dot category"></span> Category</div>
-        <div class="legend-item"><span class="legend-dot tag"></span> Tag</div>
-        <div class="legend-instructions">Click any node to focus/explore relationships. Click the center node to go back. Double-click Resource to view details.</div>
-      </div>
-      
-      <!-- Interactive Graph Navigation Overlay -->
-      <div class="graph-controls-panel collapsed" id="graph-controls-panel">
-        <div class="controls-header" id="controls-toggle">
-          <span>Graph Navigation</span>
-          <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <!-- Dashboard Split Layout (Side-by-Side Graph & Grid) -->
+    <div class="dashboard-split-layout">
+      <!-- Left Column: Interactive Relationship Graph -->
+      <main id="graph-view-container" class="graph-view-container">
+        <canvas id="graph-canvas"></canvas>
+        <div class="graph-legend">
+          <div class="legend-title">Graph Legend</div>
+          <div class="legend-item"><span class="legend-dot resource"></span> Resource</div>
+          <div class="legend-item"><span class="legend-dot creator"></span> Creator</div>
+          <div class="legend-item"><span class="legend-dot category"></span> Category</div>
+          <div class="legend-item"><span class="legend-dot tag"></span> Tag</div>
+          <div class="legend-instructions">Click any node to focus/explore relationships. Click the center node to go back. Double-click Resource to view details.</div>
         </div>
-        <div class="controls-content" id="controls-content">
-          <ul class="graph-instructions">
-            <li>Click any node to focus/explore</li>
-            <li>Click the center node to go back/up</li>
-            <li>Double-click Resource for details</li>
-            <li>Drag background to pan; scroll to zoom</li>
-          </ul>
-          <div class="control-actions">
-            <button id="btn-reset-focus" class="btn btn-sm btn-primary">Reset Focus</button>
-            <button id="btn-reset-view" class="btn btn-sm">Reset View</button>
+        
+        <!-- Interactive Graph Navigation Overlay -->
+        <div class="graph-controls-panel collapsed" id="graph-controls-panel">
+          <div class="controls-header" id="controls-toggle">
+            <span>Graph Navigation</span>
+            <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="controls-content" id="controls-content">
+            <ul class="graph-instructions">
+              <li>Click any node to focus/explore</li>
+              <li>Click the center node to go back/up</li>
+              <li>Double-click Resource for details</li>
+              <li>Drag background to pan; scroll to zoom</li>
+            </ul>
+            <div class="control-actions">
+              <button id="btn-reset-focus" class="btn btn-sm btn-primary">Reset Focus</button>
+              <button id="btn-reset-view" class="btn btn-sm">Reset View</button>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      <!-- Right Column: Resources Grid -->
+      <main class="dashboard-grid" id="resources-grid">
+        <!-- Cards will be dynamically injected here -->
+      </main>
+    </div>
 
     <!-- Footer -->
     <footer class="app-footer">

@@ -506,10 +506,8 @@ function renderDashboard() {
   document.getElementById('visible-count').textContent = filtered.length;
   document.getElementById('total-count').textContent = resources.length;
 
-  if (currentView === 'graph') {
-    updateGraphData(filtered);
-    return;
-  }
+  // Update Graph View data
+  updateGraphData(filtered);
 
   // Render Grid Content
   if (filtered.length === 0) {
@@ -813,7 +811,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormSubmission();
   setupThemeToggler();
   setupJointAnimation();
-  setupViewSwitcher();
+
+  // Initialize Graph View on Page Load
+  initGraphView();
+  resizeCanvas();
 
   // Initial Renders
   renderDashboard();
@@ -825,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 
 // Graph view state variables
-let currentView = 'grid';
+let currentView = 'graph';
 let canvas = null;
 let ctx = null;
 let graphContainer = null;
@@ -858,49 +859,13 @@ function startSimulation() {
   }
 }
 
-function setupViewSwitcher() {
-  const gridBtn = document.getElementById('view-grid-btn');
-  const graphBtn = document.getElementById('view-graph-btn');
-  const gridContainer = document.getElementById('resources-grid');
-  graphContainer = document.getElementById('graph-view-container');
-
-  gridBtn.addEventListener('click', () => {
-    if (currentView === 'grid') return;
-    currentView = 'grid';
-    gridBtn.classList.add('active');
-    graphBtn.classList.remove('active');
-    gridContainer.style.display = 'grid';
-    graphContainer.style.display = 'none';
-    isSimulating = false;
-    renderDashboard();
-  });
-
-  graphBtn.addEventListener('click', () => {
-    if (currentView === 'graph') return;
-    currentView = 'graph';
-    graphBtn.classList.add('active');
-    gridBtn.classList.remove('active');
-    gridContainer.style.display = 'none';
-    graphContainer.style.display = 'block';
-    
-    if (!hasInitializedGraph) {
-      initGraphView();
-      hasInitializedGraph = true;
-    }
-    
-    resizeCanvas();
-    renderDashboard();
-  });
-}
-
 function initGraphView() {
   canvas = document.getElementById('graph-canvas');
   ctx = canvas.getContext('2d');
+  graphContainer = document.getElementById('graph-view-container');
 
   window.addEventListener('resize', () => {
-    if (currentView === 'graph') {
-      resizeCanvas();
-    }
+    resizeCanvas();
   });
 
   // Mouse and wheel event listeners
@@ -944,6 +909,16 @@ function onWheel(e) {
   }
 }
 
+function resetDashboardFilters() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('filter-category').value = 'all';
+  document.getElementById('filter-language').value = 'all';
+  document.getElementById('filter-type').value = 'all';
+  document.getElementById('favorites-toggle').classList.remove('active');
+  activeTag = null;
+  renderTagCloud();
+}
+
 function setupControlsPanel() {
   const panel = document.getElementById('graph-controls-panel');
   const toggle = document.getElementById('controls-toggle');
@@ -953,12 +928,13 @@ function setupControlsPanel() {
     panel.classList.toggle('collapsed');
   });
 
-  // Reset Focus button
+  // Reset Focus button (resets focus node and clears dashboard filters)
   const resetFocusBtn = document.getElementById('btn-reset-focus');
   if (resetFocusBtn) {
     resetFocusBtn.addEventListener('click', () => {
-      activeFocusNodeId = lastSearchTerm ? 'root_search' : 'root_hub';
-      updateGraphData(lastFilteredResources);
+      activeFocusNodeId = 'root_hub';
+      resetDashboardFilters();
+      renderDashboard();
     });
   }
 
@@ -1475,17 +1451,29 @@ function onMouseUp(e) {
         if (draggedNode.type === 'resource') {
           openDetailsModal(draggedNode.refId);
         } else {
-          // Go back up to root if it is category, tag, or creator
+          // Go back up to root and reset filters
           const rootId = lastSearchTerm ? 'root_search' : 'root_hub';
           if (activeFocusNodeId !== rootId) {
             activeFocusNodeId = rootId;
-            updateGraphData(lastFilteredResources);
+            resetDashboardFilters();
+            renderDashboard();
           }
         }
       } else {
         // Clicked a neighbor node: focus it!
         activeFocusNodeId = draggedNode.id;
-        updateGraphData(lastFilteredResources);
+
+        // Apply interactive filtering to cards
+        if (draggedNode.type === 'category') {
+          document.getElementById('filter-category').value = draggedNode.categoryKey;
+        } else if (draggedNode.type === 'tag') {
+          activeTag = draggedNode.tagName;
+          renderTagCloud();
+        } else if (draggedNode.type === 'creator') {
+          document.getElementById('search-input').value = draggedNode.creatorName;
+        }
+
+        renderDashboard();
       }
     } else {
       // Re-trigger layout calculations so node slides back to its circular target slot

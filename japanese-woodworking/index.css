@@ -353,12 +353,32 @@ body {
   color: var(--accent);
 }
 
+/* Dashboard Split Layout (Side-by-Side Graph & Grid) */
+.dashboard-split-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Stacked on mobile */
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-split-layout {
+    grid-template-columns: 460px 1fr; /* Graph takes 460px on left, grid takes remaining space */
+    align-items: start;
+  }
+  
+  .graph-view-container {
+    position: sticky;
+    top: 1.5rem; /* Sticky scroll behavior */
+    height: 580px !important; /* Slightly shorter to fit sticky layout perfectly */
+  }
+}
+
 /* Dashboard Grid */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--shoji-grid-gap);
-  margin-bottom: 3rem;
 }
 
 /* Resource Card */
