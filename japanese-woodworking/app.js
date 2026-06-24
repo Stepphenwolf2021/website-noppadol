@@ -853,6 +853,23 @@ let kSpring = 0.03;
 let kRestLength = 140;
 let kDamping = 0.82;
 
+// Cooling system parameters to settle nodes organically
+let alpha = 1.0;
+const alphaDecay = 0.015; // settles in ~60 frames
+
+function startSimulation() {
+  alpha = 1.0;
+  if (!isSimulating && nodes.length > 0) {
+    isSimulating = true;
+    const pauseBtn = document.getElementById('btn-pause-sim');
+    if (pauseBtn) {
+      pauseBtn.textContent = 'Pause';
+      pauseBtn.classList.add('btn-primary');
+    }
+    requestAnimationFrame(simulationTick);
+  }
+}
+
 function setupViewSwitcher() {
   const gridBtn = document.getElementById('view-grid-btn');
   const graphBtn = document.getElementById('view-graph-btn');
@@ -932,6 +949,11 @@ function onWheel(e) {
   panOffset.x = mX - graphX * newScale;
   panOffset.y = mY - graphY * newScale;
   zoomScale = newScale;
+
+  // Redraw when zoom changes and simulation is stopped
+  if (!isSimulating) {
+    drawGraph();
+  }
 }
 
 function setupControlsPanel() {
@@ -959,6 +981,7 @@ function setupControlsPanel() {
         const val = e.target.value;
         s.update(val);
         span.textContent = s.display ? s.display(val) : val;
+        startSimulation(); // Reheat/restart simulation on parameter updates
       });
     }
   });
@@ -966,14 +989,12 @@ function setupControlsPanel() {
   // Play/Pause button
   const pauseBtn = document.getElementById('btn-pause-sim');
   pauseBtn.addEventListener('click', () => {
-    isSimulating = !isSimulating;
     if (isSimulating) {
-      pauseBtn.textContent = 'Pause';
-      pauseBtn.classList.add('btn-primary');
-      requestAnimationFrame(simulationTick);
-    } else {
+      isSimulating = false;
       pauseBtn.textContent = 'Play';
       pauseBtn.classList.remove('btn-primary');
+    } else {
+      startSimulation();
     }
   });
 
@@ -982,6 +1003,9 @@ function setupControlsPanel() {
   resetBtn.addEventListener('click', () => {
     zoomScale = 1.0;
     panOffset = { x: 0, y: 0 };
+    if (!isSimulating) {
+      drawGraph();
+    }
   });
 }
 
@@ -1097,10 +1121,9 @@ function updateGraphData(filteredResources) {
     };
   }).filter(l => l.source && l.target);
 
-  // Restart physics loop if not already simulating
-  if (!isSimulating && nodes.length > 0) {
-    isSimulating = true;
-    requestAnimationFrame(simulationTick);
+  // Restart physics loop with cooling reset if not already simulating
+  if (nodes.length > 0) {
+    startSimulation();
   }
 }
 
@@ -1132,7 +1155,7 @@ function simulationTick() {
     node.fy += (center.y - node.y) * kGravity;
   });
 
-  // 2. Repulsion force between all nodes (Coulomb's Law)
+  // 2. Repulsion force between all nodes (Coulomb's Law) scaled by alpha
   for (let i = 0; i < nodes.length; i++) {
     const u = nodes[i];
     for (let j = i + 1; j < nodes.length; j++) {
@@ -1143,8 +1166,8 @@ function simulationTick() {
       
       // Stronger push for nodes that are close
       const repelForce = (kRepulsion * (u.radius * v.radius)) / (dist * dist);
-      const forceX = (dx / dist) * repelForce;
-      const forceY = (dy / dist) * repelForce;
+      const forceX = (dx / dist) * repelForce * alpha;
+      const forceY = (dy / dist) * repelForce * alpha;
 
       u.fx -= forceX;
       u.fy -= forceY;
@@ -1153,7 +1176,7 @@ function simulationTick() {
     }
   }
 
-  // 3. Attraction force along links (Hooke's Law)
+  // 3. Attraction force along links (Hooke's Law) scaled by alpha
   links.forEach(link => {
     const u = link.source;
     const v = link.target;
@@ -1161,7 +1184,7 @@ function simulationTick() {
     const dy = v.y - u.y;
     const dist = Math.sqrt(dx * dx + dy * dy) || 1;
     const disp = dist - kRestLength;
-    const attractForce = kSpring * disp;
+    const attractForce = kSpring * disp * alpha;
 
     const forceX = (dx / dist) * attractForce;
     const forceY = (dy / dist) * attractForce;
@@ -1193,8 +1216,19 @@ function simulationTick() {
   // 5. Draw
   drawGraph();
 
-  // 6. Continue loop if simulating
-  if (isSimulating) {
+  // 6. Alpha cooling decay
+  alpha -= alphaDecay;
+
+  // Stop simulation loop when layout settles
+  if (alpha < 0.005) {
+    isSimulating = false;
+    nodes.forEach(n => { n.vx = 0; n.vy = 0; }); // Reset velocities
+    const pauseBtn = document.getElementById('btn-pause-sim');
+    if (pauseBtn) {
+      pauseBtn.textContent = 'Play';
+      pauseBtn.classList.remove('btn-primary');
+    }
+  } else {
     requestAnimationFrame(simulationTick);
   }
 }
@@ -1348,12 +1382,16 @@ function onMouseDown(e) {
   if (draggedNode) {
     dragStartX = graphX;
     dragStartY = graphY;
+    startSimulation(); // Re-heat when dragging a node!
   } else {
     // If not clicking any node, start panning the viewport
     isPanning = true;
     panStartX = e.clientX - panOffset.x;
     panStartY = e.clientY - panOffset.y;
     canvas.style.cursor = 'grabbing';
+    if (!isSimulating) {
+      drawGraph();
+    }
   }
 }
 
@@ -1371,14 +1409,24 @@ function onMouseMove(e) {
     // Lock dragged node position directly to mouse transformed coordinates
     draggedNode.x = graphX;
     draggedNode.y = graphY;
+    startSimulation(); // Keep heating while dragging
   } else if (isPanning) {
     // Pan the canvas offset based on mouse delta
     panOffset.x = e.clientX - panStartX;
     panOffset.y = e.clientY - panStartY;
+    if (!isSimulating) {
+      drawGraph();
+    }
   } else {
     // Check for node hovering in graph space
+    const oldHovered = hoveredNode;
     hoveredNode = findNodeAt(graphX, graphY);
     canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
+    
+    // Redraw on hover state change when physics is stopped
+    if (hoveredNode !== oldHovered && !isSimulating) {
+      drawGraph();
+    }
   }
 }
 
@@ -1402,18 +1450,28 @@ function onMouseUp(e) {
       }
     }
     draggedNode = null;
+    if (!isSimulating) {
+      drawGraph();
+    }
   }
 
   if (isPanning) {
     isPanning = false;
     canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
+    if (!isSimulating) {
+      drawGraph();
+    }
   }
 }
 
 function onMouseLeave() {
   draggedNode = null;
   isPanning = false;
+  const oldHovered = hoveredNode;
   hoveredNode = null;
+  if (oldHovered && !isSimulating) {
+    drawGraph();
+  }
 }
 
 function findNodeAt(gx, gy) {
