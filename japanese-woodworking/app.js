@@ -377,10 +377,60 @@ const initialResources = [
   }
 ];
 
-// 2. State Management
-let resources = [];
-let bookmarks = [];
-let activeTag = null;
+// Compile and update JSON-LD Ontology script block in page head
+function updateJSONLDOntology() {
+  const context = {
+    "@vocab": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "daiku": "https://noppadol.online/japanese-woodworking/ns#",
+    "category": { "@id": "daiku:category", "@type": "@id" },
+    "tag": { "@id": "daiku:tag", "@type": "@id" },
+    "creator": { "@id": "schema:author", "@type": "@id" },
+    "language": { "@id": "schema:inLanguage" }
+  };
+
+  const graph = [];
+
+  // Add DefinedTermSet for Categories
+  graph.push({
+    "@type": "DefinedTermSet",
+    "@id": "https://noppadol.online/japanese-woodworking/ontology#categories",
+    "name": "Japanese Woodworking Categories"
+  });
+
+  // Add all active resources to the graph
+  resources.forEach(res => {
+    graph.push({
+      "@type": res.type === "book" ? "Book" : "CreativeWork",
+      "@id": `https://noppadol.online/japanese-woodworking/resource/${res.id}`,
+      "name": res.title,
+      "description": res.description,
+      "url": res.url,
+      "creator": {
+        "@type": "Person",
+        "name": res.author
+      },
+      "category": `https://noppadol.online/japanese-woodworking/category/${res.category}`,
+      "inLanguage": res.languages,
+      "keywords": res.tags
+    });
+  });
+
+  const jsonld = {
+    "@context": context,
+    "@graph": graph
+  };
+
+  let scriptTag = document.getElementById('ontology-jsonld');
+  if (!scriptTag) {
+    scriptTag = document.createElement('script');
+    scriptTag.id = 'ontology-jsonld';
+    scriptTag.type = 'application/ld+json';
+    document.head.appendChild(scriptTag);
+  }
+  scriptTag.textContent = JSON.stringify(jsonld, null, 2);
+  console.log(`[Ontology] Updated JSON-LD: ${resources.length} nodes registered.`);
+}
 
 // Initialize State
 function initState() {
@@ -394,6 +444,9 @@ function initState() {
 
   // Combine initial and custom
   resources = [...initialResources, ...customResources];
+
+  // Update JSON-LD Ontology
+  updateJSONLDOntology();
 
   // Set Theme
   const storedTheme = localStorage.getItem('daiku_theme') || 'dark';
@@ -778,6 +831,13 @@ function setupFormSubmission() {
 
     // Update state and refresh
     resources.push(newResource);
+    
+    // Clear filters and focus on the newly added resource node to highlight it
+    resetDashboardFilters();
+    activeFocusNodeId = `res_${newResource.id}`;
+    
+    // Regenerate ontology metadata and redraw views
+    updateJSONLDOntology();
     renderDashboard();
     renderTagCloud();
 
@@ -1148,6 +1208,49 @@ function getOntologyDatabase(searchTerm) {
     }
     allLinks.push({ sourceId: resId, targetId: creatorId, relation: 'createdBy' });
 
+    // Link resource to its type
+    const typeId = `type_${res.type}`;
+    if (!allNodes.has(typeId)) {
+      allNodes.set(typeId, {
+        id: typeId,
+        label: res.type.charAt(0).toUpperCase() + res.type.slice(1),
+        type: 'type',
+        radius: 13,
+        typeName: res.type
+      });
+    }
+    allLinks.push({ sourceId: resId, targetId: typeId, relation: 'hasType' });
+
+    // Link resource to its languages
+    res.languages.forEach(lang => {
+      const langId = `lang_${lang}`;
+      if (!allNodes.has(langId)) {
+        allNodes.set(langId, {
+          id: langId,
+          label: lang.toUpperCase(),
+          type: 'language',
+          radius: 12,
+          langCode: lang
+        });
+      }
+      allLinks.push({ sourceId: resId, targetId: langId, relation: 'availableIn' });
+    });
+
+    // Link resource to its region
+    if (res.region) {
+      const regionId = `region_${res.region}`;
+      if (!allNodes.has(regionId)) {
+        allNodes.set(regionId, {
+          id: regionId,
+          label: res.region,
+          type: 'region',
+          radius: 12,
+          regionName: res.region
+        });
+      }
+      allLinks.push({ sourceId: resId, targetId: regionId, relation: 'originatesIn' });
+    }
+
     // Link resource to its tags
     res.tags.forEach(tag => {
       const tagId = `tag_${tag}`;
@@ -1321,6 +1424,18 @@ function drawGraph() {
         fillColor = tagFillColor;
         strokeColor = tagStrokeColor;
         break;
+      case 'type':
+        fillColor = theme === 'light' ? '#ebf3e6' : '#22301c';
+        strokeColor = '#7cb342';
+        break;
+      case 'language':
+        fillColor = theme === 'light' ? '#e3f2fd' : '#152b3c';
+        strokeColor = '#6da2f8';
+        break;
+      case 'region':
+        fillColor = theme === 'light' ? '#fbe9e7' : '#3c1f15';
+        strokeColor = '#ff7043';
+        break;
     }
 
     // Dotted active ring around focused center node
@@ -1471,6 +1586,19 @@ function onMouseUp(e) {
           renderTagCloud();
         } else if (draggedNode.type === 'creator') {
           document.getElementById('search-input').value = draggedNode.creatorName;
+        } else if (draggedNode.type === 'type') {
+          const normType = draggedNode.typeName.toLowerCase();
+          const typeSelect = document.getElementById('filter-type');
+          if (Array.from(typeSelect.options).some(opt => opt.value === normType)) {
+            typeSelect.value = normType;
+          }
+        } else if (draggedNode.type === 'language') {
+          const langSelect = document.getElementById('filter-language');
+          if (Array.from(langSelect.options).some(opt => opt.value === draggedNode.langCode)) {
+            langSelect.value = draggedNode.langCode;
+          }
+        } else if (draggedNode.type === 'region') {
+          document.getElementById('search-input').value = draggedNode.regionName;
         }
 
         renderDashboard();
