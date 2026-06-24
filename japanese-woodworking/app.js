@@ -1260,32 +1260,19 @@ function drawGraph() {
 
   // Styles based on theme
   const linkColorNormal = theme === 'light' ? '#e3dcd3' : '#332822';
-  const linkColorHighlight = theme === 'light' ? '#b0693a' : 'var(--accent)';
   const nodeTextMuted = theme === 'light' ? '#73635a' : '#a89c94';
   const nodeTextActive = theme === 'light' ? '#2b1f1a' : '#f5efe9';
   const tagFillColor = theme === 'light' ? 'rgba(109, 162, 248, 0.15)' : 'rgba(109, 162, 248, 0.1)';
   const tagStrokeColor = '#6da2f8';
 
-  // 1. Draw Links (Edges) and Relationship Label Pills
+  // 1. Draw Links (Edges) and Relationship Label Pills (stably)
   links.forEach(link => {
-    const isHighlighted = hoveredNode && (link.source === hoveredNode || link.target === hoveredNode);
-
     ctx.beginPath();
     ctx.moveTo(link.source.x, link.source.y);
     ctx.lineTo(link.target.x, link.target.y);
-    
-    if (isHighlighted) {
-      ctx.strokeStyle = linkColorHighlight;
-      ctx.lineWidth = 2.5;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = linkColorHighlight;
-    } else {
-      ctx.strokeStyle = linkColorNormal;
-      ctx.lineWidth = 1.2;
-      ctx.shadowBlur = 0;
-    }
+    ctx.strokeStyle = linkColorNormal;
+    ctx.lineWidth = 1.5;
     ctx.stroke();
-    ctx.shadowBlur = 0; // reset
 
     // Draw Relation Label on edge midpoint
     if (link.relation) {
@@ -1324,20 +1311,10 @@ function drawGraph() {
   // 2. Draw Nodes
   nodes.forEach(node => {
     const isNodeHovered = (node === hoveredNode);
-    const isConnectedToHovered = hoveredNode && links.some(l => 
-      (l.source === node && l.target === hoveredNode) || 
-      (l.target === node && l.source === hoveredNode)
-    );
-    const isHighlighted = isNodeHovered || isConnectedToHovered || (node.id === activeFocusNodeId);
-
-    // Apply slight dimming to disconnected nodes when hovering
-    let opacity = 1;
-    if (hoveredNode && !isNodeHovered && !isConnectedToHovered) {
-      opacity = 0.45;
-    }
+    const isHighlighted = (node.id === activeFocusNodeId);
 
     ctx.save();
-    ctx.globalAlpha = opacity;
+    ctx.globalAlpha = 1.0; // Keep all nodes fully visible, no dimming on hover!
 
     // Node Style configuration
     let fillColor = '';
@@ -1381,8 +1358,8 @@ function drawGraph() {
       ctx.setLineDash([]); // reset
     }
 
-    // Hover glowing halo
-    if (isNodeHovered || isConnectedToHovered) {
+    // Hover glowing halo (only on the hovered node itself!)
+    if (isNodeHovered) {
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius + 5, 0, Math.PI * 2);
       ctx.fillStyle = node.type === 'resource' || node.type === 'root' ? 'rgba(216, 155, 108, 0.15)' : 'rgba(255, 255, 255, 0.08)';
