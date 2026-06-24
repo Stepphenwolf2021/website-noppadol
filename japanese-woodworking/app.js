@@ -846,26 +846,14 @@ let isPanning = false;
 let panStartX = 0;
 let panStartY = 0;
 
-// Configurable Physics constants (re-tuned to reduce default central clumping)
-let kGravity = 0.004;
-let kRepulsion = 160;
-let kSpring = 0.03;
-let kRestLength = 140;
-let kDamping = 0.82;
-
-// Cooling system parameters to settle nodes organically
-let alpha = 1.0;
-const alphaDecay = 0.015; // settles in ~60 frames
+// Graph navigation state
+let activeFocusNodeId = null;
+let lastSearchTerm = '';
+let lastFilteredResources = [];
 
 function startSimulation() {
-  alpha = 1.0;
   if (!isSimulating && nodes.length > 0) {
     isSimulating = true;
-    const pauseBtn = document.getElementById('btn-pause-sim');
-    if (pauseBtn) {
-      pauseBtn.textContent = 'Pause';
-      pauseBtn.classList.add('btn-primary');
-    }
     requestAnimationFrame(simulationTick);
   }
 }
@@ -965,48 +953,24 @@ function setupControlsPanel() {
     panel.classList.toggle('collapsed');
   });
 
-  // Sliders and Value spans
-  const sliders = [
-    { id: 'control-repulsion', valId: 'val-repulsion', update: (val) => { kRepulsion = parseFloat(val); } },
-    { id: 'control-gravity', valId: 'val-gravity', update: (val) => { kGravity = parseFloat(val) / 1000; }, display: (val) => (parseFloat(val) / 1000).toFixed(3) },
-    { id: 'control-spring', valId: 'val-spring', update: (val) => { kSpring = parseFloat(val) / 1000; }, display: (val) => (parseFloat(val) / 1000).toFixed(3) },
-    { id: 'control-length', valId: 'val-length', update: (val) => { kRestLength = parseFloat(val); } }
-  ];
-
-  sliders.forEach(s => {
-    const input = document.getElementById(s.id);
-    const span = document.getElementById(s.valId);
-    if (input && span) {
-      input.addEventListener('input', (e) => {
-        const val = e.target.value;
-        s.update(val);
-        span.textContent = s.display ? s.display(val) : val;
-        startSimulation(); // Reheat/restart simulation on parameter updates
-      });
-    }
-  });
-
-  // Play/Pause button
-  const pauseBtn = document.getElementById('btn-pause-sim');
-  pauseBtn.addEventListener('click', () => {
-    if (isSimulating) {
-      isSimulating = false;
-      pauseBtn.textContent = 'Play';
-      pauseBtn.classList.remove('btn-primary');
-    } else {
-      startSimulation();
-    }
-  });
+  // Reset Focus button
+  const resetFocusBtn = document.getElementById('btn-reset-focus');
+  if (resetFocusBtn) {
+    resetFocusBtn.addEventListener('click', () => {
+      activeFocusNodeId = lastSearchTerm ? 'root_search' : 'root_hub';
+      updateGraphData(lastFilteredResources);
+    });
+  }
 
   // Reset View button
   const resetBtn = document.getElementById('btn-reset-view');
-  resetBtn.addEventListener('click', () => {
-    zoomScale = 1.0;
-    panOffset = { x: 0, y: 0 };
-    if (!isSimulating) {
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      zoomScale = 1.0;
+      panOffset = { x: 0, y: 0 };
       drawGraph();
-    }
-  });
+    });
+  }
 }
 
 function resizeCanvas() {
@@ -1016,115 +980,115 @@ function resizeCanvas() {
 }
 
 function updateGraphData(filteredResources) {
-  // Save current positions of existing nodes
-  const oldNodePos = new Map();
-  nodes.forEach(node => {
-    oldNodePos.set(node.id, { x: node.x, y: node.y });
-  });
-
-  const newNodesMap = new Map();
-  const newLinks = [];
-  const searchInputVal = document.getElementById('search-input').value.toLowerCase();
-
-  // Helper to determine if a string matches search
-  const isMatch = (str) => {
-    if (!searchInputVal) return false;
-    return str.toLowerCase().includes(searchInputVal);
-  };
-
-  // Process filtered resources to generate nodes and links
-  filteredResources.forEach(res => {
-    // 1. Create Resource Node
-    const resId = `res_${res.id}`;
-    const resMatches = isMatch(res.title) || isMatch(res.description) || res.tags.some(isMatch);
-    
-    newNodesMap.set(resId, {
-      id: resId,
-      label: res.title,
-      type: 'resource',
-      refId: res.id,
-      radius: 16,
-      isMatching: resMatches
-    });
-
-    // 2. Create Category Node
-    const catId = `cat_${res.category}`;
-    const catName = getCategoryName(res.category);
-    if (!newNodesMap.has(catId)) {
-      newNodesMap.set(catId, {
-        id: catId,
-        label: catName,
-        type: 'category',
-        radius: 20,
-        isMatching: isMatch(catName)
-      });
-    }
-    newLinks.push({ source: resId, target: catId, highlighted: resMatches || isMatch(catName) });
-
-    // 3. Create Creator Node
-    const creatorId = `creator_${res.author}`;
-    if (!newNodesMap.has(creatorId)) {
-      newNodesMap.set(creatorId, {
-        id: creatorId,
-        label: res.author,
-        type: 'creator',
-        radius: 14,
-        isMatching: isMatch(res.author)
-      });
-    }
-    newLinks.push({ source: resId, target: creatorId, highlighted: resMatches || isMatch(res.author) });
-
-    // 4. Create Tag Nodes
-    res.tags.forEach(tag => {
-      const tagId = `tag_${tag}`;
-      const tagMatches = isMatch(tag);
-      if (!newNodesMap.has(tagId)) {
-        newNodesMap.set(tagId, {
-          id: tagId,
-          label: `#${tag}`,
-          type: 'tag',
-          radius: 11,
-          isMatching: tagMatches
-        });
-      }
-      newLinks.push({ source: resId, target: tagId, highlighted: resMatches || tagMatches });
-    });
-  });
-
-  // Convert map to nodes array and initialize positions
   if (!canvas) return;
-  const center = { x: canvas.width / 2, y: canvas.height / 2 };
-  nodes = Array.from(newNodesMap.values()).map(node => {
-    if (oldNodePos.has(node.id)) {
-      // Preserve position
-      const pos = oldNodePos.get(node.id);
-      node.x = pos.x;
-      node.y = pos.y;
-    } else {
-      // New node, place with slight random offset from center
-      node.x = center.x + (Math.random() - 0.5) * 150;
-      node.y = center.y + (Math.random() - 0.5) * 150;
+
+  // Cache filtered resources for focus resets
+  lastFilteredResources = filteredResources;
+
+  const searchInputVal = document.getElementById('search-input').value.trim();
+  if (searchInputVal !== lastSearchTerm) {
+    lastSearchTerm = searchInputVal;
+    activeFocusNodeId = searchInputVal ? 'root_search' : 'root_hub';
+  }
+
+  // Build ontology database
+  const { allNodes, allLinks } = getOntologyDatabase(searchInputVal);
+
+  let focusNode = allNodes.get(activeFocusNodeId);
+  if (!focusNode) {
+    activeFocusNodeId = searchInputVal ? 'root_search' : 'root_hub';
+    focusNode = allNodes.get(activeFocusNodeId);
+  }
+
+  // Find neighbors connected directly to the focused concept
+  const activeNeighbors = [];
+  const activeLinks = [];
+
+  allLinks.forEach(link => {
+    if (link.sourceId === focusNode.id) {
+      const targetNode = allNodes.get(link.targetId);
+      if (targetNode && !activeNeighbors.some(n => n.id === targetNode.id)) {
+        activeNeighbors.push(targetNode);
+        activeLinks.push({ sourceId: focusNode.id, targetId: targetNode.id, relation: link.relation });
+      }
+    } else if (link.targetId === focusNode.id) {
+      const sourceNode = allNodes.get(link.sourceId);
+      if (sourceNode && !activeNeighbors.some(n => n.id === sourceNode.id)) {
+        activeNeighbors.push(sourceNode);
+        activeLinks.push({ sourceId: sourceNode.id, targetId: focusNode.id, relation: link.relation });
+      }
     }
-    node.vx = 0;
-    node.vy = 0;
-    return node;
   });
 
-  // Map links to node objects
-  links = newLinks.map(link => {
-    const sNode = nodes.find(n => n.id === link.source);
-    const tNode = nodes.find(n => n.id === link.target);
+  // Add the root node as a neighbor to non-root focused nodes to allow going back!
+  const rootId = searchInputVal ? 'root_search' : 'root_hub';
+  if (focusNode.id !== rootId) {
+    const rootNode = allNodes.get(rootId);
+    if (rootNode && !activeNeighbors.some(n => n.id === rootNode.id)) {
+      activeNeighbors.push(rootNode);
+      activeLinks.push({ sourceId: focusNode.id, targetId: rootNode.id, relation: 'parent' });
+    }
+  }
+
+  // Calculate coordinates using focused radial layout
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+  focusNode.targetX = centerX;
+  focusNode.targetY = centerY;
+
+  const R = Math.min(canvas.width, canvas.height) * 0.35;
+  const N = activeNeighbors.length;
+  activeNeighbors.forEach((nb, i) => {
+    const angle = (i * Math.PI * 2) / N;
+    nb.targetX = centerX + Math.cos(angle) * R;
+    nb.targetY = centerY + Math.sin(angle) * R;
+  });
+
+  // Preserve positions for nodes that are already in the graph to transition them smoothly
+  const oldNodesMap = new Map();
+  nodes.forEach(n => oldNodesMap.set(n.id, n));
+
+  const newNodesList = [];
+
+  // Focus Node positioning
+  if (oldNodesMap.has(focusNode.id)) {
+    const oldNode = oldNodesMap.get(focusNode.id);
+    focusNode.x = oldNode.x;
+    focusNode.y = oldNode.y;
+  } else {
+    focusNode.x = centerX;
+    focusNode.y = centerY;
+  }
+  newNodesList.push(focusNode);
+
+  // Neighbors positioning (grows out from center node's previous/current position)
+  activeNeighbors.forEach(nb => {
+    if (oldNodesMap.has(nb.id)) {
+      const oldNode = oldNodesMap.get(nb.id);
+      nb.x = oldNode.x;
+      nb.y = oldNode.y;
+    } else {
+      nb.x = focusNode.x;
+      nb.y = focusNode.y;
+    }
+    newNodesList.push(nb);
+  });
+
+  nodes = newNodesList;
+
+  // Map active links to node objects for rendering
+  links = activeLinks.map(link => {
+    const sNode = nodes.find(n => n.id === link.sourceId);
+    const tNode = nodes.find(n => n.id === link.targetId);
     return {
       source: sNode,
       target: tNode,
-      highlighted: link.highlighted
+      relation: link.relation
     };
   }).filter(l => l.source && l.target);
 
-  // Restart physics loop with cooling reset if not already simulating
-  if (nodes.length > 0) {
-    startSimulation();
-  }
+  startSimulation();
 }
 
 function getCategoryName(catId) {
@@ -1138,98 +1102,146 @@ function getCategoryName(catId) {
   return catNames[catId] || catId;
 }
 
-function simulationTick() {
-  if (!isSimulating || !canvas) return;
+function getOntologyDatabase(searchTerm) {
+  const allNodes = new Map();
+  const allLinks = []; // array of { sourceId, targetId, relation }
 
-  const w = canvas.width;
-  const h = canvas.height;
-  const center = { x: w / 2, y: h / 2 };
-
-  // 1. Reset force accumulators
-  nodes.forEach(node => {
-    node.fx = 0;
-    node.fy = 0;
-
-    // Pull to center (gravity)
-    node.fx += (center.x - node.x) * kGravity;
-    node.fy += (center.y - node.y) * kGravity;
-  });
-
-  // 2. Repulsion force between all nodes (Coulomb's Law) scaled by alpha
-  for (let i = 0; i < nodes.length; i++) {
-    const u = nodes[i];
-    for (let j = i + 1; j < nodes.length; j++) {
-      const v = nodes[j];
-      const dx = v.x - u.x;
-      const dy = v.y - u.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 10;
-      
-      // Stronger push for nodes that are close
-      const repelForce = (kRepulsion * (u.radius * v.radius)) / (dist * dist);
-      const forceX = (dx / dist) * repelForce * alpha;
-      const forceY = (dy / dist) * repelForce * alpha;
-
-      u.fx -= forceX;
-      u.fy -= forceY;
-      v.fx += forceX;
-      v.fy += forceY;
-    }
+  // 1. Create root node
+  if (searchTerm) {
+    const rootId = 'root_search';
+    allNodes.set(rootId, {
+      id: rootId,
+      label: `Search: "${searchTerm}"`,
+      type: 'root',
+      radius: 25
+    });
+  } else {
+    const rootId = 'root_hub';
+    allNodes.set(rootId, {
+      id: rootId,
+      label: 'Daiku Hub',
+      type: 'root',
+      radius: 25
+    });
   }
 
-  // 3. Attraction force along links (Hooke's Law) scaled by alpha
-  links.forEach(link => {
-    const u = link.source;
-    const v = link.target;
-    const dx = v.x - u.x;
-    const dy = v.y - u.y;
-    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-    const disp = dist - kRestLength;
-    const attractForce = kSpring * disp * alpha;
-
-    const forceX = (dx / dist) * attractForce;
-    const forceY = (dy / dist) * attractForce;
-
-    u.fx += forceX;
-    u.fy += forceY;
-    v.fx -= forceX;
-    v.fy -= forceY;
-  });
-
-  // 4. Update velocity and positions
-  nodes.forEach(node => {
-    if (node === draggedNode) {
-      // Locked directly in onMouseMove transformed coordinates
-      node.vx = 0;
-      node.vy = 0;
-    } else {
-      node.vx = (node.vx + node.fx) * kDamping;
-      node.vy = (node.vy + node.fy) * kDamping;
-      node.x += node.vx;
-      node.y += node.vy;
+  // 2. Add Category nodes
+  const categories = ['furniture', 'joinery', 'tools', 'architecture', 'boatbuilding'];
+  categories.forEach(cat => {
+    const catId = `cat_${cat}`;
+    allNodes.set(catId, {
+      id: catId,
+      label: getCategoryName(cat),
+      type: 'category',
+      radius: 20,
+      categoryKey: cat
+    });
+    // Link root to categories (if no search)
+    if (!searchTerm) {
+      allLinks.push({ sourceId: 'root_hub', targetId: catId, relation: 'contains' });
     }
-
-    // Keep inside boundaries
-    node.x = Math.max(node.radius, Math.min(w - node.radius, node.x));
-    node.y = Math.max(node.radius, Math.min(h - node.radius, node.y));
   });
 
-  // 5. Draw
+  // 3. Add Resources, Creators, and Tags
+  const searchLower = searchTerm ? searchTerm.toLowerCase() : '';
+  resources.forEach(res => {
+    const resId = `res_${res.id}`;
+    allNodes.set(resId, {
+      id: resId,
+      label: res.title,
+      type: 'resource',
+      radius: 18,
+      refId: res.id,
+      resourceData: res
+    });
+
+    // Link resource to its category
+    const catId = `cat_${res.category}`;
+    allLinks.push({ sourceId: resId, targetId: catId, relation: 'belongsTo' });
+
+    // Link resource to its creator
+    const creatorId = `creator_${res.author}`;
+    if (!allNodes.has(creatorId)) {
+      allNodes.set(creatorId, {
+        id: creatorId,
+        label: res.author,
+        type: 'creator',
+        radius: 14,
+        creatorName: res.author
+      });
+    }
+    allLinks.push({ sourceId: resId, targetId: creatorId, relation: 'createdBy' });
+
+    // Link resource to its tags
+    res.tags.forEach(tag => {
+      const tagId = `tag_${tag}`;
+      if (!allNodes.has(tagId)) {
+        allNodes.set(tagId, {
+          id: tagId,
+          label: `#${tag}`,
+          type: 'tag',
+          radius: 11,
+          tagName: tag
+        });
+      }
+      allLinks.push({ sourceId: resId, targetId: tagId, relation: 'hasTag' });
+    });
+
+    // If search is active, check if this resource matches the search
+    if (searchTerm) {
+      const matches = 
+        res.title.toLowerCase().includes(searchLower) ||
+        res.author.toLowerCase().includes(searchLower) ||
+        res.description.toLowerCase().includes(searchLower) ||
+        res.tags.some(t => t.toLowerCase().includes(searchLower)) ||
+        getCategoryName(res.category).toLowerCase().includes(searchLower);
+
+      if (matches) {
+        allLinks.push({ sourceId: 'root_search', targetId: resId, relation: 'matches' });
+      }
+    }
+  });
+
+  // Link search root to matching tags/creators/categories
+  if (searchTerm) {
+    allNodes.forEach(node => {
+      if (node.id === 'root_search') return;
+      if (node.label.toLowerCase().includes(searchLower) && node.type !== 'resource') {
+        allLinks.push({ sourceId: 'root_search', targetId: node.id, relation: 'matches' });
+      }
+    });
+  }
+
+  return { allNodes, allLinks };
+}
+
+function simulationTick() {
+  if (currentView !== 'graph' || !canvas) {
+    isSimulating = false;
+    return;
+  }
+
+  let moved = false;
+  nodes.forEach(node => {
+    const dx = node.targetX - node.x;
+    const dy = node.targetY - node.y;
+    // Asymptotic transition with no bounce
+    if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+      node.x += dx * 0.15;
+      node.y += dy * 0.15;
+      moved = true;
+    } else {
+      node.x = node.targetX;
+      node.y = node.targetY;
+    }
+  });
+
   drawGraph();
 
-  // 6. Alpha cooling decay
-  alpha -= alphaDecay;
-
-  // Stop simulation loop when layout settles
-  if (alpha < 0.005) {
-    isSimulating = false;
-    nodes.forEach(n => { n.vx = 0; n.vy = 0; }); // Reset velocities
-    const pauseBtn = document.getElementById('btn-pause-sim');
-    if (pauseBtn) {
-      pauseBtn.textContent = 'Play';
-      pauseBtn.classList.remove('btn-primary');
-    }
-  } else {
+  if (moved) {
     requestAnimationFrame(simulationTick);
+  } else {
+    isSimulating = false;
   }
 }
 
@@ -1244,7 +1256,6 @@ function drawGraph() {
   ctx.translate(panOffset.x, panOffset.y);
   ctx.scale(zoomScale, zoomScale);
 
-  const searchInputVal = document.getElementById('search-input').value.toLowerCase();
   const theme = document.documentElement.getAttribute('data-theme') || 'dark';
 
   // Styles based on theme
@@ -1255,11 +1266,9 @@ function drawGraph() {
   const tagFillColor = theme === 'light' ? 'rgba(109, 162, 248, 0.15)' : 'rgba(109, 162, 248, 0.1)';
   const tagStrokeColor = '#6da2f8';
 
-  // 1. Draw Links (Edges)
+  // 1. Draw Links (Edges) and Relationship Label Pills
   links.forEach(link => {
-    const isHighlighted = link.highlighted || 
-      (hoveredNode && (link.source === hoveredNode || link.target === hoveredNode)) ||
-      (searchInputVal && (link.source.isMatching || link.target.isMatching));
+    const isHighlighted = hoveredNode && (link.source === hoveredNode || link.target === hoveredNode);
 
     ctx.beginPath();
     ctx.moveTo(link.source.x, link.source.y);
@@ -1272,31 +1281,59 @@ function drawGraph() {
       ctx.shadowColor = linkColorHighlight;
     } else {
       ctx.strokeStyle = linkColorNormal;
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1.2;
       ctx.shadowBlur = 0;
     }
     ctx.stroke();
     ctx.shadowBlur = 0; // reset
+
+    // Draw Relation Label on edge midpoint
+    if (link.relation) {
+      const midX = (link.source.x + link.target.x) / 2;
+      const midY = (link.source.y + link.target.y) / 2;
+      
+      ctx.save();
+      ctx.font = '9px monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      const labelText = link.relation;
+      const textWidth = ctx.measureText(labelText).width;
+      
+      // Draw background pill
+      ctx.fillStyle = theme === 'light' ? '#f6f1eb' : '#221813';
+      ctx.strokeStyle = theme === 'light' ? '#e3dcd3' : '#332822';
+      ctx.lineWidth = 1;
+      
+      ctx.beginPath();
+      const rectW = textWidth + 8;
+      const rectH = 12;
+      const rx = midX - rectW / 2;
+      const ry = midY - rectH / 2;
+      ctx.roundRect ? ctx.roundRect(rx, ry, rectW, rectH, 3) : ctx.rect(rx, ry, rectW, rectH);
+      ctx.fill();
+      ctx.stroke();
+      
+      // Draw text
+      ctx.fillStyle = theme === 'light' ? '#8a7d76' : '#a89c94';
+      ctx.fillText(labelText, midX, midY);
+      ctx.restore();
+    }
   });
 
   // 2. Draw Nodes
   nodes.forEach(node => {
-    // Determine highlighting state
     const isNodeHovered = (node === hoveredNode);
     const isConnectedToHovered = hoveredNode && links.some(l => 
       (l.source === node && l.target === hoveredNode) || 
       (l.target === node && l.source === hoveredNode)
     );
-    const isHighlighted = node.isMatching || isNodeHovered || isConnectedToHovered;
-    const hasActiveSearch = !!searchInputVal;
+    const isHighlighted = isNodeHovered || isConnectedToHovered || (node.id === activeFocusNodeId);
 
-    // Apply Dimming if search active or node hovered
+    // Apply slight dimming to disconnected nodes when hovering
     let opacity = 1;
-    if (hasActiveSearch && !node.isMatching) {
-      opacity = 0.35;
-    }
     if (hoveredNode && !isNodeHovered && !isConnectedToHovered) {
-      opacity = 0.3;
+      opacity = 0.45;
     }
 
     ctx.save();
@@ -1308,18 +1345,24 @@ function drawGraph() {
     let lineWidth = 1.5;
 
     switch (node.type) {
-      case 'resource':
+      case 'root':
         fillColor = theme === 'light' ? '#b0693a' : 'var(--accent)';
-        strokeColor = theme === 'light' ? '#8a4b22' : 'var(--accent-hover)';
+        strokeColor = theme === 'light' ? '#8a4b22' : '#ffffff';
+        lineWidth = 2.5;
+        break;
+      case 'resource':
+        fillColor = theme === 'light' ? '#f6f1eb' : '#221813';
+        strokeColor = theme === 'light' ? '#b0693a' : 'var(--accent)';
         lineWidth = 2;
         break;
       case 'creator':
-        fillColor = theme === 'light' ? '#f6f1eb' : '#221813';
+        fillColor = theme === 'light' ? '#e3dcd3' : '#332822';
         strokeColor = theme === 'light' ? '#73635a' : '#a89c94';
         break;
       case 'category':
-        fillColor = '#b0693a';
-        strokeColor = 'var(--accent-hover)';
+        fillColor = theme === 'light' ? '#d89b6c' : 'rgba(216, 155, 108, 0.2)';
+        strokeColor = theme === 'light' ? '#b0693a' : 'var(--accent)';
+        lineWidth = 2;
         break;
       case 'tag':
         fillColor = tagFillColor;
@@ -1327,11 +1370,22 @@ function drawGraph() {
         break;
     }
 
-    // Hover / Highlight glowing ring
-    if (isHighlighted) {
+    // Dotted active ring around focused center node
+    if (node.id === activeFocusNodeId) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius + 6, 0, Math.PI * 2);
+      ctx.strokeStyle = theme === 'light' ? '#b0693a' : 'var(--accent)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([3, 3]);
+      ctx.stroke();
+      ctx.setLineDash([]); // reset
+    }
+
+    // Hover glowing halo
+    if (isNodeHovered || isConnectedToHovered) {
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius + 5, 0, Math.PI * 2);
-      ctx.fillStyle = node.type === 'resource' ? 'rgba(216, 155, 108, 0.2)' : 'rgba(255, 255, 255, 0.1)';
+      ctx.fillStyle = node.type === 'resource' || node.type === 'root' ? 'rgba(216, 155, 108, 0.15)' : 'rgba(255, 255, 255, 0.08)';
       ctx.fill();
     }
 
@@ -1350,11 +1404,10 @@ function drawGraph() {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     
-    // Draw background shadow for text readability
+    // Text background shadow
     ctx.shadowColor = theme === 'light' ? '#faf7f4' : '#120e0c';
     ctx.shadowBlur = 4;
     
-    // Truncate long labels
     let labelText = node.label;
     if (labelText.length > 20) {
       labelText = labelText.substring(0, 18) + '...';
@@ -1374,7 +1427,6 @@ function onMouseDown(e) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  // Convert click coordinates to graph coordinates
   const graphX = (x - panOffset.x) / zoomScale;
   const graphY = (y - panOffset.y) / zoomScale;
 
@@ -1382,9 +1434,8 @@ function onMouseDown(e) {
   if (draggedNode) {
     dragStartX = graphX;
     dragStartY = graphY;
-    startSimulation(); // Re-heat when dragging a node!
+    startSimulation();
   } else {
-    // If not clicking any node, start panning the viewport
     isPanning = true;
     panStartX = e.clientX - panOffset.x;
     panStartY = e.clientY - panOffset.y;
@@ -1401,29 +1452,26 @@ function onMouseMove(e) {
   mousePos.x = e.clientX - rect.left;
   mousePos.y = e.clientY - rect.top;
 
-  // Convert mouse position to graph coordinates
   const graphX = (mousePos.x - panOffset.x) / zoomScale;
   const graphY = (mousePos.y - panOffset.y) / zoomScale;
 
   if (draggedNode) {
-    // Lock dragged node position directly to mouse transformed coordinates
     draggedNode.x = graphX;
     draggedNode.y = graphY;
-    startSimulation(); // Keep heating while dragging
+    draggedNode.targetX = graphX;
+    draggedNode.targetY = graphY;
+    startSimulation();
   } else if (isPanning) {
-    // Pan the canvas offset based on mouse delta
     panOffset.x = e.clientX - panStartX;
     panOffset.y = e.clientY - panStartY;
     if (!isSimulating) {
       drawGraph();
     }
   } else {
-    // Check for node hovering in graph space
     const oldHovered = hoveredNode;
     hoveredNode = findNodeAt(graphX, graphY);
     canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
     
-    // Redraw on hover state change when physics is stopped
     if (hoveredNode !== oldHovered && !isSimulating) {
       drawGraph();
     }
@@ -1443,16 +1491,30 @@ function onMouseUp(e) {
 
     const dragDistance = Math.sqrt((graphX - dragStartX) ** 2 + (graphY - dragStartY) ** 2);
     
-    // Click detection (if drag was minor) in graph coordinates
     if (dragDistance < 6) {
-      if (draggedNode.type === 'resource') {
-        openDetailsModal(draggedNode.refId);
+      // Node Clicked!
+      if (draggedNode.id === activeFocusNodeId) {
+        // Clicked the center node
+        if (draggedNode.type === 'resource') {
+          openDetailsModal(draggedNode.refId);
+        } else {
+          // Go back up to root if it is category, tag, or creator
+          const rootId = lastSearchTerm ? 'root_search' : 'root_hub';
+          if (activeFocusNodeId !== rootId) {
+            activeFocusNodeId = rootId;
+            updateGraphData(lastFilteredResources);
+          }
+        }
+      } else {
+        // Clicked a neighbor node: focus it!
+        activeFocusNodeId = draggedNode.id;
+        updateGraphData(lastFilteredResources);
       }
+    } else {
+      // Re-trigger layout calculations so node slides back to its circular target slot
+      updateGraphData(lastFilteredResources);
     }
     draggedNode = null;
-    if (!isSimulating) {
-      drawGraph();
-    }
   }
 
   if (isPanning) {
@@ -1465,7 +1527,10 @@ function onMouseUp(e) {
 }
 
 function onMouseLeave() {
-  draggedNode = null;
+  if (draggedNode) {
+    updateGraphData(lastFilteredResources);
+    draggedNode = null;
+  }
   isPanning = false;
   const oldHovered = hoveredNode;
   hoveredNode = null;

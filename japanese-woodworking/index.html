@@ -140,34 +140,24 @@
         <div class="legend-item"><span class="legend-dot creator"></span> Creator</div>
         <div class="legend-item"><span class="legend-dot category"></span> Category</div>
         <div class="legend-item"><span class="legend-dot tag"></span> Tag</div>
-        <div class="legend-instructions">Drag nodes to explore. Hover to highlight connections. Click Resource nodes to view details.</div>
+        <div class="legend-instructions">Click any node to focus/explore relationships. Click the center node to go back. Double-click Resource to view details.</div>
       </div>
       
-      <!-- Interactive Simulation Controls Overlay -->
+      <!-- Interactive Graph Navigation Overlay -->
       <div class="graph-controls-panel collapsed" id="graph-controls-panel">
         <div class="controls-header" id="controls-toggle">
-          <span>Controls & Physics</span>
+          <span>Graph Navigation</span>
           <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </div>
         <div class="controls-content" id="controls-content">
-          <div class="control-row">
-            <label for="control-repulsion">Repulsion: <span id="val-repulsion">160</span></label>
-            <input type="range" id="control-repulsion" min="10" max="400" value="160">
-          </div>
-          <div class="control-row">
-            <label for="control-gravity">Gravity: <span id="val-gravity">0.004</span></label>
-            <input type="range" id="control-gravity" min="0" max="40" value="4">
-          </div>
-          <div class="control-row">
-            <label for="control-spring">Spring: <span id="val-spring">0.03</span></label>
-            <input type="range" id="control-spring" min="5" max="150" value="30">
-          </div>
-          <div class="control-row">
-            <label for="control-length">Rest Length: <span id="val-length">140</span></label>
-            <input type="range" id="control-length" min="50" max="250" value="140">
-          </div>
+          <ul class="graph-instructions">
+            <li>Click any node to focus/explore</li>
+            <li>Click the center node to go back/up</li>
+            <li>Double-click Resource for details</li>
+            <li>Drag background to pan; scroll to zoom</li>
+          </ul>
           <div class="control-actions">
-            <button id="btn-pause-sim" class="btn btn-sm btn-primary">Pause</button>
+            <button id="btn-reset-focus" class="btn btn-sm btn-primary">Reset Focus</button>
             <button id="btn-reset-view" class="btn btn-sm">Reset View</button>
           </div>
         </div>

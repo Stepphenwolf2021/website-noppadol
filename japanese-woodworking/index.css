@@ -928,11 +928,34 @@ dialog:not([open]) {
   z-index: 10;
   transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  height: 310px; /* Expanded height */
+  height: 225px; /* Expanded height for Navigation controls */
 }
 
 .graph-controls-panel.collapsed {
   height: 42px; /* Header height only */
+}
+
+/* Graph Instructions List Styles */
+.graph-instructions {
+  font-size: 0.75rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.graph-instructions li {
+  position: relative;
+  padding-left: 0.8rem;
+}
+.graph-instructions li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
 }
 
 .controls-header {
