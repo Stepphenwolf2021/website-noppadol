@@ -839,12 +839,19 @@ let dragStartY = 0;
 let mousePos = { x: 0, y: 0 };
 let hasInitializedGraph = false;
 
-// Physics constants
-const kGravity = 0.012;
-const kRepulsion = 120;
-const kSpring = 0.04;
-const kRestLength = 100;
-const kDamping = 0.85;
+// Viewport zoom & pan offset state
+let zoomScale = 1.0;
+let panOffset = { x: 0, y: 0 };
+let isPanning = false;
+let panStartX = 0;
+let panStartY = 0;
+
+// Configurable Physics constants (re-tuned to reduce default central clumping)
+let kGravity = 0.004;
+let kRepulsion = 160;
+let kSpring = 0.03;
+let kRestLength = 140;
+let kDamping = 0.82;
 
 function setupViewSwitcher() {
   const gridBtn = document.getElementById('view-grid-btn');
@@ -891,11 +898,91 @@ function initGraphView() {
     }
   });
 
-  // Mouse event listeners
+  // Mouse and wheel event listeners
   canvas.addEventListener('mousedown', onMouseDown);
   canvas.addEventListener('mousemove', onMouseMove);
   canvas.addEventListener('mouseup', onMouseUp);
   canvas.addEventListener('mouseleave', onMouseLeave);
+  canvas.addEventListener('wheel', onWheel, { passive: false });
+
+  // Hook up simulation control panel elements
+  setupControlsPanel();
+}
+
+function onWheel(e) {
+  if (currentView !== 'graph' || !canvas) return;
+  e.preventDefault();
+  
+  const rect = canvas.getBoundingClientRect();
+  const mX = e.clientX - rect.left;
+  const mY = e.clientY - rect.top;
+
+  // Convert cursor position to graph coordinates before zooming
+  const graphX = (mX - panOffset.x) / zoomScale;
+  const graphY = (mY - panOffset.y) / zoomScale;
+
+  // Determine zoom direction and factor
+  const zoomFactor = 1.1;
+  let newScale = e.deltaY < 0 ? zoomScale * zoomFactor : zoomScale / zoomFactor;
+
+  // Bound scale from 0.3x to 4.0x
+  newScale = Math.max(0.3, Math.min(4.0, newScale));
+
+  // Adjust panOffset so that the point under the cursor remains at the same visual position
+  panOffset.x = mX - graphX * newScale;
+  panOffset.y = mY - graphY * newScale;
+  zoomScale = newScale;
+}
+
+function setupControlsPanel() {
+  const panel = document.getElementById('graph-controls-panel');
+  const toggle = document.getElementById('controls-toggle');
+  
+  // Collapse/Expand toggle
+  toggle.addEventListener('click', () => {
+    panel.classList.toggle('collapsed');
+  });
+
+  // Sliders and Value spans
+  const sliders = [
+    { id: 'control-repulsion', valId: 'val-repulsion', update: (val) => { kRepulsion = parseFloat(val); } },
+    { id: 'control-gravity', valId: 'val-gravity', update: (val) => { kGravity = parseFloat(val) / 1000; }, display: (val) => (parseFloat(val) / 1000).toFixed(3) },
+    { id: 'control-spring', valId: 'val-spring', update: (val) => { kSpring = parseFloat(val) / 1000; }, display: (val) => (parseFloat(val) / 1000).toFixed(3) },
+    { id: 'control-length', valId: 'val-length', update: (val) => { kRestLength = parseFloat(val); } }
+  ];
+
+  sliders.forEach(s => {
+    const input = document.getElementById(s.id);
+    const span = document.getElementById(s.valId);
+    if (input && span) {
+      input.addEventListener('input', (e) => {
+        const val = e.target.value;
+        s.update(val);
+        span.textContent = s.display ? s.display(val) : val;
+      });
+    }
+  });
+
+  // Play/Pause button
+  const pauseBtn = document.getElementById('btn-pause-sim');
+  pauseBtn.addEventListener('click', () => {
+    isSimulating = !isSimulating;
+    if (isSimulating) {
+      pauseBtn.textContent = 'Pause';
+      pauseBtn.classList.add('btn-primary');
+      requestAnimationFrame(simulationTick);
+    } else {
+      pauseBtn.textContent = 'Play';
+      pauseBtn.classList.remove('btn-primary');
+    }
+  });
+
+  // Reset View button
+  const resetBtn = document.getElementById('btn-reset-view');
+  resetBtn.addEventListener('click', () => {
+    zoomScale = 1.0;
+    panOffset = { x: 0, y: 0 };
+  });
 }
 
 function resizeCanvas() {
@@ -1088,9 +1175,7 @@ function simulationTick() {
   // 4. Update velocity and positions
   nodes.forEach(node => {
     if (node === draggedNode) {
-      // Lock position to mouse coordinate
-      node.x = mousePos.x;
-      node.y = mousePos.y;
+      // Locked directly in onMouseMove transformed coordinates
       node.vx = 0;
       node.vy = 0;
     } else {
@@ -1108,15 +1193,22 @@ function simulationTick() {
   // 5. Draw
   drawGraph();
 
-  // 6. Continue loop
-  requestAnimationFrame(simulationTick);
+  // 6. Continue loop if simulating
+  if (isSimulating) {
+    requestAnimationFrame(simulationTick);
+  }
 }
 
 function drawGraph() {
   if (!ctx || !canvas) return;
 
-  // Clear Canvas
+  // Clear Canvas (using full screenspace bounds)
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.save();
+  // Apply zoom and pan offset transformations
+  ctx.translate(panOffset.x, panOffset.y);
+  ctx.scale(zoomScale, zoomScale);
 
   const searchInputVal = document.getElementById('search-input').value.toLowerCase();
   const theme = document.documentElement.getAttribute('data-theme') || 'dark';
@@ -1150,17 +1242,17 @@ function drawGraph() {
       ctx.shadowBlur = 0;
     }
     ctx.stroke();
-    ctx.shadowBlur = 0; // Reset shadow
+    ctx.shadowBlur = 0; // reset
   });
 
   // 2. Draw Nodes
   nodes.forEach(node => {
+    // Determine highlighting state
     const isNodeHovered = (node === hoveredNode);
     const isConnectedToHovered = hoveredNode && links.some(l => 
       (l.source === node && l.target === hoveredNode) || 
       (l.target === node && l.source === hoveredNode)
     );
-    
     const isHighlighted = node.isMatching || isNodeHovered || isConnectedToHovered;
     const hasActiveSearch = !!searchInputVal;
 
@@ -1183,8 +1275,9 @@ function drawGraph() {
 
     switch (node.type) {
       case 'resource':
-        fillColor = 'var(--accent)';
-        strokeColor = 'var(--accent-hover)';
+        fillColor = theme === 'light' ? '#b0693a' : 'var(--accent)';
+        strokeColor = theme === 'light' ? '#8a4b22' : 'var(--accent-hover)';
+        lineWidth = 2;
         break;
       case 'creator':
         fillColor = theme === 'light' ? '#f6f1eb' : '#221813';
@@ -1236,58 +1329,97 @@ function drawGraph() {
 
     ctx.restore();
   });
+
+  ctx.restore(); // Restore outer viewport transforms
 }
 
 // Event handlers
 function onMouseDown(e) {
+  if (currentView !== 'graph' || !canvas) return;
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  draggedNode = findNodeAt(x, y);
+  // Convert click coordinates to graph coordinates
+  const graphX = (x - panOffset.x) / zoomScale;
+  const graphY = (y - panOffset.y) / zoomScale;
+
+  draggedNode = findNodeAt(graphX, graphY);
   if (draggedNode) {
-    dragStartX = x;
-    dragStartY = y;
+    dragStartX = graphX;
+    dragStartY = graphY;
+  } else {
+    // If not clicking any node, start panning the viewport
+    isPanning = true;
+    panStartX = e.clientX - panOffset.x;
+    panStartY = e.clientY - panOffset.y;
+    canvas.style.cursor = 'grabbing';
   }
 }
 
 function onMouseMove(e) {
+  if (currentView !== 'graph' || !canvas) return;
   const rect = canvas.getBoundingClientRect();
   mousePos.x = e.clientX - rect.left;
   mousePos.y = e.clientY - rect.top;
 
-  if (!draggedNode) {
-    hoveredNode = findNodeAt(mousePos.x, mousePos.y);
+  // Convert mouse position to graph coordinates
+  const graphX = (mousePos.x - panOffset.x) / zoomScale;
+  const graphY = (mousePos.y - panOffset.y) / zoomScale;
+
+  if (draggedNode) {
+    // Lock dragged node position directly to mouse transformed coordinates
+    draggedNode.x = graphX;
+    draggedNode.y = graphY;
+  } else if (isPanning) {
+    // Pan the canvas offset based on mouse delta
+    panOffset.x = e.clientX - panStartX;
+    panOffset.y = e.clientY - panStartY;
+  } else {
+    // Check for node hovering in graph space
+    hoveredNode = findNodeAt(graphX, graphY);
+    canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
   }
 }
 
 function onMouseUp(e) {
-  if (!draggedNode) return;
-
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const dragDistance = Math.sqrt((x - dragStartX) ** 2 + (y - dragStartY) ** 2);
+  if (currentView !== 'graph' || !canvas) return;
   
-  // Click detection (if drag was minor)
-  if (dragDistance < 6) {
-    if (draggedNode.type === 'resource') {
-      openDetailsModal(draggedNode.refId);
+  if (draggedNode) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const graphX = (x - panOffset.x) / zoomScale;
+    const graphY = (y - panOffset.y) / zoomScale;
+
+    const dragDistance = Math.sqrt((graphX - dragStartX) ** 2 + (graphY - dragStartY) ** 2);
+    
+    // Click detection (if drag was minor) in graph coordinates
+    if (dragDistance < 6) {
+      if (draggedNode.type === 'resource') {
+        openDetailsModal(draggedNode.refId);
+      }
     }
+    draggedNode = null;
   }
 
-  draggedNode = null;
+  if (isPanning) {
+    isPanning = false;
+    canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
+  }
 }
 
 function onMouseLeave() {
   draggedNode = null;
+  isPanning = false;
   hoveredNode = null;
 }
 
-function findNodeAt(x, y) {
+function findNodeAt(gx, gy) {
   return nodes.find(node => {
-    const dist = Math.sqrt((node.x - x) ** 2 + (node.y - y) ** 2);
-    return dist <= node.radius + 8; // Margin for click detection
+    const dist = Math.sqrt((node.x - gx) ** 2 + (node.y - gy) ** 2);
+    // Scale click bubble margin dynamically relative to the zoom scale
+    return dist <= node.radius + (8 / zoomScale);
   });
 }
