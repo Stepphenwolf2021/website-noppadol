@@ -118,38 +118,46 @@
 
     <!-- Dashboard Split Layout (Side-by-Side Graph & Grid) -->
     <div class="dashboard-split-layout">
-      <!-- Left Column: Interactive Relationship Graph -->
-      <main id="graph-view-container" class="graph-view-container">
-        <canvas id="graph-canvas"></canvas>
-        <div class="graph-legend">
-          <div class="legend-title">Graph Legend</div>
-          <div class="legend-item"><span class="legend-dot resource"></span> Resource</div>
-          <div class="legend-item"><span class="legend-dot creator"></span> Creator</div>
-          <div class="legend-item"><span class="legend-dot category"></span> Category</div>
-          <div class="legend-item"><span class="legend-dot tag"></span> Tag</div>
-          <div class="legend-instructions">Click any node to focus/explore relationships. Click the center node to go back. Double-click Resource to view details.</div>
-        </div>
-        
-        <!-- Interactive Graph Navigation Overlay -->
-        <div class="graph-controls-panel collapsed" id="graph-controls-panel">
-          <div class="controls-header" id="controls-toggle">
-            <span>Graph Navigation</span>
-            <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-          <div class="controls-content" id="controls-content">
-            <ul class="graph-instructions">
-              <li>Click any node to focus/explore</li>
-              <li>Click the center node to go back/up</li>
-              <li>Double-click Resource for details</li>
-              <li>Drag background to pan; scroll to zoom</li>
-            </ul>
-            <div class="control-actions">
-              <button id="btn-reset-focus" class="btn btn-sm btn-primary">Reset Focus</button>
-              <button id="btn-reset-view" class="btn btn-sm">Reset View</button>
+      <!-- Left Column: Interactive Relationship Graph & Legend -->
+      <div class="graph-column-wrapper">
+        <main id="graph-view-container" class="graph-view-container">
+          <canvas id="graph-canvas"></canvas>
+          
+          <!-- Interactive Graph Navigation Overlay -->
+          <div class="graph-controls-panel collapsed" id="graph-controls-panel">
+            <div class="controls-header" id="controls-toggle">
+              <span>Graph Navigation</span>
+              <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="controls-content" id="controls-content">
+              <ul class="graph-instructions">
+                <li>Click any node to focus/explore</li>
+                <li>Click the center node to go back/up</li>
+                <li>Double-click Resource for details</li>
+                <li>Drag background to pan; scroll to zoom</li>
+              </ul>
+              <div class="control-actions">
+                <button id="btn-reset-focus" class="btn btn-sm btn-primary">Reset Focus</button>
+                <button id="btn-reset-view" class="btn btn-sm">Reset View</button>
+              </div>
             </div>
           </div>
+        </main>
+
+        <!-- Graph Legend Box (placed outside & under the graph view frame) -->
+        <div class="graph-legend">
+          <div class="legend-header">
+            <div class="legend-title">Graph Legend</div>
+            <div class="legend-items-container">
+              <div class="legend-item"><span class="legend-dot resource"></span> Resource</div>
+              <div class="legend-item"><span class="legend-dot creator"></span> Creator</div>
+              <div class="legend-item"><span class="legend-dot category"></span> Category</div>
+              <div class="legend-item"><span class="legend-dot tag"></span> Tag</div>
+            </div>
+          </div>
+          <div class="legend-instructions">Click any node to focus/explore relationships. Click the center node to go back. Double-click Resource to view details.</div>
         </div>
-      </main>
+      </div>
 
       <!-- Right Column: Resources Grid -->
       <main class="dashboard-grid" id="resources-grid">
