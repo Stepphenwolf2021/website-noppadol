@@ -816,6 +816,112 @@ function setupModalFallbacks() {
   }
 }
 
+// Helper functions for spelling suggestions/fuzzy matching
+function levenshteinDistance(s1, s2) {
+  const len1 = s1.length;
+  const len2 = s2.length;
+  const matrix = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
+
+  for (let i = 0; i <= len1; i++) matrix[i][0] = i;
+  for (let j = 0; j <= len2; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= len1; i++) {
+    for (let j = 1; j <= len2; j++) {
+      const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,       // Deletion
+        matrix[i][j - 1] + 1,       // Insertion
+        matrix[i - 1][j - 1] + cost // Substitution
+      );
+    }
+  }
+  return matrix[len1][len2];
+}
+
+function getStringSimilarity(s1, s2) {
+  const dist = levenshteinDistance(s1.toLowerCase(), s2.toLowerCase());
+  const maxLen = Math.max(s1.length, s2.length);
+  if (maxLen === 0) return 1.0;
+  return 1.0 - (dist / maxLen);
+}
+
+function getSpellingSuggestions(query) {
+  if (!query || query.trim().length < 2) return [];
+  const cleanQuery = query.trim().toLowerCase();
+  
+  // Extract candidates from resources dataset
+  const candidates = new Set();
+  
+  resources.forEach(res => {
+    // Add author name
+    candidates.add(res.author);
+    // Add individual author name parts
+    res.author.split(/\s+/).forEach(part => {
+      const p = part.replace(/[^a-zA-Z0-9\u0E00-\u0E7F]/g, '');
+      if (p.length > 2) candidates.add(p);
+    });
+    
+    // Add tags
+    res.tags.forEach(tag => candidates.add(tag));
+    
+    // Add title
+    candidates.add(res.title);
+    // Add words in title
+    res.title.split(/\s+/).forEach(part => {
+      const cleanPart = part.replace(/[^a-zA-Z0-9\u0E00-\u0E7F]/g, '');
+      if (cleanPart.length > 2) candidates.add(cleanPart);
+    });
+  });
+
+  const uniqueCandidates = Array.from(candidates).filter(c => c && c.trim().length > 1);
+  
+  // Try to match the whole query
+  const ranked = uniqueCandidates.map(c => {
+    const similarity = getStringSimilarity(cleanQuery, c);
+    return { term: c, similarity };
+  });
+
+  // Filter candidates
+  let results = ranked
+    .filter(item => item.similarity >= 0.68 && item.similarity < 0.99)
+    .sort((a, b) => b.similarity - a.similarity)
+    .map(item => item.term);
+
+  // If we have no results, try splitting the query and guessing for the longest/most significant words
+  if (results.length === 0 && cleanQuery.includes(' ')) {
+    const words = cleanQuery.split(/\s+/).filter(w => w.length > 2);
+    if (words.length > 0) {
+      const wordSuggestions = [];
+      words.forEach(word => {
+        const wordRanked = uniqueCandidates.map(c => {
+          const similarity = getStringSimilarity(word, c);
+          return { term: c, similarity };
+        });
+        const wordMatches = wordRanked
+          .filter(item => item.similarity >= 0.7 && item.similarity < 0.99)
+          .sort((a, b) => b.similarity - a.similarity)
+          .map(item => item.term);
+        wordSuggestions.push(...wordMatches);
+      });
+      results = Array.from(new Set(wordSuggestions));
+    }
+  }
+
+  // Deduplicate case-insensitively
+  const finalSuggestions = [];
+  const lowerSeen = new Set();
+  for (const r of results) {
+    const l = r.toLowerCase();
+    if (!lowerSeen.has(l)) {
+      lowerSeen.add(l);
+      finalSuggestions.push(r);
+    }
+    if (finalSuggestions.length >= 4) break;
+  }
+
+  return finalSuggestions;
+}
+
 // 4. Render Layout Cards
 function renderDashboard() {
   const grid = document.getElementById('resources-grid');
@@ -887,13 +993,44 @@ function renderDashboard() {
 
   // Render Grid Content
   if (filtered.length === 0) {
+    const searchInputVal = document.getElementById('search-input').value.trim();
+    const suggestions = getSpellingSuggestions(searchInputVal);
+
+    let suggestionsHtml = '';
+    if (suggestions.length > 0) {
+      suggestionsHtml = `
+        <div class="spelling-suggestions" style="margin-top: 1.5rem; padding: 1rem; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); text-align: center; box-shadow: 0 4px 10px var(--shadow-color);">
+          <p style="margin: 0 0 0.8rem 0; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.5px;">Did you mean / คำใกล้เคียงที่คุณอาจหมายถึง:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;">
+            ${suggestions.map(s => `
+              <button class="btn btn-sm spelling-suggestion-btn" data-suggestion="${s.replace(/"/g, '&quot;')}">
+                ${s}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
     grid.innerHTML = `
       <div class="empty-state">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <h3>No Woodworking Resources Found</h3>
         <p>Try adjusting your search criteria, clearing the filters, or disabling "Bookmarks Only".</p>
+        ${suggestionsHtml}
       </div>
     `;
+
+    // Add click listeners to suggestion buttons
+    grid.querySelectorAll('.spelling-suggestion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-suggestion');
+        const input = document.getElementById('search-input');
+        input.value = val;
+        // Trigger render
+        renderDashboard();
+      });
+    });
     return;
   }
 

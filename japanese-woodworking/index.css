@@ -1230,4 +1230,26 @@ dialog:not([open]) {
   flex-shrink: 0;
 }
 
+/* Spelling suggestions styling */
+.spelling-suggestion-btn {
+  background: transparent !important;
+  border: 1px solid var(--accent) !important;
+  color: var(--accent) !important;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.spelling-suggestion-btn:hover {
+  background: var(--accent) !important;
+  color: var(--panel-bg) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(216, 155, 108, 0.2);
+}
+
 
