@@ -1350,14 +1350,37 @@ function drawGraph() {
   const tagFillColor = theme === 'light' ? 'rgba(109, 162, 248, 0.15)' : 'rgba(109, 162, 248, 0.1)';
   const tagStrokeColor = '#6da2f8';
 
-  // 1. Draw Links (Edges) and Relationship Label Pills (stably)
+  // 1. Draw Links (Edges) with Directional Arrowheads and Relationship Label Pills (stably)
   links.forEach(link => {
+    const angle = Math.atan2(link.target.y - link.source.y, link.target.x - link.source.x);
+    
+    // Calculate start and end coordinates on the circle boundaries of the nodes
+    const startX = link.source.x + Math.cos(angle) * link.source.radius;
+    const startY = link.source.y + Math.sin(angle) * link.source.radius;
+    // Add extra offset so arrow tip points precisely to node boundary stroke
+    const endOffset = link.target.radius + 5;
+    const endX = link.target.x - Math.cos(angle) * endOffset;
+    const endY = link.target.y - Math.sin(angle) * endOffset;
+
     ctx.beginPath();
-    ctx.moveTo(link.source.x, link.source.y);
-    ctx.lineTo(link.target.x, link.target.y);
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, endY);
     ctx.strokeStyle = linkColorNormal;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.2;
     ctx.stroke();
+
+    // Draw Arrowhead at the target edge
+    ctx.save();
+    ctx.translate(endX, endY);
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-5, -2.5);
+    ctx.lineTo(-5, 2.5);
+    ctx.closePath();
+    ctx.fillStyle = linkColorNormal;
+    ctx.fill();
+    ctx.restore();
 
     // Draw Relation Label on edge midpoint
     if (link.relation) {
