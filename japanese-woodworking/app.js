@@ -18,7 +18,7 @@ const initialResources = [
     type: "youtube",
     category: "furniture",
     url: "https://www.youtube.com/@ishitany",
-    featuredVideoId: "U3vN0xY7t4o", // Making a Walnut Desk
+    featuredVideoId: "d_k60hP_P3I", // Making a Walnut Desk
     languages: ["ja", "en"],
     tags: ["Furniture", "Sashimono", "ASMR", "Hand Tools"],
     description: "Highly aesthetic and meditative videos documenting the fine furniture making process in a rural Japanese workshop. Features pure woodworking sounds (ASMR) with no narration, showcasing traditional joinery combined with modern machinery.",
@@ -32,7 +32,7 @@ const initialResources = [
     type: "youtube",
     category: "joinery",
     url: "https://www.youtube.com/@dylaniwakuni",
-    featuredVideoId: "u83_G4VbQWc", // Making the "Impossible Joint" (Kanawa-tsugi / Shifou-Kama)
+    featuredVideoId: "kYJ5739343k", // Making the "Impossible Joint" (Kanawa-tsugi / Shifou-Kama)
     languages: ["ja", "en"],
     tags: ["Joinery", "Kigumi", "Timber Framing", "Restoration"],
     description: "Documents traditional Japanese carpentry and timber framing techniques. Shows the intricate processes of constructing wooden buildings, creating complex interlocking joints (Kigumi) without nails, and restoring historic wooden houses.",
@@ -46,7 +46,7 @@ const initialResources = [
     type: "youtube",
     category: "architecture",
     url: "https://www.youtube.com/@miyadaikuch",
-    featuredVideoId: "uPHiK-0j8V0", // Training video
+    featuredVideoId: "PRN-Irvujs0", // Training video / student routine
     languages: ["ja"],
     tags: ["Miyadaiku", "Temple Carpentry", "Apprenticeship", "Kigumi"],
     description: "The official channel of the Shrine & Temple Carpenter Training School (Miyadaiku Yoseijyuku). Focuses on teaching apprentices, maintaining architectural craftsmanship, and documenting the precision work of shrine building.",
@@ -60,7 +60,7 @@ const initialResources = [
     type: "youtube",
     category: "tools",
     url: "https://www.youtube.com/@TakenakaCarpentryToolsMuseum",
-    featuredVideoId: "Z4a34b2r21U", // Traditional Craftsman Tool Making
+    featuredVideoId: "Y-_L-KmM_1s", // Traditional Craftsman Tool Making / Chiyotsuru Korehide
     languages: ["ja", "en"],
     tags: ["Museum", "History", "Daiku Dougu", "Documentary"],
     description: "YouTube channel of Kobe's Takenaka Carpentry Tools Museum, the only museum in Japan dedicated to carpentry tools. Features high-quality documentaries on blacksmiths, traditional master tool users, and historic architecture.",
@@ -74,7 +74,7 @@ const initialResources = [
     type: "youtube",
     category: "architecture",
     url: "https://www.youtube.com/@kobayashikenkou",
-    featuredVideoId: "77F52y32o7A", // Bell Tower Construction
+    featuredVideoId: "M39LOI4X3f4", // Bell Tower Construction
     languages: ["ja"],
     tags: ["Miyadaiku", "Structure", "Heavy Timber", "Bell Towers"],
     description: "Documents traditional structural construction and restorations of temples, shrines, and traditional architectural gates. Focuses on heavy timber building techniques and recording carpentry knowledge for the next generation.",
@@ -88,7 +88,7 @@ const initialResources = [
     type: "youtube",
     category: "joinery",
     url: "https://www.youtube.com/@suikoushya",
-    featuredVideoId: "W7y8jNezF_U", // Sharpening tools
+    featuredVideoId: "2FbUAkR0sac", // Sharpening tools / Japanese chisel
     languages: ["ja", "en"],
     tags: ["School", "Hand Tools", "Sharpening", "Kanna"],
     description: "Practical lessons in traditional Japanese woodworking. Led by Takami Kawai, the school teaches the proper posture, blade alignment, sharpening methods, and joint cuts using hand tools (saws, chisels, planes) with English subtitles.",
@@ -102,7 +102,7 @@ const initialResources = [
     type: "youtube",
     category: "architecture",
     url: "https://www.youtube.com/@somakosha",
-    featuredVideoId: "5oJ12e0M5oE", // Shou Sugi Ban & timber joinery
+    featuredVideoId: "E9R6DkAXbFY", // Shou Sugi Ban & timber joinery / Column repair
     languages: ["ja", "en"],
     tags: ["Shou Sugi Ban", "Eco-Construction", "Sumi-kiri", "Wood Prep"],
     description: "Traditional carpentry, house framing, and eco-friendly timber structures. Features shou sugi ban (charred wood preservation) processes and natural, sustainable wooden construction projects.",
@@ -116,7 +116,7 @@ const initialResources = [
     type: "youtube",
     category: "tools",
     url: "https://www.youtube.com/channel/UCdf5QHEpfrg3KydeT3iD2IQ",
-    featuredVideoId: "IWHXYZwiick", // Dining area renovation
+    featuredVideoId: "1BG6iTfjpoU", // Dining area renovation / House renovation
     languages: ["ja"],
     tags: ["Renovation", "Tool Setup", "Modern Carpentry", "Kanna"],
     description: "An authentic look at a modern Japanese carpenter's daily life, tool setups, and workshop routines. Demonstrates hand plane flattening, saw selection, and renovation projects.",
