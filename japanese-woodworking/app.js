@@ -476,10 +476,15 @@ async function initState() {
   // Update JSON-LD Ontology
   updateJSONLDOntology();
 
-  // Set Theme
-  const storedTheme = localStorage.getItem('daiku_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', storedTheme);
-  updateThemeWidgetState(storedTheme);
+  // Set Theme based on browser local time (daytime: 6 AM - 6 PM -> light/bright, night -> dark)
+  const hours = new Date().getHours();
+  const isDaytime = hours >= 6 && hours < 18;
+  const timeBasedTheme = isDaytime ? 'light' : 'dark';
+
+  // Use sessionStorage to persist manual toggles for the current session
+  const initialTheme = sessionStorage.getItem('daiku_theme') || timeBasedTheme;
+  document.documentElement.setAttribute('data-theme', initialTheme);
+  updateThemeWidgetState(initialTheme);
 }
 
 // ==========================================
@@ -1125,7 +1130,7 @@ function setupThemeToggler() {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     
     document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('daiku_theme', newTheme);
+    sessionStorage.setItem('daiku_theme', newTheme);
     updateThemeWidgetState(newTheme);
     
     // Redraw graph to update its colors for the new theme
