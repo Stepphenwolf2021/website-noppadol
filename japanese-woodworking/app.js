@@ -18,7 +18,7 @@ const initialResources = [
     type: "youtube",
     category: "furniture",
     url: "https://www.youtube.com/@ishitany",
-    featuredVideoId: "d_k60hP_P3I", // Making a Walnut Desk
+    featuredVideoId: "L9-2RntF79g", // Making a Kamachi small table
     languages: ["ja", "en"],
     tags: ["Furniture", "Sashimono", "ASMR", "Hand Tools"],
     description: "Highly aesthetic and meditative videos documenting the fine furniture making process in a rural Japanese workshop. Features pure woodworking sounds (ASMR) with no narration, showcasing traditional joinery combined with modern machinery.",
@@ -32,7 +32,7 @@ const initialResources = [
     type: "youtube",
     category: "joinery",
     url: "https://www.youtube.com/@dylaniwakuni",
-    featuredVideoId: "kYJ5739343k", // Making the "Impossible Joint" (Kanawa-tsugi / Shifou-Kama)
+    featuredVideoId: "3KqIIOyuo1Q", // The Art of Traditional Japanese Wood Joinery
     languages: ["ja", "en"],
     tags: ["Joinery", "Kigumi", "Timber Framing", "Restoration"],
     description: "Documents traditional Japanese carpentry and timber framing techniques. Shows the intricate processes of constructing wooden buildings, creating complex interlocking joints (Kigumi) without nails, and restoring historic wooden houses.",
