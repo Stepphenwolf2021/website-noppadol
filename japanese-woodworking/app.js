@@ -1472,6 +1472,55 @@ function drawGraph() {
     ctx.fill();
     ctx.stroke();
 
+    // Draw Node Icon (Emoji) in the center of the node
+    let emoji = '';
+    switch (node.type) {
+      case 'root':
+        emoji = node.id === 'root_search' ? '🔍' : '🏠';
+        break;
+      case 'category':
+        emoji = '📁';
+        break;
+      case 'resource':
+        const rType = node.resourceData?.type;
+        if (rType === 'youtube') emoji = '📺';
+        else if (rType === 'book') emoji = '📖';
+        else if (rType === 'blog') emoji = '✍️';
+        else if (rType === 'museum') emoji = '🏛️';
+        else if (rType === 'archive') emoji = '🎨';
+        else emoji = '🌐';
+        break;
+      case 'creator':
+        emoji = '👤';
+        break;
+      case 'tag':
+        emoji = '🏷️';
+        break;
+      case 'type':
+        emoji = '⚙️';
+        break;
+      case 'language':
+        const code = node.langCode?.toLowerCase();
+        if (code === 'ja') emoji = '🇯🇵';
+        else if (code === 'en') emoji = '🇺🇸';
+        else if (code === 'th') emoji = '🇹🇭';
+        else emoji = '🌐';
+        break;
+      case 'region':
+        emoji = '📍';
+        break;
+    }
+
+    if (emoji) {
+      ctx.save();
+      ctx.font = `${node.radius * 0.95}px var(--font-sans)`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowBlur = 0; // Disable text shadow for clean icon rendering
+      ctx.fillText(emoji, node.x, node.y + 1); // Centered with a slight y offset
+      ctx.restore();
+    }
+
     // Draw Labels
     ctx.font = isHighlighted ? 'bold 11px var(--font-sans)' : '10px var(--font-sans)';
     ctx.fillStyle = isHighlighted ? nodeTextActive : nodeTextMuted;
