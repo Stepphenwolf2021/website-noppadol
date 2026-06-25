@@ -456,7 +456,27 @@ async function initState() {
 
   // Load custom resources
   const storedCustom = localStorage.getItem('daiku_custom_resources');
-  const customResources = storedCustom ? JSON.parse(storedCustom) : [];
+  let customResources = storedCustom ? JSON.parse(storedCustom) : [];
+
+  // Migrate/normalize old or redundant tags in custom resources
+  customResources.forEach(res => {
+    if (res.tags) {
+      res.tags = res.tags.map(t => {
+        const trimmed = t.trim();
+        // Map redundant/outdated tags to clean standardized ones
+        if (trimmed.toLowerCase() === 'japanese woodworking') {
+          return 'Joinery & Carpentry';
+        }
+        if (trimmed.toLowerCase() === 'woodworking') {
+          return 'Hand Tools';
+        }
+        return trimmed;
+      });
+      // De-duplicate tags
+      res.tags = Array.from(new Set(res.tags));
+    }
+  });
+  localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
 
   // Combine initial and custom
   resources = [...initialResources, ...customResources];
@@ -1048,13 +1068,23 @@ function renderDashboard() {
 
     const miniTags = res.tags.slice(0, 3).map(t => `<span class="mini-tag">#${t}</span>`).join(' ');
 
+    const isCustom = !initialResources.some(ir => ir.id === res.id);
+    const deleteButtonHtml = isCustom ? `
+      <button class="delete-resource-btn" data-id="${res.id}" aria-label="Delete resource" style="background: none; border: none; color: #ff6b6b; cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.8rem;" title="Delete this resource">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+      </button>
+    ` : '';
+
     return `
       <article class="resource-card" data-id="${res.id}">
         <div class="card-header">
           <span class="type-badge ${res.type}">${typeLabel}</span>
-          <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" data-id="${res.id}" aria-label="Bookmark ${res.title}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          </button>
+          <div style="display: flex; align-items: center;">
+            ${deleteButtonHtml}
+            <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" data-id="${res.id}" aria-label="Bookmark ${res.title}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </button>
+          </div>
         </div>
         <h3 class="card-title">${res.title}</h3>
         <div class="card-author">
@@ -1094,6 +1124,41 @@ function renderDashboard() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleBookmark(btn.getAttribute('data-id'));
+    });
+  });
+
+  // Wire up Delete Custom Resource click events
+  document.querySelectorAll('.delete-resource-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const resId = btn.getAttribute('data-id');
+      const resTitle = resources.find(r => r.id === resId)?.title || "this resource";
+      
+      if (confirm(`Are you sure you want to delete "${resTitle}"? This will remove all its collections associations and attachments.`)) {
+        // 1. Remove from custom resources storage
+        const storedCustom = localStorage.getItem('daiku_custom_resources');
+        let customRes = storedCustom ? JSON.parse(storedCustom) : [];
+        customRes = customRes.filter(r => r.id !== resId);
+        localStorage.setItem('daiku_custom_resources', JSON.stringify(customRes));
+
+        // 2. Remove from bookmarks
+        bookmarks = bookmarks.filter(id => id !== resId);
+        localStorage.setItem('daiku_bookmarks', JSON.stringify(bookmarks));
+
+        // 3. Remove from collections
+        collections.forEach(c => {
+          c.resourceIds = c.resourceIds.filter(id => id !== resId);
+        });
+        localStorage.setItem('daiku_collections', JSON.stringify(collections));
+
+        // 4. Update the active resources array in memory
+        resources = [...initialResources, ...customRes];
+
+        // 5. Trigger complete redraw
+        renderCollections();
+        renderTagCloud();
+        renderDashboard();
+      }
     });
   });
 
