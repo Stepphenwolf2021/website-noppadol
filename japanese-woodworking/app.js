@@ -1032,8 +1032,8 @@ function updateGraphData(filteredResources) {
     activeFocusNodeId = searchInputVal ? 'root_search' : 'root_hub';
   }
 
-  // Build ontology database
-  const { allNodes, allLinks } = getOntologyDatabase(searchInputVal);
+  // Build ontology database using only the currently active filtered resources
+  const { allNodes, allLinks } = getOntologyDatabase(searchInputVal, filteredResources);
 
   let focusNode = allNodes.get(activeFocusNodeId);
   if (!focusNode) {
@@ -1143,7 +1143,7 @@ function getCategoryName(catId) {
   return catNames[catId] || catId;
 }
 
-function getOntologyDatabase(searchTerm) {
+function getOntologyDatabase(searchTerm, activeResources) {
   const allNodes = new Map();
   const allLinks = []; // array of { sourceId, targetId, relation }
 
@@ -1185,7 +1185,8 @@ function getOntologyDatabase(searchTerm) {
 
   // 3. Add Resources, Creators, and Tags
   const searchLower = searchTerm ? searchTerm.toLowerCase() : '';
-  resources.forEach(res => {
+  const currentResources = activeResources || resources;
+  currentResources.forEach(res => {
     const resId = `res_${res.id}`;
     allNodes.set(resId, {
       id: resId,
