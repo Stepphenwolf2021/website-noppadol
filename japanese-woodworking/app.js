@@ -20,7 +20,7 @@ const initialResources = [
     url: "https://www.youtube.com/@ishitany",
     featuredVideoId: "L9-2RntF79g", // Making a Kamachi small table
     languages: ["ja", "en"],
-    tags: ["Furniture", "Sashimono", "ASMR", "Hand Tools"],
+    tags: ["Furniture Making", "Sashimono", "Cabinetry", "ASMR", "Hand Tools", "Power Tools", "Wood Turning", "Workshop Life"],
     description: "Highly aesthetic and meditative videos documenting the fine furniture making process in a rural Japanese workshop. Features pure woodworking sounds (ASMR) with no narration, showcasing traditional joinery combined with modern machinery.",
     popularity: "2.45M+ subscribers",
     region: "Japan"
@@ -34,7 +34,7 @@ const initialResources = [
     url: "https://www.youtube.com/@dylaniwakuni",
     featuredVideoId: "3KqIIOyuo1Q", // The Art of Traditional Japanese Wood Joinery
     languages: ["ja", "en"],
-    tags: ["Joinery", "Kigumi", "Timber Framing", "Restoration"],
+    tags: ["Joinery & Carpentry", "Kigumi", "Timber Framing", "Restoration", "Hand Tools", "Kanna", "Nomi", "Nokogiri", "Traditional Architecture"],
     description: "Documents traditional Japanese carpentry and timber framing techniques. Shows the intricate processes of constructing wooden buildings, creating complex interlocking joints (Kigumi) without nails, and restoring historic wooden houses.",
     popularity: "860k+ subscribers",
     region: "Japan"
@@ -48,7 +48,7 @@ const initialResources = [
     url: "https://www.youtube.com/@miyadaikuch",
     featuredVideoId: "PRN-Irvujs0", // Training video / student routine
     languages: ["ja"],
-    tags: ["Miyadaiku", "Temple Carpentry", "Apprenticeship", "Kigumi"],
+    tags: ["Miyadaiku", "Temple & Shrine Carpentry", "Apprenticeship", "Kigumi", "Hand Tools", "Traditional Architecture", "Sharpening", "Wood Prep"],
     description: "The official channel of the Shrine & Temple Carpenter Training School (Miyadaiku Yoseijyuku). Focuses on teaching apprentices, maintaining architectural craftsmanship, and documenting the precision work of shrine building.",
     popularity: "110k+ subscribers",
     region: "Japan"
@@ -62,7 +62,7 @@ const initialResources = [
     url: "https://www.youtube.com/@TakenakaCarpentryToolsMuseum",
     featuredVideoId: "Y-_L-KmM_1s", // Traditional Craftsman Tool Making / Chiyotsuru Korehide
     languages: ["ja", "en"],
-    tags: ["Museum", "History", "Daiku Dougu", "Documentary"],
+    tags: ["Museum & Archives", "Daiku Dougu", "Hand Tools", "Carpentry History", "Documentary", "Blacksmiths", "Tool Maintenance", "Edo Period"],
     description: "YouTube channel of Kobe's Takenaka Carpentry Tools Museum, the only museum in Japan dedicated to carpentry tools. Features high-quality documentaries on blacksmiths, traditional master tool users, and historic architecture.",
     popularity: "165k+ subscribers",
     region: "Japan"
@@ -76,7 +76,7 @@ const initialResources = [
     url: "https://www.youtube.com/@kobayashikenkou",
     featuredVideoId: "M39LOI4X3f4", // Bell Tower Construction
     languages: ["ja"],
-    tags: ["Miyadaiku", "Structure", "Heavy Timber", "Bell Towers"],
+    tags: ["Miyadaiku", "Temple & Shrine Carpentry", "Timber Framing", "Kigumi", "Traditional Architecture", "Heavy Timber", "Bell Towers", "Restoration"],
     description: "Documents traditional structural construction and restorations of temples, shrines, and traditional architectural gates. Focuses on heavy timber building techniques and recording carpentry knowledge for the next generation.",
     popularity: "45k+ subscribers",
     region: "Japan"
@@ -90,7 +90,7 @@ const initialResources = [
     url: "https://www.youtube.com/@suikoushya",
     featuredVideoId: "2FbUAkR0sac", // Sharpening tools / Japanese chisel
     languages: ["ja", "en"],
-    tags: ["School", "Hand Tools", "Sharpening", "Kanna"],
+    tags: ["Woodworking School", "Hand Tools", "Sharpening", "Kanna", "Nomi", "Nokogiri", "Kigumi", "Joinery & Carpentry", "Wood Prep"],
     description: "Practical lessons in traditional Japanese woodworking. Led by Takami Kawai, the school teaches the proper posture, blade alignment, sharpening methods, and joint cuts using hand tools (saws, chisels, planes) with English subtitles.",
     popularity: "120k+ subscribers",
     region: "Japan / Kyoto"
@@ -104,7 +104,7 @@ const initialResources = [
     url: "https://www.youtube.com/@somakosha",
     featuredVideoId: "E9R6DkAXbFY", // Shou Sugi Ban & timber joinery / Column repair
     languages: ["ja", "en"],
-    tags: ["Shou Sugi Ban", "Eco-Construction", "Sumi-kiri", "Wood Prep"],
+    tags: ["Shou Sugi Ban", "Eco-Construction", "Sumi-kiri", "Wood Prep", "Timber Framing", "Traditional Architecture", "Joinery & Carpentry", "Restoration"],
     description: "Traditional carpentry, house framing, and eco-friendly timber structures. Features shou sugi ban (charred wood preservation) processes and natural, sustainable wooden construction projects.",
     popularity: "60k+ subscribers",
     region: "Japan"
@@ -118,7 +118,7 @@ const initialResources = [
     url: "https://www.youtube.com/channel/UCdf5QHEpfrg3KydeT3iD2IQ",
     featuredVideoId: "1BG6iTfjpoU", // Dining area renovation / House renovation
     languages: ["ja"],
-    tags: ["Renovation", "Tool Setup", "Modern Carpentry", "Kanna"],
+    tags: ["Renovation", "Tool Setup", "Modern Carpentry", "Kanna", "Hand Tools", "Workshop Life", "Nokogiri", "Nomi"],
     description: "An authentic look at a modern Japanese carpenter's daily life, tool setups, and workshop routines. Demonstrates hand plane flattening, saw selection, and renovation projects.",
     popularity: "220k+ subscribers",
     region: "Japan"
@@ -132,7 +132,7 @@ const initialResources = [
     url: "https://covingtonandsons.com/",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Blog", "Hand Tools", "Blacksmiths", "Steel Quality", "Sharpening"],
+    tags: ["Hand Tools", "Daiku Dougu", "Blacksmiths", "Steel Quality", "Sharpening", "Kanna", "Nomi", "Tool Maintenance", "Carpentry History"],
     description: "A legendary blog detailing Japanese tools, blacksmith history, chisels (nomi), saws (nokogiri), planes (kanna), and natural sharpening stones (toishi). Stanley shares deep insights, purchasing guides, and setup guidelines.",
     popularity: "Extremely authoritative blog",
     region: "Japan / Global"
@@ -146,7 +146,7 @@ const initialResources = [
     url: "http://thecarpentryway.blogspot.com/",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Blog", "Joinery Theory", "Math", "Shoji", "Japanese Gates"],
+    tags: ["Joinery & Carpentry", "Kigumi", "Joinery Theory", "Layout Math", "Shoji", "Traditional Architecture", "Japanese Gates", "Wood Mechanics"],
     description: "A technical blog reviewing Japanese joinery, wood mechanics, geometrical layouts (Okuden), custom screen gates, and traditional joints. Perfect for woodworkers wanting architectural blueprints and mathematical details.",
     popularity: "Highly referenced blog",
     region: "North America"
@@ -160,7 +160,7 @@ const initialResources = [
     url: "https://www.dougukan.jp/?lang=en",
     featuredVideoId: null,
     languages: ["ja", "en"],
-    tags: ["Museum", "History", "Exhibitions", "Research"],
+    tags: ["Museum & Archives", "Daiku Dougu", "Hand Tools", "Carpentry History", "Exhibitions", "Research", "Edo Period", "Blacksmiths"],
     description: "The official web portal of the Takenaka Carpentry Tools Museum. Hosts historical galleries, interactive tool explanations, research publications, and visitor information for their Kobe site.",
     popularity: "National Heritage Museum",
     region: "Japan / Kobe"
@@ -174,7 +174,7 @@ const initialResources = [
     url: "https://www.kurashigetools.com/",
     featuredVideoId: null,
     languages: ["ja", "en"],
-    tags: ["Shop", "Guides", "Tool Maintenance", "Blacksmith Profile"],
+    tags: ["Daiku Dougu", "Hand Tools", "Kanna", "Nomi", "Nokogiri", "Blacksmiths", "Tool Maintenance", "Sharpening", "Guides"],
     description: "An online store combined with high-quality maintenance resources. Features written profiles of legendary toolmakers, instructions on setup, blade tapping (ura-dashi), and sharpening guides.",
     popularity: "World-famous tool supplier",
     region: "Japan"
@@ -188,7 +188,7 @@ const initialResources = [
     url: "https://kezuroukai.us/",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Association", "Planing Competition", "Workshops", "Events"],
+    tags: ["Kezuroukai", "Planing Competition", "Workshops", "Hand Tools", "Kanna", "Sharpening", "Woodworking School", "Events"],
     description: "US branch dedicated to promoting traditional Japanese woodworking. Hosts tool workshops, hand planing competitions (Kezurikouji), and lists verified schools and teachers across North America.",
     popularity: "National Craft Organization",
     region: "USA / Global"
@@ -202,7 +202,7 @@ const initialResources = [
     url: "https://jinnaicarpentry.com/",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Timber Framing", "Shoji", "Tea Houses", "Architecture"],
+    tags: ["Timber Framing", "Kigumi", "Shoji", "Tea Houses", "Traditional Architecture", "Joinery & Carpentry", "Japanese Gates"],
     description: "A showcase of traditional construction in North America. Features timber frames, shoji screens, tea houses, and heavy-timber gates built using traditional Japanese joinery and layouts.",
     popularity: "Bespoke Carpentry Studio",
     region: "USA / Canada"
@@ -216,7 +216,7 @@ const initialResources = [
     url: "https://www.douglasbrooksboatbuilding.com/",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Blog", "Boat Building", "Apprentice", "Historic Crafts"],
+    tags: ["Boat Building", "Apprenticeship", "Historic Crafts", "Hand Tools", "Carpentry History", "Research", "Woodworking School"],
     description: "Fascinating blog documenting Douglas Brooks' apprenticeships with the last traditional boatbuilders in Japan. Focuses on Japanese tub boats (tarubune), wooden sails, and apprentice-based wood learning.",
     popularity: "Pioneering researcher & author",
     region: "USA / Japan"
@@ -230,7 +230,7 @@ const initialResources = [
     url: "https://www.youtube.com/watch?v=i__oDChKPzA",
     featuredVideoId: "i__oDChKPzA",
     languages: ["ja", "en"],
-    tags: ["Sashigane", "Compound Angles", "Circumference", "Kikujutsu"],
+    tags: ["Sashigane", "Kikujutsu", "Layout Math", "Compound Angles", "Roof Layout", "Hand Tools", "Joinery & Carpentry"],
     description: "A highly recommended bilingual video explaining how to use the traditional Sashigane square to calculate circle circumferences, run square-root layouts, and map complex compound angles on timber joints.",
     popularity: "Bilingual Sashigane Video",
     region: "Global"
@@ -244,7 +244,7 @@ const initialResources = [
     url: "https://rexs.tools/",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Blog", "Sashigane", "Tool Anatomy", "Layout Math", "Kikujutsu"],
+    tags: ["Sashigane", "Kikujutsu", "Layout Math", "Tool Anatomy", "Hand Tools", "Daiku Dougu", "Joinery & Carpentry"],
     description: "A comprehensive written series covering the history, structural anatomy, and geometric mathematics behind the Sashigane square. Features diagrams detailing metric/shaku scales, right triangles, and structural joints.",
     popularity: "In-depth Sashigane Article",
     region: "Global"
@@ -258,7 +258,7 @@ const initialResources = [
     url: "https://www.amazon.com/Japanese-Woodworking-Tools-Tradition-Spirit/dp/0854420754",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Book", "Hand Tools", "History", "Sharpening", "Spirit"],
+    tags: ["Daiku Dougu", "Hand Tools", "Kanna", "Nomi", "Nokogiri", "Blacksmiths", "Sharpening", "Carpentry History", "Philosophy"],
     description: "Considered the bible for Western woodworkers entering the world of Japanese hand tools. Toshio Odate explains the context, blacksmith traditions, preparation, sharpening, and proper usage of kanna, nomi, and nokogiri.",
     popularity: "Highly Recommended Classic Book",
     region: "Global"
@@ -272,7 +272,7 @@ const initialResources = [
     url: "https://www.amazon.com/Complete-Japanese-Joinery-Yasuo-Nakahara/dp/0881791210",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Book", "Joinery Diagrams", "Blueprints", "Kigumi", "Shiguchi"],
+    tags: ["Kigumi", "Joinery & Carpentry", "Joinery Diagrams", "Blueprints", "Shiguchi", "Tsugite", "Hand Tools"],
     description: "An incredibly comprehensive reference manual that covers the layout, cutting, and assembly of more than 100 traditional joints. Ideal for timber framers and carpenters.",
     popularity: "Essential Reference Book",
     region: "Global"
@@ -286,7 +286,7 @@ const initialResources = [
     url: "https://www.amazon.com/Genius-Japanese-Carpentry-Secrets-Architecture/dp/4805312761",
     featuredVideoId: null,
     languages: ["en"],
-    tags: ["Book", "Temple Architecture", "Miyadaiku", "History", "Philosophy"],
+    tags: ["Miyadaiku", "Temple & Shrine Carpentry", "Traditional Architecture", "Carpentry History", "Philosophy", "Timber Framing", "Kigumi"],
     description: "An elegant exploration of traditional Japanese temple building, detailing the rebuilding of Yakushiji temple. Focuses on the work of master carpenters, planning, tools, and the forest sustainability ethics.",
     popularity: "Architectural & Historical Book",
     region: "Japan / Global"
@@ -300,7 +300,7 @@ const initialResources = [
     url: "https://www.dougukan.jp/",
     featuredVideoId: null,
     languages: ["ja"],
-    tags: ["Book", "大工道具", "Daiku Dougu", "Takenaka Museum", "Sharpening"],
+    tags: ["Daiku Dougu", "Hand Tools", "Kanna", "Nomi", "Nokogiri", "Blacksmiths", "Sharpening", "Carpentry History", "Museum & Archives"],
     description: "หนังสือภาษาญี่ปุ่นอย่างเป็นทางการโดยพิพิธภัณฑ์เครื่องมือช่างไม้ Takenaka อธิบายประเภท ประวัติศาสตร์ และวิธีการใช้งานเครื่องมือช่างไม้แบบโบราณอย่างละเอียด พร้อมภาพประกอบที่ชัดเจน (An authoritative Japanese-language guide detailing the classification, history, and usage of traditional handtools).",
     popularity: "Museum Published Book",
     region: "Japan"
@@ -314,21 +314,21 @@ const initialResources = [
     url: "https://www.amazon.co.jp/dp/476152191X",
     featuredVideoId: null,
     languages: ["ja"],
-    tags: ["Book", "木組み", "Kigumi", "継手・仕口", "Tsugite", "Shiguchi"],
+    tags: ["Kigumi", "Joinery & Carpentry", "Shiguchi", "Tsugite", "Timber Framing", "Joinery Diagrams", "Blueprints"],
     description: "คู่มือภาษาญี่ปุ่นคลาสสิกที่รวบรวมแผนผังการทำรอยต่อไม้แบบโบราณ ทั้งรอยต่อกลางไม้ (Tsugite) และรอยต่อชนมุม (Shiguchi) อธิบายทฤษฎีการกระจายน้ำหนักและการเข้าไม้แบบดั้งเดิม (The ultimate classic Japanese guide detailing traditional framing joints with structural diagrams).",
     popularity: "Classic Technical Book",
     region: "Japan"
   },
   {
     id: "book-hiroshi-uchida",
-    title: "規矩術の基礎と応用 (Kikujutsu: Foundations and Application)",
+    title: "規矩術の基礎และ応用 (Kikujutsu: Foundations and Application)",
     author: "Hiroshi Uchida (内田 弘)",
     type: "book",
     category: "architecture",
     url: "https://www.amazon.co.jp/s?k=%E8%A6%8F%E7%9F%A9%E8%A1%93%E3%81%AE%E5%9F%BA%E7%A4%8E%E3%81%A8%E5%BF%9C%E7%94%A8",
     featuredVideoId: null,
     languages: ["ja"],
-    tags: ["Book", "規矩術", "Kikujutsu", "Sashigane", "Roof Layout"],
+    tags: ["Kikujutsu", "Sashigane", "Layout Math", "Roof Layout", "Traditional Architecture", "Miyadaiku", "Compound Angles"],
     description: "ตำราวิชาคิกุจุสึ (Kikujutsu) ภาษาญี่ปุ่น อธิบายการใช้ไม้ฉาก Sashigane คำนวณองศาซับซ้อนสำหรับงานวางโครงหลังคาวัดและศาลเจ้าญี่ปุ่นดั้งเดิม (A detailed Japanese textbook explaining roof framing geometric calculations using the sashigane).",
     popularity: "Kikujutsu Textbook",
     region: "Japan"
@@ -342,7 +342,7 @@ const initialResources = [
     url: "https://commons.wikimedia.org/wiki/File:Tatekawa_in_Honjo.jpg",
     featuredVideoId: null,
     languages: ["ja", "en"],
-    tags: ["Ukiyo-e", "Lumberyard", "Edo Period", "Saws", "Art", "Public Domain"],
+    tags: ["Ukiyo-e", "Edo Period", "Art & Sketches", "Public Domain", "Lumberyard", "Nokogiri", "Hand Tools", "Carpentry History"],
     description: "ภาพเขียนประวัติศาสตร์ยุคเอโดะจากชุด 'ทัศนียภาพ 36 มุมของภูเขาไฟฟูจิ' (ปี 1830) แสดงภาพคนงานทำไม้ญี่ปุ่นกำลังใช้เลื่อยโบราณผ่าท่อนไม้ใหญ่ และช่างไสไม้ทำงานร่วมกันโดยมีภูเขาไฟฟูจิเป็นฉากหลัง (A masterpiece public domain woodblock print depicting Edo-era woodworkers and carpenters at a lumberyard).",
     popularity: "Famous Woodblock Print (c.1830)",
     region: "Japan"
@@ -356,7 +356,7 @@ const initialResources = [
     url: "https://commons.wikimedia.org/wiki/File:Hokusai_Manga_Vol.3_Carpenters.jpg",
     featuredVideoId: null,
     languages: ["ja", "en"],
-    tags: ["Art", "Sketches", "Carpenters", "Hand Tools", "History", "Public Domain"],
+    tags: ["Art & Sketches", "Public Domain", "Hand Tools", "Nomi", "Carpentry History", "Edo Period", "Daiku Dougu"],
     description: "ภาพสเก็ตช์ลายเส้นพู่กันฝีมือโฮคุไซจากสมุดภาพ Hokusai Manga เล่ม 3 (ปี 1815) แสดงอากัปกิริยา ท่าทาง และการใช้เครื่องมือต่างๆ ของช่างไม้เอโดะ เช่น ขวานโยน (Chona) และสิ่วเจาะ (Nomi) (Public domain brush sketches capturing the authentic tool handling postures of traditional carpenters).",
     popularity: "Historic Art Sketches (1815)",
     region: "Japan"
@@ -370,7 +370,7 @@ const initialResources = [
     url: "https://commons.wikimedia.org/wiki/File:Shomei_Carpentry_Scroll.jpg",
     featuredVideoId: null,
     languages: ["ja"],
-    tags: ["Scroll", "Kikujutsu", "Manual", "Temple Carpentry", "Blueprints", "Public Domain"],
+    tags: ["Kikujutsu", "Miyadaiku", "Temple & Shrine Carpentry", "Traditional Architecture", "Blueprints", "Scroll Manual", "Edo Period", "Public Domain", "Kigumi"],
     description: "คัมภีร์ตำราเขียนแบบช่างไม้ดั้งเดิม 5 เล่ม รวบรวมในปี 1608 โดยตระกูลเฮโนอุจิ (ช่างใหญ่ของโชกุน) บันทึกสูตรลับการคำนวณสัดส่วนวิหารเจดีย์และวิธีการเข้าลิ่มไม้ (Kigumi) สำหรับสถาปัตยกรรมวัดญี่ปุ่นโบราณ (A famous 17th-century carpentry treatise detailing temple proportions and joinery formulas).",
     popularity: "Edo Period Master Manual (1608)",
     region: "Japan"
