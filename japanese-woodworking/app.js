@@ -377,6 +377,11 @@ const initialResources = [
   }
 ];
 
+// 2. State Management
+let resources = [];
+let bookmarks = [];
+let activeTag = null;
+
 // Compile and update JSON-LD Ontology script block in page head
 function updateJSONLDOntology() {
   const context = {
