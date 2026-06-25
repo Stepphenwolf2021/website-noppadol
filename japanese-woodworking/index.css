@@ -163,6 +163,14 @@ body {
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.joint-svg.unlocked #joint-left {
+  transform: translateX(-12px);
+}
+
+.joint-svg.unlocked #joint-right {
+  transform: translateX(12px);
+}
+
 /* Button & Control styling */
 .btn {
   display: inline-flex;
