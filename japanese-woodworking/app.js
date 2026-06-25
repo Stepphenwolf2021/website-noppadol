@@ -1180,6 +1180,45 @@ function setupFormSubmission() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    const newUrl = document.getElementById('form-url').value.trim();
+    const newVideoId = document.getElementById('form-youtube-id').value.trim();
+
+    // Clean URL comparison helper
+    const cleanUrl = (u) => {
+      try {
+        const p = new URL(u);
+        let c = p.hostname.replace('www.', '') + p.pathname.replace(/\/$/, '');
+        if (p.hostname.includes('youtube.com') || p.hostname.includes('youtu.be')) {
+          const v = p.searchParams.get('v');
+          if (v) c += `?v=${v}`;
+        }
+        return c.toLowerCase();
+      } catch (err) {
+        return u.replace(/\/$/, '').toLowerCase();
+      }
+    };
+
+    // Find duplicates
+    const duplicateByUrl = resources.find(r => r.url && cleanUrl(r.url) === cleanUrl(newUrl));
+    const duplicateByVideo = newVideoId ? resources.find(r => r.featuredVideoId === newVideoId) : null;
+    const duplicate = duplicateByUrl || duplicateByVideo;
+
+    if (duplicate) {
+      if (confirm(`This resource already exists in your hub:\n"${duplicate.title}" by ${duplicate.author}\n\nWould you like to open it instead?`)) {
+        modal.close();
+        form.reset();
+        stagedFiles = [];
+        const stagedList = document.getElementById('staged-attachments-list');
+        if (stagedList) stagedList.innerHTML = '';
+        
+        // Open details and focus
+        openDetailsModal(duplicate.id);
+        activeFocusNodeId = `res_${duplicate.id}`;
+        renderDashboard();
+      }
+      return;
+    }
+
     // Gather selected languages
     const langCheckboxes = document.querySelectorAll('input[name="form-lang"]:checked');
     const languages = Array.from(langCheckboxes).map(cb => cb.value);
