@@ -386,6 +386,14 @@ let activeCollectionId = null;
 let stagedFiles = [];
 let db = null;
 let activeDetailsResourceId = null;
+const defaultCategories = [
+  { id: "furniture", name: "Furniture Making" },
+  { id: "joinery", name: "Joinery & Carpentry" },
+  { id: "tools", name: "Tools & Maintenance" },
+  { id: "architecture", name: "Traditional Architecture" },
+  { id: "boatbuilding", name: "Boat Building" }
+];
+let categories = [];
 
 // Compile and update JSON-LD Ontology script block in page head
 function updateJSONLDOntology() {
@@ -444,6 +452,11 @@ function updateJSONLDOntology() {
 
 // Initialize State
 async function initState() {
+  // Load categories
+  const storedCategories = localStorage.getItem('daiku_categories');
+  categories = storedCategories ? JSON.parse(storedCategories) : defaultCategories;
+  populateCategoryDropdowns();
+
   // Init IndexedDB
   try {
     await initIndexedDB();
@@ -882,6 +895,174 @@ function setupDetailsModalEdit() {
     // Reload the details modal to show updated category/tags
     openDetailsModal(activeDetailsResourceId);
   });
+}
+
+// Setup Category Management modal interactions (CRUD)
+function setupCategoriesManagement() {
+  const btnManage = document.getElementById('btn-manage-categories');
+  const modalManage = document.getElementById('manage-categories-modal');
+  const inputNewCat = document.getElementById('new-category-name');
+  const btnAddCat = document.getElementById('btn-add-category');
+  const listCategories = document.getElementById('manage-categories-list');
+
+  if (!btnManage || !modalManage) return;
+
+  btnManage.addEventListener('click', () => {
+    renderManageCategoriesList();
+    modalManage.showModal();
+  });
+
+  btnAddCat.addEventListener('click', () => {
+    const name = inputNewCat.value.trim();
+    if (!name) return;
+
+    // Generate unique slug-like ID
+    const id = name.toLowerCase()
+      .replace(/[^a-z0-9\u0e00-\u0e7f\s-]/g, '') // Keep alphanumeric, space, Thai characters
+      .trim()
+      .replace(/\s+/g, '-');
+
+    if (categories.some(c => c.id === id)) {
+      alert("A category with this name or ID already exists!");
+      return;
+    }
+
+    categories.push({ id, name });
+    localStorage.setItem('daiku_categories', JSON.stringify(categories));
+    inputNewCat.value = '';
+
+    populateCategoryDropdowns();
+    renderManageCategoriesList();
+    renderDashboard();
+  });
+
+  function renderManageCategoriesList() {
+    if (!listCategories) return;
+
+    listCategories.innerHTML = categories.map(c => `
+      <div class="category-manage-item" style="display: flex; align-items: center; justify-content: space-between; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.5rem 0.8rem; gap: 0.5rem;" data-id="${c.id}">
+        <!-- Static view -->
+        <span class="category-name-text" style="font-size: 0.9rem; font-weight: 500;">${c.name}</span>
+        
+        <!-- Edit input (Hidden by default) -->
+        <input type="text" class="category-edit-input form-control" value="${c.name}" style="display: none; flex: 1; min-height: 1.8rem; font-size: 0.85rem; padding: 0.1rem 0.5rem;">
+        
+        <div style="display: flex; gap: 0.4rem;">
+          <!-- Static buttons -->
+          <button class="btn btn-sm btn-edit-cat" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">Edit</button>
+          <button class="btn btn-sm btn-delete-cat" style="padding: 0.2rem 0.5rem; font-size: 0.75rem; color: #ff6b6b;">Delete</button>
+          
+          <!-- Edit actions (Hidden by default) -->
+          <button class="btn btn-sm btn-save-cat btn-primary" style="display: none; padding: 0.2rem 0.5rem; font-size: 0.75rem;">Save</button>
+          <button class="btn btn-sm btn-cancel-cat" style="display: none; padding: 0.2rem 0.5rem; font-size: 0.75rem;">Cancel</button>
+        </div>
+      </div>
+    `).join('');
+
+    // Bind item listeners
+    listCategories.querySelectorAll('.category-manage-item').forEach(item => {
+      const catId = item.getAttribute('data-id');
+      const textSpan = item.querySelector('.category-name-text');
+      const editInput = item.querySelector('.category-edit-input');
+      const btnEdit = item.querySelector('.btn-edit-cat');
+      const btnDelete = item.querySelector('.btn-delete-cat');
+      const btnSave = item.querySelector('.btn-save-cat');
+      const btnCancel = item.querySelector('.btn-cancel-cat');
+
+      // Edit Mode Toggle
+      btnEdit.addEventListener('click', () => {
+        textSpan.style.display = 'none';
+        btnEdit.style.display = 'none';
+        btnDelete.style.display = 'none';
+
+        editInput.style.display = 'block';
+        btnSave.style.display = 'block';
+        btnCancel.style.display = 'block';
+        editInput.focus();
+      });
+
+      // Cancel Edit
+      btnCancel.addEventListener('click', () => {
+        textSpan.style.display = 'block';
+        btnEdit.style.display = 'block';
+        btnDelete.style.display = 'block';
+
+        editInput.style.display = 'none';
+        btnSave.style.display = 'none';
+        btnCancel.style.display = 'none';
+        editInput.value = textSpan.textContent;
+      });
+
+      // Save Edit
+      btnSave.addEventListener('click', () => {
+        const newName = editInput.value.trim();
+        if (!newName) return;
+
+        const cat = categories.find(c => c.id === catId);
+        if (cat) {
+          cat.name = newName;
+          localStorage.setItem('daiku_categories', JSON.stringify(categories));
+          
+          populateCategoryDropdowns();
+          renderManageCategoriesList();
+          renderDashboard();
+        }
+      });
+
+      // Delete Category
+      btnDelete.addEventListener('click', () => {
+        if (categories.length <= 1) {
+          alert("You must keep at least one category!");
+          return;
+        }
+
+        // Check if category is currently used by any resource
+        const inUse = resources.some(r => r.category === catId);
+        const targetCategory = categories.find(c => c.id !== catId); // Fallback category (the first other category)
+
+        if (inUse) {
+          if (!confirm(`This category is used by some resources. Deleting it will reassign them to "${targetCategory.name}". Continue?`)) {
+            return;
+          }
+          // Reassign resources in memory & localStorage
+          resources.forEach(r => {
+            if (r.category === catId) {
+              r.category = targetCategory.id;
+
+              const isCustom = !initialResources.some(ir => ir.id === r.id);
+              if (isCustom) {
+                const storedCustom = localStorage.getItem('daiku_custom_resources');
+                let customRes = storedCustom ? JSON.parse(storedCustom) : [];
+                const index = customRes.findIndex(cr => cr.id === r.id);
+                if (index !== -1) {
+                  customRes[index].category = targetCategory.id;
+                  localStorage.setItem('daiku_custom_resources', JSON.stringify(customRes));
+                }
+              } else {
+                const storedOverrides = localStorage.getItem('daiku_curated_overrides');
+                let curatedOverrides = storedOverrides ? JSON.parse(storedOverrides) : {};
+                curatedOverrides[r.id] = curatedOverrides[r.id] || {};
+                curatedOverrides[r.id].category = targetCategory.id;
+                localStorage.setItem('daiku_curated_overrides', JSON.stringify(curatedOverrides));
+              }
+            }
+          });
+        } else {
+          if (!confirm(`Are you sure you want to delete the category "${getCategoryName(catId)}"?`)) {
+            return;
+          }
+        }
+
+        // Remove from categories array
+        categories = categories.filter(c => c.id !== catId);
+        localStorage.setItem('daiku_categories', JSON.stringify(categories));
+
+        populateCategoryDropdowns();
+        renderManageCategoriesList();
+        renderDashboard();
+      });
+    });
+  }
 }
 
 // 3. Fallbacks for Dialog controls (Invoker Commands helper)
@@ -1636,6 +1817,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initState();
   setupModalFallbacks();
   setupDetailsModalEdit();
+  setupCategoriesManagement();
   setupFilterListeners();
   setupFormSubmission();
   setupThemeToggler();
@@ -1898,15 +2080,35 @@ function updateGraphData(filteredResources) {
   startSimulation();
 }
 
+// Populate Category Select Dropdowns dynamically
+function populateCategoryDropdowns() {
+  const filterCat = document.getElementById('filter-category');
+  const formCat = document.getElementById('form-category');
+  const editCat = document.getElementById('edit-details-category');
+
+  if (filterCat) {
+    const selected = filterCat.value || 'all';
+    filterCat.innerHTML = `<option value="all">All Categories</option>` + 
+      categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    filterCat.value = selected;
+  }
+
+  if (formCat) {
+    const selected = formCat.value || (categories[0] ? categories[0].id : '');
+    formCat.innerHTML = categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    formCat.value = selected;
+  }
+
+  if (editCat) {
+    const selected = editCat.value || (categories[0] ? categories[0].id : '');
+    editCat.innerHTML = categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    editCat.value = selected;
+  }
+}
+
 function getCategoryName(catId) {
-  const catNames = {
-    furniture: "Furniture Making",
-    joinery: "Joinery & Carpentry",
-    tools: "Tools & Maintenance",
-    architecture: "Traditional Architecture",
-    boatbuilding: "Boat Building"
-  };
-  return catNames[catId] || catId;
+  const cat = categories.find(c => c.id === catId);
+  return cat ? cat.name : catId;
 }
 
 function getOntologyDatabase(searchTerm, activeResources) {

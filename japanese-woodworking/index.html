@@ -51,7 +51,10 @@
       <div class="filter-row">
         <div class="filter-groups">
           <div class="filter-group">
-            <label for="filter-category">Category</label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+              <label for="filter-category" style="margin-bottom: 0;">Category</label>
+              <button id="btn-manage-categories" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.75rem; padding: 0;" title="Manage Categories">⚙️ Edit</button>
+            </div>
             <select id="filter-category" class="filter-select">
               <option value="all">All Categories</option>
               <option value="furniture">Furniture Making</option>
@@ -248,6 +251,38 @@
         Visit Resource
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
       </a>
+    </div>
+  </dialog>
+
+  <!-- Manage Categories Modal -->
+  <dialog id="manage-categories-modal" closedby="any" aria-labelledby="manage-cat-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="manage-cat-title">Manage Categories</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Add, edit, or delete resource categories.</p>
+      </div>
+      <button class="close-modal-btn" commandfor="manage-categories-modal" command="close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Add New Category Form -->
+      <div style="background: var(--card-bg); border: 1px dashed var(--border-color); border-radius: var(--radius-md); padding: 0.8rem; margin-bottom: 1.2rem;">
+        <h3 style="font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--accent); font-family: 'Outfit', sans-serif;">Add New Category</h3>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="new-category-name" class="form-control" placeholder="e.g. Timber Framing" style="flex: 1; min-height: 2.2rem;">
+          <button id="btn-add-category" class="btn btn-primary btn-sm" style="padding: 0 1rem; height: 2.2rem; min-height: 2.2rem;">Add</button>
+        </div>
+      </div>
+
+      <!-- Existing Categories List -->
+      <h3 style="font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--accent); font-family: 'Outfit', sans-serif;">Existing Categories</h3>
+      <div id="manage-categories-list" style="display: flex; flex-direction: column; gap: 0.6rem; max-height: 220px; overflow-y: auto; padding-right: 0.3rem;">
+        <!-- Dynamic Category Items -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" commandfor="manage-categories-modal" command="close">Close</button>
     </div>
   </dialog>
 
