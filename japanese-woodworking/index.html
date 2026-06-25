@@ -189,6 +189,7 @@
           <span id="details-type" class="type-badge youtube">YouTube</span>
           <span id="details-author" class="card-author">Author Name</span>
           <span id="details-subs" class="stats-count">Subs/Popularity</span>
+          <span id="details-category-badge" class="stats-count" style="margin-left: 0.5rem; background: var(--border-color); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; color: var(--accent);">Category</span>
         </div>
       </div>
       <button class="close-modal-btn" commandfor="details-modal" command="close" aria-label="Close details">
@@ -215,9 +216,33 @@
           <!-- Dynamically populated attachments -->
         </div>
       </div>
+
+      <!-- Edit Mode Container (Hidden by default) -->
+      <div id="details-edit-container" style="display: none; margin-top: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+        <h4 style="margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent);">Edit Category & Tags</h4>
+        <div class="form-group" style="margin-bottom: 0.8rem;">
+          <label for="edit-details-category" style="font-size: 0.8rem; margin-bottom: 0.3rem; display: block; font-weight: 500;">Category</label>
+          <select id="edit-details-category" class="filter-select form-control" style="width: 100%;">
+            <option value="furniture">Furniture Making</option>
+            <option value="joinery">Joinery & Carpentry</option>
+            <option value="tools">Tools & Maintenance</option>
+            <option value="architecture">Traditional Architecture</option>
+            <option value="boatbuilding">Boat Building</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 0.8rem;">
+          <label for="edit-details-tags" style="font-size: 0.8rem; margin-bottom: 0.3rem; display: block; font-weight: 500;">Tags (separated by comma)</label>
+          <input type="text" id="edit-details-tags" class="form-control" style="width: 100%;" placeholder="e.g. Kigumi, Kanna, Hand Tools">
+        </div>
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem;">
+          <button id="btn-cancel-edit-details" class="btn btn-sm">Cancel</button>
+          <button id="btn-save-edit-details" class="btn btn-sm btn-primary">Save Changes</button>
+        </div>
+      </div>
     </div>
     
     <div class="modal-footer">
+      <button id="btn-edit-details" class="btn">Edit Details</button>
       <button class="btn" commandfor="details-modal" command="close">Close</button>
       <a id="details-visit-link" href="#" target="_blank" class="btn btn-primary">
         Visit Resource

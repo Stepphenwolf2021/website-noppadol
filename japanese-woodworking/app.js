@@ -385,6 +385,7 @@ let collections = [];
 let activeCollectionId = null;
 let stagedFiles = [];
 let db = null;
+let activeDetailsResourceId = null;
 
 // Compile and update JSON-LD Ontology script block in page head
 function updateJSONLDOntology() {
@@ -461,25 +462,35 @@ async function initState() {
   // Migrate/normalize old or redundant tags in custom resources
   customResources.forEach(res => {
     if (res.tags) {
-      res.tags = res.tags.map(t => {
+      const updatedTags = [...res.tags];
+      res.tags.forEach(t => {
         const trimmed = t.trim();
-        // Map redundant/outdated tags to clean standardized ones
+        // Keep the user's custom tags, and append the standardized tags
         if (trimmed.toLowerCase() === 'japanese woodworking') {
-          return 'Joinery & Carpentry';
+          updatedTags.push('Joinery & Carpentry');
         }
         if (trimmed.toLowerCase() === 'woodworking') {
-          return 'Hand Tools';
+          updatedTags.push('Hand Tools');
         }
-        return trimmed;
       });
-      // De-duplicate tags
-      res.tags = Array.from(new Set(res.tags));
+      // De-duplicate tags and clean up whitespace
+      res.tags = Array.from(new Set(updatedTags.map(t => t.trim()).filter(Boolean)));
     }
   });
   localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
 
   // Combine initial and custom
   resources = [...initialResources, ...customResources];
+
+  // Load curated overrides
+  const storedOverrides = localStorage.getItem('daiku_curated_overrides');
+  const curatedOverrides = storedOverrides ? JSON.parse(storedOverrides) : {};
+  resources.forEach(res => {
+    if (curatedOverrides[res.id]) {
+      if (curatedOverrides[res.id].category) res.category = curatedOverrides[res.id].category;
+      if (curatedOverrides[res.id].tags) res.tags = curatedOverrides[res.id].tags;
+    }
+  });
 
   // Load custom collections
   const storedCollections = localStorage.getItem('daiku_collections');
@@ -790,6 +801,86 @@ function setupUrlAutoFetch() {
         if (label) label.remove();
       }
     }
+  });
+}
+
+// 2.5 Setup Details Modal Edit Form Actions
+function setupDetailsModalEdit() {
+  const btnEdit = document.getElementById('btn-edit-details');
+  const btnCancel = document.getElementById('btn-cancel-edit-details');
+  const btnSave = document.getElementById('btn-save-edit-details');
+  const editContainer = document.getElementById('details-edit-container');
+  const selectCategory = document.getElementById('edit-details-category');
+  const inputTags = document.getElementById('edit-details-tags');
+
+  if (!btnEdit || !editContainer) return;
+
+  btnEdit.addEventListener('click', () => {
+    if (!activeDetailsResourceId) return;
+    const res = resources.find(r => r.id === activeDetailsResourceId);
+    if (!res) return;
+
+    // Populate the form values
+    selectCategory.value = res.category || 'joinery';
+    inputTags.value = (res.tags || []).join(', ');
+
+    // Toggle visibility
+    editContainer.style.display = 'block';
+    btnEdit.style.display = 'none';
+  });
+
+  btnCancel.addEventListener('click', () => {
+    editContainer.style.display = 'none';
+    btnEdit.style.display = 'inline-block';
+  });
+
+  btnSave.addEventListener('click', () => {
+    if (!activeDetailsResourceId) return;
+    const res = resources.find(r => r.id === activeDetailsResourceId);
+    if (!res) return;
+
+    const newCategory = selectCategory.value;
+    const tagsString = inputTags.value;
+    // Parse tags: split by comma, trim, filter empty
+    const newTags = tagsString
+      .split(',')
+      .map(t => t.trim())
+      .filter(t => t.length > 0);
+
+    // Update in memory resource
+    res.category = newCategory;
+    res.tags = Array.from(new Set(newTags));
+
+    // Determine if custom vs curated
+    const isCustom = !initialResources.some(ir => ir.id === res.id);
+    if (isCustom) {
+      // Save in custom resources list
+      const storedCustom = localStorage.getItem('daiku_custom_resources');
+      let customResources = storedCustom ? JSON.parse(storedCustom) : [];
+      const index = customResources.findIndex(cr => cr.id === res.id);
+      if (index !== -1) {
+        customResources[index].category = newCategory;
+        customResources[index].tags = res.tags;
+        localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
+      }
+    } else {
+      // Save in curated overrides
+      const storedOverrides = localStorage.getItem('daiku_curated_overrides');
+      let curatedOverrides = storedOverrides ? JSON.parse(storedOverrides) : {};
+      curatedOverrides[res.id] = {
+        category: newCategory,
+        tags: res.tags
+      };
+      localStorage.setItem('daiku_curated_overrides', JSON.stringify(curatedOverrides));
+    }
+
+    // Re-render other components
+    renderDashboard();
+    renderTagCloud();
+    updateJSONLDOntology();
+
+    // Reload the details modal to show updated category/tags
+    openDetailsModal(activeDetailsResourceId);
   });
 }
 
@@ -1186,6 +1277,14 @@ function openDetailsModal(id) {
   const res = resources.find(r => r.id === id);
   if (!res) return;
 
+  activeDetailsResourceId = id;
+
+  // Reset and hide edit container, show edit button
+  const editContainer = document.getElementById('details-edit-container');
+  if (editContainer) editContainer.style.display = 'none';
+  const btnEdit = document.getElementById('btn-edit-details');
+  if (btnEdit) btnEdit.style.display = 'inline-block';
+
   const modal = document.getElementById('details-modal');
   document.getElementById('details-title').textContent = res.title;
   document.getElementById('details-author').innerHTML = `
@@ -1198,11 +1297,34 @@ function openDetailsModal(id) {
   typeBadge.className = `type-badge ${res.type}`;
   typeBadge.textContent = res.type.toUpperCase();
 
+  const categoryBadge = document.getElementById('details-category-badge');
+  if (categoryBadge) {
+    const categoryLabels = {
+      furniture: "Furniture Making",
+      joinery: "Joinery & Carpentry",
+      tools: "Tools & Maintenance",
+      architecture: "Traditional Architecture",
+      boatbuilding: "Boat Building"
+    };
+    categoryBadge.textContent = categoryLabels[res.category] || res.category || 'Category';
+  }
+
   document.getElementById('details-description').textContent = res.description;
 
   // Render Tags
   const tagsBox = document.getElementById('details-tags');
   tagsBox.innerHTML = res.tags.map(t => `<span class="mini-tag" style="font-size: 0.85rem; padding: 0.25rem 0.6rem; cursor: pointer;">#${t}</span>`).join(' ');
+
+  // Add click listeners to tags
+  tagsBox.querySelectorAll('.mini-tag').forEach(tagSpan => {
+    tagSpan.addEventListener('click', () => {
+      const tagText = tagSpan.textContent.substring(1); // remove '#'
+      activeTag = tagText;
+      renderTagCloud();
+      renderDashboard();
+      modal.close();
+    });
+  });
 
   // Video embed setup
   const videoBox = document.getElementById('modal-video-container');
@@ -1513,6 +1635,7 @@ function setupFilterListeners() {
 document.addEventListener('DOMContentLoaded', () => {
   initState();
   setupModalFallbacks();
+  setupDetailsModalEdit();
   setupFilterListeners();
   setupFormSubmission();
   setupThemeToggler();
