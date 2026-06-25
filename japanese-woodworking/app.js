@@ -381,6 +381,10 @@ const initialResources = [
 let resources = [];
 let bookmarks = [];
 let activeTag = null;
+let collections = [];
+let activeCollectionId = null;
+let stagedFiles = [];
+let db = null;
 
 // Compile and update JSON-LD Ontology script block in page head
 function updateJSONLDOntology() {
@@ -438,7 +442,14 @@ function updateJSONLDOntology() {
 }
 
 // Initialize State
-function initState() {
+async function initState() {
+  // Init IndexedDB
+  try {
+    await initIndexedDB();
+  } catch (e) {
+    console.error("Failed to init IndexedDB:", e);
+  }
+
   // Load bookmarks
   const storedBookmarks = localStorage.getItem('daiku_bookmarks');
   bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
@@ -450,6 +461,18 @@ function initState() {
   // Combine initial and custom
   resources = [...initialResources, ...customResources];
 
+  // Load custom collections
+  const storedCollections = localStorage.getItem('daiku_collections');
+  collections = storedCollections ? JSON.parse(storedCollections) : [
+    { id: "col-1", name: "My Favorites", resourceIds: [] }
+  ];
+
+  // Render Collections list in sidebar
+  renderCollections();
+
+  // Populate checkboxes in Add Resource form
+  updateCollectionCheckboxesInForm();
+
   // Update JSON-LD Ontology
   updateJSONLDOntology();
 
@@ -457,6 +480,292 @@ function initState() {
   const storedTheme = localStorage.getItem('daiku_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', storedTheme);
   updateThemeIcon(storedTheme);
+}
+
+// ==========================================
+// IndexedDB & Document Attachment Manager
+// ==========================================
+function initIndexedDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("WoodworkingDB", 1);
+    request.onerror = (event) => {
+      console.error("IndexedDB error:", event.target.errorCode);
+      reject(event.target.errorCode);
+    };
+    request.onsuccess = (event) => {
+      db = event.target.result;
+      console.log("IndexedDB initialized successfully");
+      resolve(db);
+    };
+    request.onupgradeneeded = (event) => {
+      const dbInstance = event.target.result;
+      if (!dbInstance.objectStoreNames.contains("attachments")) {
+        dbInstance.createObjectStore("attachments", { keyPath: "id" });
+      }
+    };
+  });
+}
+
+function saveAttachment(resourceId, file) {
+  return new Promise((resolve, reject) => {
+    if (!db) return reject("Database not initialized");
+    const transaction = db.transaction(["attachments"], "readwrite");
+    const store = transaction.objectStore("attachments");
+    
+    const entry = {
+      id: `${resourceId}-${file.name}`,
+      resourceId: resourceId,
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      blob: file
+    };
+    
+    const request = store.put(entry);
+    request.onsuccess = () => resolve(entry);
+    request.onerror = (e) => reject(e);
+  });
+}
+
+function getAttachments(resourceId) {
+  return new Promise((resolve, reject) => {
+    if (!db) return resolve([]);
+    const transaction = db.transaction(["attachments"], "readonly");
+    const store = transaction.objectStore("attachments");
+    const attachments = [];
+    
+    const request = store.openCursor();
+    request.onsuccess = (event) => {
+      const cursor = event.target.result;
+      if (cursor) {
+        if (cursor.value.resourceId === resourceId) {
+          attachments.push(cursor.value);
+        }
+        cursor.continue();
+      } else {
+        resolve(attachments);
+      }
+    };
+    request.onerror = (e) => reject(e);
+  });
+}
+
+function deleteAttachment(resourceId, filename) {
+  return new Promise((resolve, reject) => {
+    if (!db) return reject("Database not initialized");
+    const transaction = db.transaction(["attachments"], "readwrite");
+    const store = transaction.objectStore("attachments");
+    const request = store.delete(`${resourceId}-${filename}`);
+    request.onsuccess = () => resolve();
+    request.onerror = (e) => reject(e);
+  });
+}
+
+// ==========================================
+// Custom Collections Managers & Events
+// ==========================================
+function renderCollections() {
+  const listContainer = document.getElementById('collection-list');
+  if (!listContainer) return;
+  
+  listContainer.innerHTML = collections.map(col => {
+    const isActive = activeCollectionId === col.id ? 'active' : '';
+    return `
+      <div class="collection-item ${isActive}" data-id="${col.id}">
+        <span class="collection-name">${col.name}</span>
+        <span class="collection-count">${col.resourceIds.length}</span>
+        ${col.id !== 'col-1' ? `
+          <button class="delete-collection-btn" title="Delete collection">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+  
+  listContainer.querySelectorAll('.collection-item').forEach(item => {
+    const colId = item.getAttribute('data-id');
+    
+    item.addEventListener('click', (e) => {
+      if (e.target.closest('.delete-collection-btn')) return;
+      
+      if (activeCollectionId === colId) {
+        activeCollectionId = null;
+      } else {
+        activeCollectionId = colId;
+      }
+      
+      // Clear tag, category, and search input when selecting a collection
+      activeTag = null;
+      document.getElementById('filter-category').value = 'all';
+      document.getElementById('search-input').value = '';
+      
+      renderCollections();
+      renderDashboard();
+    });
+    
+    const delBtn = item.querySelector('.delete-collection-btn');
+    if (delBtn) {
+      delBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (confirm(`Are you sure you want to delete the collection "${collections.find(c => c.id === colId).name}"?`)) {
+          collections = collections.filter(c => c.id !== colId);
+          localStorage.setItem('daiku_collections', JSON.stringify(collections));
+          if (activeCollectionId === colId) activeCollectionId = null;
+          renderCollections();
+          renderDashboard();
+          updateCollectionCheckboxesInForm();
+        }
+      });
+    }
+  });
+}
+
+function setupCollectionsActions() {
+  const addColBtn = document.getElementById('add-collection-btn');
+  if (addColBtn) {
+    addColBtn.addEventListener('click', () => {
+      const name = prompt("Enter new collection name:");
+      if (name && name.trim()) {
+        const newCol = {
+          id: "col-" + Date.now(),
+          name: name.trim(),
+          resourceIds: []
+        };
+        collections.push(newCol);
+        localStorage.setItem('daiku_collections', JSON.stringify(collections));
+        renderCollections();
+        updateCollectionCheckboxesInForm();
+      }
+    });
+  }
+}
+
+function updateCollectionCheckboxesInForm() {
+  const container = document.getElementById('form-collections-checkboxes');
+  if (!container) return;
+  
+  if (collections.length === 0) {
+    container.innerHTML = '<span style="font-size: 0.85rem; color: var(--text-muted);">No custom collections created yet.</span>';
+    return;
+  }
+  
+  container.innerHTML = collections.map(col => `
+    <label class="checkbox-label" style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.2rem;">
+      <input type="checkbox" name="form-collections" value="${col.id}"> ${col.name}
+    </label>
+  `).join('');
+}
+
+// ==========================================
+// File Attachment Staging & Upload Events
+// ==========================================
+function setupAttachmentsStaging() {
+  const fileInput = document.getElementById('form-attachments');
+  const listContainer = document.getElementById('staged-attachments-list');
+  if (!fileInput || !listContainer) return;
+  
+  fileInput.addEventListener('change', () => {
+    const files = Array.from(fileInput.files);
+    files.forEach(file => {
+      if (!stagedFiles.some(f => f.name === file.name)) {
+        stagedFiles.push(file);
+      }
+    });
+    renderStagedFiles();
+    fileInput.value = '';
+  });
+  
+  function renderStagedFiles() {
+    listContainer.innerHTML = stagedFiles.map((file, index) => `
+      <span class="attachment-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        ${file.name} (${(file.size / 1024).toFixed(1)} KB)
+        <button type="button" class="remove-btn" data-index="${index}" style="margin-left: 0.3rem; border: none; background: none; cursor: pointer; color: var(--text-muted);">✕</button>
+      </span>
+    `).join('');
+    
+    listContainer.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.getAttribute('data-index'));
+        stagedFiles.splice(index, 1);
+        renderStagedFiles();
+      });
+    });
+  }
+}
+
+// ==========================================
+// YouTube URL Metadata oEmbed Auto-Fetch
+// ==========================================
+function setupUrlAutoFetch() {
+  const urlInput = document.getElementById('form-url');
+  if (!urlInput) return;
+  
+  urlInput.addEventListener('input', async () => {
+    const url = urlInput.value.trim();
+    if (!url) return;
+    
+    const ytRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(ytRegex);
+    
+    if (match) {
+      const videoId = match[1];
+      const vidField = document.getElementById('form-youtube-id');
+      if (vidField && !vidField.value) {
+        vidField.value = videoId;
+      }
+      
+      const typeField = document.getElementById('form-type');
+      if (typeField) {
+        typeField.value = 'youtube';
+      }
+      
+      try {
+        let label = document.getElementById('youtube-fetch-badge');
+        if (!label) {
+          label = document.createElement('span');
+          label.id = 'youtube-fetch-badge';
+          label.style.fontSize = '0.75rem';
+          label.style.color = 'var(--accent)';
+          label.style.marginLeft = '0.5rem';
+          const urlLabel = urlInput.previousElementSibling;
+          if (urlLabel) urlLabel.appendChild(label);
+        }
+        
+        label.textContent = '⏳ Loading YouTube info...';
+        label.style.color = 'var(--accent)';
+        
+        const response = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`);
+        if (response.ok) {
+          const data = await response.json();
+          
+          const titleField = document.getElementById('form-title');
+          if (titleField && !titleField.value) {
+            titleField.value = data.title;
+          }
+          
+          const authorField = document.getElementById('form-author');
+          if (authorField && !authorField.value) {
+            authorField.value = data.author_name;
+          }
+          
+          label.textContent = '✓ YouTube info loaded!';
+          label.style.color = '#4caf50';
+          setTimeout(() => {
+            const lbl = document.getElementById('youtube-fetch-badge');
+            if (lbl) lbl.remove();
+          }, 3000);
+        } else {
+          label.remove();
+        }
+      } catch (err) {
+        console.error("Error fetching oEmbed:", err);
+        const label = document.getElementById('youtube-fetch-badge');
+        if (label) label.remove();
+      }
+    }
+  });
 }
 
 // 3. Fallbacks for Dialog controls (Invoker Commands helper)
@@ -543,7 +852,11 @@ function renderDashboard() {
     // Active Tag Cloud match
     const matchesActiveTag = !activeTag || res.tags.includes(activeTag);
 
-    return matchesSearch && matchesCategory && matchesLanguage && matchesType && matchesFavorite && matchesActiveTag;
+    // Custom Collection match
+    const matchesCollection = !activeCollectionId || 
+      collections.find(c => c.id === activeCollectionId)?.resourceIds.includes(res.id);
+
+    return matchesSearch && matchesCategory && matchesLanguage && matchesType && matchesFavorite && matchesActiveTag && matchesCollection;
   });
 
   // Sort
@@ -608,6 +921,17 @@ function renderDashboard() {
         </div>
         <p class="card-desc">${res.description}</p>
         <div class="card-tags">${miniTags}</div>
+        
+        <div class="card-collection-actions" style="margin-bottom: 0.8rem;">
+          <select class="collection-select-btn form-control" data-id="${res.id}" style="font-size: 0.75rem; padding: 0.2rem 0.5rem; height: auto; cursor: pointer; width: 100%;">
+            <option value="">📂 Add to Collection...</option>
+            ${collections.map(c => {
+              const inCol = c.resourceIds.includes(res.id);
+              return `<option value="${c.id}" ${inCol ? 'disabled style="color:var(--text-muted);"' : ''}>${inCol ? '✓ ' : '+ '}${c.name}</option>`;
+            }).join('')}
+          </select>
+        </div>
+
         <div class="card-footer">
           <div class="languages-list">${langBadges}</div>
           <button class="btn btn-card-details" data-id="${res.id}">Details</button>
@@ -628,6 +952,24 @@ function renderDashboard() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleBookmark(btn.getAttribute('data-id'));
+    });
+  });
+
+  // Wire up Collection Selector inside cards
+  document.querySelectorAll('.collection-select-btn').forEach(sel => {
+    sel.addEventListener('change', (e) => {
+      const resId = sel.getAttribute('data-id');
+      const colId = e.target.value;
+      if (!colId) return;
+      
+      const col = collections.find(c => c.id === colId);
+      if (col && !col.resourceIds.includes(resId)) {
+        col.resourceIds.push(resId);
+        localStorage.setItem('daiku_collections', JSON.stringify(collections));
+        renderCollections();
+        renderDashboard();
+      }
+      e.target.value = ""; // Reset dropdown
     });
   });
 }
@@ -674,6 +1016,48 @@ function openDetailsModal(id) {
 
   // Visit link setup
   document.getElementById('details-visit-link').setAttribute('href', res.url);
+
+  // Render Attachments from IndexedDB
+  const attachmentsList = document.getElementById('details-attachments-list');
+  if (attachmentsList) {
+    attachmentsList.innerHTML = '<span style="font-size: 0.85rem; color: var(--text-muted);">Loading attachments...</span>';
+    getAttachments(res.id).then(files => {
+      if (files.length === 0) {
+        attachmentsList.innerHTML = '<span style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">No documents attached.</span>';
+        return;
+      }
+      attachmentsList.innerHTML = files.map(file => {
+        const fileUrl = URL.createObjectURL(file.blob);
+        return `
+          <div style="display: flex; align-items: center; gap: 0.4rem; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.2rem 0.5rem;">
+            <a href="${fileUrl}" target="_blank" class="attachment-badge" style="border: none; background: none; padding: 0; display: inline-flex; align-items: center; gap: 0.3rem;" title="Open ${file.name}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              ${file.name} (${(file.size / 1024).toFixed(1)} KB)
+            </a>
+            <button class="delete-attachment-btn" data-res-id="${res.id}" data-filename="${file.name}" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 0.1rem; display: flex; align-items: center;" title="Delete document">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        `;
+      }).join('');
+      
+      // Delete attachment handler
+      attachmentsList.querySelectorAll('.delete-attachment-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const rId = btn.getAttribute('data-res-id');
+          const filename = btn.getAttribute('data-filename');
+          if (confirm(`Delete attached file "${filename}"?`)) {
+            await deleteAttachment(rId, filename);
+            openDetailsModal(rId);
+          }
+        });
+      });
+    }).catch(err => {
+      console.error(err);
+      attachmentsList.innerHTML = '<span style="font-size: 0.85rem; color: #ff6b6b;">Error loading attachments.</span>';
+    });
+  }
 
   // Close event listener to clean up iframe (stop audio playing in background)
   modal.addEventListener('close', () => {
@@ -834,6 +1218,32 @@ function setupFormSubmission() {
     customResources.push(newResource);
     localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
 
+    // Process selected Collections
+    const selectedColCheckboxes = document.querySelectorAll('input[name="form-collections"]:checked');
+    const selectedColIds = Array.from(selectedColCheckboxes).map(cb => cb.value);
+    selectedColIds.forEach(colId => {
+      const col = collections.find(c => c.id === colId);
+      if (col && !col.resourceIds.includes(newResource.id)) {
+        col.resourceIds.push(newResource.id);
+      }
+    });
+    if (selectedColIds.length > 0) {
+      localStorage.setItem('daiku_collections', JSON.stringify(collections));
+      renderCollections();
+    }
+
+    // Process staged File Attachments
+    if (stagedFiles.length > 0) {
+      Promise.all(stagedFiles.map(file => saveAttachment(newResource.id, file)))
+        .then(() => {
+          console.log(`[IndexedDB] Staged attachments saved for ${newResource.id}`);
+          stagedFiles = [];
+          const stagedList = document.getElementById('staged-attachments-list');
+          if (stagedList) stagedList.innerHTML = '';
+        })
+        .catch(err => console.error("Error saving staged attachments:", err));
+    }
+
     // Update state and refresh
     resources.push(newResource);
     
@@ -848,6 +1258,12 @@ function setupFormSubmission() {
 
     // Reset Form & Close Modal
     form.reset();
+    stagedFiles = []; // Reset staged files array on close/cancel
+    const stagedList = document.getElementById('staged-attachments-list');
+    if (stagedList) stagedList.innerHTML = '';
+    
+    // Refresh collection checkboxes in form
+    updateCollectionCheckboxesInForm();
     modal.close();
   });
 }
@@ -876,6 +1292,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormSubmission();
   setupThemeToggler();
   setupJointAnimation();
+  setupCollectionsActions();
+  setupAttachmentsStaging();
+  setupUrlAutoFetch();
 
   // Initialize Graph View on Page Load
   initGraphView();

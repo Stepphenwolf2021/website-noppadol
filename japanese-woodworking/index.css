@@ -1093,3 +1093,133 @@ dialog:not([open]) {
   }
 }
 
+/* Custom Collections */
+.collection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.collection-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.collection-item:hover, .collection-item.active {
+  border-color: var(--accent);
+  background-color: rgba(216, 155, 108, 0.05);
+}
+
+.collection-item .collection-name {
+  flex-grow: 1;
+  font-weight: 500;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collection-item .collection-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background-color: var(--bg-color);
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+}
+
+.collection-item .delete-collection-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+  margin-left: auto;
+}
+
+.collection-item .delete-collection-btn:hover {
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* Card Collection Actions */
+.card-collection-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.btn-icon {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.btn-icon:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: rgba(216, 155, 108, 0.05);
+}
+
+/* Attachments */
+.staged-attachments-list .attachment-badge, .details-attachments-wrapper .attachment-badge {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.details-attachments-wrapper .attachment-badge:hover {
+  border-color: var(--accent);
+  background-color: rgba(216, 155, 108, 0.05);
+  color: var(--accent);
+}
+
+.staged-attachments-list .attachment-badge .remove-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.staged-attachments-list .attachment-badge .remove-btn:hover {
+  color: #ff6b6b;
+}
+
+.attachment-badge svg {
+  flex-shrink: 0;
+}
+
+
