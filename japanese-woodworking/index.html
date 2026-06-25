@@ -19,10 +19,10 @@
         </div>
       </div>
       <div class="header-controls">
-        <!-- Joint Animation Widget -->
-        <div class="joint-widget-container" id="joint-widget" title="Click to disassemble/assemble the joint">
-          <span>Joint: <strong id="joint-status">Locked</strong></span>
-          <svg class="joint-svg" viewBox="0 0 120 50" id="joint-svg" aria-label="Traditional Wood Joint Animation">
+        <!-- Joint Animation Widget as Theme Toggle -->
+        <div class="joint-widget-container" id="joint-widget" style="cursor: pointer;" title="Click to toggle Dark/Bright theme">
+          <span>Theme: <strong id="theme-status">Dark</strong></span>
+          <svg class="joint-svg" viewBox="0 0 120 50" id="joint-svg" aria-label="Traditional Wood Joint Theme Toggle">
             <path id="joint-left" d="M 10,10 H 55 L 65,25 L 55,40 H 10 Z" fill="var(--accent-hover)" />
             <path id="joint-right" d="M 110,10 H 55 L 65,25 L 55,40 H 110 Z" fill="var(--accent)" opacity="0.8" />
           </svg>
@@ -31,13 +31,6 @@
         <button id="add-resource-trigger" class="btn btn-primary" commandfor="add-resource-modal" command="show-modal">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
           Add Resource
-        </button>
-
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
-          <!-- Moon Icon (shown in light mode) -->
-          <svg class="sun-moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
         </button>
       </div>
     </header>

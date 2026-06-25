@@ -479,7 +479,7 @@ async function initState() {
   // Set Theme
   const storedTheme = localStorage.getItem('daiku_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', storedTheme);
-  updateThemeIcon(storedTheme);
+  updateThemeWidgetState(storedTheme);
 }
 
 // ==========================================
@@ -1115,61 +1115,40 @@ function renderTagCloud() {
   });
 }
 
-// 8. Theme Toggle logic
+// 8. Theme Toggle logic (Traditional Wood Joint Widget)
 function setupThemeToggler() {
-  const toggleBtn = document.getElementById('theme-toggle');
+  const jointWidget = document.getElementById('joint-widget');
+  if (!jointWidget) return;
 
-  toggleBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
+  jointWidget.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('daiku_theme', newTheme);
-    updateThemeIcon(newTheme);
-  });
-}
-
-function updateThemeIcon(theme) {
-  const toggleBtn = document.getElementById('theme-toggle');
-  if (theme === 'light') {
-    toggleBtn.innerHTML = `
-      <svg class="sun-moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
-    `;
-  } else {
-    toggleBtn.innerHTML = `
-      <svg class="sun-moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </svg>
-    `;
-  }
-}
-
-// 9. Interactive SVG Joint Animation Logic
-function setupJointAnimation() {
-  const jointWidget = document.getElementById('joint-widget');
-  const jointSvg = document.getElementById('joint-svg');
-  const jointStatus = document.getElementById('joint-status');
-
-  jointWidget.addEventListener('click', () => {
-    const isUnlocked = jointSvg.classList.toggle('unlocked');
-    if (isUnlocked) {
-      jointStatus.textContent = 'Unlocked';
-      jointStatus.style.color = 'var(--accent-hover)';
-    } else {
-      jointStatus.textContent = 'Locked';
-      jointStatus.style.color = '';
+    updateThemeWidgetState(newTheme);
+    
+    // Redraw graph to update its colors for the new theme
+    if (typeof drawGraph === 'function') {
+      drawGraph();
     }
   });
+}
+
+function updateThemeWidgetState(theme) {
+  const jointSvg = document.getElementById('joint-svg');
+  const themeStatus = document.getElementById('theme-status');
+  if (!jointSvg || !themeStatus) return;
+
+  if (theme === 'light') {
+    jointSvg.classList.add('unlocked');
+    themeStatus.textContent = 'Bright';
+    themeStatus.style.color = 'var(--accent-hover)';
+  } else {
+    jointSvg.classList.remove('unlocked');
+    themeStatus.textContent = 'Dark';
+    themeStatus.style.color = '';
+  }
 }
 
 // 10. Form Submission (Add Custom Resource)
@@ -1330,7 +1309,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFilterListeners();
   setupFormSubmission();
   setupThemeToggler();
-  setupJointAnimation();
   setupCollectionsActions();
   setupAttachmentsStaging();
   setupUrlAutoFetch();
