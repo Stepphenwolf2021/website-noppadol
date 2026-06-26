@@ -2360,7 +2360,7 @@ function drawGraph() {
   const theme = document.documentElement.getAttribute('data-theme') || 'dark';
 
   // Styles based on theme
-  const linkColorNormal = theme === 'light' ? '#e3dcd3' : '#332822';
+  const linkColorNormal = theme === 'light' ? '#8a786f' : '#8f7c72';
   const nodeTextMuted = theme === 'light' ? '#73635a' : '#a89c94';
   const nodeTextActive = theme === 'light' ? '#2b1f1a' : '#f5efe9';
   const tagFillColor = theme === 'light' ? 'rgba(109, 162, 248, 0.15)' : 'rgba(109, 162, 248, 0.1)';
@@ -2374,15 +2374,27 @@ function drawGraph() {
     const startX = link.source.x + Math.cos(angle) * link.source.radius;
     const startY = link.source.y + Math.sin(angle) * link.source.radius;
     // Add extra offset so arrow tip points precisely to node boundary stroke
-    const endOffset = link.target.radius + 5;
+    const endOffset = link.target.radius + 6;
     const endX = link.target.x - Math.cos(angle) * endOffset;
     const endY = link.target.y - Math.sin(angle) * endOffset;
+
+    // Check if link is connected to active/focused or hovered node
+    const isRelatedToFocus = activeFocusNodeId && (link.source.id === activeFocusNodeId || link.target.id === activeFocusNodeId);
+    const isRelatedToHover = hoveredNode && (link.source === hoveredNode || link.target === hoveredNode);
+    const isHighlighted = isRelatedToFocus || isRelatedToHover;
 
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
-    ctx.strokeStyle = linkColorNormal;
-    ctx.lineWidth = 1.2;
+    
+    // Highlight links connected to hovered/focused nodes
+    if (isHighlighted) {
+      ctx.strokeStyle = theme === 'light' ? '#e27b38' : '#e6904e'; // Accent orange
+      ctx.lineWidth = 2.5;
+    } else {
+      ctx.strokeStyle = linkColorNormal;
+      ctx.lineWidth = 1.6;
+    }
     ctx.stroke();
 
     // Draw Arrowhead at the target edge
@@ -2391,10 +2403,11 @@ function drawGraph() {
     ctx.rotate(angle);
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(-5, -2.5);
-    ctx.lineTo(-5, 2.5);
+    // Larger arrowhead
+    ctx.lineTo(-8, -4);
+    ctx.lineTo(-8, 4);
     ctx.closePath();
-    ctx.fillStyle = linkColorNormal;
+    ctx.fillStyle = isHighlighted ? (theme === 'light' ? '#e27b38' : '#e6904e') : linkColorNormal;
     ctx.fill();
     ctx.restore();
 
@@ -2404,7 +2417,7 @@ function drawGraph() {
       const midY = (link.source.y + link.target.y) / 2;
       
       ctx.save();
-      ctx.font = '9px monospace';
+      ctx.font = isHighlighted ? 'bold 10px monospace' : '9px monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       
@@ -2413,8 +2426,8 @@ function drawGraph() {
       
       // Draw background pill
       ctx.fillStyle = theme === 'light' ? '#f6f1eb' : '#221813';
-      ctx.strokeStyle = theme === 'light' ? '#e3dcd3' : '#332822';
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = isHighlighted ? (theme === 'light' ? '#e27b38' : '#e6904e') : (theme === 'light' ? '#dcd2c7' : '#3d302a');
+      ctx.lineWidth = isHighlighted ? 1.5 : 1.0;
       
       ctx.beginPath();
       const rectW = textWidth + 8;
@@ -2426,7 +2439,7 @@ function drawGraph() {
       ctx.stroke();
       
       // Draw text
-      ctx.fillStyle = theme === 'light' ? '#8a7d76' : '#a89c94';
+      ctx.fillStyle = isHighlighted ? (theme === 'light' ? '#b85a1e' : '#f0ab78') : (theme === 'light' ? '#8a7d76' : '#a89c94');
       ctx.fillText(labelText, midX, midY);
       ctx.restore();
     }
