@@ -1,0 +1,30 @@
+[
+  {
+    "id": "welcome-note",
+    "title": "Welcome to Your Personal Knowledge Hub!",
+    "author": "System Guide",
+    "type": "link",
+    "category": "general",
+    "url": "https://github.com",
+    "featuredVideoId": null,
+    "languages": ["en"],
+    "tags": ["Overview", "Welcome", "Dynamic", "Fiverr"],
+    "description": "Double-click this node on the Interactive Canvas Graph to view its details. You can add, edit, or delete items, create collections, upload files, and export backups.",
+    "popularity": "Getting Started",
+    "region": "Global"
+  },
+  {
+    "id": "intro-to-graph",
+    "title": "Introduction to Interactive Graphs",
+    "author": "Graph Guide",
+    "type": "youtube",
+    "category": "resources",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "featuredVideoId": "dQw4w9WgXcQ",
+    "languages": ["en"],
+    "tags": ["Visualization", "Graph", "Interactive"],
+    "description": "This is a sample YouTube video resource node. The graph dynamically maps links between this node, its category, tags, and creators.",
+    "popularity": "Video Guide",
+    "region": "Global"
+  }
+]

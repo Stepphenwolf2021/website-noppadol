@@ -1,0 +1,6 @@
+[
+  { "id": "general", "name": "General Knowledge" },
+  { "id": "tools", "name": "Tools & Apps" },
+  { "id": "resources", "name": "Learning Resources" },
+  { "id": "projects", "name": "Projects & Ideas" }
+]

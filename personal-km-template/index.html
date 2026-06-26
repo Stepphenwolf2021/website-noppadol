@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Knowledge Hub</title>
+  <meta name="description" content="An interactive personal knowledge base and relationship explorer.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-section">
+        <div class="logo-kanji" id="logo-badge">KM</div>
+        <div class="logo-text">
+          <h1 id="app-site-title">Knowledge Hub</h1>
+          <p id="app-site-subtitle">Personal Knowledge Management & Relationship Explorer</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <!-- Theme Toggle -->
+        <div class="joint-widget-container" id="joint-widget" style="cursor: pointer;" title="Click to toggle Dark/Bright theme">
+          <span>Theme: <strong id="theme-status">Dark</strong></span>
+          <svg class="joint-svg" viewBox="0 0 120 50" id="joint-svg" aria-label="Interactive Theme Toggle">
+            <path id="joint-left" d="M 10,10 H 55 L 65,25 L 55,40 H 10 Z" fill="var(--accent-hover)" />
+            <path id="joint-right" d="M 110,10 H 55 L 65,25 L 55,40 H 110 Z" fill="var(--accent)" opacity="0.8" />
+          </svg>
+        </div>
+        
+        <button id="settings-trigger" class="btn" commandfor="manage-settings-modal" command="show-modal" style="display: inline-flex; align-items: center; gap: 0.3rem;" title="Manage Settings & Backups">
+          ⚙️ Settings
+        </button>
+
+        <button id="add-resource-trigger" class="btn btn-primary" commandfor="add-resource-modal" command="show-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Add Resource
+        </button>
+      </div>
+    </header>
+
+    <!-- Search & Filters -->
+    <section class="search-filter-panel">
+      <div class="search-row">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Search resources by title, author, description, tags...">
+        </div>
+        <button id="favorites-toggle" class="btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Bookmarks Only
+        </button>
+      </div>
+
+      <div class="filter-row">
+        <div class="filter-groups">
+          <div class="filter-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+              <label for="filter-category" style="margin-bottom: 0;">Category</label>
+              <button id="btn-manage-categories" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.75rem; padding: 0;" title="Manage Categories">⚙️ Edit</button>
+            </div>
+            <select id="filter-category" class="filter-select">
+              <option value="all">All Categories</option>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-language">Language</label>
+            <select id="filter-language" class="filter-select">
+              <option value="all">All Languages</option>
+              <option value="en">English</option>
+              <option value="ja">日本語 (Japanese)</option>
+              <option value="th">ภาษาไทย (Thai)</option>
+              <option value="multi">Bilingual / Visual</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-type">Resource Type</label>
+            <select id="filter-type" class="filter-select">
+              <option value="all">All Types</option>
+              <option value="youtube">YouTube Channels</option>
+              <option value="website">Websites / Portals</option>
+              <option value="blog">Blogs</option>
+              <option value="book">Reference Books</option>
+              <option value="archive">Historical Archive</option>
+              <option value="link">General Links</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sort-order">Sort By</label>
+            <select id="sort-order" class="filter-select">
+              <option value="default">Curated Order</option>
+              <option value="az">Title A-Z</option>
+              <option value="popularity">Popularity Info</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="stats-count">
+          Showing <strong id="visible-count">0</strong> of <strong id="total-count">0</strong> resources
+        </div>
+      </div>
+
+      <!-- Quick Tag Filter -->
+      <div class="filter-group" style="margin-top: 1.2rem;">
+        <label style="margin-bottom: 0.4rem;">Filter by Popular Tags</label>
+        <div class="tag-cloud" id="tag-cloud">
+          <!-- Dynamically populated tags -->
+        </div>
+      </div>
+
+      <!-- Custom Collections -->
+      <div class="filter-group" style="margin-top: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1.2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+          <label style="margin-bottom: 0;">Custom Collections</label>
+          <button id="add-collection-btn" class="btn btn-sm btn-icon" style="padding: 0.2rem 0.4rem;" title="Create new collection">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+        </div>
+        <div class="collection-list" id="collection-list">
+          <!-- Dynamically populated collections -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Split Layout -->
+    <div class="dashboard-split-layout">
+      <!-- Left Column: Interactive Relationship Graph & Legend -->
+      <div class="graph-column-wrapper">
+        <main id="graph-view-container" class="graph-view-container">
+          <canvas id="graph-canvas"></canvas>
+          
+          <!-- Interactive Graph Navigation Overlay -->
+          <div class="graph-controls-panel collapsed" id="graph-controls-panel">
+            <div class="controls-header" id="controls-toggle">
+              <span>Graph Navigation</span>
+              <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="controls-content" id="controls-content">
+              <ul class="graph-instructions">
+                <li>Click any node to focus/explore</li>
+                <li>Click the center node to go back/up</li>
+                <li>Double-click Resource for details</li>
+                <li>Drag background to pan; scroll to zoom</li>
+              </ul>
+              <div class="control-actions">
+                <button id="btn-reset-focus" class="btn btn-sm btn-primary">Reset Focus</button>
+                <button id="btn-reset-view" class="btn btn-sm">Reset View</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Graph Legend Box -->
+        <div class="graph-legend">
+          <div class="legend-header">
+            <div class="legend-title">Graph Legend</div>
+            <div class="legend-items-container">
+              <div class="legend-item"><span class="legend-dot resource"></span> Resource</div>
+              <div class="legend-item"><span class="legend-dot creator"></span> Creator</div>
+              <div class="legend-item"><span class="legend-dot category"></span> Category</div>
+              <div class="legend-item"><span class="legend-dot tag"></span> Tag</div>
+            </div>
+          </div>
+          <div class="legend-instructions">Click any node to focus/explore relationships. Click the center node to go back. Double-click Resource to view details.</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Resources Grid -->
+      <main class="dashboard-grid" id="resources-grid">
+        <!-- Cards will be dynamically injected here -->
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p id="app-footer-text">© 2026 Personal Knowledge Hub. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Resource Details Modal -->
+  <dialog id="details-modal" closedby="any" aria-labelledby="details-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="details-title">Resource Name</h2>
+        <div class="modal-subtitle">
+          <span id="details-type" class="type-badge youtube">YouTube</span>
+          <span id="details-author" class="card-author">Author Name</span>
+          <span id="details-subs" class="stats-count">Subs/Popularity</span>
+          <span id="details-category-badge" class="stats-count" style="margin-left: 0.5rem; background: var(--border-color); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; color: var(--accent);">Category</span>
+        </div>
+      </div>
+      <button class="close-modal-btn" commandfor="details-modal" command="close" aria-label="Close details">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <!-- Video Embed (Dynamic iframe container) -->
+      <div class="video-container" id="modal-video-container" style="display: none;">
+        <!-- iframe will be dynamically added here -->
+      </div>
+      
+      <p id="details-description" class="modal-desc">Detailed description goes here...</p>
+      
+      <div class="modal-tags" id="details-tags">
+        <!-- Tags will go here -->
+      </div>
+
+      <!-- User Attached Files -->
+      <div class="details-attachments-wrapper" style="margin-top: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+        <h4 style="margin-bottom: 0.6rem; font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent);">Attached Documents</h4>
+        <div id="details-attachments-list" style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+          <!-- Dynamically populated attachments -->
+        </div>
+      </div>
+
+      <!-- Edit Mode Container (Hidden by default) -->
+      <div id="details-edit-container" style="display: none; margin-top: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+        <h4 style="margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent);">Edit Category & Tags</h4>
+        <div class="form-group" style="margin-bottom: 0.8rem;">
+          <label for="edit-details-category" style="font-size: 0.8rem; margin-bottom: 0.3rem; display: block; font-weight: 500;">Category</label>
+          <select id="edit-details-category" class="filter-select form-control" style="width: 100%;">
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 0.8rem;">
+          <label for="edit-details-tags" style="font-size: 0.8rem; margin-bottom: 0.3rem; display: block; font-weight: 500;">Tags (separated by comma)</label>
+          <input type="text" id="edit-details-tags" class="form-control" style="width: 100%;" placeholder="e.g. Overview, Guide, Design">
+        </div>
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem;">
+          <button id="btn-cancel-edit-details" class="btn btn-sm">Cancel</button>
+          <button id="btn-save-edit-details" class="btn btn-sm btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button id="btn-delete-resource-modal" class="btn" style="color: #ff6b6b; border-color: rgba(255, 107, 107, 0.4); margin-right: auto;" title="Delete this resource">Delete</button>
+      <button id="btn-edit-details" class="btn">Edit Details</button>
+      <button class="btn" commandfor="details-modal" command="close">Close</button>
+      <a id="details-visit-link" href="#" target="_blank" class="btn btn-primary">
+        Visit Resource
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </div>
+  </dialog>
+
+  <!-- Manage Categories Modal -->
+  <dialog id="manage-categories-modal" closedby="any" aria-labelledby="manage-cat-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="manage-cat-title">Manage Categories</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Add, edit, or delete resource categories.</p>
+      </div>
+      <button class="close-modal-btn" commandfor="manage-categories-modal" command="close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Add New Category Form -->
+      <div style="background: var(--card-bg); border: 1px dashed var(--border-color); border-radius: var(--radius-md); padding: 0.8rem; margin-bottom: 1.2rem;">
+        <h3 style="font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--accent); font-family: 'Outfit', sans-serif;">Add New Category</h3>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="new-category-name" class="form-control" placeholder="e.g. Design Patterns" style="flex: 1; min-height: 2.2rem;">
+          <button id="btn-add-category" class="btn btn-primary btn-sm" style="padding: 0 1rem; height: 2.2rem; min-height: 2.2rem;">Add</button>
+        </div>
+      </div>
+
+      <!-- Existing Categories List -->
+      <h3 style="font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--accent); font-family: 'Outfit', sans-serif;">Existing Categories</h3>
+      <div id="manage-categories-list" style="display: flex; flex-direction: column; gap: 0.6rem; max-height: 220px; overflow-y: auto; padding-right: 0.3rem;">
+        <!-- Dynamic Category Items -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" commandfor="manage-categories-modal" command="close">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Add Resource Modal -->
+  <dialog id="add-resource-modal" closedby="any" aria-labelledby="add-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="add-title">Submit New Resource</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Contribute to our directory. Added resources are saved locally in your browser.</p>
+      </div>
+      <button class="close-modal-btn" commandfor="add-resource-modal" command="close" aria-label="Close form">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <form id="add-resource-form" method="dialog">
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="form-title">Resource Title *</label>
+          <input type="text" id="form-title" class="form-control" placeholder="e.g., Intro to Machine Learning" required>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-author">Creator / Host / Author *</label>
+            <input type="text" id="form-author" class="form-control" placeholder="e.g., Andrew Ng" required>
+          </div>
+          <div class="form-group">
+            <label for="form-url">Resource URL *</label>
+            <input type="url" id="form-url" class="form-control" placeholder="https://..." required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-type">Resource Type *</label>
+            <select id="form-type" class="form-control" required>
+              <option value="link">General Link</option>
+              <option value="youtube">YouTube Video / Channel</option>
+              <option value="website">Website / Portal</option>
+              <option value="blog">Blog</option>
+              <option value="book">Reference Book</option>
+              <option value="archive">Historical Archive</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-category">Primary Category *</label>
+            <select id="form-category" class="form-control" required>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-youtube-id">Featured YouTube Video ID (Optional)</label>
+            <input type="text" id="form-youtube-id" class="form-control" placeholder="e.g., u83_G4VbQWc (11-character code)">
+          </div>
+          <div class="form-group">
+            <label for="form-popularity">Subscribers / Popularity Info (Optional)</label>
+            <input type="text" id="form-popularity" class="form-control" placeholder="e.g., 100k+ views or Medium Article">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Languages Supported (Select at least one) *</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="en" checked> English
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="th"> ภาษาไทย (Thai)
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="ja"> 日本語 (Japanese)
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="form-lang" value="multi"> Bilingual / Visual
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-tags">Tags (Comma separated)</label>
+          <input type="text" id="form-tags" class="form-control" placeholder="e.g., Machine Learning, Overview, Tutorial">
+        </div>
+
+        <div class="form-group">
+          <label>Add to Collections</label>
+          <div class="checkbox-group" id="form-collections-checkboxes" style="max-height: 120px; overflow-y: auto; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+            <!-- Dynamically populated collection checkboxes -->
+            <span style="font-size: 0.85rem; color: var(--text-muted);">No custom collections created yet.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-attachments">Attach Local Document Files (PDF, Image, Text, Markdown)</label>
+          <input type="file" id="form-attachments" class="form-control" multiple accept=".pdf,.png,.jpg,.jpeg,.txt,.md">
+          <div id="staged-attachments-list" class="staged-attachments-list" style="margin-top: 0.5rem;"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-description">Short Description *</label>
+          <textarea id="form-description" class="form-control" rows="3" placeholder="Explain what this resource offers..." required></textarea>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn" commandfor="add-resource-modal" command="close">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit Resource</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Workspace Settings & Backup Modal -->
+  <dialog id="manage-settings-modal" closedby="any" aria-labelledby="settings-modal-title">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h2 id="settings-modal-title">Workspace Settings & Backup</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Backup, import, or clear your knowledge base data.</p>
+      </div>
+      <button class="close-modal-btn" commandfor="manage-settings-modal" command="close" aria-label="Close settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+        <!-- Export Backup -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+          <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--accent); font-family: 'Outfit', sans-serif;">Export Backup</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">Download your entire knowledge base data (including custom categories, custom resources, collections, bookmarks) as a single JSON backup file.</p>
+          <button id="btn-export-backup" class="btn btn-sm btn-primary" style="min-height: 2.2rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export Workspace (.json)
+          </button>
+        </div>
+        
+        <!-- Import Backup -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+          <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--accent); font-family: 'Outfit', sans-serif;">Import Backup</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">Restore previously exported JSON backup data. This will merge files into your active dashboard.</p>
+          <div class="drop-zone" id="backup-drop-zone" style="border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; transition: var(--transition-base);">
+            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Drag & drop your backup .json file here, or click to upload</p>
+            <input type="file" id="backup-file-input" accept=".json" style="display: none;">
+            <span id="backup-file-status" style="font-size: 0.75rem; color: var(--accent); font-weight: 500;"></span>
+          </div>
+        </div>
+
+        <!-- Factory Reset -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; border-color: rgba(255, 107, 107, 0.3);">
+          <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ff6b6b; font-family: 'Outfit', sans-serif;">Factory Reset</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">Clear all local custom data (bookmarks, collections, custom resources, categories, attachments) and revert to default template data.</p>
+          <button id="btn-reset-factory" class="btn btn-sm" style="color: #ff6b6b; border-color: rgba(255, 107, 107, 0.4); min-height: 2.2rem;">
+            Reset All Data
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" commandfor="manage-settings-modal" command="close">Close</button>
+    </div>
+  </dialog>
+
+  <!-- JavaScript App code -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

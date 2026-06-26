@@ -1,0 +1,8 @@
+{
+  "siteTitle": "Personal Knowledge Hub",
+  "siteSubtitle": "An interactive digital garden and personal knowledge management explorer.",
+  "logoName": "MY KM HUB",
+  "defaultTheme": "system",
+  "ontologyContextUrl": "https://example.com/ns#",
+  "rootNodeLabel": "Knowledge Root"
+}
