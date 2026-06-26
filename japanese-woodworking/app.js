@@ -386,6 +386,7 @@ let activeCollectionId = null;
 let stagedFiles = [];
 let db = null;
 let activeDetailsResourceId = null;
+let deletedCuratedIds = [];
 const defaultCategories = [
   { id: "furniture", name: "Furniture Making" },
   { id: "joinery", name: "Joinery & Carpentry" },
@@ -492,8 +493,12 @@ async function initState() {
   });
   localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
 
-  // Combine initial and custom
-  resources = [...initialResources, ...customResources];
+  // Load deleted curated resources list
+  const storedDeleted = localStorage.getItem('daiku_deleted_resources');
+  deletedCuratedIds = storedDeleted ? JSON.parse(storedDeleted) : [];
+
+  // Combine initial and custom, filtering out deleted ones
+  resources = [...initialResources, ...customResources].filter(res => !deletedCuratedIds.includes(res.id));
 
   // Load curated overrides
   const storedOverrides = localStorage.getItem('daiku_curated_overrides');
@@ -827,6 +832,15 @@ function setupDetailsModalEdit() {
   const inputTags = document.getElementById('edit-details-tags');
 
   if (!btnEdit || !editContainer) return;
+
+  const btnDeleteModal = document.getElementById('btn-delete-resource-modal');
+  if (btnDeleteModal) {
+    btnDeleteModal.addEventListener('click', () => {
+      if (activeDetailsResourceId) {
+        deleteResource(activeDetailsResourceId);
+      }
+    });
+  }
 
   btnEdit.addEventListener('click', () => {
     if (!activeDetailsResourceId) return;
@@ -1214,6 +1228,67 @@ function getSpellingSuggestions(query) {
   return finalSuggestions;
 }
 
+// Unified Delete Resource function (works for both curated and custom resources)
+async function deleteResource(resId) {
+  const res = resources.find(r => r.id === resId);
+  if (!res) return;
+
+  if (!confirm(`Are you sure you want to delete "${res.title}"? This will remove all its collections associations and attachments.`)) {
+    return;
+  }
+
+  // 1. Remove from custom resources or add to deleted curated list
+  const isCustom = !initialResources.some(ir => ir.id === resId);
+  if (isCustom) {
+    const storedCustom = localStorage.getItem('daiku_custom_resources');
+    let customRes = storedCustom ? JSON.parse(storedCustom) : [];
+    customRes = customRes.filter(r => r.id !== resId);
+    localStorage.setItem('daiku_custom_resources', JSON.stringify(customRes));
+  } else {
+    if (!deletedCuratedIds.includes(resId)) {
+      deletedCuratedIds.push(resId);
+      localStorage.setItem('daiku_deleted_resources', JSON.stringify(deletedCuratedIds));
+    }
+  }
+
+  // 2. Remove from bookmarks
+  bookmarks = bookmarks.filter(id => id !== resId);
+  localStorage.setItem('daiku_bookmarks', JSON.stringify(bookmarks));
+
+  // 3. Remove from collections
+  collections.forEach(c => {
+    c.resourceIds = c.resourceIds.filter(id => id !== resId);
+  });
+  localStorage.setItem('daiku_collections', JSON.stringify(collections));
+
+  // 4. Delete attachments from IndexedDB
+  try {
+    const files = await getAttachments(resId);
+    for (const file of files) {
+      await deleteAttachment(resId, file.name);
+    }
+  } catch (err) {
+    console.error("Error clearing attachments on delete:", err);
+  }
+
+  // 5. Update active resources array in memory
+  const storedCustom = localStorage.getItem('daiku_custom_resources');
+  const customResources = storedCustom ? JSON.parse(storedCustom) : [];
+  resources = [...initialResources, ...customResources].filter(r => !deletedCuratedIds.includes(r.id));
+
+  // 6. Trigger complete redraw
+  renderCollections();
+  renderTagCloud();
+  renderDashboard();
+  updateJSONLDOntology();
+
+  // 7. If details modal is currently displaying this resource, close it
+  const modal = document.getElementById('details-modal');
+  if (modal && activeDetailsResourceId === resId) {
+    modal.close();
+  }
+}
+
 // 4. Render Layout Cards
 function renderDashboard() {
   const grid = document.getElementById('resources-grid');
@@ -1340,12 +1415,11 @@ function renderDashboard() {
 
     const miniTags = res.tags.slice(0, 3).map(t => `<span class="mini-tag">#${t}</span>`).join(' ');
 
-    const isCustom = !initialResources.some(ir => ir.id === res.id);
-    const deleteButtonHtml = isCustom ? `
+    const deleteButtonHtml = `
       <button class="delete-resource-btn" data-id="${res.id}" aria-label="Delete resource" style="background: none; border: none; color: #ff6b6b; cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.8rem;" title="Delete this resource">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
       </button>
-    ` : '';
+    `;
 
     return `
       <article class="resource-card" data-id="${res.id}">
@@ -1399,38 +1473,12 @@ function renderDashboard() {
     });
   });
 
-  // Wire up Delete Custom Resource click events
+  // Wire up Delete Resource click events (cards)
   document.querySelectorAll('.delete-resource-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const resId = btn.getAttribute('data-id');
-      const resTitle = resources.find(r => r.id === resId)?.title || "this resource";
-      
-      if (confirm(`Are you sure you want to delete "${resTitle}"? This will remove all its collections associations and attachments.`)) {
-        // 1. Remove from custom resources storage
-        const storedCustom = localStorage.getItem('daiku_custom_resources');
-        let customRes = storedCustom ? JSON.parse(storedCustom) : [];
-        customRes = customRes.filter(r => r.id !== resId);
-        localStorage.setItem('daiku_custom_resources', JSON.stringify(customRes));
-
-        // 2. Remove from bookmarks
-        bookmarks = bookmarks.filter(id => id !== resId);
-        localStorage.setItem('daiku_bookmarks', JSON.stringify(bookmarks));
-
-        // 3. Remove from collections
-        collections.forEach(c => {
-          c.resourceIds = c.resourceIds.filter(id => id !== resId);
-        });
-        localStorage.setItem('daiku_collections', JSON.stringify(collections));
-
-        // 4. Update the active resources array in memory
-        resources = [...initialResources, ...customRes];
-
-        // 5. Trigger complete redraw
-        renderCollections();
-        renderTagCloud();
-        renderDashboard();
-      }
+      deleteResource(resId);
     });
   });
 
