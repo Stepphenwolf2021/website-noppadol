@@ -2183,12 +2183,12 @@ function getOntologyDatabase(searchTerm, activeResources) {
   }
 
   // 2. Add Category nodes
-  const categories = ['furniture', 'joinery', 'tools', 'architecture', 'boatbuilding'];
-  categories.forEach(cat => {
+  categories.forEach(catObj => {
+    const cat = catObj.id;
     const catId = `cat_${cat}`;
     allNodes.set(catId, {
       id: catId,
-      label: getCategoryName(cat),
+      label: catObj.name,
       type: 'category',
       radius: 20,
       categoryKey: cat
@@ -2688,6 +2688,11 @@ function onMouseUp(e) {
         // Apply interactive filtering to cards
         if (draggedNode.type === 'category') {
           document.getElementById('filter-category').value = draggedNode.categoryKey;
+        } else if (draggedNode.type === 'root') {
+          resetDashboardFilters();
+          if (draggedNode.id === 'root_search') {
+            document.getElementById('search-input').value = lastSearchTerm;
+          }
         } else if (draggedNode.type === 'tag') {
           activeTag = draggedNode.tagName;
           renderTagCloud();
