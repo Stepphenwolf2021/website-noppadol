@@ -1291,4 +1291,30 @@ dialog:not([open]) {
   background-color: rgba(var(--accent-rgb), 0.05);
 }
 
+/* Auth Overlay & Card Styling */
+#auth-overlay {
+  display: flex;
+  transition: opacity 0.3s ease;
+}
+
+.auth-card {
+  animation: modalScaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.auth-card .form-control {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  transition: var(--transition-smooth);
+}
+
+.auth-card .form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
+}
+
 

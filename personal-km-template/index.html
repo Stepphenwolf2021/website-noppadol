@@ -28,6 +28,12 @@
           </svg>
         </div>
         
+        <!-- User Auth Profile Badge -->
+        <div id="user-profile-badge" style="display: none; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
+          <span id="user-email-display" style="color: var(--text-muted); font-weight: 500;"></span>
+          <button id="btn-logout" class="btn btn-sm btn-icon" title="Log Out" style="background: none; border: none; font-size: 1rem; cursor: pointer; padding: 0.2rem;">🚪</button>
+        </div>
+
         <button id="settings-trigger" class="btn" commandfor="manage-settings-modal" command="show-modal" style="display: inline-flex; align-items: center; gap: 0.3rem;" title="Manage Settings & Backups">
           ⚙️ Settings
         </button>
@@ -440,6 +446,42 @@
       <button class="btn" commandfor="manage-settings-modal" command="close">Close</button>
     </div>
   </dialog>
+
+  <!-- Supabase JS Client Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Full Screen Authentication Overlay -->
+  <div id="auth-overlay" style="display: none; position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 1.5rem;">
+    <div class="auth-card" style="background: var(--panel-bg-solid); border: 1px solid var(--border-color); border-radius: var(--radius-lg); max-width: 400px; width: 100%; padding: 2rem; box-shadow: 0 10px 30px var(--shadow-color);">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div class="logo-kanji" style="margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: var(--radius-md); background: rgba(var(--accent-rgb), 0.1); color: var(--accent); font-weight: bold; font-size: 1.5rem;">🔐</div>
+        <h2 id="auth-title" style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; color: var(--text-main); margin-bottom: 0.3rem;">Sign In to Your Hub</h2>
+        <p id="auth-subtitle" style="font-size: 0.8rem; color: var(--text-muted);">Please log in to access your secure knowledge base.</p>
+      </div>
+      
+      <form id="auth-form" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="form-group">
+          <label for="auth-email" style="font-size: 0.8rem; margin-bottom: 0.3rem; display: block; font-weight: 500;">Email Address</label>
+          <input type="email" id="auth-email" class="form-control" placeholder="name@example.com" required style="width: 100%;">
+        </div>
+        
+        <div class="form-group">
+          <label for="auth-password" style="font-size: 0.8rem; margin-bottom: 0.3rem; display: block; font-weight: 500;">Password</label>
+          <input type="password" id="auth-password" class="form-control" placeholder="••••••••" required style="width: 100%;">
+        </div>
+        
+        <button type="submit" id="btn-auth-submit" class="btn btn-primary" style="width: 100%; min-height: 2.5rem; justify-content: center; font-weight: 600; margin-top: 0.5rem;">
+          Sign In
+        </button>
+      </form>
+      
+      <div style="text-align: center; margin-top: 1.2rem; font-size: 0.8rem;">
+        <span id="auth-toggle-msg" style="color: var(--text-muted);">Don't have an account?</span>
+        <button id="btn-auth-toggle" style="background: none; border: none; color: var(--accent); font-weight: 600; cursor: pointer; padding: 0; margin-left: 0.2rem;">Sign Up</button>
+      </div>
+      <div id="auth-error-msg" style="color: #ff6b6b; font-size: 0.8rem; text-align: center; margin-top: 1rem; font-weight: 500; min-height: 1.2rem;"></div>
+    </div>
+  </div>
 
   <!-- JavaScript App code -->
   <script type="module" src="app.js"></script>

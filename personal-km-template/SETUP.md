@@ -129,7 +129,31 @@ Accessible via the **⚙️ Settings** button in the header:
 
 ---
 
-### 5. Deployment Guide
+### 5. วิธีตั้งค่าระบบคลาวด์และการยืนยันตัวตน (Supabase Cloud & Auth Setup)
+หากต้องการใช้ระบบบันทึกข้อมูลออนไลน์ (Cloud Sync) และระบบล็อกอินเพื่อความปลอดภัย (Authentication) ให้ทำตามขั้นตอนดังนี้:
+1. สมัครใช้งานฟรีที่ [supabase.com](https://supabase.com)
+2. สร้างโครงการใหม่ (New Project) และเข้าไปที่หน้าต่าง **SQL Editor**
+3. คัดลอกและรันสคริปต์จากไฟล์ [supabase-setup.sql](file:///Users/noppadolweerakitti/Library/Mobile%20Documents/com~apple~CloudDocs/2026/antigravity/woodworking%20kb/personal-km-template/supabase-setup.sql) เพื่อสร้างตารางข้อมูลและนโยบายความปลอดภัย (RLS)
+4. เปิดหน้าต่าง **Project Settings ▸ API** คัดลอก `Project URL` และ `anon public API key`
+5. นำข้อมูลมาใส่ในไฟล์ `data/config.json` ในฟิลด์ `supabaseUrl` และ `supabaseAnonKey`
+6. เปิดเบราว์เซอร์ เว็บจะล็อกอินเข้าสู่ระบบคลาวด์อัตโนมัติ และแสดงหน้าต่างเข้าล็อกอิน (Auth Overlay)
+7. **การอัปเกรดระบบเพื่อใช้เป็นกลุ่ม (Group/Team Wiki)**: หากคุณต้องการแชร์ฐานข้อมูลความรู้ร่วมกันในทีม ให้เปิดความคิดเห็น (Uncomment) สคริปต์ในหมวด **VARIANT B: Group/Team Upgrade** ในไฟล์ `supabase-setup.sql` และรันใน SQL Editor ซึ่งจะเปลี่ยนนโยบายความปลอดภัยให้ใช้รหัสทีมร่วมกัน (`team_id`)
+
+---
+
+### 6. Cloud & Authentication Setup (Supabase)
+To transition from local offline mode to cloud database synchronization with secure login (Authentication):
+1. Create a free account on [supabase.com](https://supabase.com).
+2. Start a new project, and navigate to the **SQL Editor** tab.
+3. Paste and run the database schema from the [supabase-setup.sql](file:///Users/noppadolweerakitti/Library/Mobile%20Documents/com~apple~CloudDocs/2026/antigravity/woodworking%20kb/personal-km-template/supabase-setup.sql) file. This automatically creates tables, indices, and sets up secure Row-Level Security (RLS) rules.
+4. Go to **Project Settings ▸ API** and copy your `Project URL` and `anon public API key`.
+5. Insert these keys into the `supabaseUrl` and `supabaseAnonKey` properties inside `data/config.json`.
+6. Run the local dev server. The page will detect Supabase keys, overlay a premium Login screen, and route database saves to the cloud PostgreSQL database.
+7. **Upgrading to Group/Team Shared Wiki**: To share the knowledge database among a team/group, uncomment and run the commands under **VARIANT B: Group/Team Upgrade** in `supabase-setup.sql`. This updates security policies to match user metadata (`team_id`) so all users belonging to the same team share access.
+
+---
+
+### 7. Deployment Guide
 1. Push this folder to a new **GitHub Repository**.
 2. Navigate to **Settings ▸ Pages** on GitHub.
 3. Choose **Deploy from a branch** under **Source**, selecting your primary branch and directory `/`.

@@ -98,6 +98,10 @@ async function loadExternalData() {
     if (configRes.ok) {
       siteConfig = await configRes.json();
       applyBranding();
+      if (siteConfig.supabaseUrl && siteConfig.supabaseAnonKey) {
+        isCloudMode = true;
+        initSupabase();
+      }
     }
   } catch (e) {
     console.warn("Failed to load config.json, using defaults.", e);
@@ -146,9 +150,32 @@ async function initState() {
   // Load config & template data dynamically
   await loadExternalData();
 
+  // Check Supabase session
+  if (isCloudMode) {
+    await checkAuthSession();
+    if (!currentUser) return; // Wait for login screen
+  }
+
   // Load categories
-  const storedCategories = localStorage.getItem('daiku_categories');
-  categories = storedCategories ? JSON.parse(storedCategories) : defaultCategories;
+  if (isCloudMode && currentUser) {
+    try {
+      const { data: cloudCats, error: catErr } = await supabase.from('categories').select('*');
+      if (!catErr && cloudCats && cloudCats.length > 0) {
+        categories = cloudCats;
+      } else {
+        categories = defaultCategories;
+        if (!catErr && cloudCats && cloudCats.length === 0) {
+          await supabase.from('categories').insert(defaultCategories.map(c => ({ id: c.id, name: c.name })));
+        }
+      }
+    } catch(e) {
+      console.error("Supabase categories load failed:", e);
+      categories = defaultCategories;
+    }
+  } else {
+    const storedCategories = localStorage.getItem('daiku_categories');
+    categories = storedCategories ? JSON.parse(storedCategories) : defaultCategories;
+  }
   populateCategoryDropdowns();
 
   // Init IndexedDB
@@ -159,43 +186,101 @@ async function initState() {
   }
 
   // Load bookmarks
-  const storedBookmarks = localStorage.getItem('daiku_bookmarks');
-  bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
+  if (isCloudMode && currentUser) {
+    try {
+      const { data: cloudBookmarks, error: bMarkErr } = await supabase.from('bookmarks').select('resource_id');
+      if (!bMarkErr && cloudBookmarks) {
+        bookmarks = cloudBookmarks.map(b => b.resource_id);
+      }
+    } catch(e) {
+      console.error("Supabase bookmarks load failed:", e);
+    }
+  } else {
+    const storedBookmarks = localStorage.getItem('daiku_bookmarks');
+    bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
+  }
 
   // Load custom resources
-  const storedCustom = localStorage.getItem('daiku_custom_resources');
-  let customResources = storedCustom ? JSON.parse(storedCustom) : [];
-
-  // Normalize tags in custom resources
-  customResources.forEach(res => {
-    if (res.tags) {
-      res.tags = Array.from(new Set(res.tags.map(t => t.trim()).filter(Boolean)));
+  let customResources = [];
+  if (isCloudMode && currentUser) {
+    try {
+      const { data: cloudRes, error: resErr } = await supabase.from('resources').select('*');
+      if (!resErr && cloudRes) {
+        resources = cloudRes.map(r => ({
+          id: r.id,
+          title: r.title,
+          author: r.author,
+          type: r.type,
+          category: r.category,
+          url: r.url,
+          featuredVideoId: r.featured_video_id,
+          languages: r.languages,
+          tags: r.tags,
+          description: r.description,
+          popularity: r.popularity,
+          region: r.region
+        }));
+      }
+    } catch(e) {
+      console.error("Supabase resources load failed:", e);
     }
-  });
-  localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
+  } else {
+    const storedCustom = localStorage.getItem('daiku_custom_resources');
+    customResources = storedCustom ? JSON.parse(storedCustom) : [];
 
-  // Load deleted curated resources list
-  const storedDeleted = localStorage.getItem('daiku_deleted_resources');
-  deletedCuratedIds = storedDeleted ? JSON.parse(storedDeleted) : [];
+    // Normalize tags
+    customResources.forEach(res => {
+      if (res.tags) {
+        res.tags = Array.from(new Set(res.tags.map(t => t.trim()).filter(Boolean)));
+      }
+    });
+    localStorage.setItem('daiku_custom_resources', JSON.stringify(customResources));
 
-  // Combine initial and custom, filtering out deleted ones
-  resources = [...initialResources, ...customResources].filter(res => !deletedCuratedIds.includes(res.id));
+    // Load deleted curated resources list
+    const storedDeleted = localStorage.getItem('daiku_deleted_resources');
+    deletedCuratedIds = storedDeleted ? JSON.parse(storedDeleted) : [];
 
-  // Load curated overrides
-  const storedOverrides = localStorage.getItem('daiku_curated_overrides');
-  const curatedOverrides = storedOverrides ? JSON.parse(storedOverrides) : {};
-  resources.forEach(res => {
-    if (curatedOverrides[res.id]) {
-      if (curatedOverrides[res.id].category) res.category = curatedOverrides[res.id].category;
-      if (curatedOverrides[res.id].tags) res.tags = curatedOverrides[res.id].tags;
-    }
-  });
+    // Combine initial and custom
+    resources = [...initialResources, ...customResources].filter(res => !deletedCuratedIds.includes(res.id));
+
+    // Load curated overrides
+    const storedOverrides = localStorage.getItem('daiku_curated_overrides');
+    const curatedOverrides = storedOverrides ? JSON.parse(storedOverrides) : {};
+    resources.forEach(res => {
+      if (curatedOverrides[res.id]) {
+        if (curatedOverrides[res.id].category) res.category = curatedOverrides[res.id].category;
+        if (curatedOverrides[res.id].tags) res.tags = curatedOverrides[res.id].tags;
+      }
+    });
+  }
 
   // Load custom collections
-  const storedCollections = localStorage.getItem('daiku_collections');
-  collections = storedCollections ? JSON.parse(storedCollections) : [
-    { id: "col-1", name: "My Favorites", resourceIds: [] }
-  ];
+  if (isCloudMode && currentUser) {
+    try {
+      const { data: cloudCols, error: colErr } = await supabase.from('collections').select('*');
+      if (!colErr && cloudCols && cloudCols.length > 0) {
+        collections = cloudCols.map(c => ({
+          id: c.id,
+          name: c.name,
+          resourceIds: c.resource_ids
+        }));
+      } else {
+        collections = [
+          { id: "col-1", name: "My Favorites", resourceIds: [] }
+        ];
+        if (!colErr && cloudCols && cloudCols.length === 0) {
+          await supabase.from('collections').insert([{ id: "col-1", name: "My Favorites", resource_ids: [] }]);
+        }
+      }
+    } catch(e) {
+      console.error("Supabase collections load failed:", e);
+    }
+  } else {
+    const storedCollections = localStorage.getItem('daiku_collections');
+    collections = storedCollections ? JSON.parse(storedCollections) : [
+      { id: "col-1", name: "My Favorites", resourceIds: [] }
+    ];
+  }
 
   // Render Collections list in sidebar
   renderCollections();
@@ -206,12 +291,11 @@ async function initState() {
   // Update JSON-LD Ontology
   updateJSONLDOntology();
 
-  // Set Theme based on browser local time (daytime: 6 AM - 6 PM -> light/bright, night -> dark)
+  // Set Theme based on browser local time
   const hours = new Date().getHours();
   const isDaytime = hours >= 6 && hours < 18;
   const timeBasedTheme = isDaytime ? 'light' : 'dark';
 
-  // Use sessionStorage to persist manual toggles for the current session
   const initialTheme = sessionStorage.getItem('daiku_theme') || timeBasedTheme;
   document.documentElement.setAttribute('data-theme', initialTheme);
   updateThemeWidgetState(initialTheme);
@@ -934,7 +1018,7 @@ async function deleteResource(resId) {
 
   // 2. Remove from bookmarks
   bookmarks = bookmarks.filter(id => id !== resId);
-  localStorage.setItem('daiku_bookmarks', JSON.stringify(bookmarks));
+  await saveBookmarkData(id, index === -1);
 
   // 3. Remove from collections
   collections.forEach(c => {
@@ -1315,7 +1399,7 @@ function toggleBookmark(id) {
     bookmarks.splice(index, 1);
   }
 
-  localStorage.setItem('daiku_bookmarks', JSON.stringify(bookmarks));
+  await saveBookmarkData(id, index === -1);
   renderDashboard();
 }
 
@@ -2575,5 +2659,271 @@ function setupBackupAndAdminPanel() {
       }
     };
     reader.readAsText(file);
+  }
+}
+
+// Supabase Cloud Sync & Auth Globals
+let supabase = null;
+let isCloudMode = false;
+let currentUser = null;
+let authFormBound = false;
+
+function initSupabase() {
+  if (typeof window.supabase !== 'undefined') {
+    supabase = window.supabase.createClient(siteConfig.supabaseUrl, siteConfig.supabaseAnonKey);
+    console.log("[Supabase] Cloud client initialized successfully.");
+  } else {
+    console.warn("[Supabase] CDN Library not loaded. Falling back to Local Mode.");
+    isCloudMode = false;
+  }
+}
+
+async function checkAuthSession() {
+  if (!isCloudMode || !supabase) return;
+
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      currentUser = session.user;
+      updateAuthUI(true);
+    } else {
+      currentUser = null;
+      updateAuthUI(false);
+    }
+  } catch (e) {
+    console.error("Failed to fetch auth session:", e);
+    currentUser = null;
+    updateAuthUI(false);
+  }
+
+  // Auth state change listener
+  supabase.auth.onAuthStateChange((event, session) => {
+    console.log("[Supabase Auth] Event:", event);
+    if (session) {
+      currentUser = session.user;
+      updateAuthUI(true);
+      if (event === 'SIGNED_IN') {
+        window.location.reload();
+      }
+    } else {
+      currentUser = null;
+      updateAuthUI(false);
+      if (event === 'SIGNED_OUT') {
+        window.location.reload();
+      }
+    }
+  });
+}
+
+function updateAuthUI(isLoggedIn) {
+  const authOverlay = document.getElementById('auth-overlay');
+  const profileBadge = document.getElementById('user-profile-badge');
+  const emailDisplay = document.getElementById('user-email-display');
+  
+  if (isLoggedIn && currentUser) {
+    if (authOverlay) authOverlay.style.display = 'none';
+    if (profileBadge) profileBadge.style.display = 'flex';
+    if (emailDisplay) emailDisplay.textContent = currentUser.email;
+  } else {
+    if (authOverlay && isCloudMode) {
+      authOverlay.style.display = 'flex';
+      setupAuthFormListeners();
+    }
+    if (profileBadge) profileBadge.style.display = 'none';
+  }
+}
+
+function setupAuthFormListeners() {
+  if (authFormBound) return;
+  authFormBound = true;
+
+  const form = document.getElementById('auth-form');
+  const toggleBtn = document.getElementById('btn-auth-toggle');
+  const titleEl = document.getElementById('auth-title');
+  const subtitleEl = document.getElementById('auth-subtitle');
+  const submitBtn = document.getElementById('btn-auth-submit');
+  const toggleMsg = document.getElementById('auth-toggle-msg');
+  const errorEl = document.getElementById('auth-error-msg');
+  const emailInput = document.getElementById('auth-email');
+  const passwordInput = document.getElementById('auth-password');
+  const logoutBtn = document.getElementById('btn-logout');
+
+  let isSignUpMode = false;
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      isSignUpMode = !isSignUpMode;
+      if (isSignUpMode) {
+        titleEl.textContent = "Create Your Account";
+        subtitleEl.textContent = "Sign up to start secure private cloud management.";
+        submitBtn.textContent = "Sign Up";
+        toggleMsg.textContent = "Already have an account?";
+        toggleBtn.textContent = "Sign In";
+      } else {
+        titleEl.textContent = "Sign In to Your Hub";
+        subtitleEl.textContent = "Please log in to access your secure knowledge base.";
+        submitBtn.textContent = "Sign In";
+        toggleMsg.textContent = "Don't have an account?";
+        toggleBtn.textContent = "Sign Up";
+      }
+      if (errorEl) errorEl.textContent = "";
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (errorEl) errorEl.textContent = "Processing...";
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      try {
+        if (isSignUpMode) {
+          const { error } = await supabase.auth.signUp({ email, password });
+          if (error) throw error;
+          errorEl.textContent = "Success! Check email for confirmation.";
+        } else {
+          const { error } = await supabase.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+        }
+      } catch (err) {
+        errorEl.textContent = err.message;
+      }
+    });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+    });
+  }
+}
+
+// Central Cloud & Local Sync Layer
+async function saveResourceData(resource, action = 'upsert') {
+  if (isCloudMode && supabase) {
+    try {
+      if (action === 'delete') {
+        await supabase.from('resources').delete().eq('id', resource.id);
+        // Cascades delete bookmarks & collections mappings
+      } else {
+        const dbRes = {
+          id: resource.id,
+          title: resource.title,
+          author: resource.author,
+          type: resource.type,
+          category: resource.category,
+          url: resource.url,
+          featured_video_id: resource.featuredVideoId || null,
+          languages: resource.languages || [],
+          tags: resource.tags || [],
+          description: resource.description || "",
+          popularity: resource.popularity || null,
+          region: resource.region || null
+        };
+        await supabase.from('resources').upsert([dbRes]);
+      }
+    } catch (e) {
+      console.error("[Supabase Sync Error] saveResourceData failed:", e);
+    }
+  } else {
+    // Local storage persistence
+    const isCurated = initialResources.some(r => r.id === resource.id);
+    if (isCurated) {
+      if (action === 'delete') {
+        if (!deletedCuratedIds.includes(resource.id)) {
+          deletedCuratedIds.push(resource.id);
+          localStorage.setItem('daiku_deleted_resources', JSON.stringify(deletedCuratedIds));
+        }
+      } else {
+        const storedOverrides = localStorage.getItem('daiku_curated_overrides');
+        const overrides = storedOverrides ? JSON.parse(storedOverrides) : {};
+        overrides[resource.id] = { category: resource.category, tags: resource.tags };
+        localStorage.setItem('daiku_curated_overrides', JSON.stringify(overrides));
+      }
+    } else {
+      const storedCustom = localStorage.getItem('daiku_custom_resources');
+      let customRes = storedCustom ? JSON.parse(storedCustom) : [];
+      if (action === 'delete') {
+        customRes = customRes.filter(r => r.id !== resource.id);
+      } else {
+        const idx = customRes.findIndex(r => r.id === resource.id);
+        if (idx !== -1) {
+          customRes[idx] = resource;
+        } else {
+          customRes.push(resource);
+        }
+      }
+      localStorage.setItem('daiku_custom_resources', JSON.stringify(customRes));
+    }
+  }
+}
+
+async function saveCategoryData(category, action = 'upsert') {
+  if (isCloudMode && supabase) {
+    try {
+      if (category) {
+        if (action === 'delete') {
+          await supabase.from('categories').delete().eq('id', category.id);
+        } else {
+          await supabase.from('categories').upsert([{ id: category.id, name: category.name }]);
+        }
+      } else {
+        for (const c of categories) {
+          await supabase.from('categories').upsert([{ id: c.id, name: c.name }]);
+        }
+      }
+    } catch (e) {
+      console.error("[Supabase Sync Error] saveCategoryData failed:", e);
+    }
+  } else {
+    localStorage.setItem('daiku_categories', JSON.stringify(categories));
+  }
+}
+
+async function saveCollectionData(collection, action = 'upsert') {
+  if (isCloudMode && supabase) {
+    try {
+      if (collection) {
+        if (action === 'delete') {
+          await supabase.from('collections').delete().eq('id', collection.id);
+        } else {
+          await supabase.from('collections').upsert([{
+            id: collection.id,
+            name: collection.name,
+            resource_ids: collection.resourceIds
+          }]);
+        }
+      } else {
+        for (const c of collections) {
+          await supabase.from('collections').upsert([{
+            id: c.id,
+            name: c.name,
+            resource_ids: c.resourceIds
+          }]);
+        }
+      }
+    } catch (e) {
+      console.error("[Supabase Sync Error] saveCollectionData failed:", e);
+    }
+  } else {
+    localStorage.setItem('daiku_collections', JSON.stringify(collections));
+  }
+}
+
+async function saveBookmarkData(resId, isBookmarked) {
+  if (isCloudMode && supabase && currentUser) {
+    try {
+      if (isBookmarked) {
+        await supabase.from('bookmarks').insert([{ resource_id: resId }]);
+      } else {
+        await supabase.from('bookmarks').delete().eq('resource_id', resId).eq('user_id', currentUser.id);
+      }
+    } catch (e) {
+      console.error("[Supabase Sync Error] saveBookmarkData failed:", e);
+    }
+  } else {
+    localStorage.setItem('daiku_bookmarks', JSON.stringify(bookmarks));
   }
 }

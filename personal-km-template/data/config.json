@@ -4,5 +4,7 @@
   "logoName": "MY KM HUB",
   "defaultTheme": "system",
   "ontologyContextUrl": "https://example.com/ns#",
-  "rootNodeLabel": "Knowledge Root"
+  "rootNodeLabel": "Knowledge Root",
+  "supabaseUrl": "",
+  "supabaseAnonKey": ""
 }
