@@ -371,7 +371,7 @@ body {
 
 @media (min-width: 1024px) {
   .dashboard-split-layout {
-    grid-template-columns: 460px 1fr; /* Graph takes 460px on left, grid takes remaining space */
+    grid-template-columns: 1.4fr 1fr; /* Graph dominates (approx. 58%), cards grid takes remaining */
     align-items: start;
   }
   
@@ -384,15 +384,38 @@ body {
   }
   
   .graph-view-container {
-    height: 520px !important; /* Adjusted slightly to fit with legend in the viewport */
+    height: 600px !important; /* Immersive main explorer height */
     margin-bottom: 0;
+  }
+
+  .dashboard-grid {
+    max-height: 725px; /* Matches total height of graph + legend wrapper */
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .dashboard-grid::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .dashboard-grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .dashboard-grid::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+
+  .dashboard-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
   }
 }
 
-/* Dashboard Grid */
+/* Dashboard Grid (Base mobile styles) */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--shoji-grid-gap);
 }
 
