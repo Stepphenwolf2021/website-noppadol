@@ -105,7 +105,7 @@
       <div class="gbtn" id="zfit" title="จัดให้พอดี">⤢</div>
     </div>
     <div class="gtip" id="gtip"></div>
-    <div class="ghint">ลากพื้นหลังเพื่อเลื่อน · สกอร์ล/ปุ่มเพื่อซูม · ลากโหนดเพื่อจัดวาง · คลิกโหนดเพื่อดูรายละเอียด</div>
+    <div class="ghint">ลากพื้นหลังเพื่อเลื่อน · สกอร์ล/ปุ่มเพื่อซูม · ลากโหนดเพื่อจัดวาง · คลิกโหนดเพื่อดูรายละเอียด · เส้นประ = ความสัมพันธ์เชิงแนวคิด (เชื่อมข้ามหมวด)</div>
   </div>
 </div>
 
@@ -118,6 +118,7 @@
 </footer>
 
 <script src="books-data.js"></script>
+<script src="concepts-data.js"></script>
 <script>
 /* ============================ shared data ============================ */
 let BOOKS = [], cat = '', q = '', view = 'grid';
@@ -217,7 +218,9 @@ function openEntity(node) {
   document.getElementById('side').innerHTML = `
     <span class="etype" style="background:${e.color}">${e.onto}</span>
     <h2 style="margin-top:14px">${node.label}</h2>
-    <div class="sub">${e.th} · เชื่อมกับ ${books.length} เล่ม ผ่านความสัมพันธ์ <code>${e.rel}</code></div>
+    <div class="sub">${books.length
+      ? `${e.th} · เชื่อมกับ ${books.length} เล่ม ผ่านความสัมพันธ์ <code>${e.rel}</code>`
+      : `${e.th} · แนวคิดสะพาน — เชื่อมแนวคิดอื่นผ่าน <code>BROADER / RELATED_TO</code>`}</div>
     <ul class="blist">
       ${books.map(b => `<li onclick="openBook(${BOOKS.indexOf(b)})">
         <img src="${b.cover}" onerror="this.style.visibility='hidden'">
@@ -249,6 +252,7 @@ const Graph = (function () {
   const tip = document.getElementById('gtip');
   const gstats = document.getElementById('gstats');
   let nodes = [], links = [], nodeById = new Map(), adj = new Map();
+  let schemeCount = 0;                     // count of concept-concept scheme edges
   const hidden = new Set();               // hidden node types
   let cam = { x: 0, y: 0, s: 1 };
   let W = 0, H = 0, dpr = 1;
@@ -267,24 +271,41 @@ const Graph = (function () {
       }
       return n;
     }
+    // concepts are unified by NAME (a category and an LCSH subject of the same name = one node)
+    const TOPCATS = new Set(BOOKS.flatMap(b => b.cats || []));
+    const HUBS = new Set((typeof CONCEPT_SCHEME !== 'undefined' && CONCEPT_SCHEME.hubs) || []);
+    const conceptType = (name) => (TOPCATS.has(name) || HUBS.has(name)) ? 'Concept' : 'Subject';
+    const ensureConcept = (name) => ensure(conceptType(name), name, name, { concept: true });
+    const linkTo = (bn, o, bi) => { links.push({ s: bn, t: o }); adj.get(bn.id).add(o.id); adj.get(o.id).add(bn.id); bn.deg++; o.deg++; if (bi != null) o.books.push(bi); };
+
     // subject frequency — only subjects shared by >=2 books become graph nodes (cross-category bridges)
     const subjFreq = {};
     BOOKS.forEach(b => (b.subjects || []).forEach(s => subjFreq[s] = (subjFreq[s] || 0) + 1));
     BOOKS.forEach((b, bi) => {
       const bn = ensure('Book', b.isbn, b.title, { bi });
-      const link = (o) => { links.push({ s: bn, t: o }); adj.get(bn.id).add(o.id); adj.get(o.id).add(bn.id); bn.deg++; o.deg++; o.books.push(bi); };
-      (b.authors || []).forEach(a => link(ensure('Person', a, a)));
-      if (b.publisher) link(ensure('Org', b.publisher, b.publisher));
-      (b.cats || []).forEach(c => link(ensure('Concept', c, c)));
-      (b.subjects || []).forEach(s => { if (subjFreq[s] >= 2) link(ensure('Subject', s, s)); });
+      (b.authors || []).forEach(a => linkTo(bn, ensure('Person', a, a), bi));
+      if (b.publisher) linkTo(bn, ensure('Org', b.publisher, b.publisher), bi);
+      const cset = new Set(b.cats || []);
+      (b.subjects || []).forEach(s => { if (subjFreq[s] >= 2) cset.add(s); });
+      cset.forEach(name => linkTo(bn, ensureConcept(name), bi));
     });
+    // concept scheme (L1): hubs + BROADER/RELATED_TO edges — curated, cross-category
+    schemeCount = 0;
+    if (typeof CONCEPT_SCHEME !== 'undefined') {
+      (CONCEPT_SCHEME.hubs || []).forEach(h => ensureConcept(h));
+      (CONCEPT_SCHEME.edges || []).forEach(([f, t, rel]) => {
+        const a = ensureConcept(f), b = ensureConcept(t);
+        links.push({ s: a, t: b, rel, scheme: true });
+        adj.get(a.id).add(b.id); adj.get(b.id).add(a.id); a.deg++; b.deg++; schemeCount++;
+      });
+    }
     // seed positions: concepts in inner ring, others scattered
-    const concepts = nodes.filter(n => n.type === 'Concept');
+    const concepts = nodes.filter(n => n.concept);
     concepts.forEach((n, i) => {
       const a = i / concepts.length * Math.PI * 2;
-      n.x = Math.cos(a) * 120; n.y = Math.sin(a) * 120;
+      n.x = Math.cos(a) * 150; n.y = Math.sin(a) * 150;
     });
-    nodes.forEach(n => { if (n.type !== 'Concept') { n.x = (Math.random() - .5) * 600; n.y = (Math.random() - .5) * 460; } });
+    nodes.forEach(n => { if (!n.concept) { n.x = (Math.random() - .5) * 620; n.y = (Math.random() - .5) * 470; } });
     // legend counts
     for (const t of Object.keys(TYPES)) {
       const el = document.getElementById('cnt-' + t);
@@ -313,7 +334,7 @@ const Graph = (function () {
     // springs
     for (const l of links) {
       if (!activeLink(l)) continue;
-      const L = (l.s.type === 'Concept' || l.t.type === 'Concept') ? 92 : 62;
+      const L = l.scheme ? 128 : ((l.s.type === 'Concept' || l.t.type === 'Concept') ? 92 : 62);
       let dx = l.t.x - l.s.x, dy = l.t.y - l.s.y, d = Math.hypot(dx, dy) + .01;
       const f = (d - L) * 0.045; dx /= d; dy /= d;
       l.s.vx += dx * f; l.s.vy += dy * f; l.t.vx -= dx * f; l.t.vy -= dy * f;
@@ -336,15 +357,23 @@ const Graph = (function () {
     ctx.clearRect(0, 0, W, H);
     const hl = hover ? adj.get(hover.id) : null;
     const qq = q.trim();
-    // links
-    ctx.lineWidth = 1;
+    // links — book edges (faint solid) vs concept-scheme edges (dashed, tinted)
     for (const l of links) {
       if (!activeLink(l)) continue;
       const on = hover && (l.s === hover || l.t === hover);
       const s = toScreen(l.s), t = toScreen(l.t);
-      ctx.strokeStyle = on ? '#46587855' : '#0000000f';
+      if (l.scheme) {
+        ctx.setLineDash([5, 4]);
+        ctx.strokeStyle = on ? '#2f9e8fd8' : '#46769033';
+        ctx.lineWidth = 1.4;
+      } else {
+        ctx.setLineDash([]);
+        ctx.strokeStyle = on ? '#46587855' : '#0000000f';
+        ctx.lineWidth = 1;
+      }
       ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y); ctx.stroke();
     }
+    ctx.setLineDash([]);
     // nodes
     for (const n of nodes) {
       if (!active(n)) continue;
@@ -468,7 +497,9 @@ const Graph = (function () {
 
   function updateStats() {
     const na = nodes.filter(active).length, la = links.filter(activeLink).length;
-    gstats.textContent = `กราฟความรู้ · ${na} โหนด · ${la} ความสัมพันธ์ (AUTHORED_BY / PUBLISHED_BY / ABOUT)`;
+    const sc = links.filter(l => l.scheme && activeLink(l)).length;
+    gstats.textContent = `กราฟความรู้ · ${na} โหนด · ${la} ความสัมพันธ์ (AUTHORED_BY / PUBLISHED_BY / ABOUT` +
+      (sc ? ` + ${sc} เส้นแนวคิด BROADER/RELATED_TO)` : ')');
   }
 
   return {
