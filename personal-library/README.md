@@ -3,7 +3,7 @@
 Home library on a knowledge graph — จัดการหนังสือ (และสื่ออื่นผ่าน extension) บน Neo4j
 เพิ่มหนังสือจาก **ภาพถ่ายปก / ISBN / ชื่อเรื่อง** แล้วระบบดึงข้อมูลบรรณานุกรมมาตรฐานให้อัตโนมัติ
 
-**[▶ Live Demo (static)](./demo/index.html)** — ตัวอย่างข้อมูล 70 เล่ม ค้นหา/กรองหมวด/ดูรายละเอียดได้จริง
+**[▶ Live Demo (static)](./demo/index.html)** — ตัวอย่างข้อมูล 70 เล่ม ค้นหา/กรองหมวด/ดูรายละเอียดได้จริง + **มุมมองกราฟความรู้** (Book–Author–Publisher–Concept แบบโต้ตอบ)
 
 ## Architecture
 
@@ -37,7 +37,7 @@ uvicorn app:app --host 0.0.0.0 --port 8700
 | `webapp/` | ระบบจริง (FastAPI + Neo4j + SPA) |
 | `demo/` | static demo สำหรับ GitHub Pages — ไม่มี backend, ข้อมูลบรรณานุกรมสาธารณะ 70 เล่ม |
 
-> Demo หน้านี้แสดงเฉพาะโหมดอ่าน ระบบจริงมี: เพิ่ม/แก้ไข/ยืม-คืน/จำหน่ายออก, เพิ่มจากภาพถ่าย, enrich ข้อมูลผู้เขียน, กราฟความสัมพันธ์, ผู้ใช้หลายคน + 2FA
+> Demo หน้านี้แสดงโหมดอ่าน + กราฟความรู้ (read-only) ระบบจริงเพิ่มเติม: เพิ่ม/แก้ไข/ยืม-คืน/จำหน่ายออก, เพิ่มจากภาพถ่าย, enrich ข้อมูลผู้เขียน, ผู้ใช้หลายคน + 2FA
 
 ---
 © NeoGens · part of the [personal knowledge-graph platform](https://noppadol.online)

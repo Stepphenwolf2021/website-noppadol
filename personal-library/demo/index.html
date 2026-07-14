@@ -5,12 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Personal Library — Demo</title>
 <style>
-  :root { --ink:#2b2b2b; --muted:#777; --bg:#faf9f5; --card:#fff; --accent:#465a78; --line:#e8e5de; }
+  :root { --ink:#2b2b2b; --muted:#777; --bg:#faf9f5; --card:#fff; --accent:#465a78; --line:#e8e5de;
+          --book:#465a78; --person:#c66a4b; --org:#7a6bb0; --concept:#d1a23a; }
   * { box-sizing:border-box; }
   body { margin:0; font-family:-apple-system,'Segoe UI',Roboto,'Noto Sans Thai',sans-serif; background:var(--bg); color:var(--ink); }
   header { background:var(--accent); color:#fff; padding:14px 20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
   header h1 { font-size:18px; margin:0; font-weight:600; }
   .demo-badge { background:#fff3; border:1px solid #fff6; border-radius:20px; padding:2px 12px; font-size:12px; }
+  .tabs { display:flex; gap:6px; margin-left:auto; }
+  .tab { background:#fff2; border:1px solid #fff5; color:#fff; border-radius:20px; padding:5px 16px; font-size:13px; cursor:pointer; user-select:none; }
+  .tab.on { background:#fff; color:var(--accent); font-weight:600; }
   .bar { display:flex; gap:10px; padding:14px 20px; flex-wrap:wrap; align-items:center; }
   .bar input { flex:1; min-width:220px; padding:9px 14px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--card); }
   .pill { border:1px solid var(--line); background:var(--card); border-radius:20px; padding:6px 14px; font-size:13px; cursor:pointer; user-select:none; }
@@ -22,6 +26,26 @@
   .card img { width:100%; aspect-ratio:2/3; object-fit:cover; background:#eee; display:block; }
   .card .t { padding:8px 10px 2px; font-size:13px; font-weight:600; line-height:1.3; max-height:3.9em; overflow:hidden; }
   .card .a { padding:0 10px 10px; font-size:12px; color:var(--muted); }
+  /* graph */
+  #graphView { display:none; }
+  .gwrap { position:relative; margin:6px 20px 24px; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:
+           radial-gradient(circle at 30% 20%, #ffffff 0%, #f6f4ee 100%); height:min(72vh,680px); }
+  #gcanvas { width:100%; height:100%; display:block; cursor:grab; touch-action:none; }
+  #gcanvas:active { cursor:grabbing; }
+  .gpanel { position:absolute; top:12px; left:12px; background:#ffffffdd; backdrop-filter:blur(4px); border:1px solid var(--line);
+            border-radius:10px; padding:10px 12px; font-size:12.5px; box-shadow:0 4px 14px #0001; max-width:220px; }
+  .gpanel h4 { margin:0 0 8px; font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.03em; text-transform:uppercase; }
+  .leg { display:flex; align-items:center; gap:8px; padding:3px 0; cursor:pointer; user-select:none; }
+  .leg .dot { width:12px; height:12px; border-radius:50%; flex:none; }
+  .leg.off { opacity:.35; }
+  .leg .n { margin-left:auto; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .ghint { position:absolute; bottom:12px; left:12px; right:12px; text-align:center; color:var(--muted); font-size:12px; pointer-events:none; }
+  .gbtns { position:absolute; top:12px; right:12px; display:flex; flex-direction:column; gap:6px; }
+  .gbtn { width:32px; height:32px; border:1px solid var(--line); background:#ffffffdd; border-radius:8px; font-size:16px; cursor:pointer;
+          display:flex; align-items:center; justify-content:center; color:var(--accent); }
+  .gtip { position:absolute; pointer-events:none; background:#2b2b2becf; color:#fff; padding:4px 9px; border-radius:6px;
+          font-size:12px; white-space:nowrap; transform:translate(-50%,-140%); display:none; z-index:5; }
+  .gtip small { color:#ffffffaa; }
   /* sidebar */
   #ovl { position:fixed; inset:0; background:#0005; display:none; }
   #side { position:fixed; top:0; right:-420px; width:min(400px,92vw); height:100%; background:var(--card);
@@ -33,6 +57,11 @@
   .kv { display:grid; grid-template-columns:110px 1fr; gap:6px 10px; font-size:13.5px; margin-top:10px; }
   .kv b { color:var(--muted); font-weight:500; }
   .tag { display:inline-block; background:#eef1f6; color:var(--accent); border-radius:12px; padding:2px 10px; font-size:12px; margin:2px 4px 0 0; }
+  .etype { display:inline-block; color:#fff; border-radius:12px; padding:2px 12px; font-size:12px; }
+  .blist { list-style:none; margin:14px 0 0; padding:0; }
+  .blist li { display:flex; gap:10px; align-items:center; padding:7px 0; border-top:1px solid var(--line); cursor:pointer; font-size:13.5px; }
+  .blist li:hover { color:var(--accent); }
+  .blist img { width:30px; height:45px; object-fit:cover; border-radius:3px; background:#eee; box-shadow:none; }
   footer { text-align:center; color:var(--muted); font-size:12.5px; padding:20px; border-top:1px solid var(--line); }
   footer a { color:var(--accent); }
 </style>
@@ -41,13 +70,43 @@
 <header>
   <h1>📚 Personal Library</h1>
   <span class="demo-badge">STATIC DEMO — ข้อมูลตัวอย่าง 70 เล่ม</span>
+  <div class="tabs">
+    <span class="tab on" data-view="grid">▦ ตาราง</span>
+    <span class="tab" data-view="graph">🕸 กราฟความรู้</span>
+  </div>
 </header>
 <div class="bar">
   <input id="q" placeholder="ค้นหาชื่อหนังสือ / ผู้เขียน / สำนักพิมพ์…">
   <span class="pill on" data-cat="">ทั้งหมด</span>
 </div>
-<div class="stats" id="stats"></div>
-<div class="grid" id="grid"></div>
+
+<!-- GRID VIEW -->
+<div id="gridView">
+  <div class="stats" id="stats"></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- GRAPH VIEW -->
+<div id="graphView">
+  <div class="stats" id="gstats"></div>
+  <div class="gwrap">
+    <canvas id="gcanvas"></canvas>
+    <div class="gpanel">
+      <h4>ประเภทโหนด (กดเพื่อซ่อน/แสดง)</h4>
+      <div class="leg" data-t="Book"><span class="dot" style="background:var(--book)"></span>หนังสือ · Artifact<span class="n" id="cnt-Book"></span></div>
+      <div class="leg" data-t="Person"><span class="dot" style="background:var(--person)"></span>ผู้เขียน · Person<span class="n" id="cnt-Person"></span></div>
+      <div class="leg" data-t="Org"><span class="dot" style="background:var(--org)"></span>สำนักพิมพ์ · Organization<span class="n" id="cnt-Org"></span></div>
+      <div class="leg" data-t="Concept"><span class="dot" style="background:var(--concept)"></span>หมวด · Concept<span class="n" id="cnt-Concept"></span></div>
+    </div>
+    <div class="gbtns">
+      <div class="gbtn" id="zin" title="ขยาย">+</div>
+      <div class="gbtn" id="zout" title="ย่อ">−</div>
+      <div class="gbtn" id="zfit" title="จัดให้พอดี">⤢</div>
+    </div>
+    <div class="gtip" id="gtip"></div>
+    <div class="ghint">ลากพื้นหลังเพื่อเลื่อน · สกอร์ล/ปุ่มเพื่อซูม · ลากโหนดเพื่อจัดวาง · คลิกโหนดเพื่อดูรายละเอียด</div>
+  </div>
+</div>
 
 <div id="ovl" onclick="closeSide()"></div>
 <aside id="side"></aside>
@@ -59,11 +118,12 @@
 
 <script src="books-data.js"></script>
 <script>
-let BOOKS = [], cat = '', q = '';
+/* ============================ shared data ============================ */
+let BOOKS = [], cat = '', q = '', view = 'grid';
 const grid = document.getElementById('grid'), stats = document.getElementById('stats');
 
 Promise.resolve(BOOKS_DATA).then(d => {
-  BOOKS = d.sort((a, b) => a.rank - b.rank);
+  BOOKS = d.slice().sort((a, b) => a.rank - b.rank);
   const cats = [...new Set(BOOKS.flatMap(b => b.cats))].sort();
   const bar = document.querySelector('.bar');
   for (const c of cats) {
@@ -78,24 +138,45 @@ Promise.resolve(BOOKS_DATA).then(d => {
     cat = e.target.dataset.cat; render();
   });
   render();
+  buildGraph();
 });
 
-document.getElementById('q').addEventListener('input', e => { q = e.target.value.toLowerCase(); render(); });
+document.getElementById('q').addEventListener('input', e => {
+  q = e.target.value.toLowerCase();
+  if (view === 'grid') render(); else Graph.onSearch();
+});
 
+/* view switch */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('on'));
+  t.classList.add('on');
+  view = t.dataset.view;
+  const g = view === 'graph';
+  document.getElementById('gridView').style.display = g ? 'none' : '';
+  document.getElementById('graphView').style.display = g ? 'block' : 'none';
+  document.querySelectorAll('.pill').forEach(p => p.style.display = g ? 'none' : '');
+  document.getElementById('q').placeholder = g
+    ? 'ค้นหาในกราฟ — เน้นหนังสือที่ตรงคำค้น…'
+    : 'ค้นหาชื่อหนังสือ / ผู้เขียน / สำนักพิมพ์…';
+  if (g) Graph.activate();
+}));
+
+/* ============================ grid view ============================ */
 function render() {
   const list = BOOKS.filter(b =>
     (!cat || b.cats.includes(cat)) &&
     (!q || (b.title + ' ' + b.authors.join(' ') + ' ' + b.publisher).toLowerCase().includes(q)));
   stats.textContent = `${list.length} เล่ม` + (cat ? ` · หมวด ${cat}` : '') + (q ? ` · ค้นหา "${q}"` : '');
-  grid.innerHTML = list.map((b, i) => `
-    <div class="card" onclick="openSide(${BOOKS.indexOf(b)})">
+  grid.innerHTML = list.map(b => `
+    <div class="card" onclick="openBook(${BOOKS.indexOf(b)})">
       <img loading="lazy" src="${b.cover}" onerror="this.style.display='none'">
       <div class="t">${b.title}</div>
       <div class="a">${b.authors[0] || ''}</div>
     </div>`).join('');
 }
 
-function openSide(i) {
+/* ============================ sidebar ============================ */
+function openBook(i) {
   const b = BOOKS[i];
   document.getElementById('side').innerHTML = `
     <img src="${b.cover}" onerror="this.style.display='none'">
@@ -113,6 +194,31 @@ function openSide(i) {
       <b>ตำแหน่งจัดเก็บ</b><span>📍 ชั้นหนังสือ Demo</span>
       <b>โน้ตส่วนตัว</b><span>— ยังไม่ระบุ —</span>
     </div>`;
+  openSide();
+}
+
+/* entity panel: Person / Org / Concept + connected books */
+const ETYPE = {
+  Person:  { th:'ผู้เขียน',   onto:'Person',       rel:'AUTHORED_BY', color:'var(--person)' },
+  Org:     { th:'สำนักพิมพ์', onto:'Organization', rel:'PUBLISHED_BY', color:'var(--org)' },
+  Concept: { th:'หมวดหมู่',   onto:'Concept',      rel:'ABOUT',        color:'var(--concept)' },
+};
+function openEntity(node) {
+  const e = ETYPE[node.type];
+  const books = node.books.map(bi => BOOKS[bi]);
+  document.getElementById('side').innerHTML = `
+    <span class="etype" style="background:${e.color}">${e.onto}</span>
+    <h2 style="margin-top:14px">${node.label}</h2>
+    <div class="sub">${e.th} · เชื่อมกับ ${books.length} เล่ม ผ่านความสัมพันธ์ <code>${e.rel}</code></div>
+    <ul class="blist">
+      ${books.map(b => `<li onclick="openBook(${BOOKS.indexOf(b)})">
+        <img src="${b.cover}" onerror="this.style.visibility='hidden'">
+        <span><b>${b.title}</b><br><span style="color:var(--muted);font-size:12px">${b.authors[0] || ''} · ${b.year || ''}</span></span>
+      </li>`).join('')}
+    </ul>`;
+  openSide();
+}
+function openSide() {
   document.getElementById('side').classList.add('open');
   document.getElementById('ovl').classList.add('open');
 }
@@ -120,6 +226,249 @@ function closeSide() {
   document.getElementById('side').classList.remove('open');
   document.getElementById('ovl').classList.remove('open');
 }
+
+/* ============================ knowledge graph ============================ */
+const Graph = (function () {
+  const TYPES = {
+    Book:    { color: '#465a78', base: 4 },
+    Person:  { color: '#c66a4b', base: 5 },
+    Org:     { color: '#7a6bb0', base: 5 },
+    Concept: { color: '#d1a23a', base: 8 },
+  };
+  const canvas = document.getElementById('gcanvas');
+  const ctx = canvas.getContext('2d');
+  const tip = document.getElementById('gtip');
+  const gstats = document.getElementById('gstats');
+  let nodes = [], links = [], nodeById = new Map(), adj = new Map();
+  const hidden = new Set();               // hidden node types
+  let cam = { x: 0, y: 0, s: 1 };
+  let W = 0, H = 0, dpr = 1;
+  let hover = null, dragNode = null, panning = false, moved = false;
+  let last = { x: 0, y: 0 };
+  let alpha = 1, started = false, raf = null;
+
+  function build() {
+    nodes = []; links = []; nodeById.clear(); adj.clear();
+    function ensure(type, key, label, extra) {
+      const id = type + ':' + key;
+      let n = nodeById.get(id);
+      if (!n) {
+        n = Object.assign({ id, type, label, deg: 0, books: [], x: 0, y: 0, vx: 0, vy: 0, pinned: false }, extra);
+        nodeById.set(id, n); nodes.push(n); adj.set(id, new Set());
+      }
+      return n;
+    }
+    BOOKS.forEach((b, bi) => {
+      const bn = ensure('Book', b.isbn, b.title, { bi });
+      const link = (o) => { links.push({ s: bn, t: o }); adj.get(bn.id).add(o.id); adj.get(o.id).add(bn.id); bn.deg++; o.deg++; o.books.push(bi); };
+      (b.authors || []).forEach(a => link(ensure('Person', a, a)));
+      if (b.publisher) link(ensure('Org', b.publisher, b.publisher));
+      (b.cats || []).forEach(c => link(ensure('Concept', c, c)));
+    });
+    // seed positions: concepts in inner ring, others scattered
+    const concepts = nodes.filter(n => n.type === 'Concept');
+    concepts.forEach((n, i) => {
+      const a = i / concepts.length * Math.PI * 2;
+      n.x = Math.cos(a) * 120; n.y = Math.sin(a) * 120;
+    });
+    nodes.forEach(n => { if (n.type !== 'Concept') { n.x = (Math.random() - .5) * 600; n.y = (Math.random() - .5) * 460; } });
+    // legend counts
+    for (const t of Object.keys(TYPES)) {
+      const el = document.getElementById('cnt-' + t);
+      if (el) el.textContent = nodes.filter(n => n.type === t).length;
+    }
+  }
+
+  function active(n) { return !hidden.has(n.type); }
+  function activeLink(l) { return active(l.s) && active(l.t); }
+
+  function radius(n) { return TYPES[n.type].base + Math.sqrt(n.deg) * 1.4; }
+
+  function tick() {
+    const nA = nodes.filter(active);
+    // repulsion (O(n^2), fine for a few hundred)
+    for (let i = 0; i < nA.length; i++) {
+      const a = nA[i];
+      for (let j = i + 1; j < nA.length; j++) {
+        const b = nA[j];
+        let dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy + 0.01;
+        let f = 2600 / d2; if (f > 40) f = 40;
+        const d = Math.sqrt(d2); dx /= d; dy /= d;
+        a.vx += dx * f; a.vy += dy * f; b.vx -= dx * f; b.vy -= dy * f;
+      }
+    }
+    // springs
+    for (const l of links) {
+      if (!activeLink(l)) continue;
+      const L = (l.s.type === 'Concept' || l.t.type === 'Concept') ? 92 : 62;
+      let dx = l.t.x - l.s.x, dy = l.t.y - l.s.y, d = Math.hypot(dx, dy) + .01;
+      const f = (d - L) * 0.045; dx /= d; dy /= d;
+      l.s.vx += dx * f; l.s.vy += dy * f; l.t.vx -= dx * f; l.t.vy -= dy * f;
+    }
+    // gravity to center + integrate
+    for (const n of nA) {
+      n.vx += (-n.x) * 0.002; n.vy += (-n.y) * 0.002;
+      if (n === dragNode) continue;
+      n.x += n.vx * alpha; n.y += n.vy * alpha;
+      n.vx *= 0.86; n.vy *= 0.86;
+    }
+    if (alpha > 0.02) alpha *= 0.994;
+  }
+
+  function toScreen(n) { return { x: (n.x + cam.x) * cam.s + W / 2, y: (n.y + cam.y) * cam.s + H / 2 }; }
+  function toWorld(px, py) { return { x: (px - W / 2) / cam.s - cam.x, y: (py - H / 2) / cam.s - cam.y }; }
+
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const hl = hover ? adj.get(hover.id) : null;
+    const qq = q.trim();
+    // links
+    ctx.lineWidth = 1;
+    for (const l of links) {
+      if (!activeLink(l)) continue;
+      const on = hover && (l.s === hover || l.t === hover);
+      const s = toScreen(l.s), t = toScreen(l.t);
+      ctx.strokeStyle = on ? '#46587855' : '#0000000f';
+      ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y); ctx.stroke();
+    }
+    // nodes
+    for (const n of nodes) {
+      if (!active(n)) continue;
+      const p = toScreen(n), r = radius(n) * Math.max(cam.s, .6);
+      const dim = hover && n !== hover && !(hl && hl.has(n.id));
+      const match = qq && n.type === 'Book' && n.label.toLowerCase().includes(qq);
+      ctx.globalAlpha = dim ? 0.28 : 1;
+      if (match) { ctx.beginPath(); ctx.arc(p.x, p.y, r + 4, 0, 7); ctx.fillStyle = '#d1a23a44'; ctx.fill(); }
+      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7);
+      ctx.fillStyle = TYPES[n.type].color; ctx.fill();
+      ctx.lineWidth = 1.5; ctx.strokeStyle = '#fff'; ctx.stroke();
+      ctx.globalAlpha = 1;
+      // labels: concepts always; hubs; hover + neighbors
+      const showLabel = n === hover || (hl && hl.has(n.id)) || n.type === 'Concept' ||
+                        (n.type === 'Org' && n.deg >= 4) || (n.type === 'Person' && n.deg >= 3);
+      if (showLabel && cam.s > 0.5) {
+        const txt = n.label.length > 26 ? n.label.slice(0, 25) + '…' : n.label;
+        ctx.font = (n.type === 'Concept' ? '600 ' : '') + '12px -apple-system,Segoe UI,Noto Sans Thai,sans-serif';
+        ctx.globalAlpha = dim ? 0.3 : 1;
+        ctx.fillStyle = '#fff'; ctx.lineWidth = 3; ctx.strokeStyle = '#faf9f5'; ctx.textAlign = 'center';
+        ctx.strokeText(txt, p.x, p.y - r - 4); ctx.fillStyle = '#2b2b2b';
+        ctx.fillText(txt, p.x, p.y - r - 4); ctx.globalAlpha = 1;
+      }
+    }
+  }
+
+  function loop() { tick(); draw(); raf = requestAnimationFrame(loop); }
+
+  function resize() {
+    const wrap = canvas.parentElement;
+    W = wrap.clientWidth; H = wrap.clientHeight;
+    dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  }
+
+  function fit() {
+    const nA = nodes.filter(active);
+    if (!nA.length) return;
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of nA) { minX = Math.min(minX, n.x); maxX = Math.max(maxX, n.x); minY = Math.min(minY, n.y); maxY = Math.max(maxY, n.y); }
+    const gw = maxX - minX + 120, gh = maxY - minY + 120;
+    cam.s = Math.min(W / gw, H / gh, 1.6);
+    cam.x = -(minX + maxX) / 2; cam.y = -(minY + maxY) / 2;
+  }
+
+  function pick(px, py) {
+    let best = null, bd = 16;
+    for (const n of nodes) {
+      if (!active(n)) continue;
+      const p = toScreen(n), d = Math.hypot(p.x - px, p.y - py), r = radius(n) * Math.max(cam.s, .6);
+      if (d < r + 4 && d - r < bd) { bd = Math.min(bd, d - r); best = n; }
+    }
+    return best;
+  }
+
+  function evtPos(e) { const r = canvas.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+
+  function bind() {
+    canvas.addEventListener('mousemove', e => {
+      const p = evtPos(e);
+      if (dragNode) {
+        const w = toWorld(p.x, p.y); dragNode.x = w.x; dragNode.y = w.y; dragNode.vx = dragNode.vy = 0; moved = true; alpha = Math.max(alpha, .3);
+      } else if (panning) {
+        cam.x += (p.x - last.x) / cam.s; cam.y += (p.y - last.y) / cam.s; last = p; moved = true;
+      } else {
+        hover = pick(p.x, p.y);
+        canvas.style.cursor = hover ? 'pointer' : 'grab';
+        if (hover) {
+          const e2 = ETYPE[hover.type];
+          tip.style.display = 'block'; tip.style.left = p.x + 'px'; tip.style.top = p.y + 'px';
+          tip.innerHTML = hover.type === 'Book'
+            ? `${hover.label}<br><small>Artifact:Book</small>`
+            : `${hover.label}<br><small>${e2.onto} · ${hover.books.length} เล่ม</small>`;
+        } else tip.style.display = 'none';
+      }
+    });
+    canvas.addEventListener('mousedown', e => {
+      const p = evtPos(e); last = p; moved = false;
+      const n = pick(p.x, p.y);
+      if (n) { dragNode = n; n.pinned = true; } else panning = true;
+    });
+    window.addEventListener('mouseup', () => {
+      if (dragNode && !moved) select(dragNode);
+      dragNode = null; panning = false;
+    });
+    canvas.addEventListener('wheel', e => {
+      e.preventDefault();
+      const p = evtPos(e), w = toWorld(p.x, p.y);
+      cam.s = Math.max(0.25, Math.min(3, cam.s * (e.deltaY < 0 ? 1.12 : 0.89)));
+      const w2 = toWorld(p.x, p.y); cam.x += w2.x - w.x; cam.y += w2.y - w.y;
+    }, { passive: false });
+    // touch
+    canvas.addEventListener('touchstart', e => {
+      const p = evtPos(e); last = p; moved = false; const n = pick(p.x, p.y);
+      if (n) { dragNode = n; n.pinned = true; } else panning = true;
+    }, { passive: true });
+    canvas.addEventListener('touchmove', e => {
+      const p = evtPos(e);
+      if (dragNode) { const w = toWorld(p.x, p.y); dragNode.x = w.x; dragNode.y = w.y; dragNode.vx = dragNode.vy = 0; moved = true; alpha = Math.max(alpha, .3); }
+      else if (panning) { cam.x += (p.x - last.x) / cam.s; cam.y += (p.y - last.y) / cam.s; last = p; moved = true; }
+    }, { passive: true });
+    canvas.addEventListener('touchend', () => { if (dragNode && !moved) select(dragNode); dragNode = null; panning = false; });
+
+    document.getElementById('zin').onclick = () => zoomBtn(1.2);
+    document.getElementById('zout').onclick = () => zoomBtn(0.8);
+    document.getElementById('zfit').onclick = () => { fit(); };
+    document.querySelectorAll('.leg').forEach(l => l.addEventListener('click', () => {
+      const t = l.dataset.t;
+      if (hidden.has(t)) { hidden.delete(t); l.classList.remove('off'); } else { hidden.add(t); l.classList.add('off'); }
+      alpha = Math.max(alpha, .5); updateStats();
+    }));
+    window.addEventListener('resize', () => { if (view === 'graph') resize(); });
+  }
+
+  function zoomBtn(f) { cam.s = Math.max(0.25, Math.min(3, cam.s * f)); }
+
+  function select(n) {
+    if (n.type === 'Book') openBook(n.bi); else openEntity(n);
+  }
+
+  function updateStats() {
+    const na = nodes.filter(active).length, la = links.filter(activeLink).length;
+    gstats.textContent = `กราฟความรู้ · ${na} โหนด · ${la} ความสัมพันธ์ (AUTHORED_BY / PUBLISHED_BY / ABOUT)`;
+  }
+
+  return {
+    boot() { build(); bind(); updateStats(); },
+    activate() {
+      resize(); fit(); alpha = Math.max(alpha, .6);
+      if (!started) { started = true; loop(); }
+    },
+    onSearch() { /* highlight handled in draw via q */ },
+  };
+})();
+
+function buildGraph() { Graph.boot(); }
 </script>
 </body>
 </html>
