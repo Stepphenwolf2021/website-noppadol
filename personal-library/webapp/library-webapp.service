@@ -1,0 +1,13 @@
+[Unit]
+Description=Personal Library web app
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/library-webapp
+EnvironmentFile=-%h/.pam-webapp.env
+ExecStart=/usr/bin/python3 %h/library-webapp/app.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
