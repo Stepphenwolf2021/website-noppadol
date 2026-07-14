@@ -6,7 +6,7 @@
 <title>Personal Library — Demo</title>
 <style>
   :root { --ink:#2b2b2b; --muted:#777; --bg:#faf9f5; --card:#fff; --accent:#465a78; --line:#e8e5de;
-          --book:#465a78; --person:#c66a4b; --org:#7a6bb0; --concept:#d1a23a; }
+          --book:#465a78; --person:#c66a4b; --org:#7a6bb0; --concept:#d1a23a; --subject:#2f9e8f; }
   * { box-sizing:border-box; }
   body { margin:0; font-family:-apple-system,'Segoe UI',Roboto,'Noto Sans Thai',sans-serif; background:var(--bg); color:var(--ink); }
   header { background:var(--accent); color:#fff; padding:14px 20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
@@ -97,6 +97,7 @@
       <div class="leg" data-t="Person"><span class="dot" style="background:var(--person)"></span>ผู้เขียน · Person<span class="n" id="cnt-Person"></span></div>
       <div class="leg" data-t="Org"><span class="dot" style="background:var(--org)"></span>สำนักพิมพ์ · Organization<span class="n" id="cnt-Org"></span></div>
       <div class="leg" data-t="Concept"><span class="dot" style="background:var(--concept)"></span>หมวด · Concept<span class="n" id="cnt-Concept"></span></div>
+      <div class="leg" data-t="Subject"><span class="dot" style="background:var(--subject)"></span>หัวเรื่อง · LCSH<span class="n" id="cnt-Subject"></span></div>
     </div>
     <div class="gbtns">
       <div class="gbtn" id="zin" title="ขยาย">+</div>
@@ -183,6 +184,9 @@ function openBook(i) {
     <h2>${b.title}</h2>
     <div class="sub">${b.subtitle || ''}</div>
     <div>${b.cats.map(c => `<span class="tag">${c}</span>`).join('')}</div>
+    ${b.subjects && b.subjects.length ? `
+    <div style="margin-top:12px;font-size:12px;color:var(--muted)">หัวเรื่อง (LCSH)</div>
+    <div>${b.subjects.map(s => `<span class="tag" style="background:#e4f2ee;color:var(--subject)">${s}</span>`).join('')}</div>` : ''}
     <div class="kv">
       <b>ผู้เขียน</b><span>${b.authors.join(', ')}</span>
       <b>สำนักพิมพ์</b><span>${b.publisher || '—'}</span>
@@ -191,17 +195,21 @@ function openBook(i) {
       <b>จำนวนหน้า</b><span>${b.pages || '— ยังไม่ระบุ —'}</span>
       <b>รูปแบบ</b><span>${b.format || '—'}</span>
       <b>ภาษา</b><span>${b.lang || '—'}</span>
+      ${b.ddc ? `<b>เลขหมู่ DDC</b><span>${b.ddc}</span>` : ''}
+      ${b.lcc ? `<b>LC Class</b><span>${b.lcc}</span>` : ''}
+      ${b.lccn ? `<b>LCCN</b><span>${b.lccn}</span>` : ''}
+      ${b.extent ? `<b>รายละเอียดเล่ม</b><span>${b.extent}</span>` : ''}
       <b>ตำแหน่งจัดเก็บ</b><span>📍 ชั้นหนังสือ Demo</span>
-      <b>โน้ตส่วนตัว</b><span>— ยังไม่ระบุ —</span>
     </div>`;
   openSide();
 }
 
 /* entity panel: Person / Org / Concept + connected books */
 const ETYPE = {
-  Person:  { th:'ผู้เขียน',   onto:'Person',       rel:'AUTHORED_BY', color:'var(--person)' },
-  Org:     { th:'สำนักพิมพ์', onto:'Organization', rel:'PUBLISHED_BY', color:'var(--org)' },
-  Concept: { th:'หมวดหมู่',   onto:'Concept',      rel:'ABOUT',        color:'var(--concept)' },
+  Person:  { th:'ผู้เขียน',   onto:'Person',        rel:'AUTHORED_BY', color:'var(--person)' },
+  Org:     { th:'สำนักพิมพ์', onto:'Organization',  rel:'PUBLISHED_BY', color:'var(--org)' },
+  Concept: { th:'หมวดหมู่',   onto:'Concept',       rel:'ABOUT',        color:'var(--concept)' },
+  Subject: { th:'หัวเรื่อง (LCSH)', onto:'Concept · LCSH', rel:'ABOUT',  color:'var(--subject)' },
 };
 function openEntity(node) {
   const e = ETYPE[node.type];
@@ -234,6 +242,7 @@ const Graph = (function () {
     Person:  { color: '#c66a4b', base: 5 },
     Org:     { color: '#7a6bb0', base: 5 },
     Concept: { color: '#d1a23a', base: 8 },
+    Subject: { color: '#2f9e8f', base: 6 },
   };
   const canvas = document.getElementById('gcanvas');
   const ctx = canvas.getContext('2d');
@@ -258,12 +267,16 @@ const Graph = (function () {
       }
       return n;
     }
+    // subject frequency — only subjects shared by >=2 books become graph nodes (cross-category bridges)
+    const subjFreq = {};
+    BOOKS.forEach(b => (b.subjects || []).forEach(s => subjFreq[s] = (subjFreq[s] || 0) + 1));
     BOOKS.forEach((b, bi) => {
       const bn = ensure('Book', b.isbn, b.title, { bi });
       const link = (o) => { links.push({ s: bn, t: o }); adj.get(bn.id).add(o.id); adj.get(o.id).add(bn.id); bn.deg++; o.deg++; o.books.push(bi); };
       (b.authors || []).forEach(a => link(ensure('Person', a, a)));
       if (b.publisher) link(ensure('Org', b.publisher, b.publisher));
       (b.cats || []).forEach(c => link(ensure('Concept', c, c)));
+      (b.subjects || []).forEach(s => { if (subjFreq[s] >= 2) link(ensure('Subject', s, s)); });
     });
     // seed positions: concepts in inner ring, others scattered
     const concepts = nodes.filter(n => n.type === 'Concept');
@@ -345,7 +358,7 @@ const Graph = (function () {
       ctx.lineWidth = 1.5; ctx.strokeStyle = '#fff'; ctx.stroke();
       ctx.globalAlpha = 1;
       // labels: concepts always; hubs; hover + neighbors
-      const showLabel = n === hover || (hl && hl.has(n.id)) || n.type === 'Concept' ||
+      const showLabel = n === hover || (hl && hl.has(n.id)) || n.type === 'Concept' || n.type === 'Subject' ||
                         (n.type === 'Org' && n.deg >= 4) || (n.type === 'Person' && n.deg >= 3);
       if (showLabel && cam.s > 0.5) {
         const txt = n.label.length > 26 ? n.label.slice(0, 25) + '…' : n.label;
