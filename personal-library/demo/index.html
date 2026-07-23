@@ -126,7 +126,8 @@ const grid = document.getElementById('grid'), stats = document.getElementById('s
 
 Promise.resolve(BOOKS_DATA).then(d => {
   BOOKS = d.slice().sort((a, b) => a.rank - b.rank);
-  document.getElementById('demo-badge').textContent = `คลังจริง ${BOOKS.length} รายการ — snapshot 23 ก.ค. 2026`;
+  const xd = (typeof EXPORT_META !== 'undefined' && EXPORT_META.date) ? EXPORT_META.date : '2026-07-23';
+  document.getElementById('demo-badge').textContent = `คลังจริง ${BOOKS.length} รายการ — snapshot ${xd}`;
   const cats = [...new Set(BOOKS.flatMap(b => b.cats))].sort();
   const bar = document.querySelector('.bar');
   for (const c of cats) {
