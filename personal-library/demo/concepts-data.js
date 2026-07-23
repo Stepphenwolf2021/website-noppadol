@@ -1,2 +1,2 @@
-/* Concept scheme — filtered to real collection concepts (export 2026-07-23) */
+/* Concept scheme — export จริงจากกราฟ (filtered to real-collection concepts) */
 const CONCEPT_SCHEME = {"hubs": [], "edges": []};

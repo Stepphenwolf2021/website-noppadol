@@ -6,3 +6,4 @@ const BOOKS_DATA = [
   {"isbn": "9789740217176", "title": "มนุษย์อยุธยา ประวัติศาสตร์สังคม จากข้าวปลา หยูกยา ตำรา Sex E-Books", "subtitle": null, "authors": ["กำพล จำปาพันธ์"], "publisher": "มติชน", "year": null, "pages": 338, "format": "paperback (ปกอ่อน)", "lang": "ไทย", "cats": ["หนังสือสารคดี"], "rank": 1, "cover": "covers/9789740217176.jpg", "subjects": ["หนังสือสารคดี"], "media": "Book"},
   {"isbn": "9780241977736", "title": "Gastrophysics", "subtitle": null, "authors": ["Charles Spence"], "publisher": "Viking, Penguin Books, Limited", "year": 2017, "pages": null, "format": "paperback (ปกอ่อน)", "lang": "English", "cats": ["gastrophysics", "food habits"], "rank": 1, "cover": "covers/9780241977736.jpg", "subjects": ["gastrophysics", "food habits"], "media": "Book"}
 ];
+const EXPORT_META = {"date": "2026-07-23", "items": 6};
