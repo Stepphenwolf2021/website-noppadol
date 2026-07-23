@@ -69,7 +69,7 @@
 <body>
 <header>
   <h1>📚 Personal Library</h1>
-  <span class="demo-badge">STATIC DEMO — ข้อมูลตัวอย่าง 70 เล่ม</span>
+  <span class="demo-badge" id="demo-badge">คลังจริง — snapshot 23 ก.ค. 2026</span>
   <div class="tabs">
     <span class="tab on" data-view="grid">▦ ตาราง</span>
     <span class="tab" data-view="graph">🕸 กราฟความรู้</span>
@@ -113,7 +113,7 @@
 <aside id="side"></aside>
 
 <footer>
-  Personal Library — knowledge-graph home library (FastAPI + Neo4j) · หน้านี้เป็น demo แบบ static บน GitHub Pages<br>
+  Personal Library — knowledge-graph home library (FastAPI + Neo4j) · หน้านี้เป็น snapshot แบบ static ของคลังจริง (export จากกราฟ) บน GitHub Pages<br>
   ระบบจริงรองรับ เพิ่มหนังสือจากภาพถ่ายปก · ข้อมูลบรรณานุกรมจาก Library of Congress / Open Library · ยืม-คืน · หลายชนิดสื่อ (extension)
 </footer>
 
@@ -126,6 +126,7 @@ const grid = document.getElementById('grid'), stats = document.getElementById('s
 
 Promise.resolve(BOOKS_DATA).then(d => {
   BOOKS = d.slice().sort((a, b) => a.rank - b.rank);
+  document.getElementById('demo-badge').textContent = `คลังจริง ${BOOKS.length} รายการ — snapshot 23 ก.ค. 2026`;
   const cats = [...new Set(BOOKS.flatMap(b => b.cats))].sort();
   const bar = document.querySelector('.bar');
   for (const c of cats) {
@@ -200,7 +201,7 @@ function openBook(i) {
       ${b.lcc ? `<b>LC Class</b><span>${b.lcc}</span>` : ''}
       ${b.lccn ? `<b>LCCN</b><span>${b.lccn}</span>` : ''}
       ${b.extent ? `<b>รายละเอียดเล่ม</b><span>${b.extent}</span>` : ''}
-      <b>ตำแหน่งจัดเก็บ</b><span>📍 ชั้นหนังสือ Demo</span>
+      ${b.media && b.media !== 'Book' ? `<b>ชนิดสื่อ</b><span>${b.media}</span>` : ''}
     </div>`;
   openSide();
 }
