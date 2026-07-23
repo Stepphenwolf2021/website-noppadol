@@ -4,3 +4,4 @@ dist-pdf/
 .DS_Store
 *.log
 /supabase/.temp
+_to_delete/
