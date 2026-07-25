@@ -9,4 +9,4 @@ const BOOKS_DATA = [
   {"isbn": null, "title": "THE LIFE OF THE COSMOS", "subtitle": null, "authors": ["Lee Smolin"], "publisher": null, "year": null, "pages": null, "format": "paperback", "lang": "English", "cats": ["cosmology", "physics", "science"], "rank": 1, "cover": null, "subjects": ["cosmology", "physics", "science"], "media": "Book"},
   {"isbn": "9780393339857", "title": "\"Surely You're Joking, Mr. Feynman\"", "subtitle": null, "authors": ["Richard Phillips Feynman", "Ralph Leighton"], "publisher": "W. W. Norton & Company, Unwin Paperbacks", "year": 1984, "pages": null, "format": null, "lang": "English", "cats": ["music", "humor", "art"], "rank": 1, "cover": "covers/9780393339857.jpg", "subjects": ["music", "humor", "art"], "media": "Book"}
 ];
-const EXPORT_META = {"date": "2026-07-25", "items": 9};
+const EXPORT_META = {"date": "2026-07-26", "items": 9};
