@@ -154,4 +154,4 @@ const BOOKS_DATA = [
   {"isbn": "9789740217176", "title": "มนุษย์อยุธยา", "subtitle": null, "authors": ["กำพล จำปาพันธ์"], "publisher": "มติชน", "year": 2020, "pages": 326, "format": "paperback (ปกอ่อน)", "lang": "ไทย", "cats": ["อยุธยา", "history", "ความเป็นอยู่และประเพณี", "ไทย"], "rank": 3, "cover": "covers/9789740217176.jpg", "subjects": ["อยุธยา", "history", "ความเป็นอยู่และประเพณี", "ไทย"], "media": "Book"},
   {"isbn": "9786169109976", "title": "100 ชื่อลือนาม สงครมไทย-พม่า", "subtitle": null, "authors": ["วุฒิชาติ ชุ่มสนิท"], "publisher": "อันพู", "year": 2012, "pages": 388, "format": "hardcover (ปกแข็ง)", "lang": "ไทย", "cats": ["burma"], "rank": 1, "cover": "covers/9786169109976.jpg", "subjects": ["burma"], "media": "Book"}
 ];
-const EXPORT_META = {"date": "2026-08-01", "items": 154};
+const EXPORT_META = {"date": "2026-08-02", "items": 154};
