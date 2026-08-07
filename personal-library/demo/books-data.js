@@ -199,4 +199,4 @@ const BOOKS_DATA = [
   {"isbn": "9786164500402", "title": "หนอนในเกลือ (Turn A Blind Eye)", "subtitle": null, "authors": ["Jeffrey Archer", "สุวิทย์ ขาวปลอด"], "publisher": "วรรณวิภา", "year": 2023, "pages": 674, "format": "paperback (ปกอ่อน)", "lang": "ไทย", "cats": ["สืบสวน", "นิยาย"], "rank": 1, "cover": "covers/9786164500402.jpg", "subjects": ["สืบสวน", "นิยาย"], "media": "Book"},
   {"isbn": "9789740218630", "title": "สมรภูมิพลิกอำนาจโลก (Amidst the geo-political conflicts)", "subtitle": null, "authors": ["ปิติ ศรีแสงนาม", "จักรี ไชยพินิจ"], "publisher": "มติชน", "year": 2023, "pages": 495, "format": "paperback (ปกอ่อน)", "lang": "ไทย", "cats": ["อำนาจ", "ความขัดแย้ง", "ประเทศไทย", "ระเบียบโลก", "ภูมิรัฐศาสตร์"], "rank": 1, "cover": "covers/9789740218630.jpg", "subjects": ["อำนาจ", "ความขัดแย้ง", "ประเทศไทย", "ระเบียบโลก", "ภูมิรัฐศาสตร์"], "media": "Book"}
 ];
-const EXPORT_META = {"date": "2026-08-07", "items": 199};
+const EXPORT_META = {"date": "2026-08-08", "items": 199};
