@@ -201,4 +201,4 @@ const BOOKS_DATA = [
   {"isbn": "9786168388198", "title": "โลกลี้ลับที่พืชรับรู้", "subtitle": null, "authors": ["Daniel Chamovitz", "เกวลิน ธนสารสมบัติ"], "publisher": "Bookscape", "year": 2026, "pages": 0, "format": "paperback (ปกอ่อน)", "lang": "ไทย", "cats": ["sense", "ชีววิทยา", "พืช"], "rank": 1, "cover": "covers/9786168388198.jpg", "subjects": ["sense", "ชีววิทยา", "พืช"], "media": "Book"},
   {"isbn": "9780241977736", "title": "Gastrophysics", "subtitle": null, "authors": ["Charles Spence"], "publisher": "Viking, Penguin Books, Limited", "year": 2017, "pages": null, "format": null, "lang": "English", "cats": ["food habits"], "rank": 1, "cover": "covers/9780241977736.jpg", "subjects": ["food habits"], "media": "Book"}
 ];
-const EXPORT_META = {"date": "2026-08-14", "items": 201};
+const EXPORT_META = {"date": "2026-08-15", "items": 201};
