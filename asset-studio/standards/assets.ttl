@@ -1,0 +1,151 @@
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix n: <urn:noppadol:ontology:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+a: a owl:Ontology ;
+    owl:versionInfo "1.0.0" .
+
+a:BrandRecord a owl:Class ;
+    rdfs:label "แบรนด์อ้างอิง"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:Component a owl:Class ;
+    rdfs:label "ส่วนประกอบที่ติดตามเป็นชิ้น"@th ;
+    rdfs:subClassOf a:AssetItem .
+
+a:actor a owl:ObjectProperty ;
+    rdfs:domain a:AssetEvent ;
+    rdfs:range a:AgentRecord .
+
+a:basis a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:classifiedAs a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range skos:Concept .
+
+a:edition a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range a:ReleaseEdition .
+
+a:eventKind a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:field a owl:ObjectProperty ;
+    rdfs:domain a:AssetObservation .
+
+a:inEdition a owl:ObjectProperty ;
+    rdfs:domain a:TrackEntry ;
+    rdfs:range a:ReleaseEdition .
+
+a:model a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range a:ProductModel .
+
+a:note a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:numberValue a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+a:observedOn a owl:DatatypeProperty ;
+    rdfs:range xsd:date .
+
+a:observedSubject a owl:ObjectProperty ;
+    rdfs:domain a:AssetObservation ;
+    rdfs:range a:AssetRecord .
+
+a:occurredOn a owl:DatatypeProperty ;
+    rdfs:range xsd:date .
+
+a:participant a owl:ObjectProperty ;
+    rdfs:domain a:AssetEvent ;
+    rdfs:range a:AssetItem .
+
+a:profile a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:referenceValue a owl:ObjectProperty ;
+    rdfs:domain a:AssetObservation .
+
+a:releaseGroup a owl:ObjectProperty ;
+    rdfs:domain a:ReleaseEdition ;
+    rdfs:range a:ReleaseGroup .
+
+a:sourceInput a owl:ObjectProperty ;
+    rdfs:range n:KnowledgeInput .
+
+a:textValue a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:unit a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:valueStatus a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:AgentRecord a owl:Class ;
+    rdfs:label "บุคคลหรือองค์กรอ้างอิง"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:ReleaseGroup a owl:Class ;
+    rdfs:label "กลุ่มฉบับเผยแพร่"@th ;
+    rdfs:subClassOf a:AssetRecord ;
+    owl:disjointWith a:ReleaseEdition .
+
+a:TrackEntry a owl:Class ;
+    rdfs:label "รายการแทร็กในฉบับ"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetEvent a owl:Class ;
+    rdfs:label "เหตุการณ์ใช้หรือดูแลทรัพย์สิน"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:ProductModel a owl:Class ;
+    rdfs:label "รุ่นผลิตภัณฑ์"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetObservation a owl:Class ;
+    rdfs:label "ค่าที่บันทึกพร้อมที่มา"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetItem a owl:Class ;
+    rdfs:label "ทรัพย์สินวัตถุรายชิ้น"@th ;
+    rdfs:subClassOf a:AssetRecord ;
+    owl:disjointWith a:ProductModel,
+        a:ReleaseEdition,
+        n:SourceRevision .
+
+a:ReleaseEdition a owl:Class ;
+    rdfs:label "ฉบับเผยแพร่"@th ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetRecord a owl:Class ;
+    rdfs:label "รายการในโมดูลทรัพย์สิน"@th ;
+    rdfs:subClassOf n:ManagedRecord .
+
+
+a:AssetRecord rdfs:comment "Governed record in the personal assets module; not an assertion of ownership."@en .
+
+a:AssetItem rdfs:comment "Individually tracked physical object, distinct from a product model or digital media revision."@en .
+
+a:Component rdfs:comment "Physical item tracked separately as a component; composition is asserted through an evidenced bridge connection."@en .
+
+a:ProductModel rdfs:comment "Product design or model shared by individual objects."@en .
+
+a:AgentRecord rdfs:comment "Referenced person or organization; distinct from a brand."@en .
+
+a:BrandRecord rdfs:comment "Referenced brand identity; not necessarily its owner or manufacturer organization."@en .
+
+a:ReleaseGroup rdfs:comment "Grouping of release editions, inspired by the Discogs master grouping; not a musical work."@en .
+
+a:ReleaseEdition rdfs:comment "Specific released edition, distinct from an individually held copy."@en .
+
+a:TrackEntry rdfs:comment "Track occurrence scoped to one release edition."@en .
+
+a:AssetEvent rdfs:comment "Dated when known, sourced acquisition, use, maintenance, repair, listening or component-change event."@en .
+
+a:AssetObservation rdfs:comment "One recorded field value or explicit unknown/not-applicable state, scoped to a subject and source when known."@en .

@@ -1,0 +1,866 @@
+[
+  {
+    "metadataField": "common.brand",
+    "fieldIRI": "urn:noppadol:assets:field:common.brand",
+    "pattern": "AssetObservation",
+    "valueType": "brand_ref",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.model",
+    "fieldIRI": "urn:noppadol:assets:field:common.model",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.serial_number",
+    "fieldIRI": "urn:noppadol:assets:field:common.serial_number",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.maker",
+    "fieldIRI": "urn:noppadol:assets:field:common.maker",
+    "pattern": "AssetObservation",
+    "valueType": "agent_ref",
+    "appliesTo": "model_or_item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.manufacturer",
+    "fieldIRI": "urn:noppadol:assets:field:common.manufacturer",
+    "pattern": "AssetObservation",
+    "valueType": "organization_ref",
+    "appliesTo": "model_or_item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.manufacture_country",
+    "fieldIRI": "urn:noppadol:assets:field:common.manufacture_country",
+    "pattern": "AssetObservation",
+    "valueType": "place_ref",
+    "appliesTo": "item_or_batch",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.manufactured_at",
+    "fieldIRI": "urn:noppadol:assets:field:common.manufactured_at",
+    "pattern": "AssetObservation",
+    "valueType": "date_or_interval",
+    "appliesTo": "item_or_batch",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.acquired_at",
+    "fieldIRI": "urn:noppadol:assets:field:common.acquired_at",
+    "pattern": "AssetObservation",
+    "valueType": "date",
+    "appliesTo": "acquisition",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.seller",
+    "fieldIRI": "urn:noppadol:assets:field:common.seller",
+    "pattern": "AssetObservation",
+    "valueType": "agent_ref",
+    "appliesTo": "acquisition",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.purchase_price",
+    "fieldIRI": "urn:noppadol:assets:field:common.purchase_price",
+    "pattern": "AssetObservation",
+    "valueType": "money",
+    "appliesTo": "acquisition",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.purchase_condition",
+    "fieldIRI": "urn:noppadol:assets:field:common.purchase_condition",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "acquisition",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "common.location",
+    "fieldIRI": "urn:noppadol:assets:field:common.location",
+    "pattern": "AssetObservation",
+    "valueType": "place_ref",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.condition",
+    "fieldIRI": "urn:noppadol:assets:field:common.condition",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.special_features",
+    "fieldIRI": "urn:noppadol:assets:field:common.special_features",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text_list",
+    "appliesTo": "model_or_item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.personal_story",
+    "fieldIRI": "urn:noppadol:assets:field:common.personal_story",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.source_documents",
+    "fieldIRI": "urn:noppadol:assets:field:common.source_documents",
+    "pattern": "AssetObservation",
+    "valueType": "knowledge_input_ref_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "common.maintenance_events",
+    "fieldIRI": "urn:noppadol:assets:field:common.maintenance_events",
+    "pattern": "AssetObservation",
+    "valueType": "event_ref_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.plane_type",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.plane_type",
+    "pattern": "AssetObservation",
+    "valueType": "concept_ref",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.body_material",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.body_material",
+    "pattern": "AssetObservation",
+    "valueType": "material_ref_list",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.body_wood_species",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.body_wood_species",
+    "pattern": "AssetObservation",
+    "valueType": "concept_ref",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.intended_workpiece_wood",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.intended_workpiece_wood",
+    "pattern": "AssetObservation",
+    "valueType": "qualified_concept_ref_list",
+    "appliesTo": "model_or_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.blade",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade",
+    "pattern": "AssetObservation",
+    "valueType": "component_ref",
+    "appliesTo": "dated_configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.blade_width",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_width",
+    "pattern": "AssetObservation",
+    "valueType": "length",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.blade_thickness",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_thickness",
+    "pattern": "AssetObservation",
+    "valueType": "length",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.blade_steel",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_steel",
+    "pattern": "AssetObservation",
+    "valueType": "material_ref",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.blade_construction",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_construction",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.blade_maker",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_maker",
+    "pattern": "AssetObservation",
+    "valueType": "agent_ref",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.primary_bevel_angle",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.primary_bevel_angle",
+    "pattern": "AssetObservation",
+    "valueType": "angle",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.micro_bevel_angle",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.micro_bevel_angle",
+    "pattern": "AssetObservation",
+    "valueType": "angle",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.bed_angle",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.bed_angle",
+    "pattern": "AssetObservation",
+    "valueType": "angle",
+    "appliesTo": "configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.blade_orientation",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_orientation",
+    "pattern": "AssetObservation",
+    "valueType": "controlled_text",
+    "appliesTo": "configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "hand_plane.cutting_angle",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.cutting_angle",
+    "pattern": "AssetObservation",
+    "valueType": "angle_with_method",
+    "appliesTo": "configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.setup_notes",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.setup_notes",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text",
+    "appliesTo": "dated_configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.sharpening_history",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.sharpening_history",
+    "pattern": "AssetObservation",
+    "valueType": "event_ref_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.cutting_stroke",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.cutting_stroke",
+    "pattern": "AssetObservation",
+    "valueType": "controlled_text",
+    "appliesTo": "configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.chipbreaker",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.chipbreaker",
+    "pattern": "AssetObservation",
+    "valueType": "component_ref",
+    "appliesTo": "dated_configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.frog",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.frog",
+    "pattern": "AssetObservation",
+    "valueType": "component_ref",
+    "appliesTo": "dated_configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.blade_hardness",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.blade_hardness",
+    "pattern": "AssetObservation",
+    "valueType": "measured_range_with_scale",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.heat_treatment",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.heat_treatment",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "hand_plane.sole_adjustments",
+    "fieldIRI": "urn:noppadol:assets:field:hand_plane.sole_adjustments",
+    "pattern": "AssetObservation",
+    "valueType": "event_ref_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.capture_medium",
+    "fieldIRI": "urn:noppadol:assets:field:camera.capture_medium",
+    "pattern": "AssetObservation",
+    "valueType": "controlled_text",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "camera.film_format",
+    "fieldIRI": "urn:noppadol:assets:field:camera.film_format",
+    "pattern": "AssetObservation",
+    "valueType": "concept_ref",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.sensor_format",
+    "fieldIRI": "urn:noppadol:assets:field:camera.sensor_format",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.lens_mount",
+    "fieldIRI": "urn:noppadol:assets:field:camera.lens_mount",
+    "pattern": "AssetObservation",
+    "valueType": "concept_ref",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "camera.lens_configuration",
+    "fieldIRI": "urn:noppadol:assets:field:camera.lens_configuration",
+    "pattern": "AssetObservation",
+    "valueType": "controlled_text",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.installed_lens",
+    "fieldIRI": "urn:noppadol:assets:field:camera.installed_lens",
+    "pattern": "AssetObservation",
+    "valueType": "component_or_asset_ref",
+    "appliesTo": "dated_configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "camera.compatible_lenses",
+    "fieldIRI": "urn:noppadol:assets:field:camera.compatible_lenses",
+    "pattern": "AssetObservation",
+    "valueType": "qualified_asset_model_ref_list",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.lens_model",
+    "fieldIRI": "urn:noppadol:assets:field:camera.lens_model",
+    "pattern": "AssetObservation",
+    "valueType": "asset_model_ref",
+    "appliesTo": "lens",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.lens_serial_number",
+    "fieldIRI": "urn:noppadol:assets:field:camera.lens_serial_number",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "lens",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.focal_length",
+    "fieldIRI": "urn:noppadol:assets:field:camera.focal_length",
+    "pattern": "AssetObservation",
+    "valueType": "length_range",
+    "appliesTo": "lens",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.maximum_aperture",
+    "fieldIRI": "urn:noppadol:assets:field:camera.maximum_aperture",
+    "pattern": "AssetObservation",
+    "valueType": "qualified_number_or_range",
+    "appliesTo": "lens",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.firmware_version",
+    "fieldIRI": "urn:noppadol:assets:field:camera.firmware_version",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "dated_configuration",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "camera.produced_images",
+    "fieldIRI": "urn:noppadol:assets:field:camera.produced_images",
+    "pattern": "AssetObservation",
+    "valueType": "knowledge_input_ref_list",
+    "appliesTo": "use_session",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.release_title",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.release_title",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.musical_works",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.musical_works",
+    "pattern": "AssetObservation",
+    "valueType": "work_ref_list",
+    "appliesTo": "recording",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.recordings",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.recordings",
+    "pattern": "AssetObservation",
+    "valueType": "recording_ref_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.artist_credits",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.artist_credits",
+    "pattern": "AssetObservation",
+    "valueType": "credit_list",
+    "appliesTo": "release_or_track",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.engineering_credits",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.engineering_credits",
+    "pattern": "AssetObservation",
+    "valueType": "credit_list",
+    "appliesTo": "recording_or_release_or_track",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.producer_credits",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.producer_credits",
+    "pattern": "AssetObservation",
+    "valueType": "credit_list",
+    "appliesTo": "recording_or_release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.label",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.label",
+    "pattern": "AssetObservation",
+    "valueType": "organization_ref",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "legacy"
+  },
+  {
+    "metadataField": "record_disc.record_manufacturer",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.record_manufacturer",
+    "pattern": "AssetObservation",
+    "valueType": "organization_ref",
+    "appliesTo": "pressing",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.pressing_plant",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.pressing_plant",
+    "pattern": "AssetObservation",
+    "valueType": "organization_ref",
+    "appliesTo": "pressing",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.release_country",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.release_country",
+    "pattern": "AssetObservation",
+    "valueType": "place_ref",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.pressing_country",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.pressing_country",
+    "pattern": "AssetObservation",
+    "valueType": "place_ref",
+    "appliesTo": "pressing",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.catalog_number",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.catalog_number",
+    "pattern": "AssetObservation",
+    "valueType": "text",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "legacy"
+  },
+  {
+    "metadataField": "record_disc.matrix_runout",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.matrix_runout",
+    "pattern": "AssetObservation",
+    "valueType": "side_text_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.playback_speed",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.playback_speed",
+    "pattern": "AssetObservation",
+    "valueType": "side_rotation_rate_list",
+    "appliesTo": "release_or_side",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.record_diameter",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.record_diameter",
+    "pattern": "AssetObservation",
+    "valueType": "length",
+    "appliesTo": "item_or_release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.edition_features",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.edition_features",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text_list",
+    "appliesTo": "release_or_pressing",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.copy_features",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.copy_features",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.media_condition",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.media_condition",
+    "pattern": "AssetObservation",
+    "valueType": "grading_observation",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.sleeve_condition",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.sleeve_condition",
+    "pattern": "AssetObservation",
+    "valueType": "grading_observation",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.discogs_master_ref",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.discogs_master_ref",
+    "pattern": "AssetObservation",
+    "valueType": "external_ref",
+    "appliesTo": "release_group",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.discogs_release_ref",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.discogs_release_ref",
+    "pattern": "AssetObservation",
+    "valueType": "external_ref",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.release_date",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.release_date",
+    "pattern": "AssetObservation",
+    "valueType": "partial_date",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.formats",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.formats",
+    "pattern": "AssetObservation",
+    "valueType": "format_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.label_catalog_entries",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.label_catalog_entries",
+    "pattern": "AssetObservation",
+    "valueType": "label_catalog_pair_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "record_disc.company_credits",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.company_credits",
+    "pattern": "AssetObservation",
+    "valueType": "company_role_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.tracklist",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.tracklist",
+    "pattern": "AssetObservation",
+    "valueType": "track_entry_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.genres",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.genres",
+    "pattern": "AssetObservation",
+    "valueType": "external_term_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.styles",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.styles",
+    "pattern": "AssetObservation",
+    "valueType": "external_term_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.release_identifiers",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.release_identifiers",
+    "pattern": "AssetObservation",
+    "valueType": "identifier_list",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.source_release_notes",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.source_release_notes",
+    "pattern": "AssetObservation",
+    "valueType": "sourced_text",
+    "appliesTo": "release",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.release_match",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.release_match",
+    "pattern": "AssetObservation",
+    "valueType": "match_assessment",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.carrier_members",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.carrier_members",
+    "pattern": "AssetObservation",
+    "valueType": "asset_ref_list",
+    "appliesTo": "item_set",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "record_disc.listening_sessions",
+    "fieldIRI": "urn:noppadol:assets:field:record_disc.listening_sessions",
+    "pattern": "AssetObservation",
+    "valueType": "event_ref_list",
+    "appliesTo": "item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "chisel.chisel_type",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.chisel_type",
+    "pattern": "AssetObservation",
+    "valueType": "concept_ref",
+    "appliesTo": "model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "chisel.blade_width",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.blade_width",
+    "pattern": "AssetObservation",
+    "valueType": "length",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "chisel.full_length",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.full_length",
+    "pattern": "AssetObservation",
+    "valueType": "approximate_length",
+    "appliesTo": "item_or_model",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "chisel.blade_steel",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.blade_steel",
+    "pattern": "AssetObservation",
+    "valueType": "material_ref",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "chisel.bevel_angle",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.bevel_angle",
+    "pattern": "AssetObservation",
+    "valueType": "approximate_angle",
+    "appliesTo": "dated_observation",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "chisel.ura_type",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.ura_type",
+    "pattern": "AssetObservation",
+    "valueType": "concept_ref",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "chisel.surface_finish",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.surface_finish",
+    "pattern": "AssetObservation",
+    "valueType": "annotated_text",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  },
+  {
+    "metadataField": "chisel.handle_wood",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.handle_wood",
+    "pattern": "AssetObservation",
+    "valueType": "qualified_material_ref",
+    "appliesTo": "component",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "chisel.maker_attribution",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.maker_attribution",
+    "pattern": "AssetObservation",
+    "valueType": "attribution_list",
+    "appliesTo": "model_or_item",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "recommended"
+  },
+  {
+    "metadataField": "chisel.set_members",
+    "fieldIRI": "urn:noppadol:assets:field:chisel.set_members",
+    "pattern": "AssetObservation",
+    "valueType": "asset_ref_list",
+    "appliesTo": "collection",
+    "structuredValuePolicy": "preserve source JSON as textValue with sourceInput; typed adapter deferred for complex values",
+    "priority": "optional"
+  }
+]

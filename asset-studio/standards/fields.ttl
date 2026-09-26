@@ -1,0 +1,194 @@
+@prefix f: <urn:noppadol:assets:field:> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+f:camera.capture_medium rdfs:label "ระบบบันทึกฟิล์มหรือดิจิทัล"@th .
+
+f:camera.compatible_lenses rdfs:label "เลนส์ที่รองรับและเงื่อนไข"@th .
+
+f:camera.film_format rdfs:label "รูปแบบฟิล์ม"@th .
+
+f:camera.firmware_version rdfs:label "รุ่นเฟิร์มแวร์ถ้ามี"@th .
+
+f:camera.focal_length rdfs:label "ช่วงทางยาวโฟกัส"@th .
+
+f:camera.installed_lens rdfs:label "เลนส์ที่ติดตั้งในช่วงเวลานั้น"@th .
+
+f:camera.lens_configuration rdfs:label "เลนส์ติดตั้งถาวรหรือเปลี่ยนได้"@th .
+
+f:camera.lens_model rdfs:label "รุ่นเลนส์"@th .
+
+f:camera.lens_mount rdfs:label "ระบบเมาท์"@th .
+
+f:camera.lens_serial_number rdfs:label "หมายเลขเลนส์"@th .
+
+f:camera.maximum_aperture rdfs:label "รูรับแสงกว้างสุดและเงื่อนไข"@th .
+
+f:camera.produced_images rdfs:label "ภาพที่สร้างด้วยกล้องนี้ตามหลักฐาน"@th .
+
+f:camera.sensor_format rdfs:label "รูปแบบเซนเซอร์"@th .
+
+f:chisel.bevel_angle rdfs:label "มุมคมสิ่วพร้อมฐานอ้างอิง"@th .
+
+f:chisel.blade_steel rdfs:label "กลุ่มหรือเกรดเหล็ก"@th .
+
+f:chisel.blade_width rdfs:label "ความกว้างใบสิ่ว"@th .
+
+f:chisel.chisel_type rdfs:label "ประเภทสิ่ว"@th .
+
+f:chisel.full_length rdfs:label "ความยาวรวม"@th .
+
+f:chisel.handle_wood rdfs:label "วัสดุไม้ด้ามตามชื่อที่ระบุ"@th .
+
+f:chisel.maker_attribution rdfs:label "ผู้สร้างตามแหล่งข้อมูล"@th .
+
+f:chisel.set_members rdfs:label "สมาชิกชุดสิ่ว"@th .
+
+f:chisel.surface_finish rdfs:label "ลักษณะผิว"@th .
+
+f:chisel.ura_type rdfs:label "รูปแบบหลังใบ"@th .
+
+f:common.acquired_at rdfs:label "วันที่ได้มา"@th .
+
+f:common.brand rdfs:label "ยี่ห้อ"@th .
+
+f:common.condition rdfs:label "สภาพปัจจุบันที่ตรวจพบ"@th .
+
+f:common.location rdfs:label "ที่เก็บ"@th .
+
+f:common.maintenance_events rdfs:label "ประวัติดูแลและเปลี่ยนอะไหล่"@th .
+
+f:common.maker rdfs:label "ผู้สร้าง"@th .
+
+f:common.manufacture_country rdfs:label "ประเทศผลิต"@th .
+
+f:common.manufactured_at rdfs:label "ช่วงเวลาผลิต"@th .
+
+f:common.manufacturer rdfs:label "ผู้ผลิต"@th .
+
+f:common.model rdfs:label "ชื่อรุ่น"@th .
+
+f:common.personal_story rdfs:label "เรื่องราวและเหตุผลที่เลือก"@th .
+
+f:common.purchase_condition rdfs:label "สภาพเมื่อซื้อ"@th .
+
+f:common.purchase_price rdfs:label "ราคาที่ซื้อ"@th .
+
+f:common.seller rdfs:label "ซื้อจากใคร"@th .
+
+f:common.serial_number rdfs:label "หมายเลขประจำชิ้น"@th .
+
+f:common.source_documents rdfs:label "คู่มือ ใบเสร็จ รูป และบันทึก"@th .
+
+f:common.special_features rdfs:label "ความพิเศษ"@th .
+
+f:hand_plane.bed_angle rdfs:label "มุมตั้งใบกบเทียบฐานกบ"@th .
+
+f:hand_plane.blade rdfs:label "ใบกบที่ติดตั้ง"@th .
+
+f:hand_plane.blade_construction rdfs:label "โครงสร้างใบกบ เช่นชั้นวัสดุ"@th .
+
+f:hand_plane.blade_hardness rdfs:label "ความแข็งใบและสเกลที่ใช้"@th .
+
+f:hand_plane.blade_maker rdfs:label "ผู้สร้างใบกบ"@th .
+
+f:hand_plane.blade_orientation rdfs:label "ทิศทางคมใบกบ"@th .
+
+f:hand_plane.blade_steel rdfs:label "ชนิดหรือเกรดเหล็กใบกบ"@th .
+
+f:hand_plane.blade_thickness rdfs:label "ความหนาใบกบ"@th .
+
+f:hand_plane.blade_width rdfs:label "ความกว้างใบกบ"@th .
+
+f:hand_plane.body_material rdfs:label "วัสดุตัวกบ"@th .
+
+f:hand_plane.body_wood_species rdfs:label "ชนิดไม้ที่ใช้ทำตัวกบ"@th .
+
+f:hand_plane.chipbreaker rdfs:label "เหล็กประกับที่ติดตั้ง"@th .
+
+f:hand_plane.cutting_angle rdfs:label "มุมตัดที่ระบุหรือประเมิน"@th .
+
+f:hand_plane.cutting_stroke rdfs:label "ทิศทางการไส"@th .
+
+f:hand_plane.frog rdfs:label "ฐานรองใบที่ติดตั้ง"@th .
+
+f:hand_plane.heat_treatment rdfs:label "ข้อมูลกรรมวิธีทางความร้อน"@th .
+
+f:hand_plane.intended_workpiece_wood rdfs:label "ชนิดไม้ที่เหมาะสำหรับไส"@th .
+
+f:hand_plane.micro_bevel_angle rdfs:label "มุมคมย่อยถ้ามี"@th .
+
+f:hand_plane.plane_type rdfs:label "ประเภทกบตามการใช้งาน"@th .
+
+f:hand_plane.primary_bevel_angle rdfs:label "มุมคมหลักของใบกบ"@th .
+
+f:hand_plane.setup_notes rdfs:label "การตั้งปากกบและการปรับแต่ง"@th .
+
+f:hand_plane.sharpening_history rdfs:label "ประวัติลับคมและหินที่ใช้"@th .
+
+f:hand_plane.sole_adjustments rdfs:label "ประวัติปรับฐานกบ"@th .
+
+f:record_disc.artist_credits rdfs:label "ศิลปินและบทบาท"@th .
+
+f:record_disc.carrier_members rdfs:label "แผ่นแต่ละแผ่นในชุด"@th .
+
+f:record_disc.catalog_number rdfs:label "รหัสแค็ตตาล็อก"@th .
+
+f:record_disc.company_credits rdfs:label "บริษัทและบทบาทที่เกี่ยวข้อง"@th .
+
+f:record_disc.copy_features rdfs:label "ความพิเศษเฉพาะแผ่น เช่นลายเซ็น"@th .
+
+f:record_disc.discogs_master_ref rdfs:label "กลุ่ม Master ของ Discogs"@th .
+
+f:record_disc.discogs_release_ref rdfs:label "ฉบับ Release ของ Discogs"@th .
+
+f:record_disc.edition_features rdfs:label "ความพิเศษของฉบับ"@th .
+
+f:record_disc.engineering_credits rdfs:label "วิศวกรเสียงและหน้าที่"@th .
+
+f:record_disc.formats rdfs:label "รูปแบบ จำนวนสื่อ และคำอธิบาย"@th .
+
+f:record_disc.genres rdfs:label "แนวเพลงกว้างตามต้นทาง"@th .
+
+f:record_disc.label rdfs:label "ค่ายเพลง"@th .
+
+f:record_disc.label_catalog_entries rdfs:label "ค่ายและรหัสแค็ตตาล็อกหลายรายการ"@th .
+
+f:record_disc.listening_sessions rdfs:label "ประสบการณ์ฟังและชุดอุปกรณ์"@th .
+
+f:record_disc.matrix_runout rdfs:label "ข้อความหรือรหัสบนร่องท้ายแผ่นแต่ละด้าน"@th .
+
+f:record_disc.media_condition rdfs:label "สภาพตัวแผ่น"@th .
+
+f:record_disc.musical_works rdfs:label "ผลงานเพลง"@th .
+
+f:record_disc.playback_speed rdfs:label "ความเร็วเล่นแยกตามด้าน"@th .
+
+f:record_disc.pressing_country rdfs:label "ประเทศผลิตแผ่น"@th .
+
+f:record_disc.pressing_plant rdfs:label "โรงงานปั๊มแผ่น"@th .
+
+f:record_disc.producer_credits rdfs:label "โปรดิวเซอร์"@th .
+
+f:record_disc.record_diameter rdfs:label "เส้นผ่านศูนย์กลาง"@th .
+
+f:record_disc.record_manufacturer rdfs:label "บริษัทผู้ผลิตแผ่น"@th .
+
+f:record_disc.recordings rdfs:label "สิ่งบันทึกเสียง"@th .
+
+f:record_disc.release_country rdfs:label "ประเทศที่เผยแพร่ฉบับนี้"@th .
+
+f:record_disc.release_date rdfs:label "วันที่เผยแพร่และความละเอียดวันที่"@th .
+
+f:record_disc.release_identifiers rdfs:label "บาร์โค้ดและรหัสอื่นจากฉบับ"@th .
+
+f:record_disc.release_match rdfs:label "ผลจับคู่ชิ้นจริงกับฉบับ"@th .
+
+f:record_disc.release_title rdfs:label "ชื่ออัลบั้มหรือฉบับเผยแพร่"@th .
+
+f:record_disc.sleeve_condition rdfs:label "สภาพปก"@th .
+
+f:record_disc.source_release_notes rdfs:label "ข้อสังเกตฉบับตามต้นทาง"@th .
+
+f:record_disc.styles rdfs:label "สไตล์ตามต้นทาง"@th .
+
+f:record_disc.tracklist rdfs:label "รายการแทร็ก ลำดับ ด้าน และหัวข้อ"@th .

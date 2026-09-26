@@ -1,0 +1,2 @@
+PREFIX a: <urn:noppadol:assets:ontology:>
+SELECT ?item ?field ?value ?unit ?source WHERE { ?ob a a:AssetObservation; a:observedSubject ?item; a:field ?field; a:valueStatus "known"; a:numberValue ?value; a:unit ?unit; a:sourceInput ?source . }

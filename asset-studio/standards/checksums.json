@@ -1,0 +1,21 @@
+{
+  "README.md": "4a3f787e995293db42ea1a991fca64a38108866e5050c7186e9aefa1fa4eea20",
+  "assets.ttl": "9723e236910ebb59d9b2ddc2fb003372c3b1b30a7548b304de4bd89c1fee2f3e",
+  "bridge.ttl": "bd2dc209361eaf6896974e9b1437225c53f18e5a1708caadc6fa546c565a7b0d",
+  "concepts.ttl": "4f4c3925cbcb686f5a4ede2f83b8a00833253f1454941a3cb21d05bb3721a4da",
+  "core-ontology.ttl": "f6e99293b1b8c1e8ca81178f2d80dbc0d79e185f99703c71585bb06f5654b0ec",
+  "core-shapes.ttl": "2978de1df5c450dd487eab5febbb6eb77755051c039900d6b913e18292d1627e",
+  "examples.ttl": "e9c884c0fb2e9a0bff1cccb4c45019e4a6dc1a9277035556b3cce28375ec3a67",
+  "fields.ttl": "cee34744f3b40355fd64a59a8d1ebc5793559ba9b9636568c5c5e47ebc7f66e8",
+  "fixture-source.txt": "27207ab03658c393b0578a70e5df8f074a775b51343315c8ea3b07dd38f5cb95",
+  "manifest.json": "3812ad6b7acb8a6e56dbb8664ee5fbb776dcbb85b29ead572d6d89ee33eba9c8",
+  "metadata-mapping.json": "984bce7688368df28691c4789f1c22372b55528a932fe363ab0be1ce81c39d50",
+  "queries/01-inventory.rq": "3880851e32fcee6a9370fd608b5984a82ffee671a790143f6e090e7f75ce7977",
+  "queries/02-specification-provenance.rq": "317f514baa5a78d0bd901ee0097a32be9815e89c5ee1134955241b300bf54913",
+  "queries/03-mission-inspiration.rq": "3c5715cfafc88378ec14e7694e33974b175658508a5cff745d23c2ebc0752d9e",
+  "queries/04-record-edition.rq": "dea133d9a697e36a2149c83b0b62c6e0ce4dac1ce8849ba463db8e30fd8c91ac",
+  "requirements.txt": "8224b4df0e69230aaf879d99ce17c119aac5fd1c37464dfc948f13d6f864aaa6",
+  "shapes.ttl": "9906faa411b6e19475ea2f1eedb3a22ddfe6ecebf2c8dde4d76fd9160876b2a5",
+  "validate.py": "5a334418801cf8661959157126277943932919015bb8ca5571249ad164b93192",
+  "validation-report.json": "a763dfa5565e1f96fa4329fdd8ddea7e5abbb0d68cca620d28a4a8ed189a9920"
+}

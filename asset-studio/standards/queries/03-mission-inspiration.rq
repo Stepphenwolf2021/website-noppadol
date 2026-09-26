@@ -1,0 +1,4 @@
+PREFIX a: <urn:noppadol:assets:ontology:>
+PREFIX b: <urn:noppadol:assets:bridge:>
+PREFIX n: <urn:noppadol:ontology:>
+SELECT ?asset ?work ?mission ?evidence ?limits WHERE { ?connection a b:AssetConnection; b:subject ?asset; b:predicate b:inspiresWork; b:object ?work; n:relationKind "creative_proposal"; n:limits ?limits; b:evidenceLink ?link . ?link n:role "context"; n:evidence ?evidence . ?work n:alignedWith ?mission . }

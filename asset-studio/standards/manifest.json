@@ -1,0 +1,51 @@
+{
+  "name": "My Assets Ontology",
+  "version": "1.0.0",
+  "date": "2026-09-26",
+  "status": "private_draft_pilot_not_deployed",
+  "mission": [
+    "personal asset management",
+    "inspiration and content creation"
+  ],
+  "dependencies": {
+    "cv": {
+      "path": "v1.1.1/controlled-vocabulary.json",
+      "sha256": "cf897a23208e760b1a8bb31ee6e3376ad9a9d344a16dec1d24c4d7d9a083c83e"
+    },
+    "metadata": {
+      "path": "metadata-v1.3.0/field-catalog.json",
+      "sha256": "b03669fdcbc902380be73df4f2fed0d5d5896831323544d8851b156092052160"
+    },
+    "principles": {
+      "path": "DESIGN-PRINCIPLES.md",
+      "sha256": "61a32bad72408a31866cecf8584d30f7de898fb896bd59c3c6505e8ffe21903c"
+    },
+    "taxonomy": {
+      "path": "taxonomy-v1.0.0/taxonomy.json",
+      "sha256": "148f4fc76bca9327d5839a28c172e433e7f476bbbdec090183b1b89ba043711e"
+    },
+    "thesaurus": {
+      "path": "thesaurus-v1.0.0/thesaurus.json",
+      "sha256": "0c9bc79ecdf56cad4fa654d103b20d6ade90300821fbf7eb8579009c888a4b0a"
+    },
+    "core-ontology.ttl": {
+      "path": "output/ontology/v1/ontology.ttl",
+      "sha256": "f6e99293b1b8c1e8ca81178f2d80dbc0d79e185f99703c71585bb06f5654b0ec"
+    },
+    "core-shapes.ttl": {
+      "path": "output/ontology/v1/shapes.ttl",
+      "sha256": "2978de1df5c450dd487eab5febbb6eb77755051c039900d6b913e18292d1627e"
+    }
+  },
+  "metadataMappings": 96,
+  "checks": 28,
+  "coreSnapshotsUnchanged": true,
+  "thesaurusSnapshotUnchanged": true,
+  "sampleData": "synthetic only",
+  "deferred": [
+    "financial positions and transactions",
+    "field-specific validators and complex-value adapters",
+    "public/member projection",
+    "runtime KG import and automatic discovery engine"
+  ]
+}

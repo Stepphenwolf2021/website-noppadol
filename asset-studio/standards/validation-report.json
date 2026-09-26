@@ -1,0 +1,167 @@
+{
+  "allPassed": true,
+  "checks": [
+    {
+      "check": "Combined Core + Assets fixture conforms",
+      "passed": true
+    },
+    {
+      "check": "Known value without source rejected",
+      "passed": true
+    },
+    {
+      "check": "Known value without basis rejected",
+      "passed": true
+    },
+    {
+      "check": "Unknown carrying numeric value rejected",
+      "passed": true
+    },
+    {
+      "check": "Number without unit rejected",
+      "passed": true
+    },
+    {
+      "check": "Multiple value kinds rejected",
+      "passed": true
+    },
+    {
+      "check": "Unregistered field rejected",
+      "passed": true
+    },
+    {
+      "check": "Model cannot point to physical item",
+      "passed": true
+    },
+    {
+      "check": "Physical item cannot be digital source revision",
+      "passed": true
+    },
+    {
+      "check": "Edition cannot also be release group",
+      "passed": true
+    },
+    {
+      "check": "Creative proposal cannot use supports evidence",
+      "passed": true
+    },
+    {
+      "check": "Supported assertion needs supports evidence",
+      "passed": true
+    },
+    {
+      "check": "Component relation rejects self relation",
+      "passed": true
+    },
+    {
+      "check": "Inspiration endpoint must be WorkInProgress",
+      "passed": true
+    },
+    {
+      "check": "Inspiration cannot be promoted to source supported",
+      "passed": true
+    },
+    {
+      "check": "Pilot asset audience cannot be public",
+      "passed": true
+    },
+    {
+      "check": "Legacy reviewed status not silently accepted",
+      "passed": true
+    },
+    {
+      "check": "Review approval requires audit",
+      "passed": true
+    },
+    {
+      "check": "Core predicate whitelist still enforced",
+      "passed": true
+    },
+    {
+      "check": "Description must reference its own source",
+      "passed": true
+    },
+    {
+      "check": "Fixture snapshot hash matches",
+      "passed": true
+    },
+    {
+      "check": "Competency query 01-inventory.rq",
+      "passed": true
+    },
+    {
+      "check": "Competency query 02-specification-provenance.rq",
+      "passed": true
+    },
+    {
+      "check": "Competency query 03-mission-inspiration.rq",
+      "passed": true
+    },
+    {
+      "check": "Competency query 04-record-edition.rq",
+      "passed": true
+    },
+    {
+      "check": "OWL inference does not turn bridge into Core Connection",
+      "passed": true
+    },
+    {
+      "check": "OWL inference does not turn physical item into media file",
+      "passed": true
+    },
+    {
+      "check": "Creative proposal does not assert a direct fact",
+      "passed": true
+    }
+  ],
+  "count": 28,
+  "dataTriples": 1143,
+  "shapeTriples": 887,
+  "inference": "none for validation; separate OWL RL regression",
+  "queryResults": {
+    "01-inventory.rq": [
+      [
+        "urn:noppadol:assets:fixture:camera",
+        "กล้องสมมติ",
+        "None"
+      ],
+      [
+        "urn:noppadol:assets:fixture:record-copy",
+        "แผ่นเสียงสำเนาสมมติ",
+        "None"
+      ],
+      [
+        "urn:noppadol:assets:fixture:plane",
+        "กบไสไม้สมมติ",
+        "urn:noppadol:assets:fixture:model"
+      ]
+    ],
+    "02-specification-provenance.rq": [
+      [
+        "urn:noppadol:assets:fixture:plane",
+        "urn:noppadol:assets:field:hand_plane.blade_width",
+        "50.0",
+        "mm",
+        "urn:noppadol:assets:fixture:note"
+      ]
+    ],
+    "03-mission-inspiration.rq": [
+      [
+        "urn:noppadol:assets:fixture:plane",
+        "urn:noppadol:assets:fixture:work",
+        "urn:noppadol:assets:fixture:mission",
+        "urn:noppadol:assets:fixture:evidence",
+        "Not a real asset or verified creative relationship"
+      ]
+    ],
+    "04-record-edition.rq": [
+      [
+        "urn:noppadol:assets:fixture:record-copy",
+        "urn:noppadol:assets:fixture:edition",
+        "urn:noppadol:assets:fixture:release-group",
+        "urn:noppadol:assets:fixture:track"
+      ]
+    ]
+  },
+  "scope": "Synthetic fixture, not user inventory. Schema validation does not establish factual truth."
+}
