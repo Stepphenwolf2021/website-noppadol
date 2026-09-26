@@ -1,0 +1,2033 @@
+{
+  "title": "My Assets Metadata Standards",
+  "version": "1.3.0",
+  "status": "design_draft",
+  "implementedAs": "field_catalog_and_intake_template_not_executable_schema",
+  "basedOn": "../v1.1.1/controlled-vocabulary.json",
+  "profiles": [
+    {
+      "id": "common",
+      "label": "ข้อมูลร่วมทุกประเภท",
+      "fields": [
+        {
+          "id": "brand",
+          "label_th": "ยี่ห้อ",
+          "valueType": "brand_ref",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ยี่ห้อ",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "brand_ref",
+            "rule": "brand identity; link to owner organization only with evidence"
+          },
+          "brandPolicy": "brand is not inherently an organization; preserve previous organization reference as source claim until reviewed",
+          "migration": "legacy organization_ref must be reviewed or retained unresolved; do not auto-retype existing organization"
+        },
+        {
+          "id": "model",
+          "label_th": "ชื่อรุ่น",
+          "valueType": "text",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชื่อรุ่น",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          },
+          "modelRefPolicy": "text retained for intake; optional resolved model ID must not be invented"
+        },
+        {
+          "id": "serial_number",
+          "label_th": "หมายเลขประจำชิ้น",
+          "valueType": "text",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ หมายเลขประจำชิ้น",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "maker",
+          "label_th": "ผู้สร้าง",
+          "valueType": "agent_ref",
+          "appliesTo": "model_or_item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "agent_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "manufacturer",
+          "label_th": "ผู้ผลิต",
+          "valueType": "organization_ref",
+          "appliesTo": "model_or_item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ผู้ผลิต",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "organization_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "manufacture_country",
+          "label_th": "ประเทศผลิต",
+          "valueType": "place_ref",
+          "appliesTo": "item_or_batch",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเทศผลิต",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "place_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "manufactured_at",
+          "label_th": "ช่วงเวลาผลิต",
+          "valueType": "date_or_interval",
+          "appliesTo": "item_or_batch",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ช่วงเวลาผลิต",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "acquired_at",
+          "label_th": "วันที่ได้มา",
+          "valueType": "date",
+          "appliesTo": "acquisition",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ วันที่ได้มา",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "seller",
+          "label_th": "ซื้อจากใคร",
+          "valueType": "agent_ref",
+          "appliesTo": "acquisition",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ซื้อจากใคร",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "agent_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "purchase_price",
+          "label_th": "ราคาที่ซื้อ",
+          "valueType": "money",
+          "appliesTo": "acquisition",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ราคาที่ซื้อ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "purchase_condition",
+          "label_th": "สภาพเมื่อซื้อ",
+          "valueType": "text",
+          "appliesTo": "acquisition",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ สภาพเมื่อซื้อ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "location",
+          "label_th": "ที่เก็บ",
+          "valueType": "place_ref",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ที่เก็บ",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "place_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "condition",
+          "label_th": "สภาพปัจจุบันที่ตรวจพบ",
+          "valueType": "text",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ สภาพปัจจุบันที่ตรวจพบ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "special_features",
+          "label_th": "ความพิเศษ",
+          "valueType": "annotated_text_list",
+          "appliesTo": "model_or_item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "personal_story",
+          "label_th": "เรื่องราวและเหตุผลที่เลือก",
+          "valueType": "annotated_text",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "source_documents",
+          "label_th": "คู่มือ ใบเสร็จ รูป และบันทึก",
+          "valueType": "knowledge_input_ref_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "knowledge_input_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "maintenance_events",
+          "label_th": "ประวัติดูแลและเปลี่ยนอะไหล่",
+          "valueType": "event_ref_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประวัติดูแลและเปลี่ยนอะไหล่",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "event_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hand_plane",
+      "label": "กบไสไม้",
+      "fields": [
+        {
+          "id": "plane_type",
+          "label_th": "ประเภทกบตามการใช้งาน",
+          "valueType": "concept_ref",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเภทกบตามการใช้งาน",
+          "binding": {
+            "kind": "asset_cv_candidates",
+            "conceptIds": [
+              "asset-concept-hand-plane",
+              "asset-concept-bench-plane",
+              "asset-concept-smoothing-plane",
+              "asset-concept-jack-plane",
+              "asset-concept-jointer-plane",
+              "asset-concept-japanese-plane",
+              "asset-concept-chamfer-plane",
+              "asset-concept-compass-plane",
+              "asset-concept-sole-flattening-plane"
+            ],
+            "unmatched": "preserve source value as unreviewed candidate",
+            "exhaustive": false
+          }
+        },
+        {
+          "id": "body_material",
+          "label_th": "วัสดุตัวกบ",
+          "valueType": "material_ref_list",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ วัสดุตัวกบ",
+          "binding": {
+            "kind": "open_candidate_registry",
+            "registry": "materials",
+            "unmatched": "accept sourced candidate; do not invent a CV ID"
+          }
+        },
+        {
+          "id": "body_wood_species",
+          "label_th": "ชนิดไม้ที่ใช้ทำตัวกบ",
+          "valueType": "concept_ref",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชนิดไม้ที่ใช้ทำตัวกบ",
+          "binding": {
+            "kind": "open_candidate_registry",
+            "registry": "materials",
+            "unmatched": "accept sourced candidate; do not invent a CV ID"
+          }
+        },
+        {
+          "id": "intended_workpiece_wood",
+          "label_th": "ชนิดไม้ที่เหมาะสำหรับไส",
+          "valueType": "qualified_concept_ref_list",
+          "appliesTo": "model_or_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชนิดไม้ที่เหมาะสำหรับไส",
+          "binding": {
+            "kind": "open_candidate_registry",
+            "registry": "materials",
+            "unmatched": "accept sourced candidate; do not invent a CV ID"
+          }
+        },
+        {
+          "id": "blade",
+          "label_th": "ใบกบที่ติดตั้ง",
+          "valueType": "component_ref",
+          "appliesTo": "dated_configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ใบกบที่ติดตั้ง",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "component_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "blade_width",
+          "label_th": "ความกว้างใบกบ",
+          "valueType": "length",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ความกว้างใบกบ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "blade_thickness",
+          "label_th": "ความหนาใบกบ",
+          "valueType": "length",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ความหนาใบกบ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "blade_steel",
+          "label_th": "ชนิดหรือเกรดเหล็กใบกบ",
+          "valueType": "material_ref",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชนิดหรือเกรดเหล็กใบกบ",
+          "binding": {
+            "kind": "asset_cv_candidates",
+            "conceptIds": [
+              "asset-concept-a2-steel",
+              "asset-concept-high-speed-steel"
+            ],
+            "unmatched": "preserve source value as unreviewed candidate",
+            "exhaustive": false
+          }
+        },
+        {
+          "id": "blade_construction",
+          "label_th": "โครงสร้างใบกบ เช่นชั้นวัสดุ",
+          "valueType": "annotated_text",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ โครงสร้างใบกบ เช่นชั้นวัสดุ",
+          "binding": {
+            "kind": "asset_cv_candidates",
+            "conceptIds": [
+              "asset-concept-laminated-blade"
+            ],
+            "unmatched": "preserve source value as unreviewed candidate",
+            "exhaustive": false
+          }
+        },
+        {
+          "id": "blade_maker",
+          "label_th": "ผู้สร้างใบกบ",
+          "valueType": "agent_ref",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "agent_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "primary_bevel_angle",
+          "label_th": "มุมคมหลักของใบกบ",
+          "valueType": "angle",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ มุมคมหลักของใบกบ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "micro_bevel_angle",
+          "label_th": "มุมคมย่อยถ้ามี",
+          "valueType": "angle",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ มุมคมย่อยถ้ามี",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "bed_angle",
+          "label_th": "มุมตั้งใบกบเทียบฐานกบ",
+          "valueType": "angle",
+          "appliesTo": "configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ มุมตั้งใบกบเทียบฐานกบ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "blade_orientation",
+          "label_th": "ทิศทางคมใบกบ",
+          "valueType": "controlled_text",
+          "appliesTo": "configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ทิศทางคมใบกบ",
+          "binding": {
+            "kind": "local_value_set",
+            "values": [
+              "bevel_up",
+              "bevel_down"
+            ],
+            "unmatched": "preserve raw value; normalized value null until reviewed"
+          }
+        },
+        {
+          "id": "cutting_angle",
+          "label_th": "มุมตัดที่ระบุหรือประเมิน",
+          "valueType": "angle_with_method",
+          "appliesTo": "configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ มุมตัดที่ระบุหรือประเมิน",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "setup_notes",
+          "label_th": "การตั้งปากกบและการปรับแต่ง",
+          "valueType": "annotated_text",
+          "appliesTo": "dated_configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ การตั้งปากกบและการปรับแต่ง",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "sharpening_history",
+          "label_th": "ประวัติลับคมและหินที่ใช้",
+          "valueType": "event_ref_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประวัติลับคมและหินที่ใช้",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "event_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "cutting_stroke",
+          "label_th": "ทิศทางการไส",
+          "valueType": "controlled_text",
+          "appliesTo": "configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-kakuri"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ทิศทางการไส",
+          "binding": {
+            "kind": "local_value_set",
+            "values": [
+              "push",
+              "pull"
+            ],
+            "unmatched": "preserve raw value; normalized value null until reviewed"
+          }
+        },
+        {
+          "id": "chipbreaker",
+          "label_th": "เหล็กประกับที่ติดตั้ง",
+          "valueType": "component_ref",
+          "appliesTo": "dated_configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-choose"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ เหล็กประกับที่ติดตั้ง",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "component_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "frog",
+          "label_th": "ฐานรองใบที่ติดตั้ง",
+          "valueType": "component_ref",
+          "appliesTo": "dated_configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-ln"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ฐานรองใบที่ติดตั้ง",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "component_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "blade_hardness",
+          "label_th": "ความแข็งใบและสเกลที่ใช้",
+          "valueType": "measured_range_with_scale",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-ln"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ความแข็งใบและสเกลที่ใช้",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "heat_treatment",
+          "label_th": "ข้อมูลกรรมวิธีทางความร้อน",
+          "valueType": "annotated_text",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-ln"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ข้อมูลกรรมวิธีทางความร้อน",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "sole_adjustments",
+          "label_th": "ประวัติปรับฐานกบ",
+          "valueType": "event_ref_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-choose"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประวัติปรับฐานกบ",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "event_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        }
+      ]
+    },
+    {
+      "id": "camera",
+      "label": "กล้องถ่ายภาพ",
+      "fields": [
+        {
+          "id": "capture_medium",
+          "label_th": "ระบบบันทึกฟิล์มหรือดิจิทัล",
+          "valueType": "controlled_text",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ระบบบันทึกฟิล์มหรือดิจิทัล",
+          "binding": {
+            "kind": "local_value_set",
+            "values": [
+              "film",
+              "digital"
+            ],
+            "unmatched": "preserve raw value; normalized value null until reviewed"
+          }
+        },
+        {
+          "id": "film_format",
+          "label_th": "รูปแบบฟิล์ม",
+          "valueType": "concept_ref",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รูปแบบฟิล์ม",
+          "binding": {
+            "kind": "open_candidate_registry",
+            "registry": "technical_terms",
+            "unmatched": "accept sourced candidate; do not invent a CV ID"
+          }
+        },
+        {
+          "id": "sensor_format",
+          "label_th": "รูปแบบเซนเซอร์",
+          "valueType": "text",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รูปแบบเซนเซอร์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "lens_mount",
+          "label_th": "ระบบเมาท์",
+          "valueType": "concept_ref",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ระบบเมาท์",
+          "binding": {
+            "kind": "open_candidate_registry",
+            "registry": "technical_terms",
+            "unmatched": "accept sourced candidate; do not invent a CV ID"
+          }
+        },
+        {
+          "id": "lens_configuration",
+          "label_th": "เลนส์ติดตั้งถาวรหรือเปลี่ยนได้",
+          "valueType": "controlled_text",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ เลนส์ติดตั้งถาวรหรือเปลี่ยนได้",
+          "binding": {
+            "kind": "local_value_set",
+            "values": [
+              "fixed",
+              "interchangeable"
+            ],
+            "unmatched": "preserve raw value; normalized value null until reviewed"
+          }
+        },
+        {
+          "id": "installed_lens",
+          "label_th": "เลนส์ที่ติดตั้งในช่วงเวลานั้น",
+          "valueType": "component_or_asset_ref",
+          "appliesTo": "dated_configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ เลนส์ที่ติดตั้งในช่วงเวลานั้น",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "component_or_asset_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "compatible_lenses",
+          "label_th": "เลนส์ที่รองรับและเงื่อนไข",
+          "valueType": "qualified_asset_model_ref_list",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ เลนส์ที่รองรับและเงื่อนไข",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "qualified_asset_model_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "lens_model",
+          "label_th": "รุ่นเลนส์",
+          "valueType": "asset_model_ref",
+          "appliesTo": "lens",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รุ่นเลนส์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "asset_model_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "lens_serial_number",
+          "label_th": "หมายเลขเลนส์",
+          "valueType": "text",
+          "appliesTo": "lens",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ หมายเลขเลนส์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "focal_length",
+          "label_th": "ช่วงทางยาวโฟกัส",
+          "valueType": "length_range",
+          "appliesTo": "lens",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ช่วงทางยาวโฟกัส",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "maximum_aperture",
+          "label_th": "รูรับแสงกว้างสุดและเงื่อนไข",
+          "valueType": "qualified_number_or_range",
+          "appliesTo": "lens",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รูรับแสงกว้างสุดและเงื่อนไข",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "firmware_version",
+          "label_th": "รุ่นเฟิร์มแวร์ถ้ามี",
+          "valueType": "text",
+          "appliesTo": "dated_configuration",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รุ่นเฟิร์มแวร์ถ้ามี",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "produced_images",
+          "label_th": "ภาพที่สร้างด้วยกล้องนี้ตามหลักฐาน",
+          "valueType": "knowledge_input_ref_list",
+          "appliesTo": "use_session",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "knowledge_input_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        }
+      ]
+    },
+    {
+      "id": "record_disc",
+      "label": "แผ่นเสียง",
+      "fields": [
+        {
+          "id": "release_title",
+          "label_th": "ชื่ออัลบั้มหรือฉบับเผยแพร่",
+          "valueType": "text",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชื่ออัลบั้มหรือฉบับเผยแพร่",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "musical_works",
+          "label_th": "ผลงานเพลง",
+          "valueType": "work_ref_list",
+          "appliesTo": "recording",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "work_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "recordings",
+          "label_th": "สิ่งบันทึกเสียง",
+          "valueType": "recording_ref_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "recording_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "artist_credits",
+          "label_th": "ศิลปินและบทบาท",
+          "valueType": "credit_list",
+          "appliesTo": "release_or_track",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "engineering_credits",
+          "label_th": "วิศวกรเสียงและหน้าที่",
+          "valueType": "credit_list",
+          "appliesTo": "recording_or_release_or_track",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "producer_credits",
+          "label_th": "โปรดิวเซอร์",
+          "valueType": "credit_list",
+          "appliesTo": "recording_or_release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "label",
+          "label_th": "ค่ายเพลง",
+          "valueType": "organization_ref",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "legacy",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ค่ายเพลง",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "organization_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          },
+          "replacedBy": "label_catalog_entries",
+          "migration": "retain old value; create paired entries only when label/catalog association is supported"
+        },
+        {
+          "id": "record_manufacturer",
+          "label_th": "บริษัทผู้ผลิตแผ่น",
+          "valueType": "organization_ref",
+          "appliesTo": "pressing",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ บริษัทผู้ผลิตแผ่น",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "organization_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "pressing_plant",
+          "label_th": "โรงงานปั๊มแผ่น",
+          "valueType": "organization_ref",
+          "appliesTo": "pressing",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ โรงงานปั๊มแผ่น",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "organization_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "release_country",
+          "label_th": "ประเทศที่เผยแพร่ฉบับนี้",
+          "valueType": "place_ref",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเทศที่เผยแพร่ฉบับนี้",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "place_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "pressing_country",
+          "label_th": "ประเทศผลิตแผ่น",
+          "valueType": "place_ref",
+          "appliesTo": "pressing",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเทศผลิตแผ่น",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "place_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "catalog_number",
+          "label_th": "รหัสแค็ตตาล็อก",
+          "valueType": "text",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "legacy",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รหัสแค็ตตาล็อก",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          },
+          "replacedBy": "label_catalog_entries",
+          "migration": "retain old value; create paired entries only when label/catalog association is supported"
+        },
+        {
+          "id": "matrix_runout",
+          "label_th": "ข้อความหรือรหัสบนร่องท้ายแผ่นแต่ละด้าน",
+          "valueType": "side_text_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ข้อความหรือรหัสบนร่องท้ายแผ่นแต่ละด้าน",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "playback_speed",
+          "label_th": "ความเร็วเล่นแยกตามด้าน",
+          "valueType": "side_rotation_rate_list",
+          "appliesTo": "release_or_side",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ความเร็วเล่นแยกตามด้าน",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "record_diameter",
+          "label_th": "เส้นผ่านศูนย์กลาง",
+          "valueType": "length",
+          "appliesTo": "item_or_release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ เส้นผ่านศูนย์กลาง",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "edition_features",
+          "label_th": "ความพิเศษของฉบับ",
+          "valueType": "annotated_text_list",
+          "appliesTo": "release_or_pressing",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "copy_features",
+          "label_th": "ความพิเศษเฉพาะแผ่น เช่นลายเซ็น",
+          "valueType": "annotated_text_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "media_condition",
+          "label_th": "สภาพตัวแผ่น",
+          "valueType": "grading_observation",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ สภาพตัวแผ่น",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "sleeve_condition",
+          "label_th": "สภาพปก",
+          "valueType": "grading_observation",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ สภาพปก",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "discogs_master_ref",
+          "label_th": "กลุ่ม Master ของ Discogs",
+          "valueType": "external_ref",
+          "appliesTo": "release_group",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ กลุ่ม Master ของ Discogs",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "external_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "discogs_release_ref",
+          "label_th": "ฉบับ Release ของ Discogs",
+          "valueType": "external_ref",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ฉบับ Release ของ Discogs",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "external_ref",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "release_date",
+          "label_th": "วันที่เผยแพร่และความละเอียดวันที่",
+          "valueType": "partial_date",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ วันที่เผยแพร่และความละเอียดวันที่",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "formats",
+          "label_th": "รูปแบบ จำนวนสื่อ และคำอธิบาย",
+          "valueType": "format_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รูปแบบ จำนวนสื่อ และคำอธิบาย",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "label_catalog_entries",
+          "label_th": "ค่ายและรหัสแค็ตตาล็อกหลายรายการ",
+          "valueType": "label_catalog_pair_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ค่ายและรหัสแค็ตตาล็อกหลายรายการ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "company_credits",
+          "label_th": "บริษัทและบทบาทที่เกี่ยวข้อง",
+          "valueType": "company_role_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ บริษัทและบทบาทที่เกี่ยวข้อง",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "tracklist",
+          "label_th": "รายการแทร็ก ลำดับ ด้าน และหัวข้อ",
+          "valueType": "track_entry_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "genres",
+          "label_th": "แนวเพลงกว้างตามต้นทาง",
+          "valueType": "external_term_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "external_vocabulary",
+            "provider": "Discogs",
+            "mappingStatus": "not_equivalent_to_local_cv_until_reviewed"
+          }
+        },
+        {
+          "id": "styles",
+          "label_th": "สไตล์ตามต้นทาง",
+          "valueType": "external_term_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "external_vocabulary",
+            "provider": "Discogs",
+            "mappingStatus": "not_equivalent_to_local_cv_until_reviewed"
+          }
+        },
+        {
+          "id": "release_identifiers",
+          "label_th": "บาร์โค้ดและรหัสอื่นจากฉบับ",
+          "valueType": "identifier_list",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ บาร์โค้ดและรหัสอื่นจากฉบับ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "source_release_notes",
+          "label_th": "ข้อสังเกตฉบับตามต้นทาง",
+          "valueType": "sourced_text",
+          "appliesTo": "release",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "release_match",
+          "label_th": "ผลจับคู่ชิ้นจริงกับฉบับ",
+          "valueType": "match_assessment",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ผลจับคู่ชิ้นจริงกับฉบับ",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "carrier_members",
+          "label_th": "แผ่นแต่ละแผ่นในชุด",
+          "valueType": "asset_ref_list",
+          "appliesTo": "item_set",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ แผ่นแต่ละแผ่นในชุด",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "asset_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        },
+        {
+          "id": "listening_sessions",
+          "label_th": "ประสบการณ์ฟังและชุดอุปกรณ์",
+          "valueType": "event_ref_list",
+          "appliesTo": "item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "event_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        }
+      ]
+    },
+    {
+      "id": "chisel",
+      "label": "สิ่ว",
+      "fields": [
+        {
+          "id": "chisel_type",
+          "label_th": "ประเภทสิ่ว",
+          "valueType": "concept_ref",
+          "appliesTo": "model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-kurashige"
+          ],
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเภทสิ่ว",
+          "binding": {
+            "kind": "asset_cv_candidates",
+            "conceptIds": [
+              "asset-concept-chisel",
+              "asset-concept-oire-nomi",
+              "asset-concept-tataki-nomi"
+            ],
+            "unmatched": "preserve source value as unreviewed candidate",
+            "exhaustive": false
+          }
+        },
+        {
+          "id": "blade_width",
+          "label_th": "ความกว้างใบสิ่ว",
+          "valueType": "length",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ความกว้างใบสิ่ว",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "full_length",
+          "label_th": "ความยาวรวม",
+          "valueType": "approximate_length",
+          "appliesTo": "item_or_model",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ความยาวรวม",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "blade_steel",
+          "label_th": "กลุ่มหรือเกรดเหล็ก",
+          "valueType": "material_ref",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ กลุ่มหรือเกรดเหล็ก",
+          "binding": {
+            "kind": "asset_cv_candidates",
+            "conceptIds": [
+              "asset-concept-a2-steel",
+              "asset-concept-high-speed-steel"
+            ],
+            "unmatched": "preserve source value as unreviewed candidate",
+            "exhaustive": false
+          }
+        },
+        {
+          "id": "bevel_angle",
+          "label_th": "มุมคมสิ่วพร้อมฐานอ้างอิง",
+          "valueType": "approximate_angle",
+          "appliesTo": "dated_observation",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ มุมคมสิ่วพร้อมฐานอ้างอิง",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "ura_type",
+          "label_th": "รูปแบบหลังใบ",
+          "valueType": "concept_ref",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รูปแบบหลังใบ",
+          "binding": {
+            "kind": "asset_cv_candidates",
+            "conceptIds": [
+              "asset-concept-triple-ura"
+            ],
+            "unmatched": "preserve source value as unreviewed candidate",
+            "exhaustive": false
+          }
+        },
+        {
+          "id": "surface_finish",
+          "label_th": "ลักษณะผิว",
+          "valueType": "annotated_text",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ลักษณะผิว",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "handle_wood",
+          "label_th": "วัสดุไม้ด้ามตามชื่อที่ระบุ",
+          "valueType": "qualified_material_ref",
+          "appliesTo": "component",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ วัสดุไม้ด้ามตามชื่อที่ระบุ",
+          "binding": {
+            "kind": "open_candidate_registry",
+            "registry": "materials",
+            "unmatched": "accept sourced candidate; do not invent a CV ID"
+          }
+        },
+        {
+          "id": "maker_attribution",
+          "label_th": "ผู้สร้างตามแหล่งข้อมูล",
+          "valueType": "attribution_list",
+          "appliesTo": "model_or_item",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-sukemaru"
+          ],
+          "priority": "recommended",
+          "missionUse": [
+            "personal_asset_management",
+            "inspiration_content_creation"
+          ],
+          "purpose": "ช่วยบันทึกเรื่องราวและค้นวัตถุดิบสร้างคอนเทนต์",
+          "binding": {
+            "kind": "literal_or_structured_value",
+            "rule": "not automatically a CV concept"
+          }
+        },
+        {
+          "id": "set_members",
+          "label_th": "สมาชิกชุดสิ่ว",
+          "valueType": "asset_ref_list",
+          "appliesTo": "collection",
+          "required": false,
+          "provenanceRequiredWhenPresent": true,
+          "sourceRefs": [
+            "web-kurashige"
+          ],
+          "priority": "optional",
+          "missionUse": [
+            "personal_asset_management"
+          ],
+          "purpose": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ สมาชิกชุดสิ่ว",
+          "binding": {
+            "kind": "entity_registry_reference",
+            "valueType": "asset_ref_list",
+            "rule": "reference entities, not CV concepts; preserve unresolved reference explicitly"
+          }
+        }
+      ]
+    }
+  ],
+  "requiredIntakeFields": [
+    "record_id",
+    "profile_id",
+    "display_name",
+    "audience",
+    "review_status"
+  ],
+  "observationEnvelope": {
+    "status": "known | unknown | not_applicable",
+    "value": "omit or null for unknown/not_applicable; non-null for known",
+    "source_ref": "required for known; may reference a dated owner note, manual or external record",
+    "basis": "manufacturer_spec | seller_reported | measured | owner_reported | inferred | external_database",
+    "observed_at": "date/time when applicable",
+    "unit": "explicit for quantities",
+    "review_status": "unreviewed | reviewed | disputed",
+    "note": "conditions/uncertainty; source-defined angle reference may remain unknown"
+  },
+  "policy": {
+    "unknown": "status unknown with value null or omitted; never numeric zero as unknown",
+    "notApplicable": "explicit not_applicable distinct from unknown",
+    "conflict": "keep multiple sourced observations; selected value references its observation ID",
+    "defaultAudience": "owner",
+    "modelInheritance": "show model specification as inherited; item measurement/modified component stays separate",
+    "ontologyStatus": "proposed fields are not yet OWL classes/properties",
+    "matching": "no identity merge based on brand/model alone",
+    "retailerSpecs": "seller_reported distinct from manufacturer_spec and owner measurement",
+    "catalogVariants": "available options are not installed parts or owned set members",
+    "originalWording": "retain source language and transliteration discrepancies",
+    "approximate": "preserve about/range; do not fabricate precision",
+    "woodNames": "trade names do not automatically resolve botanical species",
+    "marketing": "attributed claim not validated performance",
+    "angleReference": "retain unknown angle reference if source does not define it",
+    "scope": "All field catalog types are design descriptors; intake validator does not claim full type/quantity/credit validation",
+    "noForcedCompleteness": "recommended is a helpful starting set, not mandatory; no need to fill every external catalog field"
+  },
+  "profileBasis": "Discogs public database guidelines; API adapter not yet verified",
+  "discogsRules": {
+    "master": "group of related releases; not musical work, master tape, recording or first edition",
+    "release": "specific published edition; not owned copy",
+    "country": "market of release; never automatically manufacturing country",
+    "credits": "preserve credited name, external artist ID, role, track scope and source",
+    "blankCreditScope": "unknown_or_release_wide; never automatically all_tracks",
+    "formats": "preserve source terms; LP is not a universal speed assertion",
+    "identity": "never merge on title/barcode/catalog number alone",
+    "runout": "release variants stay separate from measurements on own copy",
+    "localExtensions": "ownership acquisition condition location listening notes remain local",
+    "import": "not implemented; no live account connection"
+  },
+  "valueStructures": {
+    "external_ref": [
+      "provider",
+      "entity_type",
+      "external_id",
+      "url",
+      "retrieved_at",
+      "source_revision"
+    ],
+    "label_catalog_pair_list": [
+      "label_ref",
+      "catalog_number_raw",
+      "source_ref"
+    ],
+    "company_role_list": [
+      "company_ref",
+      "role_raw",
+      "role_normalized_if_reviewed",
+      "source_ref"
+    ],
+    "track_entry_list": [
+      "local_id",
+      "position_raw",
+      "title",
+      "entry_type",
+      "parent_entry_ref",
+      "disc_side",
+      "duration_raw",
+      "artist_credits",
+      "credits",
+      "source_ref"
+    ],
+    "credit": [
+      "artist_ref",
+      "credited_name",
+      "role_raw",
+      "scope_raw",
+      "resolved_track_refs",
+      "scope_status",
+      "source_ref"
+    ],
+    "format_list": [
+      "medium_raw",
+      "quantity",
+      "descriptions_raw",
+      "text",
+      "source_ref"
+    ],
+    "identifier_list": [
+      "type_raw",
+      "value_raw",
+      "description_raw",
+      "side",
+      "variant_group",
+      "source_ref"
+    ],
+    "match_assessment": [
+      "candidate_release_refs",
+      "status",
+      "evidence_refs",
+      "differences",
+      "reviewer",
+      "reviewed_at"
+    ]
+  },
+  "sourceRegistry": [
+    {
+      "id": "owner-request-2026-09-26",
+      "type": "conversation",
+      "role": "requested_scope_not_item_inventory",
+      "summary": "woodworking tools, cameras, records, funds, crypto; asset management and creative inspiration"
+    },
+    {
+      "id": "web-ln",
+      "url": "https://www.lie-nielsen.com/nodes/4065/bench-planes",
+      "accessedDate": "2026-09-26",
+      "type": "manufacturer_page",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-kakuri",
+      "url": "https://kakuritools.com/pages/japanese-planes-step-by-step-guide",
+      "accessedDate": "2026-09-26",
+      "type": "manufacturer_page",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-choose",
+      "url": "https://kakuritools.com/blogs/learn/how-to-choose-japanese-hand-plane",
+      "accessedDate": "2026-09-26",
+      "type": "manufacturer_page",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-kurashige",
+      "url": "https://shop.kurashige-tools.com/collections/chisels",
+      "accessedDate": "2026-09-26",
+      "type": "retailer_listing",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-sukemaru",
+      "url": "https://shop.kurashige-tools.com/products/sukemaru-4th-high-speed-steel-timber-chisels-triple-ura-by-usui-yoshio-tatakinomi",
+      "accessedDate": "2026-09-26",
+      "type": "retailer_listing",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "discogs-guidelines",
+      "url": "https://support.discogs.com/hc/en-us/sections/25169225080077-Database-Guidelines",
+      "role": "structural_reference_not_live_api_verification"
+    }
+  ],
+  "missionPolicyRef": "../DESIGN-PRINCIPLES.md",
+  "commonAppliesTo": {
+    "hand_plane": "all common fields optional",
+    "camera": "all common fields optional",
+    "chisel": "all common fields optional",
+    "record_disc": "brand/model/manufacturer are legacy/general alternatives; use label/company credits where applicable; never require serial number"
+  },
+  "coverage": {
+    "taxonomyPilot": [
+      "hand_plane",
+      "chisel",
+      "camera",
+      "record_disc"
+    ],
+    "cvConceptsWithoutSpecializedProfile": [
+      "saw",
+      "sharpening-stone",
+      "turntable",
+      "investment-fund",
+      "cryptoasset"
+    ],
+    "deferredPolicy": "remain vocabulary scope; detailed financial/tool metadata outside current pilot, not silently treated as complete"
+  },
+  "migration": {
+    "from": "1.2.0",
+    "removedFields": [],
+    "preservedFieldCount": 96,
+    "change": "Add bindings, field priorities, provenance registry and consistent intake envelope; legacy label/catalog fields retained",
+    "valueTypeCorrections": {
+      "common.brand": "organization_ref → brand_ref; design descriptor correction; preserve legacy source reference"
+    }
+  }
+}

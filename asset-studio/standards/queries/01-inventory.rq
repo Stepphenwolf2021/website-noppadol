@@ -1,0 +1,3 @@
+PREFIX a: <urn:noppadol:assets:ontology:>
+PREFIX n: <urn:noppadol:ontology:>
+SELECT ?item ?title ?model WHERE { ?item a a:AssetItem; n:title ?title . OPTIONAL {?item a:model ?model} }

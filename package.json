@@ -8,7 +8,8 @@
     "build": "node tools/build-interest-ontology.mjs && eleventy && node tools/build-graph.js",
     "graph": "node tools/build-graph.js",
     "clean": "rm -rf _site",
-    "ontology": "node tools/build-interest-ontology.mjs"
+    "ontology": "node tools/build-interest-ontology.mjs",
+    "test:assets": "node --test tools/tests/asset-studio.test.mjs"
   },
   "license": "UNLICENSED",
   "private": true,

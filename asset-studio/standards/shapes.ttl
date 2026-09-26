@@ -1,0 +1,72 @@
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix b: <urn:noppadol:assets:bridge:> .
+@prefix n: <urn:noppadol:ontology:> .
+@prefix f: <urn:noppadol:assets:field:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+a:RecordShape a sh:NodeShape; sh:targetClass a:AssetRecord;
+ sh:property [sh:path n:title; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path n:audience; sh:hasValue "owner"; sh:maxCount 1];
+ sh:property [sh:path n:publication; sh:hasValue "draft"; sh:maxCount 1] .
+a:ItemShape a sh:NodeShape; sh:targetClass a:AssetItem;
+ sh:not [sh:or ([sh:class n:SourceRevision] [sh:class a:ProductModel] [sh:class a:ReleaseEdition])];
+ sh:property [sh:path a:classifiedAs; sh:class skos:Concept];
+ sh:property [sh:path a:model; sh:maxCount 1; sh:class a:ProductModel];
+ sh:property [sh:path a:edition; sh:maxCount 1; sh:class a:ReleaseEdition];
+ sh:property [sh:path a:profile; sh:in ("hand_plane" "chisel" "camera" "record_disc" "component" "generic") ; sh:maxCount 1] .
+a:EditionShape a sh:NodeShape; sh:targetClass a:ReleaseEdition; sh:not [sh:class a:ReleaseGroup];
+ sh:property [sh:path a:releaseGroup; sh:class a:ReleaseGroup; sh:maxCount 1] .
+a:TrackShape a sh:NodeShape; sh:targetClass a:TrackEntry; sh:property [sh:path a:inEdition; sh:class a:ReleaseEdition; sh:minCount 1; sh:maxCount 1] .
+a:EventShape a sh:NodeShape; sh:targetClass a:AssetEvent;
+ sh:property [sh:path a:eventKind; sh:minCount 1; sh:maxCount 1; sh:in ("acquisition" "use" "maintenance" "repair" "listening" "component_change")];
+ sh:property [sh:path a:participant; sh:minCount 1; sh:class a:AssetItem];
+ sh:property [sh:path a:sourceInput; sh:minCount 1; sh:class n:KnowledgeInput];
+ sh:property [sh:path a:occurredOn; sh:maxCount 1; sh:datatype xsd:date];
+ sh:property [sh:path a:actor; sh:class a:AgentRecord] .
+a:ObservationShape a sh:NodeShape; sh:targetClass a:AssetObservation;
+ sh:property [sh:path a:observedSubject; sh:minCount 1; sh:maxCount 1; sh:class a:AssetRecord];
+ sh:property [sh:path a:valueStatus; sh:minCount 1; sh:maxCount 1; sh:in ("known" "unknown" "not_applicable")];
+ sh:property [sh:path a:sourceInput; sh:class n:KnowledgeInput];
+ sh:property [sh:path a:basis; sh:maxCount 1; sh:in ("manufacturer_spec" "seller_reported" "measured" "owner_reported" "inferred" "external_database")];
+ sh:property [sh:path a:textValue; sh:maxCount 1; sh:datatype xsd:string];
+ sh:property [sh:path a:numberValue; sh:maxCount 1; sh:datatype xsd:decimal];
+ sh:property [sh:path a:referenceValue; sh:maxCount 1; sh:nodeKind sh:IRI];
+ sh:property [sh:path a:unit; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path a:observedOn; sh:maxCount 1; sh:datatype xsd:date];
+ sh:sparql [sh:message "Known observation needs one value, basis and source; unknown has no value; numeric values need units."; sh:select """
+ PREFIX a: <urn:noppadol:assets:ontology:>
+ SELECT $this WHERE {
+ $this a:valueStatus ?s .
+ FILTER((?s="known" && (NOT EXISTS {$this a:sourceInput ?src; a:basis ?basis} || NOT EXISTS {$this (a:textValue|a:numberValue|a:referenceValue) ?v})) ||
+ (?s!="known" && EXISTS {$this (a:textValue|a:numberValue|a:referenceValue) ?v}) ||
+ EXISTS {$this a:numberValue ?n . FILTER NOT EXISTS {$this a:unit ?u}} ||
+ EXISTS {$this ?p ?v; ?q ?w . FILTER(?p IN (a:textValue,a:numberValue,a:referenceValue) && ?q IN (a:textValue,a:numberValue,a:referenceValue) && ?p!=?q)})
+ }"""] .
+b:ConnectionShape a sh:NodeShape; sh:targetClass b:AssetConnection;
+ sh:property [sh:path b:subject; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI];
+ sh:property [sh:path b:object; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI];
+ sh:property [sh:path b:predicate; sh:minCount 1; sh:maxCount 1; sh:in (b:describesAsset b:hasComponent b:inspiresWork)];
+ sh:property [sh:path b:evidenceLink; sh:minCount 1; sh:class n:EvidenceLink];
+ sh:property [sh:path n:relationKind; sh:minCount 1; sh:maxCount 1; sh:in ("source_supported" "inferred" "creative_proposal")];
+ sh:property [sh:path n:rationale; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path n:method; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path n:limits; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:sparql [sh:message "Bridge endpoints or evidence roles invalid."; sh:select """
+ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX b: <urn:noppadol:assets:bridge:> PREFIX a: <urn:noppadol:assets:ontology:> PREFIX n: <urn:noppadol:ontology:>
+ SELECT $this WHERE {
+ $this b:subject ?s; b:object ?o; b:predicate ?p; n:relationKind ?k .
+ FILTER ((?p=b:describesAsset && (NOT EXISTS {?s a/rdfs:subClassOf* n:KnowledgeInput} || NOT EXISTS {?o a/rdfs:subClassOf* a:AssetItem})) ||
+ (?p=b:hasComponent && (NOT EXISTS {?s a/rdfs:subClassOf* a:AssetItem} || NOT EXISTS {?o a/rdfs:subClassOf* a:Component} || ?s=?o)) ||
+ (?p=b:inspiresWork && (NOT EXISTS {?s a/rdfs:subClassOf* a:AssetItem} || NOT EXISTS {?o a/rdfs:subClassOf* n:WorkInProgress} || ?k!="creative_proposal")) ||
+ (?k="source_supported" && NOT EXISTS {$this b:evidenceLink/n:role "supports"}) ||
+ (?k="creative_proposal" && EXISTS {$this b:evidenceLink/n:role ?r . FILTER(?r!="context")}))
+ }"""] .
+
+a:FieldShape a sh:NodeShape; sh:targetClass a:AssetObservation; sh:property [sh:path a:field; sh:minCount 1; sh:maxCount 1; sh:in (<urn:noppadol:assets:field:common.brand> <urn:noppadol:assets:field:common.model> <urn:noppadol:assets:field:common.serial_number> <urn:noppadol:assets:field:common.maker> <urn:noppadol:assets:field:common.manufacturer> <urn:noppadol:assets:field:common.manufacture_country> <urn:noppadol:assets:field:common.manufactured_at> <urn:noppadol:assets:field:common.acquired_at> <urn:noppadol:assets:field:common.seller> <urn:noppadol:assets:field:common.purchase_price> <urn:noppadol:assets:field:common.purchase_condition> <urn:noppadol:assets:field:common.location> <urn:noppadol:assets:field:common.condition> <urn:noppadol:assets:field:common.special_features> <urn:noppadol:assets:field:common.personal_story> <urn:noppadol:assets:field:common.source_documents> <urn:noppadol:assets:field:common.maintenance_events> <urn:noppadol:assets:field:hand_plane.plane_type> <urn:noppadol:assets:field:hand_plane.body_material> <urn:noppadol:assets:field:hand_plane.body_wood_species> <urn:noppadol:assets:field:hand_plane.intended_workpiece_wood> <urn:noppadol:assets:field:hand_plane.blade> <urn:noppadol:assets:field:hand_plane.blade_width> <urn:noppadol:assets:field:hand_plane.blade_thickness> <urn:noppadol:assets:field:hand_plane.blade_steel> <urn:noppadol:assets:field:hand_plane.blade_construction> <urn:noppadol:assets:field:hand_plane.blade_maker> <urn:noppadol:assets:field:hand_plane.primary_bevel_angle> <urn:noppadol:assets:field:hand_plane.micro_bevel_angle> <urn:noppadol:assets:field:hand_plane.bed_angle> <urn:noppadol:assets:field:hand_plane.blade_orientation> <urn:noppadol:assets:field:hand_plane.cutting_angle> <urn:noppadol:assets:field:hand_plane.setup_notes> <urn:noppadol:assets:field:hand_plane.sharpening_history> <urn:noppadol:assets:field:hand_plane.cutting_stroke> <urn:noppadol:assets:field:hand_plane.chipbreaker> <urn:noppadol:assets:field:hand_plane.frog> <urn:noppadol:assets:field:hand_plane.blade_hardness> <urn:noppadol:assets:field:hand_plane.heat_treatment> <urn:noppadol:assets:field:hand_plane.sole_adjustments> <urn:noppadol:assets:field:camera.capture_medium> <urn:noppadol:assets:field:camera.film_format> <urn:noppadol:assets:field:camera.sensor_format> <urn:noppadol:assets:field:camera.lens_mount> <urn:noppadol:assets:field:camera.lens_configuration> <urn:noppadol:assets:field:camera.installed_lens> <urn:noppadol:assets:field:camera.compatible_lenses> <urn:noppadol:assets:field:camera.lens_model> <urn:noppadol:assets:field:camera.lens_serial_number> <urn:noppadol:assets:field:camera.focal_length> <urn:noppadol:assets:field:camera.maximum_aperture> <urn:noppadol:assets:field:camera.firmware_version> <urn:noppadol:assets:field:camera.produced_images> <urn:noppadol:assets:field:record_disc.release_title> <urn:noppadol:assets:field:record_disc.musical_works> <urn:noppadol:assets:field:record_disc.recordings> <urn:noppadol:assets:field:record_disc.artist_credits> <urn:noppadol:assets:field:record_disc.engineering_credits> <urn:noppadol:assets:field:record_disc.producer_credits> <urn:noppadol:assets:field:record_disc.label> <urn:noppadol:assets:field:record_disc.record_manufacturer> <urn:noppadol:assets:field:record_disc.pressing_plant> <urn:noppadol:assets:field:record_disc.release_country> <urn:noppadol:assets:field:record_disc.pressing_country> <urn:noppadol:assets:field:record_disc.catalog_number> <urn:noppadol:assets:field:record_disc.matrix_runout> <urn:noppadol:assets:field:record_disc.playback_speed> <urn:noppadol:assets:field:record_disc.record_diameter> <urn:noppadol:assets:field:record_disc.edition_features> <urn:noppadol:assets:field:record_disc.copy_features> <urn:noppadol:assets:field:record_disc.media_condition> <urn:noppadol:assets:field:record_disc.sleeve_condition> <urn:noppadol:assets:field:record_disc.discogs_master_ref> <urn:noppadol:assets:field:record_disc.discogs_release_ref> <urn:noppadol:assets:field:record_disc.release_date> <urn:noppadol:assets:field:record_disc.formats> <urn:noppadol:assets:field:record_disc.label_catalog_entries> <urn:noppadol:assets:field:record_disc.company_credits> <urn:noppadol:assets:field:record_disc.tracklist> <urn:noppadol:assets:field:record_disc.genres> <urn:noppadol:assets:field:record_disc.styles> <urn:noppadol:assets:field:record_disc.release_identifiers> <urn:noppadol:assets:field:record_disc.source_release_notes> <urn:noppadol:assets:field:record_disc.release_match> <urn:noppadol:assets:field:record_disc.carrier_members> <urn:noppadol:assets:field:record_disc.listening_sessions> <urn:noppadol:assets:field:chisel.chisel_type> <urn:noppadol:assets:field:chisel.blade_width> <urn:noppadol:assets:field:chisel.full_length> <urn:noppadol:assets:field:chisel.blade_steel> <urn:noppadol:assets:field:chisel.bevel_angle> <urn:noppadol:assets:field:chisel.ura_type> <urn:noppadol:assets:field:chisel.surface_finish> <urn:noppadol:assets:field:chisel.handle_wood> <urn:noppadol:assets:field:chisel.maker_attribution> <urn:noppadol:assets:field:chisel.set_members>)] .
+
+b:SourceMatchShape a sh:NodeShape; sh:targetClass b:AssetConnection; sh:sparql [sh:message "Description evidence must come from its subject input."; sh:select """
+PREFIX b: <urn:noppadol:assets:bridge:> PREFIX n: <urn:noppadol:ontology:>
+SELECT $this WHERE { $this b:predicate b:describesAsset; b:subject ?s; b:evidenceLink/n:evidence/n:sourceInput ?i . FILTER(?i != ?s) }
+"""] .

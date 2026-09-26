@@ -1,0 +1,242 @@
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix b: <urn:noppadol:assets:bridge:> .
+@prefix ex: <urn:noppadol:assets:fixture:> .
+@prefix f: <urn:noppadol:assets:field:> .
+@prefix n: <urn:noppadol:ontology:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:camera a a:AssetItem ;
+    a:classifiedAs <urn:noppadol:assets:concept:camera> ;
+    a:profile "camera" ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "กล้องสมมติ" .
+
+ex:component a b:AssetConnection ;
+    b:evidenceLink ex:support ;
+    b:object ex:blade ;
+    b:predicate b:hasComponent ;
+    b:subject ex:plane ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:limits "Not a real asset or verified creative relationship" ;
+    n:method "Editorial fixture" ;
+    n:publication "draft" ;
+    n:rationale "Demonstrates the mission workflow using synthetic data" ;
+    n:relationKind "source_supported" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ความเชื่อมโยงสมมติ component" .
+
+ex:description a b:AssetConnection ;
+    b:evidenceLink ex:support ;
+    b:object ex:plane ;
+    b:predicate b:describesAsset ;
+    b:subject ex:note ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:limits "Not a real asset or verified creative relationship" ;
+    n:method "Editorial fixture" ;
+    n:publication "draft" ;
+    n:rationale "Demonstrates the mission workflow using synthetic data" ;
+    n:relationKind "source_supported" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ความเชื่อมโยงสมมติ description" .
+
+ex:inspiration a b:AssetConnection ;
+    b:evidenceLink ex:context ;
+    b:object ex:work ;
+    b:predicate b:inspiresWork ;
+    b:subject ex:plane ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:limits "Not a real asset or verified creative relationship" ;
+    n:method "Editorial fixture" ;
+    n:publication "draft" ;
+    n:rationale "Demonstrates the mission workflow using synthetic data" ;
+    n:relationKind "creative_proposal" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ความเชื่อมโยงสมมติ inspiration" .
+
+ex:record-copy a a:AssetItem ;
+    a:classifiedAs <urn:noppadol:assets:concept:record-disc> ;
+    a:edition ex:edition ;
+    a:profile "record_disc" ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "แผ่นเสียงสำเนาสมมติ" .
+
+ex:track a a:TrackEntry ;
+    a:inEdition ex:edition ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "แทร็กสมมติ" .
+
+ex:unknown-steel a a:AssetObservation ;
+    a:field f:hand_plane.blade_steel ;
+    a:observedSubject ex:plane ;
+    a:valueStatus "unknown" ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ยังไม่ทราบชนิดเหล็ก" .
+
+ex:use a a:AssetEvent ;
+    a:eventKind "use" ;
+    a:participant ex:plane ;
+    a:sourceInput ex:note ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "กิจกรรมใช้กบสมมติ" .
+
+ex:width a a:AssetObservation ;
+    a:basis "owner_reported" ;
+    a:field f:hand_plane.blade_width ;
+    a:numberValue 50.0 ;
+    a:observedSubject ex:plane ;
+    a:sourceInput ex:note ;
+    a:unit "mm" ;
+    a:valueStatus "known" ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ความกว้างใบกบสมมติ" .
+
+ex:blade a a:Component ;
+    a:classifiedAs <urn:noppadol:assets:concept:plane-blade> ;
+    a:profile "component" ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ใบกบสมมติ" .
+
+ex:context a n:EvidenceLink ;
+    n:evidence ex:evidence ;
+    n:role "context" .
+
+ex:locator a n:TextLocator ;
+    n:end 208 ;
+    n:paragraphIndex 0 ;
+    n:start 0 .
+
+ex:mission a n:Mission ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ค้นพบความเชื่อมโยงเพื่อสร้างคอนเทนต์" .
+
+ex:model a a:ProductModel ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "รุ่นสมมติ" .
+
+ex:release-group a a:ReleaseGroup ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "กลุ่มฉบับเผยแพร่สมมติ" .
+
+ex:work a n:WorkInProgress ;
+    n:alignedWith ex:mission ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ไอเดียสมมติ: งานช่างกับการฟัง" ;
+    n:usesInput ex:note .
+
+ex:edition a a:ReleaseEdition ;
+    a:releaseGroup ex:release-group ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ฉบับเผยแพร่สมมติ" .
+
+ex:evidence a n:Evidence ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:description "Synthetic fixture statement" ;
+    n:locator ex:locator ;
+    n:origin "source" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:sourceInput ex:note ;
+    n:sourceRevision ex:revision ;
+    n:title "หลักฐานตัวอย่างสมมติ" .
+
+ex:revision a n:TextSnapshot ;
+    n:sha256 "27207ab03658c393b0578a70e5df8f074a775b51343315c8ea3b07dd38f5cb95" ;
+    n:storageRef "fixture-source.txt" .
+
+ex:support a n:EvidenceLink ;
+    n:evidence ex:evidence ;
+    n:role "supports" .
+
+ex:note a n:KnowledgeInput ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:hasRevision ex:revision ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "ตัวอย่างบันทึกสมมติ" .
+
+ex:plane a a:AssetItem ;
+    a:classifiedAs <urn:noppadol:assets:concept:hand-plane> ;
+    a:model ex:model ;
+    a:profile "hand_plane" ;
+    n:audience "owner" ;
+    n:createdAt "2026-09-26T00:00:00+07:00"^^xsd:dateTime ;
+    n:createdBy "Synthetic fixture — not user inventory" ;
+    n:publication "draft" ;
+    n:reviewStatus "unreviewed" ;
+    n:rightsStatus "unknown" ;
+    n:title "กบไสไม้สมมติ" .

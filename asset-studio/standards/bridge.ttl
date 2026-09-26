@@ -1,0 +1,30 @@
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix b: <urn:noppadol:assets:bridge:> .
+@prefix n: <urn:noppadol:ontology:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+b: a owl:Ontology ;
+    owl:versionInfo "1.0.0" .
+
+b:describesAsset a owl:ObjectProperty .
+
+b:evidenceLink a owl:ObjectProperty ;
+    rdfs:domain b:AssetConnection ;
+    rdfs:range n:EvidenceLink .
+
+b:hasComponent a owl:ObjectProperty .
+
+b:inspiresWork a owl:ObjectProperty .
+
+b:object a owl:ObjectProperty ;
+    rdfs:domain b:AssetConnection .
+
+b:predicate a owl:ObjectProperty ;
+    rdfs:domain b:AssetConnection .
+
+b:subject a owl:ObjectProperty ;
+    rdfs:domain b:AssetConnection .
+
+b:AssetConnection a owl:Class ;
+    rdfs:subClassOf a:AssetRecord .

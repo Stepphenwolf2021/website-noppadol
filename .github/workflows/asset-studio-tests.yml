@@ -1,0 +1,31 @@
+name: Asset Studio validation
+on:
+  pull_request:
+    paths:
+      - 'asset-studio/**'
+      - 'tools/tests/asset-studio.test.mjs'
+      - 'tools/check-asset-graph.py'
+      - '.eleventy.js'
+      - '.github/workflows/asset-studio-tests.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run test:assets
+        env:
+          ASSET_TEST_OUTPUT: /tmp/noppadol-asset-tests
+      - run: pip install -r asset-studio/standards/requirements.txt
+      - run: python tools/check-asset-graph.py /tmp/noppadol-asset-tests/export.jsonld
+      - run: python tools/check-asset-graph.py /tmp/noppadol-asset-tests/all-types.jsonld
+      - run: npm run build

@@ -1,0 +1,63 @@
+@prefix n: <urn:noppadol:ontology:> .
+@prefix c: <urn:noppadol:> .
+@prefix ex: <urn:noppadol:fixture:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+n:ManagedRecordShape a sh:NodeShape ; sh:targetClass n:ManagedRecord ; sh:property [ sh:path n:audience ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("owner" "members" "public") ] ; sh:property [ sh:path n:publication ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("draft" "published" "withdrawn") ] ; sh:property [ sh:path n:reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("unreviewed" "approved" "rejected" "disputed") ] ; sh:property [ sh:path n:rightsStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("unknown" "permission_recorded") ] ; sh:property [ sh:path n:createdBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:createdAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ; sh:sparql [ sh:message "Published records require review and release details; wider audiences require permission." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:publication "published" . FILTER (NOT EXISTS { $this n:reviewStatus "approved" ; n:reviewer ?u ; n:reviewedAt ?t ; n:releasedBy ?r ; n:releasedAt ?d } || EXISTS { $this n:audience ?a . FILTER(?a != "owner") FILTER NOT EXISTS { $this n:rightsStatus "permission_recorded" ; n:permissionRef ?p } }) }""" ] .
+
+n:MissionShape a sh:NodeShape ; sh:targetClass n:Mission ; sh:property [ sh:path n:title ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] .
+
+n:QuestionShape a sh:NodeShape ; sh:targetClass n:Question ; sh:property [ sh:path n:title ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] .
+
+n:WorkInProgressShape a sh:NodeShape ; sh:targetClass n:WorkInProgress ; sh:property [ sh:path n:title ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] .
+
+n:KnowledgeInputShape a sh:NodeShape ; sh:targetClass n:KnowledgeInput ; sh:property [ sh:path n:title ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ; sh:property [ sh:path n:hasRevision ; sh:minCount 1 ; sh:class n:SourceRevision ] ; sh:property [ sh:path n:alignedWith ; sh:minCount 0 ; sh:class n:Mission ] .
+
+n:SourceRevisionShape a sh:NodeShape ; sh:targetClass n:SourceRevision ; sh:property [ sh:path n:sha256 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9a-f]{64}$" ] ; sh:property [ sh:path n:storageRef ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] .
+
+n:MediaAssetShape a sh:NodeShape ; sh:targetClass n:MediaAsset ; sh:property [ sh:path n:mediaKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("image" "audio" "video") ] .
+
+n:MediaStreamShape a sh:NodeShape ; sh:targetClass n:MediaStream ; sh:property [ sh:path n:streamId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:durationTicks ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ] ; sh:property [ sh:path n:timescale ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minExclusive 0 ] .
+
+n:EvidenceShape a sh:NodeShape ; sh:targetClass n:Evidence ; sh:property [ sh:path n:sourceInput ; sh:minCount 1 ; sh:maxCount 1 ; sh:class n:KnowledgeInput ] ; sh:property [ sh:path n:sourceRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:class n:SourceRevision ] ; sh:property [ sh:path n:locator ; sh:minCount 1 ; sh:maxCount 1 ; sh:class n:Locator ] ; sh:property [ sh:path n:description ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:origin ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("source" "editorial" "derived") ] ; sh:sparql [ sh:message "Evidence revision must belong to its source input." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:sourceInput ?i ; n:sourceRevision ?r . FILTER NOT EXISTS { ?i n:hasRevision ?r } }""" ] ; sh:sparql [ sh:message "Locator must match the evidence revision kind and stream." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:sourceRevision ?r ; n:locator ?l . { ?l a n:TextLocator . FILTER NOT EXISTS { ?r a n:TextSnapshot } } UNION { ?l a n:ImageRegion . FILTER NOT EXISTS { ?r a n:MediaAsset ; n:mediaKind "image" } } UNION { ?l a n:TimeRange ; n:stream ?s . FILTER NOT EXISTS { ?r n:hasStream ?s ; n:mediaKind ?k . FILTER(?k IN ("audio","video")) } } }""" ] .
+
+n:LocatorShape a sh:NodeShape ; sh:targetClass n:Locator ; sh:xone ( [ sh:class n:TextLocator ] [ sh:class n:ImageRegion ] [ sh:class n:TimeRange ] ) .
+
+n:TextLocatorShape a sh:NodeShape ; sh:targetClass n:TextLocator ; sh:property [ sh:path n:paragraphIndex ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ] ; sh:property [ sh:path n:start ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:lessThan n:end ] ; sh:property [ sh:path n:end ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minExclusive 0 ] .
+
+n:ImageRegionShape a sh:NodeShape ; sh:targetClass n:ImageRegion ; sh:property [ sh:path n:x ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ; sh:property [ sh:path n:y ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ; sh:property [ sh:path n:width ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxInclusive 1 ] ; sh:property [ sh:path n:height ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxInclusive 1 ] ; sh:sparql [ sh:message "Image region exceeds stored raster bounds." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:x ?x ; n:y ?y ; n:width ?w ; n:height ?h . FILTER(?x + ?w > 1 || ?y + ?h > 1) }""" ] .
+
+n:TimeRangeShape a sh:NodeShape ; sh:targetClass n:TimeRange ; sh:property [ sh:path n:stream ; sh:minCount 1 ; sh:maxCount 1 ; sh:class n:MediaStream ] ; sh:property [ sh:path n:start ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:lessThan n:end ] ; sh:property [ sh:path n:end ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minExclusive 0 ] ; sh:property [ sh:path n:timescale ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minExclusive 0 ] ; sh:sparql [ sh:message "Range must fit stream duration and timescale." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:stream ?s ; n:end ?e ; n:timescale ?t . ?s n:durationTicks ?d ; n:timescale ?st . FILTER(?e > ?d || ?t != ?st) }""" ] .
+
+n:EvidenceLinkShape a sh:NodeShape ; sh:targetClass n:EvidenceLink ; sh:property [ sh:path n:evidence ; sh:minCount 1 ; sh:maxCount 1 ; sh:class n:Evidence ] ; sh:property [ sh:path n:role ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("supports" "contradicts" "context") ] .
+
+n:ConnectionShape a sh:NodeShape ; sh:targetClass n:Connection ; sh:property [ sh:path n:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ; sh:property [ sh:path n:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ; sh:property [ sh:path n:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (n:mentionsConcept n:relatedTo) ] ; sh:property [ sh:path n:relationKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("source_supported" "inferred" "creative_proposal") ] ; sh:property [ sh:path n:evidenceLink ; sh:minCount 1 ; sh:class n:EvidenceLink ] ; sh:property [ sh:path n:rationale ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ; sh:property [ sh:path n:method ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ; sh:property [ sh:path n:limits ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ; sh:sparql [ sh:message "Connection endpoint types must match predicate." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:subject ?s ; n:object ?o ; n:predicate ?p . FILTER ( (?p=n:mentionsConcept && (NOT EXISTS { ?s a n:KnowledgeInput } || NOT EXISTS { ?o a n:Concept })) || (?p=n:relatedTo && (NOT EXISTS { ?s a n:Concept } || NOT EXISTS { ?o a n:Concept }))) }""" ] ; sh:sparql [ sh:message "Supported assertions need supporting evidence; creative proposals use context only." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:relationKind ?k . FILTER ((?k="source_supported" && NOT EXISTS { $this n:evidenceLink ?l . ?l n:role "supports" }) || (?k="creative_proposal" && EXISTS { $this n:evidenceLink ?l . ?l n:role ?r . FILTER(?r != "context") })) }""" ] ; sh:sparql [ sh:message "Mention evidence must reference the subject input." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:predicate n:mentionsConcept ; n:subject ?s ; n:evidenceLink/n:evidence ?e . ?e n:sourceInput ?i . FILTER(?s != ?i) }""" ] .
+
+n:MetadataObservationShape a sh:NodeShape ; sh:targetClass n:MetadataObservation ; sh:property [ sh:path n:aboutRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:class n:SourceRevision ] ; sh:property [ sh:path n:field ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:rawValue ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:normalizedValue ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:origin ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("embedded" "sidecar" "declared" "derived" "probe") ] ; sh:property [ sh:path n:sourceRef ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; sh:property [ sh:path n:method ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] .
+
+n:DependencyReleaseShape a sh:NodeShape ; sh:targetClass n:Evidence, n:Connection ; sh:sparql [ sh:message "Published evidence/connection cannot expose unpublished or narrower managed dependencies." ; sh:select """PREFIX n: <urn:noppadol:ontology:> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE { $this n:publication "published" ; n:audience ?a . { $this n:sourceInput ?dep } UNION { $this n:evidenceLink/n:evidence ?dep } UNION { $this n:subject ?dep . ?dep a n:KnowledgeInput } FILTER (NOT EXISTS { ?dep n:publication "published" ; n:audience ?b } || EXISTS { ?dep n:audience ?b . FILTER ((?a="public" && ?b!="public") || (?a="members" && ?b="owner")) }) }""" ] .
+
+n:ReviewAuditShape a sh:NodeShape ; sh:targetClass n:ManagedRecord ;
+ sh:property [ sh:path n:reviewer ; sh:datatype xsd:string ; sh:minLength 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path n:reviewedAt ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] ;
+ sh:property [ sh:path n:releasedBy ; sh:datatype xsd:string ; sh:minLength 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path n:releasedAt ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] ;
+ sh:property [ sh:path n:permissionRef ; sh:datatype xsd:string ; sh:minLength 1 ; sh:maxCount 1 ] ;
+ sh:sparql [ sh:message "Review decisions need identity and time; recorded permission needs a reference." ; sh:select """
+ PREFIX n: <urn:noppadol:ontology:>
+ SELECT $this WHERE {
+ FILTER (EXISTS { $this n:reviewStatus ?s . FILTER(?s != "unreviewed") FILTER NOT EXISTS { $this n:reviewer ?r ; n:reviewedAt ?t } }
+ || EXISTS { $this n:rightsStatus "permission_recorded" . FILTER NOT EXISTS { $this n:permissionRef ?p } })
+ }""" ] .
+n:WorkLinksShape a sh:NodeShape ; sh:targetClass n:WorkInProgress ;
+ sh:property [ sh:path n:addresses ; sh:class n:Question ] ;
+ sh:property [ sh:path n:usesInput ; sh:class n:KnowledgeInput ] ;
+ sh:property [ sh:path n:alignedWith ; sh:class n:Mission ] .
+n:QuestionLinksShape a sh:NodeShape ; sh:targetClass n:Question ;
+ sh:property [ sh:path n:aboutConcept ; sh:class n:Concept ] .

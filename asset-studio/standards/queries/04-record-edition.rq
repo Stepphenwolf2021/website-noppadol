@@ -1,0 +1,2 @@
+PREFIX a: <urn:noppadol:assets:ontology:>
+SELECT ?copy ?edition ?group ?track WHERE { ?copy a:edition ?edition . ?edition a:releaseGroup ?group . OPTIONAL {?track a:inEdition ?edition} }

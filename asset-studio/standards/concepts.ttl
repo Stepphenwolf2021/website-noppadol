@@ -1,0 +1,613 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<urn:noppadol:assets:scheme> a skos:ConceptScheme ; skos:prefLabel "My Assets"@en .
+
+<urn:noppadol:assets:concept:asset> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ทรัพย์สินที่จัดการ"@th ;
+ skos:prefLabel "Managed asset"@en ;
+ skos:definition "สิ่งหรือสิทธิที่นำเข้าทะเบียนเพื่อดูแล ใช้งาน หรือศึกษา"@th ;
+ skos:scopeNote "การมีรายการไม่ยืนยันกรรมสิทธิ์"@th .
+
+<urn:noppadol:assets:concept:physical-item> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "วัตถุรายชิ้น"@th ;
+ skos:prefLabel "Physical item"@en ;
+ skos:definition "วัตถุที่แยกตัวตนและติดตามเป็นรายชิ้นได้"@th ;
+ skos:scopeNote "ชนิดสินค้าและชื่อรุ่นไม่ใช่ตัววัตถุ"@th .
+
+<urn:noppadol:assets:concept:product-model> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "รุ่นผลิตภัณฑ์"@th ;
+ skos:prefLabel "Product model"@en ;
+ skos:altLabel "รุ่นสินค้า"@th ;
+ skos:definition "แบบหรือรุ่นที่ผู้ผลิตใช้จำแนกผลิตภัณฑ์"@th ;
+ skos:scopeNote "หลายชิ้นอาจมีรุ่นเดียวกัน"@th .
+
+<urn:noppadol:assets:concept:collection> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "คอลเลกชันทรัพย์สิน"@th ;
+ skos:prefLabel "Asset collection"@en ;
+ skos:definition "ชุดทรัพย์สินที่รวบรวมด้วยวัตถุประสงค์ร่วมกัน"@th ;
+ skos:scopeNote "ไม่ใช้แทนสมาชิกแต่ละชิ้น"@th .
+
+<urn:noppadol:assets:concept:woodworking-tool> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เครื่องมืองานไม้"@th ;
+ skos:prefLabel "Woodworking tool"@en ;
+ skos:altLabel "เครื่องมือช่างไม้"@th ;
+ skos:definition "อุปกรณ์ที่ใช้ทำงานกับไม้ตามหน้าที่ของเครื่องมือ"@th ;
+ skos:scopeNote "งานไม้เป็นกิจกรรม ใช้แนวคิดเดิม"@th .
+
+<urn:noppadol:assets:concept:hand-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบไสไม้"@th ;
+ skos:prefLabel "Hand plane"@en ;
+ skos:altLabel "กบไสไม้มือ"@th ;
+ skos:altLabel "handplane"@en ;
+ skos:definition "เครื่องมือไสไม้ที่ใช้แรงมือขับใบตัดเพื่อตกแต่งผิวหรือรูปทรง"@th ;
+ skos:scopeNote "ไม่รวมกบไฟฟ้า; คำว่า กบ เดี่ยวกำกวม"@th .
+
+<urn:noppadol:assets:concept:chisel> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สิ่ว"@th ;
+ skos:prefLabel "Chisel"@en ;
+ skos:definition "เครื่องมือใบตัดสำหรับสกัดหรือแต่งวัสดุ ในรุ่นนี้เน้นการใช้งานกับไม้"@th ;
+ skos:scopeNote "ไม่ระบุว่าสิ่วทุกชนิดใช้ค้อนได้"@th .
+
+<urn:noppadol:assets:concept:saw> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เลื่อย"@th ;
+ skos:prefLabel "Saw"@en ;
+ skos:definition "เครื่องมือที่ใช้ฟันตัดแบ่งหรือแต่งวัสดุ"@th ;
+ skos:scopeNote "ยังไม่แยกแรงมือและกำลังไฟฟ้า"@th .
+
+<urn:noppadol:assets:concept:sharpening-stone> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "หินลับคม"@th ;
+ skos:prefLabel "Sharpening stone"@en ;
+ skos:altLabel "หินลับคมเครื่องมือ"@th ;
+ skos:definition "วัสดุลักษณะก้อนหรือแผ่นที่ใช้ขัดเพื่อสร้างหรือรักษาคมเครื่องมือ"@th ;
+ skos:scopeNote "ไม่รวมอุปกรณ์ลับคมทุกประเภท"@th .
+
+<urn:noppadol:assets:concept:camera> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กล้องถ่ายรูป"@th ;
+ skos:prefLabel "Camera"@en ;
+ skos:altLabel "กล้องถ่ายภาพ"@th ;
+ skos:definition "อุปกรณ์บันทึกภาพนิ่งซึ่งบางรุ่นบันทึกวิดีโอได้"@th ;
+ skos:scopeNote "คำว่า กล้อง ต้องดูบริบท ไม่รวมข้าวกล้อง"@th .
+
+<urn:noppadol:assets:concept:lens> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เลนส์ถ่ายภาพ"@th ;
+ skos:prefLabel "Photographic lens"@en ;
+ skos:definition "ชุดอุปกรณ์ทางแสงสำหรับสร้างภาพในการถ่ายภาพ"@th ;
+ skos:scopeNote "ไม่รวมเลนส์แว่นตา"@th .
+
+<urn:noppadol:assets:concept:record-disc> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "แผ่นเสียง"@th ;
+ skos:prefLabel "Phonograph record"@en ;
+ skos:altLabel "phonograph disc"@en ;
+ skos:definition "สื่อรูปแผ่นที่เก็บเสียงด้วยร่องสำหรับเล่นกลับ"@th ;
+ skos:scopeNote "ไม่สมมติว่าทุกแผ่นทำจากไวนิล; แยกจากบทเพลงและไฟล์เสียง"@th .
+
+<urn:noppadol:assets:concept:turntable> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เครื่องเล่นแผ่นเสียง"@th ;
+ skos:prefLabel "Record player"@en ;
+ skos:definition "อุปกรณ์อ่านร่องแผ่นเสียงเพื่อเล่นเสียง"@th ;
+ skos:scopeNote "แยกตัวเครื่องออกจากแผ่นเสียง"@th .
+
+<urn:noppadol:assets:concept:musical-work> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ผลงานดนตรี"@th ;
+ skos:prefLabel "Musical work"@en ;
+ skos:definition "ตัวงานประพันธ์หรือบทเพลงที่อาจมีการบันทึกหลายครั้ง"@th ;
+ skos:scopeNote "ไม่เท่ากับการบันทึกหนึ่งครั้งหรือแผ่นหนึ่งแผ่น"@th .
+
+<urn:noppadol:assets:concept:sound-recording> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สิ่งบันทึกเสียง"@th ;
+ skos:prefLabel "Sound recording"@en ;
+ skos:definition "เนื้อหาเสียงจากการบันทึกที่ระบุได้"@th ;
+ skos:scopeNote "ไม่ใช่กิจกรรมการบันทึกเสียงหรือไฟล์สำเนาโดยอัตโนมัติ"@th .
+
+<urn:noppadol:assets:concept:release-edition> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ฉบับเผยแพร่"@th ;
+ skos:prefLabel "Release edition"@en ;
+ skos:definition "ฉบับที่เผยแพร่ของงานหรือสิ่งบันทึก เช่นฉบับแผ่นเสียง"@th ;
+ skos:scopeNote "แยกจากแผ่นรายชิ้นและผลงานต้นทาง"@th .
+
+<urn:noppadol:assets:concept:investment-fund> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กองทุนเพื่อการลงทุน"@th ;
+ skos:prefLabel "Investment fund"@en ;
+ skos:definition "กองทุนที่ใช้เป็นผลิตภัณฑ์สำหรับการลงทุนในขอบเขตทะเบียนนี้"@th ;
+ skos:scopeNote "กองทุนช่วยเหลือและคำว่า กองทุน เดี่ยวต้องตรวจบริบท"@th .
+
+<urn:noppadol:assets:concept:fund-unit> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "หน่วยลงทุน"@th ;
+ skos:prefLabel "Fund unit"@en ;
+ skos:definition "หน่วยที่ใช้ระบุส่วนการลงทุนในกองทุนที่ออกหน่วย"@th ;
+ skos:scopeNote "แยกจากจำนวนหน่วยที่เจ้าของถือ ณ วันใด"@th .
+
+<urn:noppadol:assets:concept:cryptoasset> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สินทรัพย์คริปโต"@th ;
+ skos:prefLabel "Cryptoasset"@en ;
+ skos:altLabel "คริปโต"@th ;
+ skos:altLabel "crypto"@en ;
+ skos:hiddenLabel "Crtpto"@en ;
+ skos:definition "สินทรัพย์หรือหน่วยดิจิทัลที่อาศัยระบบเข้ารหัสและบัญชีรายการแบบกระจายตามบริบทที่บันทึก"@th ;
+ skos:scopeNote "นิยามใช้งาน ไม่ตัดสินสถานะทางกฎหมาย; ไม่รวมไฟล์ดิจิทัลทั่วไป"@th .
+
+<urn:noppadol:assets:concept:holding> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สถานะการถือครอง"@th ;
+ skos:prefLabel "Holding"@en ;
+ skos:definition "รายการที่ระบุผู้ถือ สิ่งที่ถือ จำนวน หน่วย และเวลาอ้างอิง"@th ;
+ skos:scopeNote "ไม่เท่ากับชนิดสินทรัพย์หรือรายการซื้อขาย"@th .
+
+<urn:noppadol:assets:concept:transaction> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ธุรกรรมทรัพย์สิน"@th ;
+ skos:prefLabel "Asset transaction"@en ;
+ skos:definition "เหตุการณ์ได้มา โอน หรือจำหน่ายทรัพย์สินที่มีวันและหลักฐาน"@th ;
+ skos:scopeNote "ไม่ใช้แทนยอดคงเหลือ"@th .
+
+<urn:noppadol:assets:concept:valuation> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "การประเมินมูลค่า"@th ;
+ skos:prefLabel "Valuation"@en ;
+ skos:definition "ค่าประเมินของสิ่งที่ระบุ พร้อมเวลา สกุลเงิน แหล่ง และวิธี"@th ;
+ skos:scopeNote "ไม่ใช้ราคาครั้งเดียวแทนมูลค่าปัจจุบันตลอดไป"@th .
+
+<urn:noppadol:assets:concept:ownership> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กรรมสิทธิ์"@th ;
+ skos:prefLabel "Ownership"@en ;
+ skos:definition "ความสัมพันธ์การเป็นเจ้าของตามข้อมูลและหลักฐานที่บันทึก"@th ;
+ skos:scopeNote "ไม่เท่ากับการยืม ครอบครองทางกายภาพ หรือกล่าวถึง"@th .
+
+<urn:noppadol:assets:concept:custody> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "การเก็บรักษาทรัพย์สิน"@th ;
+ skos:prefLabel "Asset custody"@en ;
+ skos:definition "ความสัมพันธ์ว่าใครหรือที่ใดดูแลทรัพย์สินในช่วงหนึ่ง"@th ;
+ skos:scopeNote "ไม่อนุมานกรรมสิทธิ์จากการเก็บรักษา"@th .
+
+<urn:noppadol:assets:concept:condition> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สภาพทรัพย์สิน"@th ;
+ skos:prefLabel "Asset condition"@en ;
+ skos:definition "สภาพของทรัพย์สินตามการสังเกต ณ เวลาหนึ่ง"@th ;
+ skos:scopeNote "ไม่ใช่ระดับคุณภาพถาวรของรุ่นผลิตภัณฑ์"@th .
+
+<urn:noppadol:assets:concept:maintenance> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "การบำรุงรักษา"@th ;
+ skos:prefLabel "Maintenance"@en ;
+ skos:altLabel "การดูแลบำรุงรักษา"@th ;
+ skos:definition "การดูแลเพื่อรักษาหรือฟื้นความพร้อมใช้งาน"@th ;
+ skos:scopeNote "ไม่ใช่ข้อยืนยันว่าได้ดำเนินการแล้ว"@th .
+
+<urn:noppadol:assets:concept:sharpening> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "การลับคม"@th ;
+ skos:prefLabel "Sharpening"@en ;
+ skos:altLabel "ลับคมเครื่องมือ"@th ;
+ skos:definition "การแต่งคมเครื่องมือให้เหมาะกับการใช้งาน"@th ;
+ skos:scopeNote "แยกจากหินลับคมที่เป็นอุปกรณ์"@th .
+
+<urn:noppadol:assets:concept:repair> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "การซ่อม"@th ;
+ skos:prefLabel "Repair"@en ;
+ skos:altLabel "การซ่อมแซม"@th ;
+ skos:definition "การแก้ความชำรุดของทรัพย์สิน"@th ;
+ skos:scopeNote "แยกจากการปรับแต่งที่ไม่ได้แก้ความชำรุด"@th .
+
+<urn:noppadol:assets:concept:use-session> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กิจกรรมใช้ทรัพย์สิน"@th ;
+ skos:prefLabel "Asset use session"@en ;
+ skos:definition "เหตุการณ์ทดลองหรือใช้ทรัพย์สินเพื่อทำงานหรือเรียนรู้"@th ;
+ skos:scopeNote "การมีเครื่องมือไม่ยืนยันว่าเคยใช้งาน"@th .
+
+<urn:noppadol:assets:concept:observation> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "บันทึกการสังเกตทรัพย์สิน"@th ;
+ skos:prefLabel "Asset observation"@en ;
+ skos:definition "บันทึกสิ่งที่พบจากการใช้ ตรวจ หรือศึกษา พร้อมผู้บันทึกและเวลา"@th ;
+ skos:scopeNote "ไม่เท่ากับข้อเท็จจริงสากลหรือ MetadataObservation ของไฟล์"@th .
+
+<urn:noppadol:assets:concept:capability> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ความสามารถในการใช้งาน"@th ;
+ skos:prefLabel "Asset capability"@en ;
+ skos:definition "หน้าที่หรือผลที่ทรัพย์สินรองรับภายใต้เงื่อนไขที่ระบุ"@th ;
+ skos:scopeNote "ไม่รับรองผลสำเร็จของผู้ใช้"@th .
+
+<urn:noppadol:assets:concept:material> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "วัสดุของทรัพย์สิน"@th ;
+ skos:prefLabel "Asset material"@en ;
+ skos:definition "วัสดุที่ประกอบเป็นทรัพย์สินหรือชิ้นส่วนตามข้อมูลที่มี"@th ;
+ skos:scopeNote "วัสดุของใบสิ่วอาจต่างจากวัสดุของด้าม"@th .
+
+<urn:noppadol:assets:concept:technique> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เทคนิคการใช้งาน"@th ;
+ skos:prefLabel "Use technique"@en ;
+ skos:definition "วิธีใช้หรือดูแลทรัพย์สินที่บันทึกเป็นความรู้ได้"@th ;
+ skos:scopeNote "ไม่ใช่ตัวเครื่องมือหรือเหตุการณ์ใช้ครั้งหนึ่ง"@th .
+
+<urn:noppadol:assets:concept:manual> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "คู่มือทรัพย์สิน"@th ;
+ skos:prefLabel "Asset manual"@en ;
+ skos:definition "เอกสารแนะนำการใช้และดูแลทรัพย์สินหรือรุ่น"@th ;
+ skos:scopeNote "คู่มือเป็น KnowledgeInput ไม่ใช่เครื่องมือเอง"@th .
+
+<urn:noppadol:assets:concept:acquisition-record> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "บันทึกการได้มา"@th ;
+ skos:prefLabel "Acquisition record"@en ;
+ skos:altLabel "บันทึกการได้ทรัพย์สินมา"@th ;
+ skos:definition "เอกสารหรือบันทึกแหล่งที่มาและเหตุการณ์ได้ทรัพย์สิน"@th ;
+ skos:scopeNote "การมีใบเสร็จไม่ได้ยืนยันสถานะเจ้าของปัจจุบัน"@th .
+
+<urn:noppadol:assets:concept:content-rights> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สิทธิในการใช้เนื้อหา"@th ;
+ skos:prefLabel "Content usage rights"@en ;
+ skos:altLabel "สิทธิการใช้เนื้อหา"@th ;
+ skos:definition "สิทธิและเงื่อนไขในการนำเนื้อหาจากทรัพย์สินหรือเอกสารไปใช้"@th ;
+ skos:scopeNote "การเป็นเจ้าของแผ่นเสียงไม่เท่ากับได้สิทธิเผยแพร่เพลง"@th .
+
+<urn:noppadol:assets:concept:bench-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบงานพื้นฐานบนโต๊ะช่าง"@th ;
+ skos:prefLabel "Bench plane"@en ;
+ skos:definition "กบสำหรับงานไสทั่วไปบนโต๊ะช่างตามการแบ่งกลุ่มเครื่องมือ"@th ;
+ skos:scopeNote "ไม่ใช่กบทุกชนิด"@th .
+
+<urn:noppadol:assets:concept:smoothing-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบเก็บผิว"@th ;
+ skos:prefLabel "Smoothing plane"@en ;
+ skos:altLabel "smooth plane"@en ;
+ skos:definition "กบที่ออกแบบสำหรับเก็บผิวงานไม้"@th ;
+ skos:scopeNote "แยกหน้าที่จากเลขรุ่น"@th .
+
+<urn:noppadol:assets:concept:jack-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบแจ็ก"@th ;
+ skos:prefLabel "Jack plane"@en ;
+ skos:definition "กบที่จัดเป็นชนิด jack สำหรับเตรียมและไสงานทั่วไป"@th ;
+ skos:scopeNote "ชื่อหมวดไม่ใช่ตัวระบุรุ่น"@th .
+
+<urn:noppadol:assets:concept:jointer-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบจอยเตอร์"@th ;
+ skos:prefLabel "Jointer plane"@en ;
+ skos:definition "กบยาวสำหรับแต่งความตรงของผิวหรือขอบไม้"@th ;
+ skos:scopeNote "ไม่ใช่เครื่องไสไฟฟ้า"@th .
+
+<urn:noppadol:assets:concept:japanese-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบญี่ปุ่น"@th ;
+ skos:prefLabel "Japanese hand plane"@en ;
+ skos:altLabel "Japanese plane"@en ;
+ skos:definition "กบมือในรูปแบบเครื่องมือญี่ปุ่น"@th ;
+ skos:scopeNote "ไม่ใช้ยืนยันประเทศผลิตรายชิ้น"@th .
+
+<urn:noppadol:assets:concept:chamfer-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบลบเหลี่ยม"@th ;
+ skos:prefLabel "Chamfer plane"@en ;
+ skos:definition "กบสำหรับแต่งเหลี่ยมขอบงาน"@th ;
+ skos:scopeNote "มุมงานไม่ใช่มุมคมใบ"@th .
+
+<urn:noppadol:assets:concept:compass-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบไสผิวโค้ง"@th ;
+ skos:prefLabel "Compass plane"@en ;
+ skos:definition "กบที่ออกแบบให้ทำงานกับผิวโค้ง"@th ;
+ skos:scopeNote "ต้องระบุรูปแบบผิวที่รองรับ"@th .
+
+<urn:noppadol:assets:concept:sole-flattening-plane> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "กบปรับฐานกบ"@th ;
+ skos:prefLabel "Sole flattening plane"@en ;
+ skos:definition "กบสำหรับแต่งฐานกบอีกตัว"@th ;
+ skos:scopeNote "แยกเครื่องมือจากกิจกรรมปรับฐาน"@th .
+
+<urn:noppadol:assets:concept:plane-blade> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ใบกบ"@th ;
+ skos:prefLabel "Plane blade"@en ;
+ skos:altLabel "ใบมีดกบไสไม้"@th ;
+ skos:definition "ส่วนตัดของกบที่อาจถอดเปลี่ยนได้"@th ;
+ skos:scopeNote "แยกตัวตนจากกบทั้งตัว"@th .
+
+<urn:noppadol:assets:concept:plane-body> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ตัวกบ"@th ;
+ skos:prefLabel "Plane body"@en ;
+ skos:altLabel "ตัวกบไสไม้"@th ;
+ skos:definition "โครงหลักที่รองรับส่วนประกอบกบ"@th ;
+ skos:scopeNote "วัสดุอาจต่างจากใบกบและด้าม"@th .
+
+<urn:noppadol:assets:concept:chipbreaker> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เหล็กประกับใบกบ"@th ;
+ skos:prefLabel "Chipbreaker"@en ;
+ skos:altLabel "chip breaker"@en ;
+ skos:definition "ชิ้นส่วนที่ทำงานร่วมกับใบกบเพื่อจัดการเศษไม้"@th ;
+ skos:scopeNote "ไม่ใช่ใบตัดหลักอีกใบโดยอัตโนมัติ"@th .
+
+<urn:noppadol:assets:concept:frog> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ฐานรองใบกบแบบ frog"@th ;
+ skos:prefLabel "Plane frog"@en ;
+ skos:altLabel "ฐานรองใบกบ"@th ;
+ skos:definition "ชิ้นส่วนรองรับชุดใบในกบที่ใช้โครงสร้างแบบ frog"@th ;
+ skos:scopeNote "ไม่บังคับว่ากบทุกชนิดมี"@th .
+
+<urn:noppadol:assets:concept:oire-nomi> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สิ่วญี่ปุ่นแบบ Oire nomi"@th ;
+ skos:prefLabel "Oire nomi"@en ;
+ skos:altLabel "Oirenomi"@en ;
+ skos:altLabel "Oire-nomi"@en ;
+ skos:definition "ชนิดสิ่วญี่ปุ่นที่แหล่งสินค้าเรียก Oire nomi"@th ;
+ skos:scopeNote "คำแปล bench chisel ไม่ทำให้เท่ากับสิ่วตะวันตกทุกแบบ"@th .
+
+<urn:noppadol:assets:concept:tataki-nomi> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "สิ่วญี่ปุ่นแบบ Tataki nomi"@th ;
+ skos:prefLabel "Tataki nomi"@en ;
+ skos:altLabel "Tatakinomi"@en ;
+ skos:altLabel "Tataki-nomi"@en ;
+ skos:definition "ชนิดสิ่วญี่ปุ่นที่รายการสินค้าใช้ชื่อ Tataki nomi"@th ;
+ skos:scopeNote "ไม่อนุมานขนาดหรือวัสดุจากชื่อชนิด"@th .
+
+<urn:noppadol:assets:concept:chisel-handle> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ด้ามสิ่ว"@th ;
+ skos:prefLabel "Chisel handle"@en ;
+ skos:definition "ส่วนจับของสิ่ว"@th ;
+ skos:scopeNote "วัสดุด้ามไม่ใช่วัสดุใบ"@th .
+
+<urn:noppadol:assets:concept:triple-ura> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "หลังใบสิ่วแบบสามร่อง"@th ;
+ skos:prefLabel "Triple ura"@en ;
+ skos:definition "ชื่อรูปแบบหลังใบสิ่วที่ระบุสามร่องในแค็ตตาล็อก"@th ;
+ skos:scopeNote "เก็บภาพและคำต้นทางประกอบ ไม่อนุมานประสิทธิภาพ"@th .
+
+<urn:noppadol:assets:concept:a2-steel> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เหล็กเครื่องมือ A2"@th ;
+ skos:prefLabel "A2 tool steel"@en ;
+ skos:definition "ชื่อเกรดวัสดุสำหรับใช้จัดข้อมูลใบเครื่องมือเมื่อแหล่งระบุ A2"@th ;
+ skos:scopeNote "ไม่อนุมานความแข็งจากเกรดเพียงอย่างเดียว"@th .
+
+<urn:noppadol:assets:concept:high-speed-steel> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "เหล็กไฮสปีด"@th ;
+ skos:prefLabel "High-speed steel"@en ;
+ skos:altLabel "HSS"@en ;
+ skos:altLabel "เหล็กความเร็วสูง"@th ;
+ skos:definition "กลุ่มเหล็กที่แหล่งข้อมูลระบุเป็น high-speed steel"@th ;
+ skos:scopeNote "ไม่ใช่เกรดเฉพาะเดียวกันทั้งหมด"@th .
+
+<urn:noppadol:assets:concept:laminated-blade> a skos:Concept ;
+ skos:inScheme <urn:noppadol:assets:scheme> ;
+ skos:prefLabel "ใบเครื่องมือโครงสร้างหลายชั้น"@th ;
+ skos:prefLabel "Laminated blade construction"@en ;
+ skos:definition "โครงสร้างใบที่ประกอบวัสดุหลายชั้นตามแหล่งระบุ"@th ;
+ skos:scopeNote "ไม่เท่ากับชื่อเกรดเหล็ก"@th .
+
+<urn:noppadol:assets:concept:hand-plane> skos:broader <urn:noppadol:assets:concept:woodworking-tool> .
+
+<urn:noppadol:assets:concept:woodworking-tool> skos:narrower <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:bench-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:bench-plane> .
+
+<urn:noppadol:assets:concept:smoothing-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:smoothing-plane> .
+
+<urn:noppadol:assets:concept:jack-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:jack-plane> .
+
+<urn:noppadol:assets:concept:jointer-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:jointer-plane> .
+
+<urn:noppadol:assets:concept:japanese-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:japanese-plane> .
+
+<urn:noppadol:assets:concept:chamfer-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:chamfer-plane> .
+
+<urn:noppadol:assets:concept:compass-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:compass-plane> .
+
+<urn:noppadol:assets:concept:sole-flattening-plane> skos:broader <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:narrower <urn:noppadol:assets:concept:sole-flattening-plane> .
+
+<urn:noppadol:assets:concept:oire-nomi> skos:broader <urn:noppadol:assets:concept:chisel> .
+
+<urn:noppadol:assets:concept:chisel> skos:narrower <urn:noppadol:assets:concept:oire-nomi> .
+
+<urn:noppadol:assets:concept:tataki-nomi> skos:broader <urn:noppadol:assets:concept:chisel> .
+
+<urn:noppadol:assets:concept:chisel> skos:narrower <urn:noppadol:assets:concept:tataki-nomi> .
+
+<urn:noppadol:assets:concept:sharpening> skos:broader <urn:noppadol:assets:concept:maintenance> .
+
+<urn:noppadol:assets:concept:maintenance> skos:narrower <urn:noppadol:assets:concept:sharpening> .
+
+<urn:noppadol:assets:concept:repair> skos:broader <urn:noppadol:assets:concept:maintenance> .
+
+<urn:noppadol:assets:concept:maintenance> skos:narrower <urn:noppadol:assets:concept:repair> .
+
+<urn:noppadol:assets:concept:a2-steel> skos:broader <urn:noppadol:assets:concept:material> .
+
+<urn:noppadol:assets:concept:material> skos:narrower <urn:noppadol:assets:concept:a2-steel> .
+
+<urn:noppadol:assets:concept:high-speed-steel> skos:broader <urn:noppadol:assets:concept:material> .
+
+<urn:noppadol:assets:concept:material> skos:narrower <urn:noppadol:assets:concept:high-speed-steel> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-woodworking> a skos:Collection ; skos:prefLabel "เครื่องมือและชิ้นส่วนงานไม้"@th ; skos:member <urn:noppadol:assets:concept:woodworking-tool>, <urn:noppadol:assets:concept:hand-plane>, <urn:noppadol:assets:concept:chisel>, <urn:noppadol:assets:concept:saw>, <urn:noppadol:assets:concept:sharpening-stone>, <urn:noppadol:assets:concept:bench-plane>, <urn:noppadol:assets:concept:smoothing-plane>, <urn:noppadol:assets:concept:jack-plane>, <urn:noppadol:assets:concept:jointer-plane>, <urn:noppadol:assets:concept:japanese-plane>, <urn:noppadol:assets:concept:chamfer-plane>, <urn:noppadol:assets:concept:compass-plane>, <urn:noppadol:assets:concept:sole-flattening-plane>, <urn:noppadol:assets:concept:oire-nomi>, <urn:noppadol:assets:concept:tataki-nomi>, <urn:noppadol:assets:concept:plane-blade>, <urn:noppadol:assets:concept:plane-body>, <urn:noppadol:assets:concept:chipbreaker>, <urn:noppadol:assets:concept:frog>, <urn:noppadol:assets:concept:chisel-handle> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-photography> a skos:Collection ; skos:prefLabel "กล้องและเลนส์"@th ; skos:member <urn:noppadol:assets:concept:camera>, <urn:noppadol:assets:concept:lens> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-music> a skos:Collection ; skos:prefLabel "แผ่นเสียงและดนตรี"@th ; skos:member <urn:noppadol:assets:concept:record-disc>, <urn:noppadol:assets:concept:turntable>, <urn:noppadol:assets:concept:musical-work>, <urn:noppadol:assets:concept:sound-recording>, <urn:noppadol:assets:concept:release-edition> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-materials> a skos:Collection ; skos:prefLabel "วัสดุและลักษณะโครงสร้าง"@th ; skos:member <urn:noppadol:assets:concept:material>, <urn:noppadol:assets:concept:a2-steel>, <urn:noppadol:assets:concept:high-speed-steel>, <urn:noppadol:assets:concept:laminated-blade>, <urn:noppadol:assets:concept:triple-ura> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-care> a skos:Collection ; skos:prefLabel "การใช้ ดูแล และเรียนรู้"@th ; skos:member <urn:noppadol:assets:concept:maintenance>, <urn:noppadol:assets:concept:sharpening>, <urn:noppadol:assets:concept:repair>, <urn:noppadol:assets:concept:use-session>, <urn:noppadol:assets:concept:observation>, <urn:noppadol:assets:concept:capability>, <urn:noppadol:assets:concept:technique> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-management> a skos:Collection ; skos:prefLabel "ทะเบียน ประวัติ และเรื่องราว"@th ; skos:member <urn:noppadol:assets:concept:asset>, <urn:noppadol:assets:concept:physical-item>, <urn:noppadol:assets:concept:product-model>, <urn:noppadol:assets:concept:collection>, <urn:noppadol:assets:concept:ownership>, <urn:noppadol:assets:concept:custody>, <urn:noppadol:assets:concept:condition>, <urn:noppadol:assets:concept:manual>, <urn:noppadol:assets:concept:acquisition-record>, <urn:noppadol:assets:concept:content-rights> .
+
+<urn:noppadol:assets:taxonomy:asset-nav-finance> a skos:Collection ; skos:prefLabel "การถือครองลงทุน — ระยะถัดไป"@th ; skos:member <urn:noppadol:assets:concept:investment-fund>, <urn:noppadol:assets:concept:fund-unit>, <urn:noppadol:assets:concept:cryptoasset>, <urn:noppadol:assets:concept:holding>, <urn:noppadol:assets:concept:transaction>, <urn:noppadol:assets:concept:valuation> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:related <urn:noppadol:assets:concept:plane-blade> .
+
+<urn:noppadol:assets:concept:plane-blade> skos:related <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:related <urn:noppadol:assets:concept:plane-body> .
+
+<urn:noppadol:assets:concept:plane-body> skos:related <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:related <urn:noppadol:assets:concept:chipbreaker> .
+
+<urn:noppadol:assets:concept:chipbreaker> skos:related <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:hand-plane> skos:related <urn:noppadol:assets:concept:frog> .
+
+<urn:noppadol:assets:concept:frog> skos:related <urn:noppadol:assets:concept:hand-plane> .
+
+<urn:noppadol:assets:concept:plane-blade> skos:related <urn:noppadol:assets:concept:sharpening> .
+
+<urn:noppadol:assets:concept:sharpening> skos:related <urn:noppadol:assets:concept:plane-blade> .
+
+<urn:noppadol:assets:concept:plane-blade> skos:related <urn:noppadol:assets:concept:a2-steel> .
+
+<urn:noppadol:assets:concept:a2-steel> skos:related <urn:noppadol:assets:concept:plane-blade> .
+
+<urn:noppadol:assets:concept:plane-blade> skos:related <urn:noppadol:assets:concept:high-speed-steel> .
+
+<urn:noppadol:assets:concept:high-speed-steel> skos:related <urn:noppadol:assets:concept:plane-blade> .
+
+<urn:noppadol:assets:concept:plane-blade> skos:related <urn:noppadol:assets:concept:laminated-blade> .
+
+<urn:noppadol:assets:concept:laminated-blade> skos:related <urn:noppadol:assets:concept:plane-blade> .
+
+<urn:noppadol:assets:concept:chisel> skos:related <urn:noppadol:assets:concept:chisel-handle> .
+
+<urn:noppadol:assets:concept:chisel-handle> skos:related <urn:noppadol:assets:concept:chisel> .
+
+<urn:noppadol:assets:concept:chisel> skos:related <urn:noppadol:assets:concept:triple-ura> .
+
+<urn:noppadol:assets:concept:triple-ura> skos:related <urn:noppadol:assets:concept:chisel> .
+
+<urn:noppadol:assets:concept:chisel> skos:related <urn:noppadol:assets:concept:sharpening> .
+
+<urn:noppadol:assets:concept:sharpening> skos:related <urn:noppadol:assets:concept:chisel> .
+
+<urn:noppadol:assets:concept:sharpening-stone> skos:related <urn:noppadol:assets:concept:sharpening> .
+
+<urn:noppadol:assets:concept:sharpening> skos:related <urn:noppadol:assets:concept:sharpening-stone> .
+
+<urn:noppadol:assets:concept:camera> skos:related <urn:noppadol:assets:concept:lens> .
+
+<urn:noppadol:assets:concept:lens> skos:related <urn:noppadol:assets:concept:camera> .
+
+<urn:noppadol:assets:concept:record-disc> skos:related <urn:noppadol:assets:concept:turntable> .
+
+<urn:noppadol:assets:concept:turntable> skos:related <urn:noppadol:assets:concept:record-disc> .
+
+<urn:noppadol:assets:concept:record-disc> skos:related <urn:noppadol:assets:concept:release-edition> .
+
+<urn:noppadol:assets:concept:release-edition> skos:related <urn:noppadol:assets:concept:record-disc> .
+
+<urn:noppadol:assets:concept:release-edition> skos:related <urn:noppadol:assets:concept:sound-recording> .
+
+<urn:noppadol:assets:concept:sound-recording> skos:related <urn:noppadol:assets:concept:release-edition> .
+
+<urn:noppadol:assets:concept:sound-recording> skos:related <urn:noppadol:assets:concept:musical-work> .
+
+<urn:noppadol:assets:concept:musical-work> skos:related <urn:noppadol:assets:concept:sound-recording> .
+
+<urn:noppadol:assets:concept:record-disc> skos:related <urn:noppadol:assets:concept:content-rights> .
+
+<urn:noppadol:assets:concept:content-rights> skos:related <urn:noppadol:assets:concept:record-disc> .
+
+<urn:noppadol:assets:concept:use-session> skos:related <urn:noppadol:assets:concept:observation> .
+
+<urn:noppadol:assets:concept:observation> skos:related <urn:noppadol:assets:concept:use-session> .
+
+<urn:noppadol:assets:concept:physical-item> skos:related <urn:noppadol:assets:concept:acquisition-record> .
+
+<urn:noppadol:assets:concept:acquisition-record> skos:related <urn:noppadol:assets:concept:physical-item> .
+
+<urn:noppadol:assets:concept:ownership> skos:related <urn:noppadol:assets:concept:custody> .
+
+<urn:noppadol:assets:concept:custody> skos:related <urn:noppadol:assets:concept:ownership> .
+
+<urn:noppadol:assets:concept:maintenance> skos:related <urn:noppadol:assets:concept:condition> .
+
+<urn:noppadol:assets:concept:condition> skos:related <urn:noppadol:assets:concept:maintenance> .
+
+<urn:noppadol:concept-woodworking> a skos:Concept .
+
+<urn:noppadol:assets:concept:woodworking-tool> skos:relatedMatch <urn:noppadol:concept-woodworking> .
+
+<urn:noppadol:concept-woodworking> skos:relatedMatch <urn:noppadol:assets:concept:woodworking-tool> .
+
+<urn:noppadol:concept-making> a skos:Concept .
+
+<urn:noppadol:assets:concept:use-session> skos:relatedMatch <urn:noppadol:concept-making> .
+
+<urn:noppadol:concept-making> skos:relatedMatch <urn:noppadol:assets:concept:use-session> .
+
+<urn:noppadol:concept-knowledge-reuse> a skos:Concept .
+
+<urn:noppadol:assets:concept:observation> skos:relatedMatch <urn:noppadol:concept-knowledge-reuse> .
+
+<urn:noppadol:concept-knowledge-reuse> skos:relatedMatch <urn:noppadol:assets:concept:observation> .
+
+<urn:noppadol:discipline-8616f3780d52ce4edc> a skos:Concept .
+
+<urn:noppadol:assets:concept:musical-work> skos:relatedMatch <urn:noppadol:discipline-8616f3780d52ce4edc> .
+
+<urn:noppadol:discipline-8616f3780d52ce4edc> skos:relatedMatch <urn:noppadol:assets:concept:musical-work> .
+
+<urn:noppadol:concept-evidence> a skos:Concept .
+
+<urn:noppadol:assets:concept:manual> skos:relatedMatch <urn:noppadol:concept-evidence> .
+
+<urn:noppadol:concept-evidence> skos:relatedMatch <urn:noppadol:assets:concept:manual> .
+
+<urn:noppadol:concept-privacy> a skos:Concept .
+
+<urn:noppadol:assets:concept:content-rights> skos:relatedMatch <urn:noppadol:concept-privacy> .
+
+<urn:noppadol:concept-privacy> skos:relatedMatch <urn:noppadol:assets:concept:content-rights> .

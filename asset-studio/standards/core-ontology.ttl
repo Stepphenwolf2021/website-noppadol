@@ -1,0 +1,87 @@
+@prefix n: <urn:noppadol:ontology:> .
+@prefix c: <urn:noppadol:> .
+@prefix ex: <urn:noppadol:fixture:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+n: a owl:Ontology ; owl:versionInfo "1.0.0" ; rdfs:comment "Local editorial design; not deployed; no remote imports required." .
+n:ManagedRecord a owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "รายการที่มีสถานะและสิทธิ์"@th .
+n:KnowledgeInput a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "วัตถุดิบความรู้"@th .
+n:Concept a owl:Class ; rdfs:subClassOf skos:Concept ; rdfs:label "แนวคิดหัวเรื่อง"@th .
+n:Question a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "คำถาม"@th .
+n:Mission a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "พันธกิจ"@th .
+n:WorkInProgress a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "งานระหว่างพัฒนา"@th .
+n:Evidence a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "รายการหลักฐาน"@th .
+n:Connection a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "รายการข้อเสนอหรือข้อกล่าวอ้างความสัมพันธ์"@th .
+n:EvidenceLink a owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "บทบาทหลักฐานต่อความสัมพันธ์หนึ่ง"@th .
+n:SourceRevision a owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "รุ่นข้อมูลต้นทางที่ระบุด้วย hash"@th .
+n:TextSnapshot a owl:Class ; rdfs:subClassOf n:SourceRevision ; rdfs:label "snapshot ข้อความ"@th .
+n:MediaAsset a owl:Class ; rdfs:subClassOf n:SourceRevision ; rdfs:label "ไฟล์สื่อรุ่นหนึ่ง"@th .
+n:MediaStream a owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "แทร็กของไฟล์สื่อ"@th .
+n:Locator a owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "ตำแหน่งหลักฐาน"@th .
+n:TextLocator a owl:Class ; rdfs:subClassOf n:Locator ; rdfs:label "ช่วงข้อความในย่อหน้า"@th .
+n:ImageRegion a owl:Class ; rdfs:subClassOf n:Locator ; rdfs:label "บริเวณภาพ"@th .
+n:TimeRange a owl:Class ; rdfs:subClassOf n:Locator ; rdfs:label "ช่วงเวลาในแทร็ก"@th .
+n:MetadataObservation a owl:Class ; rdfs:subClassOf n:ManagedRecord ; rdfs:label "ค่าข้อมูลกำกับพร้อมที่มา"@th .
+[] a owl:AllDisjointClasses ; owl:members (n:TextLocator n:ImageRegion n:TimeRange) .
+n:hasRevision a owl:ObjectProperty ; rdfs:domain n:KnowledgeInput ; rdfs:range n:SourceRevision .
+n:sourceInput a owl:ObjectProperty ; rdfs:domain n:Evidence ; rdfs:range n:KnowledgeInput .
+n:sourceRevision a owl:ObjectProperty ; rdfs:domain n:Evidence ; rdfs:range n:SourceRevision .
+n:locator a owl:ObjectProperty ; rdfs:domain n:Evidence ; rdfs:range n:Locator .
+n:hasStream a owl:ObjectProperty ; rdfs:domain n:MediaAsset ; rdfs:range n:MediaStream .
+n:stream a owl:ObjectProperty ; rdfs:domain n:TimeRange ; rdfs:range n:MediaStream .
+n:evidenceLink a owl:ObjectProperty ; rdfs:domain n:Connection ; rdfs:range n:EvidenceLink .
+n:evidence a owl:ObjectProperty ; rdfs:domain n:EvidenceLink ; rdfs:range n:Evidence .
+n:subject a owl:ObjectProperty ; rdfs:domain n:Connection .
+n:object a owl:ObjectProperty ; rdfs:domain n:Connection .
+n:predicate a owl:ObjectProperty ; rdfs:domain n:Connection .
+n:alignedWith a owl:ObjectProperty ; rdfs:range n:Mission .
+n:addresses a owl:ObjectProperty ; rdfs:domain n:WorkInProgress ; rdfs:range n:Question .
+n:usesInput a owl:ObjectProperty ; rdfs:domain n:WorkInProgress ; rdfs:range n:KnowledgeInput .
+n:aboutConcept a owl:ObjectProperty ; rdfs:domain n:Question ; rdfs:range n:Concept .
+n:aboutRevision a owl:ObjectProperty ; rdfs:domain n:MetadataObservation ; rdfs:range n:SourceRevision .
+n:mentionsConcept a owl:ObjectProperty ; rdfs:domain n:KnowledgeInput ; rdfs:range n:Concept .
+n:relatedTo a owl:ObjectProperty ; rdfs:domain n:Concept ; rdfs:range n:Concept .
+n:hasEvidence a owl:ObjectProperty ; rdfs:domain n:Connection ; rdfs:range n:Evidence ; owl:propertyChainAxiom (n:evidenceLink n:evidence) .
+n:title a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:audience a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:publication a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:reviewStatus a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:reviewer a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:reviewedAt a owl:DatatypeProperty ; rdfs:range xsd:dateTime .
+n:rightsStatus a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:permissionRef a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:releasedBy a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:releasedAt a owl:DatatypeProperty ; rdfs:range xsd:dateTime .
+n:sha256 a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:storageRef a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:mediaKind a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:paragraphIndex a owl:DatatypeProperty ; rdfs:range xsd:integer .
+n:start a owl:DatatypeProperty ; rdfs:range xsd:integer .
+n:end a owl:DatatypeProperty ; rdfs:range xsd:integer .
+n:x a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+n:y a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+n:width a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+n:height a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+n:durationTicks a owl:DatatypeProperty ; rdfs:range xsd:integer .
+n:timescale a owl:DatatypeProperty ; rdfs:range xsd:integer .
+n:streamId a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:relationKind a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:role a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:rationale a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:method a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:limits a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:description a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:origin a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:field a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:rawValue a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:normalizedValue a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:sourceRef a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:fixture a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+n:createdBy a owl:DatatypeProperty ; rdfs:range xsd:string .
+n:createdAt a owl:DatatypeProperty ; rdfs:range xsd:dateTime .

@@ -1,0 +1,1670 @@
+{
+  "title": "My Assets — Controlled Vocabulary",
+  "version": "1.1.1",
+  "releaseDate": "2026-09-26",
+  "status": "editorial_draft",
+  "stage": "controlled_vocabulary",
+  "scheme": "urn:noppadol:assets:scheme",
+  "deployed": false,
+  "concepts": [
+    {
+      "id": "asset-concept-asset",
+      "uri": "urn:noppadol:assets:concept:asset",
+      "prefLabel": {
+        "th": "ทรัพย์สินที่จัดการ",
+        "en": "Managed asset"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "สิ่งหรือสิทธิที่นำเข้าทะเบียนเพื่อดูแล ใช้งาน หรือศึกษา",
+      "scopeNote": "การมีรายการไม่ยืนยันกรรมสิทธิ์",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-physical-item",
+      "uri": "urn:noppadol:assets:concept:physical-item",
+      "prefLabel": {
+        "th": "วัตถุรายชิ้น",
+        "en": "Physical item"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "วัตถุที่แยกตัวตนและติดตามเป็นรายชิ้นได้",
+      "scopeNote": "ชนิดสินค้าและชื่อรุ่นไม่ใช่ตัววัตถุ",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-product-model",
+      "uri": "urn:noppadol:assets:concept:product-model",
+      "prefLabel": {
+        "th": "รุ่นผลิตภัณฑ์",
+        "en": "Product model"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "แบบหรือรุ่นที่ผู้ผลิตใช้จำแนกผลิตภัณฑ์",
+      "scopeNote": "หลายชิ้นอาจมีรุ่นเดียวกัน",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-collection",
+      "uri": "urn:noppadol:assets:concept:collection",
+      "prefLabel": {
+        "th": "คอลเลกชันทรัพย์สิน",
+        "en": "Asset collection"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชุดทรัพย์สินที่รวบรวมด้วยวัตถุประสงค์ร่วมกัน",
+      "scopeNote": "ไม่ใช้แทนสมาชิกแต่ละชิ้น",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-woodworking-tool",
+      "uri": "urn:noppadol:assets:concept:woodworking-tool",
+      "prefLabel": {
+        "th": "เครื่องมืองานไม้",
+        "en": "Woodworking tool"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "อุปกรณ์ที่ใช้ทำงานกับไม้ตามหน้าที่ของเครื่องมือ",
+      "scopeNote": "งานไม้เป็นกิจกรรม ใช้แนวคิดเดิม",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-hand-plane",
+      "uri": "urn:noppadol:assets:concept:hand-plane",
+      "prefLabel": {
+        "th": "กบไสไม้",
+        "en": "Hand plane"
+      },
+      "altLabel": {
+        "th": [
+          "กบไสไม้มือ"
+        ]
+      },
+      "hiddenLabel": {},
+      "definition": "เครื่องมือไสไม้ที่ใช้แรงมือขับใบตัดเพื่อตกแต่งผิวหรือรูปทรง",
+      "scopeNote": "ไม่รวมกบไฟฟ้า; คำว่า กบ เดี่ยวกำกวม",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-chisel",
+      "uri": "urn:noppadol:assets:concept:chisel",
+      "prefLabel": {
+        "th": "สิ่ว",
+        "en": "Chisel"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เครื่องมือใบตัดสำหรับสกัดหรือแต่งวัสดุ ในรุ่นนี้เน้นการใช้งานกับไม้",
+      "scopeNote": "ไม่ระบุว่าสิ่วทุกชนิดใช้ค้อนได้",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-saw",
+      "uri": "urn:noppadol:assets:concept:saw",
+      "prefLabel": {
+        "th": "เลื่อย",
+        "en": "Saw"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เครื่องมือที่ใช้ฟันตัดแบ่งหรือแต่งวัสดุ",
+      "scopeNote": "ยังไม่แยกแรงมือและกำลังไฟฟ้า",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-sharpening-stone",
+      "uri": "urn:noppadol:assets:concept:sharpening-stone",
+      "prefLabel": {
+        "th": "หินลับคม",
+        "en": "Sharpening stone"
+      },
+      "altLabel": {
+        "th": [
+          "หินลับคมเครื่องมือ"
+        ]
+      },
+      "hiddenLabel": {},
+      "definition": "วัสดุลักษณะก้อนหรือแผ่นที่ใช้ขัดเพื่อสร้างหรือรักษาคมเครื่องมือ",
+      "scopeNote": "ไม่รวมอุปกรณ์ลับคมทุกประเภท",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-camera",
+      "uri": "urn:noppadol:assets:concept:camera",
+      "prefLabel": {
+        "th": "กล้องถ่ายรูป",
+        "en": "Camera"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "อุปกรณ์บันทึกภาพนิ่งซึ่งบางรุ่นบันทึกวิดีโอได้",
+      "scopeNote": "คำว่า กล้อง ต้องดูบริบท ไม่รวมข้าวกล้อง",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-lens",
+      "uri": "urn:noppadol:assets:concept:lens",
+      "prefLabel": {
+        "th": "เลนส์ถ่ายภาพ",
+        "en": "Photographic lens"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชุดอุปกรณ์ทางแสงสำหรับสร้างภาพในการถ่ายภาพ",
+      "scopeNote": "ไม่รวมเลนส์แว่นตา",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-record-disc",
+      "uri": "urn:noppadol:assets:concept:record-disc",
+      "prefLabel": {
+        "th": "แผ่นเสียง",
+        "en": "Phonograph record"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "สื่อรูปแผ่นที่เก็บเสียงด้วยร่องสำหรับเล่นกลับ",
+      "scopeNote": "ไม่สมมติว่าทุกแผ่นทำจากไวนิล; แยกจากบทเพลงและไฟล์เสียง",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-turntable",
+      "uri": "urn:noppadol:assets:concept:turntable",
+      "prefLabel": {
+        "th": "เครื่องเล่นแผ่นเสียง",
+        "en": "Record player"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "อุปกรณ์อ่านร่องแผ่นเสียงเพื่อเล่นเสียง",
+      "scopeNote": "แยกตัวเครื่องออกจากแผ่นเสียง",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-musical-work",
+      "uri": "urn:noppadol:assets:concept:musical-work",
+      "prefLabel": {
+        "th": "ผลงานดนตรี",
+        "en": "Musical work"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ตัวงานประพันธ์หรือบทเพลงที่อาจมีการบันทึกหลายครั้ง",
+      "scopeNote": "ไม่เท่ากับการบันทึกหนึ่งครั้งหรือแผ่นหนึ่งแผ่น",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "knowledge_resource",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-sound-recording",
+      "uri": "urn:noppadol:assets:concept:sound-recording",
+      "prefLabel": {
+        "th": "สิ่งบันทึกเสียง",
+        "en": "Sound recording"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เนื้อหาเสียงจากการบันทึกที่ระบุได้",
+      "scopeNote": "ไม่ใช่กิจกรรมการบันทึกเสียงหรือไฟล์สำเนาโดยอัตโนมัติ",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "knowledge_resource",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-release-edition",
+      "uri": "urn:noppadol:assets:concept:release-edition",
+      "prefLabel": {
+        "th": "ฉบับเผยแพร่",
+        "en": "Release edition"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ฉบับที่เผยแพร่ของงานหรือสิ่งบันทึก เช่นฉบับแผ่นเสียง",
+      "scopeNote": "แยกจากแผ่นรายชิ้นและผลงานต้นทาง",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "knowledge_resource",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-investment-fund",
+      "uri": "urn:noppadol:assets:concept:investment-fund",
+      "prefLabel": {
+        "th": "กองทุนเพื่อการลงทุน",
+        "en": "Investment fund"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กองทุนที่ใช้เป็นผลิตภัณฑ์สำหรับการลงทุนในขอบเขตทะเบียนนี้",
+      "scopeNote": "กองทุนช่วยเหลือและคำว่า กองทุน เดี่ยวต้องตรวจบริบท",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-fund-unit",
+      "uri": "urn:noppadol:assets:concept:fund-unit",
+      "prefLabel": {
+        "th": "หน่วยลงทุน",
+        "en": "Fund unit"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "หน่วยที่ใช้ระบุส่วนการลงทุนในกองทุนที่ออกหน่วย",
+      "scopeNote": "แยกจากจำนวนหน่วยที่เจ้าของถือ ณ วันใด",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-cryptoasset",
+      "uri": "urn:noppadol:assets:concept:cryptoasset",
+      "prefLabel": {
+        "th": "สินทรัพย์คริปโต",
+        "en": "Cryptoasset"
+      },
+      "altLabel": {
+        "th": [
+          "คริปโต"
+        ],
+        "en": [
+          "crypto"
+        ]
+      },
+      "hiddenLabel": {
+        "en": [
+          "Crtpto"
+        ]
+      },
+      "definition": "สินทรัพย์หรือหน่วยดิจิทัลที่อาศัยระบบเข้ารหัสและบัญชีรายการแบบกระจายตามบริบทที่บันทึก",
+      "scopeNote": "นิยามใช้งาน ไม่ตัดสินสถานะทางกฎหมาย; ไม่รวมไฟล์ดิจิทัลทั่วไป",
+      "kind": "topic_concept",
+      "selectionBasis": "owner_requested_scope",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-holding",
+      "uri": "urn:noppadol:assets:concept:holding",
+      "prefLabel": {
+        "th": "สถานะการถือครอง",
+        "en": "Holding"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "รายการที่ระบุผู้ถือ สิ่งที่ถือ จำนวน หน่วย และเวลาอ้างอิง",
+      "scopeNote": "ไม่เท่ากับชนิดสินทรัพย์หรือรายการซื้อขาย",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-transaction",
+      "uri": "urn:noppadol:assets:concept:transaction",
+      "prefLabel": {
+        "th": "ธุรกรรมทรัพย์สิน",
+        "en": "Asset transaction"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เหตุการณ์ได้มา โอน หรือจำหน่ายทรัพย์สินที่มีวันและหลักฐาน",
+      "scopeNote": "ไม่ใช้แทนยอดคงเหลือ",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-valuation",
+      "uri": "urn:noppadol:assets:concept:valuation",
+      "prefLabel": {
+        "th": "การประเมินมูลค่า",
+        "en": "Valuation"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ค่าประเมินของสิ่งที่ระบุ พร้อมเวลา สกุลเงิน แหล่ง และวิธี",
+      "scopeNote": "ไม่ใช้ราคาครั้งเดียวแทนมูลค่าปัจจุบันตลอดไป",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-ownership",
+      "uri": "urn:noppadol:assets:concept:ownership",
+      "prefLabel": {
+        "th": "กรรมสิทธิ์",
+        "en": "Ownership"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ความสัมพันธ์การเป็นเจ้าของตามข้อมูลและหลักฐานที่บันทึก",
+      "scopeNote": "ไม่เท่ากับการยืม ครอบครองทางกายภาพ หรือกล่าวถึง",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-custody",
+      "uri": "urn:noppadol:assets:concept:custody",
+      "prefLabel": {
+        "th": "การเก็บรักษาทรัพย์สิน",
+        "en": "Asset custody"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ความสัมพันธ์ว่าใครหรือที่ใดดูแลทรัพย์สินในช่วงหนึ่ง",
+      "scopeNote": "ไม่อนุมานกรรมสิทธิ์จากการเก็บรักษา",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-condition",
+      "uri": "urn:noppadol:assets:concept:condition",
+      "prefLabel": {
+        "th": "สภาพทรัพย์สิน",
+        "en": "Asset condition"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "สภาพของทรัพย์สินตามการสังเกต ณ เวลาหนึ่ง",
+      "scopeNote": "ไม่ใช่ระดับคุณภาพถาวรของรุ่นผลิตภัณฑ์",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-maintenance",
+      "uri": "urn:noppadol:assets:concept:maintenance",
+      "prefLabel": {
+        "th": "การบำรุงรักษา",
+        "en": "Maintenance"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "การดูแลเพื่อรักษาหรือฟื้นความพร้อมใช้งาน",
+      "scopeNote": "ไม่ใช่ข้อยืนยันว่าได้ดำเนินการแล้ว",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "activity",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-sharpening",
+      "uri": "urn:noppadol:assets:concept:sharpening",
+      "prefLabel": {
+        "th": "การลับคม",
+        "en": "Sharpening"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "การแต่งคมเครื่องมือให้เหมาะกับการใช้งาน",
+      "scopeNote": "แยกจากหินลับคมที่เป็นอุปกรณ์",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "activity",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-repair",
+      "uri": "urn:noppadol:assets:concept:repair",
+      "prefLabel": {
+        "th": "การซ่อม",
+        "en": "Repair"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "การแก้ความชำรุดของทรัพย์สิน",
+      "scopeNote": "แยกจากการปรับแต่งที่ไม่ได้แก้ความชำรุด",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "activity",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-use-session",
+      "uri": "urn:noppadol:assets:concept:use-session",
+      "prefLabel": {
+        "th": "กิจกรรมใช้ทรัพย์สิน",
+        "en": "Asset use session"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เหตุการณ์ทดลองหรือใช้ทรัพย์สินเพื่อทำงานหรือเรียนรู้",
+      "scopeNote": "การมีเครื่องมือไม่ยืนยันว่าเคยใช้งาน",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "activity",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-observation",
+      "uri": "urn:noppadol:assets:concept:observation",
+      "prefLabel": {
+        "th": "บันทึกการสังเกตทรัพย์สิน",
+        "en": "Asset observation"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "บันทึกสิ่งที่พบจากการใช้ ตรวจ หรือศึกษา พร้อมผู้บันทึกและเวลา",
+      "scopeNote": "ไม่เท่ากับข้อเท็จจริงสากลหรือ MetadataObservation ของไฟล์",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-capability",
+      "uri": "urn:noppadol:assets:concept:capability",
+      "prefLabel": {
+        "th": "ความสามารถในการใช้งาน",
+        "en": "Asset capability"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "หน้าที่หรือผลที่ทรัพย์สินรองรับภายใต้เงื่อนไขที่ระบุ",
+      "scopeNote": "ไม่รับรองผลสำเร็จของผู้ใช้",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-material",
+      "uri": "urn:noppadol:assets:concept:material",
+      "prefLabel": {
+        "th": "วัสดุของทรัพย์สิน",
+        "en": "Asset material"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "วัสดุที่ประกอบเป็นทรัพย์สินหรือชิ้นส่วนตามข้อมูลที่มี",
+      "scopeNote": "วัสดุของใบสิ่วอาจต่างจากวัสดุของด้าม",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-technique",
+      "uri": "urn:noppadol:assets:concept:technique",
+      "prefLabel": {
+        "th": "เทคนิคการใช้งาน",
+        "en": "Use technique"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "วิธีใช้หรือดูแลทรัพย์สินที่บันทึกเป็นความรู้ได้",
+      "scopeNote": "ไม่ใช่ตัวเครื่องมือหรือเหตุการณ์ใช้ครั้งหนึ่ง",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-manual",
+      "uri": "urn:noppadol:assets:concept:manual",
+      "prefLabel": {
+        "th": "คู่มือทรัพย์สิน",
+        "en": "Asset manual"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เอกสารแนะนำการใช้และดูแลทรัพย์สินหรือรุ่น",
+      "scopeNote": "คู่มือเป็น KnowledgeInput ไม่ใช่เครื่องมือเอง",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "knowledge_resource",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-acquisition-record",
+      "uri": "urn:noppadol:assets:concept:acquisition-record",
+      "prefLabel": {
+        "th": "บันทึกการได้มา",
+        "en": "Acquisition record"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "เอกสารหรือบันทึกแหล่งที่มาและเหตุการณ์ได้ทรัพย์สิน",
+      "scopeNote": "การมีใบเสร็จไม่ได้ยืนยันสถานะเจ้าของปัจจุบัน",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "knowledge_resource",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-content-rights",
+      "uri": "urn:noppadol:assets:concept:content-rights",
+      "prefLabel": {
+        "th": "สิทธิในการใช้เนื้อหา",
+        "en": "Content usage rights"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "สิทธิและเงื่อนไขในการนำเนื้อหาจากทรัพย์สินหรือเอกสารไปใช้",
+      "scopeNote": "การเป็นเจ้าของแผ่นเสียงไม่เท่ากับได้สิทธิเผยแพร่เพลง",
+      "kind": "topic_concept",
+      "selectionBasis": "editorial_extension_for_requested_workflows",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "owner-request-2026-09-26"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Initial asset vocabulary; not an ownership assertion",
+      "taxonomyPreparation": {
+        "semanticRole": "management_concept",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-bench-plane",
+      "uri": "urn:noppadol:assets:concept:bench-plane",
+      "prefLabel": {
+        "th": "กบงานพื้นฐานบนโต๊ะช่าง",
+        "en": "Bench plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบสำหรับงานไสทั่วไปบนโต๊ะช่างตามการแบ่งกลุ่มเครื่องมือ",
+      "scopeNote": "ไม่ใช่กบทุกชนิด",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-smoothing-plane",
+      "uri": "urn:noppadol:assets:concept:smoothing-plane",
+      "prefLabel": {
+        "th": "กบเก็บผิว",
+        "en": "Smoothing plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบที่ออกแบบสำหรับเก็บผิวงานไม้",
+      "scopeNote": "แยกหน้าที่จากเลขรุ่น",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-jack-plane",
+      "uri": "urn:noppadol:assets:concept:jack-plane",
+      "prefLabel": {
+        "th": "กบแจ็ก",
+        "en": "Jack plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบที่จัดเป็นชนิด jack สำหรับเตรียมและไสงานทั่วไป",
+      "scopeNote": "ชื่อหมวดไม่ใช่ตัวระบุรุ่น",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-jointer-plane",
+      "uri": "urn:noppadol:assets:concept:jointer-plane",
+      "prefLabel": {
+        "th": "กบจอยเตอร์",
+        "en": "Jointer plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบยาวสำหรับแต่งความตรงของผิวหรือขอบไม้",
+      "scopeNote": "ไม่ใช่เครื่องไสไฟฟ้า",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-japanese-plane",
+      "uri": "urn:noppadol:assets:concept:japanese-plane",
+      "prefLabel": {
+        "th": "กบญี่ปุ่น",
+        "en": "Japanese hand plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบมือในรูปแบบเครื่องมือญี่ปุ่น",
+      "scopeNote": "ไม่ใช้ยืนยันประเทศผลิตรายชิ้น",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-kakuri"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-chamfer-plane",
+      "uri": "urn:noppadol:assets:concept:chamfer-plane",
+      "prefLabel": {
+        "th": "กบลบเหลี่ยม",
+        "en": "Chamfer plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบสำหรับแต่งเหลี่ยมขอบงาน",
+      "scopeNote": "มุมงานไม่ใช่มุมคมใบ",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-choose"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-compass-plane",
+      "uri": "urn:noppadol:assets:concept:compass-plane",
+      "prefLabel": {
+        "th": "กบไสผิวโค้ง",
+        "en": "Compass plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบที่ออกแบบให้ทำงานกับผิวโค้ง",
+      "scopeNote": "ต้องระบุรูปแบบผิวที่รองรับ",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-choose"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-sole-flattening-plane",
+      "uri": "urn:noppadol:assets:concept:sole-flattening-plane",
+      "prefLabel": {
+        "th": "กบปรับฐานกบ",
+        "en": "Sole flattening plane"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "กบสำหรับแต่งฐานกบอีกตัว",
+      "scopeNote": "แยกเครื่องมือจากกิจกรรมปรับฐาน",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-choose"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-plane-blade",
+      "uri": "urn:noppadol:assets:concept:plane-blade",
+      "prefLabel": {
+        "th": "ใบกบ",
+        "en": "Plane blade"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ส่วนตัดของกบที่อาจถอดเปลี่ยนได้",
+      "scopeNote": "แยกตัวตนจากกบทั้งตัว",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "component",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-plane-body",
+      "uri": "urn:noppadol:assets:concept:plane-body",
+      "prefLabel": {
+        "th": "ตัวกบ",
+        "en": "Plane body"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "โครงหลักที่รองรับส่วนประกอบกบ",
+      "scopeNote": "วัสดุอาจต่างจากใบกบและด้าม",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-choose"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "component",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-chipbreaker",
+      "uri": "urn:noppadol:assets:concept:chipbreaker",
+      "prefLabel": {
+        "th": "เหล็กประกับใบกบ",
+        "en": "Chipbreaker"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชิ้นส่วนที่ทำงานร่วมกับใบกบเพื่อจัดการเศษไม้",
+      "scopeNote": "ไม่ใช่ใบตัดหลักอีกใบโดยอัตโนมัติ",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-choose"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "component",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-frog",
+      "uri": "urn:noppadol:assets:concept:frog",
+      "prefLabel": {
+        "th": "ฐานรองใบกบแบบ frog",
+        "en": "Plane frog"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชิ้นส่วนรองรับชุดใบในกบที่ใช้โครงสร้างแบบ frog",
+      "scopeNote": "ไม่บังคับว่ากบทุกชนิดมี",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "component",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-oire-nomi",
+      "uri": "urn:noppadol:assets:concept:oire-nomi",
+      "prefLabel": {
+        "th": "สิ่วญี่ปุ่นแบบ Oire nomi",
+        "en": "Oire nomi"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชนิดสิ่วญี่ปุ่นที่แหล่งสินค้าเรียก Oire nomi",
+      "scopeNote": "คำแปล bench chisel ไม่ทำให้เท่ากับสิ่วตะวันตกทุกแบบ",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-kurashige"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-tataki-nomi",
+      "uri": "urn:noppadol:assets:concept:tataki-nomi",
+      "prefLabel": {
+        "th": "สิ่วญี่ปุ่นแบบ Tataki nomi",
+        "en": "Tataki nomi"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชนิดสิ่วญี่ปุ่นที่รายการสินค้าใช้ชื่อ Tataki nomi",
+      "scopeNote": "ไม่อนุมานขนาดหรือวัสดุจากชื่อชนิด",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-sukemaru"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "asset_type",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-chisel-handle",
+      "uri": "urn:noppadol:assets:concept:chisel-handle",
+      "prefLabel": {
+        "th": "ด้ามสิ่ว",
+        "en": "Chisel handle"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ส่วนจับของสิ่ว",
+      "scopeNote": "วัสดุด้ามไม่ใช่วัสดุใบ",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-sukemaru"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "component",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-triple-ura",
+      "uri": "urn:noppadol:assets:concept:triple-ura",
+      "prefLabel": {
+        "th": "หลังใบสิ่วแบบสามร่อง",
+        "en": "Triple ura"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชื่อรูปแบบหลังใบสิ่วที่ระบุสามร่องในแค็ตตาล็อก",
+      "scopeNote": "เก็บภาพและคำต้นทางประกอบ ไม่อนุมานประสิทธิภาพ",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-sukemaru"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "construction_or_feature",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-a2-steel",
+      "uri": "urn:noppadol:assets:concept:a2-steel",
+      "prefLabel": {
+        "th": "เหล็กเครื่องมือ A2",
+        "en": "A2 tool steel"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "ชื่อเกรดวัสดุสำหรับใช้จัดข้อมูลใบเครื่องมือเมื่อแหล่งระบุ A2",
+      "scopeNote": "ไม่อนุมานความแข็งจากเกรดเพียงอย่างเดียว",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-ln"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "material",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-high-speed-steel",
+      "uri": "urn:noppadol:assets:concept:high-speed-steel",
+      "prefLabel": {
+        "th": "เหล็กไฮสปีด",
+        "en": "High-speed steel"
+      },
+      "altLabel": {
+        "en": [
+          "HSS"
+        ]
+      },
+      "hiddenLabel": {},
+      "definition": "กลุ่มเหล็กที่แหล่งข้อมูลระบุเป็น high-speed steel",
+      "scopeNote": "ไม่ใช่เกรดเฉพาะเดียวกันทั้งหมด",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-sukemaru"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "material",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    },
+    {
+      "id": "asset-concept-laminated-blade",
+      "uri": "urn:noppadol:assets:concept:laminated-blade",
+      "prefLabel": {
+        "th": "ใบเครื่องมือโครงสร้างหลายชั้น",
+        "en": "Laminated blade construction"
+      },
+      "altLabel": {},
+      "hiddenLabel": {},
+      "definition": "โครงสร้างใบที่ประกอบวัสดุหลายชั้นตามแหล่งระบุ",
+      "scopeNote": "ไม่เท่ากับชื่อเกรดเหล็ก",
+      "kind": "topic_concept",
+      "selectionBasis": "supplied_web_reference",
+      "definitionStatus": "local_operational_definition",
+      "status": "proposed",
+      "ownerApproved": false,
+      "sourceRefs": [
+        "web-choose"
+      ],
+      "matchingPolicy": "candidate_only_context_required",
+      "changeNote": "Added v1.1.0; Thai terms are editorial working translations",
+      "taxonomyPreparation": {
+        "semanticRole": "construction_or_feature",
+        "note": "editorial facet hint only; not broader/narrower, OWL type or an approved hierarchy"
+      }
+    }
+  ],
+  "reusedCoreConcepts": [
+    {
+      "id": "concept-woodworking",
+      "uri": "urn:noppadol:concept-woodworking",
+      "prefLabel": {
+        "th": "งานไม้",
+        "en": "woodworking"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "concept-making",
+      "uri": "urn:noppadol:concept-making",
+      "prefLabel": {
+        "th": "เรียนรู้ผ่านการลงมือทำ",
+        "en": "Learning by doing"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "discipline-8616f3780d52ce4edc",
+      "uri": "urn:noppadol:discipline-8616f3780d52ce4edc",
+      "prefLabel": {
+        "th": "ดนตรี",
+        "en": "Music"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "concept-provenance",
+      "uri": "urn:noppadol:concept-provenance",
+      "prefLabel": {
+        "th": "ที่มาและประวัติการจัดการข้อมูล",
+        "en": "Provenance"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "concept-evidence",
+      "uri": "urn:noppadol:concept-evidence",
+      "prefLabel": {
+        "th": "หลักฐาน",
+        "en": "Evidence"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "concept-knowledge-reuse",
+      "uri": "urn:noppadol:concept-knowledge-reuse",
+      "prefLabel": {
+        "th": "การนำความรู้กลับมาใช้",
+        "en": "Knowledge reuse"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "concept-creativity",
+      "uri": "urn:noppadol:concept-creativity",
+      "prefLabel": {
+        "th": "ความคิดสร้างสรรค์",
+        "en": "Creativity"
+      },
+      "sourceVersion": "1.1.0"
+    },
+    {
+      "id": "concept-privacy",
+      "uri": "urn:noppadol:concept-privacy",
+      "prefLabel": {
+        "th": "ความเป็นส่วนตัว",
+        "en": "Privacy"
+      },
+      "sourceVersion": "1.1.0"
+    }
+  ],
+  "candidateReferences": [
+    {
+      "id": "candidate-photography",
+      "status": "existing_candidate_not_promoted"
+    },
+    {
+      "id": "candidate-sound-recording",
+      "status": "existing_candidate_activity_not_equivalent_to_recorded_content"
+    }
+  ],
+  "governance": {
+    "noAutomaticOwnership": true,
+    "noAutomaticSameAs": true,
+    "noHierarchyYet": true,
+    "newTerms": "accept unresolved label as candidate; never force nearest concept",
+    "identifiers": "stable across versions; never reuse retired IDs",
+    "versioning": "patch editorial corrections; minor additive compatible terms; major changed meaning or contracts; split meanings use new IDs",
+    "defaultAudience": "owner",
+    "review": "assistant proposed definitions; no fabricated owner approval"
+  },
+  "sourceRegistry": [
+    {
+      "id": "owner-request-2026-09-26",
+      "type": "conversation",
+      "role": "requested_scope_not_item_inventory",
+      "summary": "woodworking tools, cameras, records, funds, crypto; asset management and creative inspiration"
+    },
+    {
+      "id": "web-ln",
+      "url": "https://www.lie-nielsen.com/nodes/4065/bench-planes",
+      "accessedDate": "2026-09-26",
+      "type": "manufacturer_page",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-kakuri",
+      "url": "https://kakuritools.com/pages/japanese-planes-step-by-step-guide",
+      "accessedDate": "2026-09-26",
+      "type": "manufacturer_page",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-choose",
+      "url": "https://kakuritools.com/blogs/learn/how-to-choose-japanese-hand-plane",
+      "accessedDate": "2026-09-26",
+      "type": "manufacturer_page",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-kurashige",
+      "url": "https://shop.kurashige-tools.com/collections/chisels",
+      "accessedDate": "2026-09-26",
+      "type": "retailer_listing",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    },
+    {
+      "id": "web-sukemaru",
+      "url": "https://shop.kurashige-tools.com/products/sukemaru-4th-high-speed-steel-timber-chisels-triple-ura-by-usui-yoshio-tatakinomi",
+      "accessedDate": "2026-09-26",
+      "type": "retailer_listing",
+      "role": "terminology_and_source_reported_specs_not_ownership",
+      "capture": "web tool text reviewed; full page snapshot not archived"
+    }
+  ],
+  "migration": {
+    "from": "1.1.0",
+    "preservedIds": [
+      "asset-concept-asset",
+      "asset-concept-physical-item",
+      "asset-concept-product-model",
+      "asset-concept-collection",
+      "asset-concept-woodworking-tool",
+      "asset-concept-hand-plane",
+      "asset-concept-chisel",
+      "asset-concept-saw",
+      "asset-concept-sharpening-stone",
+      "asset-concept-camera",
+      "asset-concept-lens",
+      "asset-concept-record-disc",
+      "asset-concept-turntable",
+      "asset-concept-musical-work",
+      "asset-concept-sound-recording",
+      "asset-concept-release-edition",
+      "asset-concept-investment-fund",
+      "asset-concept-fund-unit",
+      "asset-concept-cryptoasset",
+      "asset-concept-holding",
+      "asset-concept-transaction",
+      "asset-concept-valuation",
+      "asset-concept-ownership",
+      "asset-concept-custody",
+      "asset-concept-condition",
+      "asset-concept-maintenance",
+      "asset-concept-sharpening",
+      "asset-concept-repair",
+      "asset-concept-use-session",
+      "asset-concept-observation",
+      "asset-concept-capability",
+      "asset-concept-material",
+      "asset-concept-technique",
+      "asset-concept-manual",
+      "asset-concept-acquisition-record",
+      "asset-concept-content-rights",
+      "asset-concept-bench-plane",
+      "asset-concept-smoothing-plane",
+      "asset-concept-jack-plane",
+      "asset-concept-jointer-plane",
+      "asset-concept-japanese-plane",
+      "asset-concept-chamfer-plane",
+      "asset-concept-compass-plane",
+      "asset-concept-sole-flattening-plane",
+      "asset-concept-plane-blade",
+      "asset-concept-plane-body",
+      "asset-concept-chipbreaker",
+      "asset-concept-frog",
+      "asset-concept-oire-nomi",
+      "asset-concept-tataki-nomi",
+      "asset-concept-chisel-handle",
+      "asset-concept-triple-ura",
+      "asset-concept-a2-steel",
+      "asset-concept-high-speed-steel",
+      "asset-concept-laminated-blade"
+    ],
+    "addedIds": [],
+    "removedIds": [],
+    "change": "Add semantic-role hints; retain labels, definitions and URIs; no hierarchy asserted"
+  },
+  "missionPolicyRef": "../DESIGN-PRINCIPLES.md"
+}
