@@ -1,3 +1,4 @@
+import {domains} from './domains.js';
 export const VERSION = 1;
 export const NS = {a:'urn:noppadol:assets:ontology:',b:'urn:noppadol:assets:bridge:',n:'urn:noppadol:ontology:',f:'urn:noppadol:assets:field:',xsd:'http://www.w3.org/2001/XMLSchema#'};
 export const kinds = {AssetItem:'ทรัพย์สินรายชิ้น',Component:'ส่วนประกอบ',ProductModel:'รุ่นผลิตภัณฑ์',ReleaseEdition:'ฉบับแผ่นเสียง',ReleaseGroup:'กลุ่มฉบับแผ่นเสียง',BrandRecord:'แบรนด์',AgentRecord:'บุคคล / องค์กร',TrackEntry:'แทร็ก',AssetEvent:'บันทึกการใช้ / ดูแล'};
@@ -26,6 +27,8 @@ export function validateDB(db, catalog, vocabulary) {
  const get=id=>db.records.find(r=>r?.id===id);
  for(const r of db.records){
   if(!r || !Object.hasOwn(kinds,r.kind)||!Object.hasOwn(profiles,r.profile)) {fail('ชนิดรายการหรือแบบข้อมูลไม่รองรับ');continue;}
+  if(r.domain!==undefined&&!Object.hasOwn(domains,r.domain))fail('ชื่อแอปไม่ถูกต้อง');
+  if(domains[r.domain]&&(!domains[r.domain].profiles.includes(r.profile)||!domains[r.domain].kinds.includes(r.kind)))fail('ระดับรายการหรือแบบรายละเอียดไม่ตรงกับแอปที่เลือก');
   if(!Array.isArray(r.concepts)||r.concepts.some(c=>!concepts.has(c))) fail('คำศัพท์ต้องมาจาก Controlled Vocabulary');
   if(!Array.isArray(r.observations)){fail('ข้อมูลคุณสมบัติผิดรูปแบบ');continue;}
   const seen=new Set();

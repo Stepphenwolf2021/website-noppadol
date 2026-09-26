@@ -35,3 +35,18 @@ test('component, event, release and track export preserve endpoint classes',asyn
  assert.throws(()=>removeRecord(d,model.id));
  const event=d.records.find(r=>r.kind==='AssetEvent');event.participant=model.id;assert.ok(validateDB(d,catalog,cv).length);event.participant=base.id;event.eventDate='2026-02-30';assert.ok(validateDB(d,catalog,cv).length);
 });
+
+test('separate domain views preserve legacy data and cross-domain ideas',async()=>{
+ const {domainOf,domainRecords,domainIdeas}=await import('../../asset-studio/domains.js');
+ const d=fixture(),plane=d.records[0];const camera=record({profile:'camera',observations:[],concepts:['urn:noppadol:assets:concept:camera'],domain:'photography'});d.records.push(camera);d.ideas[0].assets.push(camera.id);
+ const generic=record({profile:'generic',observations:[],concepts:[]});d.records.push(generic);
+ assert.equal(domainOf(plane),'woodworking');assert.equal(domainOf(generic),null);assert.equal(domainRecords(d,'records').length,0);assert.equal(domainRecords(d,'photography').length,1);assert.equal(domainRecords(d,null).length,3);
+ assert.equal(domainIdeas(d,'woodworking').length,1);assert.equal(domainIdeas(d,'photography').length,1);assert.deepEqual(validateDB(d,catalog,cv),[]);
+ camera.domain='records';assert.ok(validateDB(d,catalog,cv).length);camera.domain='photography';plane.domain='typo';assert.ok(validateDB(d,catalog,cv).length);
+});
+
+test('every domain preset uses existing ontology kinds, profiles and metadata fields',async()=>{
+ const {domains}=await import('../../asset-studio/domains.js');const {kinds,profiles}=await import('../../asset-studio/model.js');
+ const fields=new Set(catalog.profiles.flatMap(p=>p.fields.map(f=>p.id+'.'+f.id)));const terms=new Set(cv.concepts.map(c=>c.uri));
+ for(const app of Object.values(domains))for(const p of app.presets){assert.ok(kinds[p.kind]);assert.ok(profiles[p.profile]);assert.ok(app.kinds.includes(p.kind));assert.ok(app.profiles.includes(p.profile));for(const f of p.fields)assert.ok(fields.has(f),f);if(p.concept)assert.ok(terms.has('urn:noppadol:assets:concept:'+p.concept));}
+});

@@ -4,8 +4,8 @@
   "description": "Seize the Day — นิตยสารออนไลน์รายเดือน (noppadol.online)",
   "type": "module",
   "scripts": {
-    "start": "node tools/build-interest-ontology.mjs && eleventy --serve",
-    "build": "node tools/build-interest-ontology.mjs && eleventy && node tools/build-graph.js",
+    "start": "node tools/build-asset-apps.mjs && node tools/build-interest-ontology.mjs && eleventy --serve",
+    "build": "node tools/build-asset-apps.mjs && node tools/build-interest-ontology.mjs && eleventy && node tools/build-graph.js",
     "graph": "node tools/build-graph.js",
     "clean": "rm -rf _site",
     "ontology": "node tools/build-interest-ontology.mjs",

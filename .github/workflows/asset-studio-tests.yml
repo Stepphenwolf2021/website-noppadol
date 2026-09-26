@@ -5,6 +5,7 @@ on:
       - 'asset-studio/**'
       - 'tools/tests/asset-studio.test.mjs'
       - 'tools/check-asset-graph.py'
+      - 'tools/build-asset-apps.mjs'
       - '.eleventy.js'
       - '.github/workflows/asset-studio-tests.yml'
 permissions:
