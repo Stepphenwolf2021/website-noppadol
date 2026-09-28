@@ -1,8 +1,11 @@
 import fs from "node:fs";
+import {configureGallery} from "./tools/gallery/eleventy.mjs";
+import {loadGallery} from "./tools/gallery/load.mjs";
 import markdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 
 export default function (eleventyConfig) {
+  configureGallery(eleventyConfig);
   // --- Markdown: เปิด {.pullquote} ฯลฯ ผ่าน attrs ---
   const md = markdownIt({ html: true, typographer: false }).use(markdownItAttrs);
   eleventyConfig.setLibrary("md", md);
@@ -105,7 +108,11 @@ export default function (eleventyConfig) {
         identifier: d.issue_code || undefined,
       };
     }
-    if (d.hero_image) {
+    if (d.gallery_image) {
+      const photo=loadGallery().photos.find(p=>p.id===d.gallery_image);
+      if(!photo) throw Error(`Unknown gallery image: ${d.gallery_image}`);
+      node.image={"@id":`${base}/gallery/${photo.id}/#image`};
+    } else if (d.hero_image) {
       node.image = {
         "@type": "ImageObject",
         url: `${base}/assets/img/${d.issue_dir}/${d.hero_image}`,
@@ -147,7 +154,7 @@ export default function (eleventyConfig) {
         };
       }
     }
-    return JSON.stringify(prune(node), null, 2);
+    return JSON.stringify(prune(node), null, 2).replace(/</g, '\\u003c');
   });
 
   function cap(s) {
@@ -172,7 +179,7 @@ export default function (eleventyConfig) {
       input: "src",
       includes: "_includes",
       data: "_data",
-      output: "_site",
+      output: process.env.GALLERY_PREVIEW === "1" ? ".gallery/preview-site" : "_site",
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",

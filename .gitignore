@@ -5,3 +5,6 @@ dist-pdf/
 *.log
 /supabase/.temp
 _to_delete/
+
+# Local image evidence, drafts and previews (never publish)
+.gallery/

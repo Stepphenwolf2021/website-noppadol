@@ -52,3 +52,8 @@ tools/build-graph.js            รวม front matter ทุกไฟล์ →
   (Eleventy ก๊อปผ่านโดยไม่ประมวลผล ดู `.eleventyignore` + passthrough ใน `.eleventy.js`)
 - หน้าแรก `/` = นิตยสาร Seize the Day (แทน redirect เดิม)
 - การ deploy ใช้ GitHub Actions (`.github/workflows/deploy.yml`) — ดู `DEPLOY.md`
+
+
+## คลังภาพจาก Lightroom
+
+Gallery อยู่ `/gallery/` รองรับภาพและ metadata จาก Lightroom พร้อมลิงก์อ้างอิงในบทความและ JSON-LD ดูขั้นตอนใน [คู่มือ Gallery](docs/GALLERY-WORKFLOW.md) ใช้ `npm run gallery:preview` สำหรับ draft ในเครื่องและ `npm run build` สำหรับข้อมูลที่เตรียมเผยแพร่แล้ว

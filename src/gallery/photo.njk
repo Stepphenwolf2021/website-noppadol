@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: gallery.photos
+  size: 1
+  alias: photo
+permalink: "/gallery/{{ photo.id }}/"
+eleventyComputed:
+  title: "{{ photo.metadata.title }}"
+---
+<link rel="stylesheet" href="/assets/css/gallery.css">
+{% if gallery.preview %}<aside class="photo-preview">ตัวอย่างในเครื่อง · ยังไม่เผยแพร่ · ข้อมูลที่ขาดต้องเติมจาก Lightroom ก่อนเผยแพร่</aside>{% endif %}
+<main class="photo-library photo-detail"><a class="photo-back" href="/gallery/">← คลังภาพทั้งหมด</a><header><p class="photo-kicker">{{ photo.collectionTitle | escape }}</p><h1>{{ photo.metadata.title | escape }}</h1></header>
+<figure class="photo-full"><a href="{{ photo.image }}"><img src="{{ photo.image }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt | escape }}"></a>{% if photo.metadata.caption %}<figcaption>{{ photo.metadata.caption | escape }}</figcaption>{% endif %}</figure>
+<div class="photo-information"><section><h2>รายละเอียดภาพ</h2><dl><dt>ผู้ถ่ายภาพ</dt><dd>{{ (photo.metadata.creator | join(', ') or 'ยังไม่มีข้อมูลผู้ถ่ายในไฟล์') | escape }}</dd><dt>ลิขสิทธิ์</dt><dd>{{ photo.metadata.copyright | escape }}</dd>{% if photo.metadata.capturedAt %}<dt>วันที่ตามข้อมูลภาพ</dt><dd>{{ photo.metadata.capturedAt | escape }}</dd>{% endif %}</dl><div class="photo-keywords">{% for word in photo.metadata.keywords %}<span>{{ word | escape }}</span>{% endfor %}</div></section>
+<section class="photo-reuse"><h2>อ้างอิงภาพนี้</h2>{% if gallery.preview %}<p>ลิงก์ด้านล่างจะใช้งานบนเว็บจริงหลังเผยแพร่แล้ว</p>{% endif %}<p>ใช้ภาพเดียวกันประกอบเรื่องเล่า พร้อมลิงก์กลับมาที่รายละเอียดภาพ</p><label>ลิงก์หน้าภาพ<input readonly value="https://noppadol.online/gallery/{{ photo.id }}/"></label><button type="button" data-copy="https://noppadol.online/gallery/{{ photo.id }}/">คัดลอกลิงก์</button><details><summary>สำหรับนำไปใช้ในบทความ</summary><p>โค้ดสำหรับบทความในเว็บไซต์นี้</p><code>{% raw %}{% galleryImage "{% endraw %}{{ photo.id }}{% raw %}" %}{% endraw %}</code><p>ลิงก์ไฟล์ภาพรุ่นล่าสุด</p><input readonly aria-label="ลิงก์ไฟล์ภาพ" value="https://noppadol.online/assets/gallery/{{ photo.id }}/current.jpg"></details><p id="copy-status" role="status" aria-live="polite"></p></section></div>
+</main>
+<script type="application/ld+json">{{ photo | photoJsonLd | safe }}</script>
+<script src="/assets/js/gallery.js" defer></script>

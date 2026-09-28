@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% if title %}{{ title }} — {% endif %}{{ site.wordmark }}</title>
-<meta name="description" content="{{ subtitle or site.tagline }}">
+<title>{% if title %}{{ title | escape }} — {% endif %}{{ site.wordmark }}</title>
+<meta name="description" content="{{ (subtitle or site.tagline) | escape }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,7 @@
     <span class="arrow" aria-hidden="true">←</span> หน้าแรก
   </button>
   <span class="mini-mast">noppadol<span class="middot">·</span>online</span>
+  <a href="/gallery/" style="font-size:14px">คลังภาพ</a>
   <span class="issue-code">{{ issue_code or '' }}</span>
 </nav>
 

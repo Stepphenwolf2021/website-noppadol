@@ -8,10 +8,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
+import {galleryGraph,graphContext} from "./gallery/model.mjs";
+import {loadGallery} from "./gallery/load.mjs";
 
 const BASE = "https://noppadol.online";
 const CONTENT_DIR = "src/content";
-const OUT = "_site/knowledge-graph.jsonld";
+const OUT = process.env.GALLERY_PREVIEW === "1" ? ".gallery/preview-site/knowledge-graph.jsonld" : "_site/knowledge-graph.jsonld";
+const photos=loadGallery().photos;
 
 const TYPE_MAP = {
   Article: "Article", OpinionPiece: "OpinionNewsArticle", Review: "Review",
@@ -84,6 +87,12 @@ for (const file of walk(CONTENT_DIR)) {
     node.itemReviewed = id(d.review_item.id);
     addEntity(d.review_item, "CreativeWork");
   }
+  const raw=fs.readFileSync(file,'utf8');
+  const used=[...new Set([d.gallery_image,...[...raw.matchAll(/{%\s*galleryImage\s+["']([^"']+)["']/g)].map(m=>m[1])].filter(Boolean))];
+  if(used.length) node.image=used.map(photoId=>{
+    if(!photos.some(p=>p.id===photoId))throw Error(`Unknown or unpublished gallery image: ${photoId}`);
+    return {"@id":`${BASE}/gallery/${photoId}/#image`};
+  });
   nodes.push(prune(node));
 }
 
@@ -99,8 +108,8 @@ function prune(o) {
 }
 
 const graph = {
-  "@context": `${BASE}/ontology/std-context.jsonld`,
-  "@graph": [...nodes, ...concepts.values()],
+  "@context": [`${BASE}/ontology/std-context.jsonld`, graphContext],
+  "@graph": [...nodes, ...concepts.values(), ...galleryGraph(photos)["@graph"]],
 };
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
