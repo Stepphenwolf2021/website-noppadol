@@ -29,6 +29,7 @@ export default function (eleventyConfig) {
     publisher:{'@type':'Organization',name:'noppadol.online','@id':'https://noppadol.online/#org'},
     about:n.conceptIds.map(id=>({'@id':semantic.concepts.find(c=>c.id===id).uri}))
   }));
+  eleventyConfig.addPassthroughCopy({"src/studio/app.js":"studio/app.js","src/studio/model.mjs":"studio/model.mjs","src/studio/store.mjs":"studio/store.mjs","src/studio/style.css":"studio/style.css","src/studio/seed.json":"studio/seed.json"});
   configureGallery(eleventyConfig);
   // --- Markdown: เปิด {.pullquote} ฯลฯ ผ่าน attrs ---
   const md = markdownIt({ html: true, typographer: false }).use(markdownItAttrs);

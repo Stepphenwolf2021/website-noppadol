@@ -13,7 +13,8 @@
     "gallery:approve": "node tools/gallery/cli.mjs approve",
     "gallery:preview": "node tools/gallery/preview.mjs",
     "test:gallery": "node --test tests/gallery.test.mjs",
-    "test:domains": "node --test tests/domains.test.mjs"
+    "test:domains": "node --test tests/domains.test.mjs",
+    "test:studio": "node --test tests/studio.test.mjs"
   },
   "license": "UNLICENSED",
   "private": true,

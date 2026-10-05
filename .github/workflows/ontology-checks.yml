@@ -19,3 +19,4 @@ jobs:
       - run: npm run build
       - run: npm run test:domains
       - run: npm run test:gallery
+      - run: npm run test:studio
