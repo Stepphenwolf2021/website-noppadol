@@ -18,3 +18,8 @@
 Stage 3 provides a use-case table, collapsible coverage model and scheme-grouped concept tree with editable broader concept, scheme, definition and Is-a rationale. The tree displays concept labels, retaining legacy relation IDs. Parent options exclude self and descendants. Definitions edit the same CV records used by export.
 
 Six woodworking scenarios are explicitly simulated and start with Done unchecked. Done records the owner's scenario trial, separately from semantic review. Existing browser workspaces receive missing scenario IDs once; edited rows are preserved, and subsequently deleted examples are not restored. No stored workspace is replaced by the new seed. Scheme titles already edited by the owner remain unchanged.
+
+## Thesaurus and Ontology practice (20261005-3)
+Thesaurus has four editable simulated use cases and a reading collection. Ontology has five scenarios organized by CBox/TBox/ABox/Check, with three competency questions and query files. Existing owner records, review state and semantic relations are preserved; migrations append missing example IDs once, preserving edits and later deletions. Related-concept lists display names instead of relation IDs.
+
+Exported `examples/woodworking-demo.ttl` contains synthetic objects and events, separately from the workspace knowledge graph and personal inventory. `examples/use-cases.json` retains edited scenarios and `examples/expected-results.json` records the workspace's current expected query bindings. Run the queries with an external SPARQL engine; the browser checklist does not run queries. After schema/query edits, reassess expected results. Done means the owner tried the scenario, not semantic approval.
