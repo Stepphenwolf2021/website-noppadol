@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: คลังภาพ
+subtitle: ภาพถ่าย สิ่งของ และเรื่องราวระหว่างทาง
+permalink: /gallery/
+---
+<link rel="stylesheet" href="/assets/css/gallery.css">
+{% if gallery.preview %}<aside class="photo-preview">ตัวอย่างในเครื่อง · ยังไม่เผยแพร่ · ข้อมูลที่ขาดต้องเติมจาก Lightroom ก่อนเผยแพร่</aside>{% endif %}
+<main class="photo-library">
+ <header class="photo-heading"><p class="photo-kicker">บันทึกด้วยภาพ</p><h1>คลังภาพ<span>เรื่องราวที่เริ่มจากการมอง</span></h1><p>ภาพถ่ายจากสิ่งที่สนใจ สิ่งของที่ใช้ และประสบการณ์ระหว่างทาง<br>เก็บไว้ประกอบเรื่องเล่า และกลับมามองอีกครั้ง</p></header>
+ <div class="photo-tools"><label for="photo-search">ค้นหาภาพ<input id="photo-search" type="search" placeholder="ชื่อภาพ คำบรรยาย หรือคำค้น"></label><label for="photo-collection">ชุดภาพ<select id="photo-collection"><option value="">ทุกชุดภาพ</option>{% for c in gallery | galleryCollections %}<option value="{{ c.id | escape }}">{{ c.title | escape }}</option>{% endfor %}</select></label><p id="photo-count" role="status" aria-live="polite">{{ gallery.photos.length }} ภาพ</p></div>
+ <section class="photo-grid" aria-label="ภาพในคลัง">
+ {% for p in gallery.photos %}<article class="photo-card" data-collection="{{ p.collection | escape }}" data-search="{{ p.metadata.title | escape }} {{ p.metadata.caption | escape }} {{ p.metadata.keywords | join(' ') | escape }}"><a href="/gallery/{{ p.id }}/"><div class="photo-mat"><img src="{{ p.thumbnail }}" width="{{ p.width }}" height="{{ p.height }}" alt="{{ p.alt | escape }}" loading="lazy"></div><p class="photo-series">{{ p.collectionTitle | escape }}</p><h2>{{ p.metadata.title | escape }}</h2></a><p>{{ p.metadata.caption | escape }}</p></article>{% endfor %}
+ </section>
+ {% if not gallery.photos.length %}<div class="photo-empty"><span aria-hidden="true">▧</span><h2>พื้นที่สำหรับภาพชุดแรก</h2><p>ภาพที่คัดสรรและตรวจรายละเอียดแล้วจะปรากฏที่นี่</p><p class="photo-empty-note">เครื่องมืองานไม้ · แผ่นเสียง · และสิ่งที่พบระหว่างทาง</p></div>{% endif %}
+ <p id="photo-no-results" hidden>ไม่พบภาพที่ตรงกับคำค้น ลองเปลี่ยนคำค้นหรือเลือกทุกชุดภาพ</p>
+ <footer class="photo-footer"><a href="/">กลับไปอ่านเรื่องราว ↗</a><span>ภาพถ่ายและความทรงจำ · noppadol.online</span></footer>
+</main>
+<script src="/assets/js/gallery.js" defer></script>

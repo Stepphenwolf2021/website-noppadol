@@ -1,0 +1,264 @@
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix n: <urn:noppadol:ontology:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix w: <https://noppadol.online/ns/workflow#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+w:access a rdf:Property ;
+    rdfs:label "access"@en .
+
+w:category a rdf:Property ;
+    rdfs:label "category"@en .
+
+w:describesRecord a rdf:Property ;
+    rdfs:label "describesRecord"@en .
+
+w:publicationStatus a rdf:Property ;
+    rdfs:label "publicationStatus"@en .
+
+w:reviewStatus a rdf:Property ;
+    rdfs:label "reviewStatus"@en .
+
+w:revision a rdf:Property ;
+    rdfs:label "revision"@en .
+
+w:selectsContent a rdf:Property ;
+    rdfs:label "selectsContent"@en .
+
+w:sourceRevision a rdf:Property ;
+    rdfs:label "sourceRevision"@en .
+
+w:stage a rdf:Property ;
+    rdfs:label "stage"@en .
+
+a: a owl:Ontology ;
+    owl:versionInfo "1.1.0" .
+
+a:BrandRecord a owl:Class ;
+    rdfs:label "Brand record"@en ;
+    rdfs:comment "Referenced brand identity; not necessarily its owner or manufacturer organization."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:Chisel a owl:Class ;
+    rdfs:label "Chisel"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:chisel> ;
+    rdfs:subClassOf a:WoodworkingTool .
+
+a:ContentDraft a owl:Class ;
+    rdfs:label "Content draft"@en .
+
+a:EditionMatch a owl:Class ;
+    rdfs:label "Candidate edition match"@en ;
+    rdfs:comment "A proposal that a source record refers to an edition. It never asserts physical copy identity or ownership."@en .
+
+a:HandPlane a owl:Class ;
+    rdfs:label "Hand plane"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:hand-plane> ;
+    rdfs:subClassOf a:WoodworkingTool .
+
+a:PlaneBlade a owl:Class ;
+    rdfs:label "Plane blade"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:plane-blade> ;
+    rdfs:subClassOf a:Component .
+
+a:PublicationDecision a owl:Class ;
+    rdfs:label "Publication decision"@en .
+
+a:RecordDisc a owl:Class ;
+    rdfs:label "Record disc"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:record-disc> ;
+    rdfs:subClassOf a:AssetItem ;
+    owl:disjointWith a:ReleaseEdition .
+
+a:Saw a owl:Class ;
+    rdfs:label "Saw"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:saw> ;
+    rdfs:subClassOf a:WoodworkingTool .
+
+a:SourceRecord a owl:Class ;
+    rdfs:label "Source record"@en ;
+    rdfs:subClassOf a:AssetRecord ;
+    owl:disjointWith a:AssetItem .
+
+a:actor a owl:ObjectProperty ;
+    rdfs:domain a:AssetEvent ;
+    rdfs:range a:AgentRecord .
+
+a:basis a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:candidateConcept a rdf:Property ;
+    rdfs:label "Candidate classification"@en .
+
+a:candidateEdition a rdf:Property ;
+    rdfs:label "Candidate edition"@en .
+
+a:classifiedAs a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range skos:Concept .
+
+a:edition a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range a:ReleaseEdition .
+
+a:endLine a rdf:Property ;
+    rdfs:label "Last evidence line"@en .
+
+a:eventKind a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:excerpt a rdf:Property ;
+    rdfs:label "Evidence excerpt"@en .
+
+a:field a owl:ObjectProperty ;
+    rdfs:domain a:AssetObservation .
+
+a:forRecord a rdf:Property ;
+    rdfs:label "For source record"@en .
+
+a:hasComponent a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range a:Component .
+
+a:hasRecording a owl:ObjectProperty ;
+    rdfs:domain a:ReleaseEdition ;
+    rdfs:range a:SoundRecording .
+
+a:inEdition a owl:ObjectProperty ;
+    rdfs:domain a:TrackEntry ;
+    rdfs:range a:ReleaseEdition .
+
+a:model a owl:ObjectProperty ;
+    rdfs:domain a:AssetItem ;
+    rdfs:range a:ProductModel .
+
+a:note a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:numberValue a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+a:observedOn a owl:DatatypeProperty ;
+    rdfs:range xsd:date .
+
+a:observedSubject a owl:ObjectProperty ;
+    rdfs:domain a:AssetObservation ;
+    rdfs:range a:AssetRecord .
+
+a:occurredOn a owl:DatatypeProperty ;
+    rdfs:range xsd:date .
+
+a:participant a owl:ObjectProperty ;
+    rdfs:domain a:AssetEvent ;
+    rdfs:range a:AssetItem .
+
+a:profile a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:recordRevision a rdf:Property ;
+    rdfs:label "Record revision"@en .
+
+a:recordingOf a owl:ObjectProperty ;
+    rdfs:domain a:SoundRecording ;
+    rdfs:range a:MusicalWork .
+
+a:referenceValue a owl:ObjectProperty ;
+    rdfs:domain a:AssetObservation .
+
+a:releaseGroup a owl:ObjectProperty ;
+    rdfs:domain a:ReleaseEdition ;
+    rdfs:range a:ReleaseGroup .
+
+a:sourceInput a owl:ObjectProperty ;
+    rdfs:range n:KnowledgeInput .
+
+a:sourceRevision a rdf:Property ;
+    rdfs:label "Source revision"@en .
+
+a:sourceUUID a rdf:Property ;
+    rdfs:label "Source UUID"@en .
+
+a:startLine a rdf:Property ;
+    rdfs:label "First evidence line"@en .
+
+a:textValue a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:unit a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:valueStatus a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+a:AgentRecord a owl:Class ;
+    rdfs:label "Agent record"@en ;
+    rdfs:comment "Referenced person or organization; distinct from a brand."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:MusicalWork a owl:Class ;
+    rdfs:label "Musical work"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:musical-work> ;
+    owl:disjointWith a:ReleaseEdition,
+        a:SoundRecording .
+
+a:ReleaseGroup a owl:Class ;
+    rdfs:label "Release group"@en ;
+    rdfs:comment "Grouping of release editions, inspired by the Discogs master grouping; not a musical work."@en ;
+    rdfs:subClassOf a:AssetRecord ;
+    owl:disjointWith a:ReleaseEdition .
+
+a:TrackEntry a owl:Class ;
+    rdfs:label "Track entry"@en ;
+    rdfs:comment "Track occurrence scoped to one release edition."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetEvent a owl:Class ;
+    rdfs:label "Asset event"@en ;
+    rdfs:comment "Dated when known, sourced acquisition, use, maintenance, repair, listening or component-change event."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:Component a owl:Class ;
+    rdfs:label "Component"@en ;
+    rdfs:comment "Physical item tracked separately as a component; composition is asserted through an evidenced bridge connection."@en ;
+    rdfs:subClassOf a:AssetItem .
+
+a:ProductModel a owl:Class ;
+    rdfs:label "Product model"@en ;
+    rdfs:comment "Product design or model shared by individual objects."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetObservation a owl:Class ;
+    rdfs:label "Source observation"@en ;
+    rdfs:comment "One recorded field value or explicit unknown/not-applicable state, scoped to a subject and source when known."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:SoundRecording a owl:Class ;
+    rdfs:label "Sound recording"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:sound-recording> ;
+    owl:disjointWith a:ReleaseEdition .
+
+a:WoodworkingTool a owl:Class ;
+    rdfs:label "Woodworking tool"@en ;
+    rdfs:seeAlso <urn:noppadol:assets:concept:woodworking-tool> ;
+    rdfs:subClassOf a:AssetItem .
+
+a:AssetItem a owl:Class ;
+    rdfs:label "Physical asset item"@en ;
+    rdfs:comment "Individually tracked physical object, distinct from a product model or digital media revision."@en ;
+    rdfs:subClassOf a:AssetRecord ;
+    owl:disjointWith a:ProductModel,
+        a:ReleaseEdition,
+        n:SourceRevision .
+
+a:ReleaseEdition a owl:Class ;
+    rdfs:label "Release edition"@en ;
+    rdfs:comment "Specific released edition, distinct from an individually held copy."@en ;
+    rdfs:subClassOf a:AssetRecord .
+
+a:AssetRecord a owl:Class ;
+    rdfs:label "Asset record"@en ;
+    rdfs:comment "Governed record in the personal assets module; not an assertion of ownership."@en ;
+    rdfs:subClassOf n:ManagedRecord .

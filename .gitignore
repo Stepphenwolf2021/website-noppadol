@@ -1,7 +1,11 @@
 node_modules/
+node_modules
 _site/
 dist-pdf/
 .DS_Store
 *.log
 /supabase/.temp
 _to_delete/
+
+# Local image evidence, drafts and previews (never publish)
+.gallery/

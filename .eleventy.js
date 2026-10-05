@@ -1,8 +1,35 @@
 import fs from "node:fs";
+import {configureGallery} from "./tools/gallery/eleventy.mjs";
+import {loadGallery} from "./tools/gallery/load.mjs";
 import markdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 
 export default function (eleventyConfig) {
+  const semantic = JSON.parse(fs.readFileSync('src/_data/semantic.json', 'utf8'));
+  const safeJson = value => JSON.stringify(value).replace(/</g, '\\u003c');
+  eleventyConfig.addFilter('safeJson', safeJson);
+  eleventyConfig.addFilter('conceptById', id => {
+    const concept=semantic.concepts.find(c=>c.id===id);
+    if(!concept) throw Error(`Unknown concept: ${id}`);
+    return concept;
+  });
+  const editorialMd=markdownIt({html:false,linkify:false});
+  eleventyConfig.addFilter('editorialMarkdown', body => editorialMd.render(body));
+  eleventyConfig.addFilter('termJsonLd', c=>safeJson({
+    '@context':{'@vocab':'https://schema.org/',skos:'http://www.w3.org/2004/02/skos/core#'},
+    '@id':c.uri,'@type':['DefinedTerm','skos:Concept'],name:c.graphLabel,
+    alternateName:c.label,description:c.definitionEn,url:`https://noppadol.online${c.url}`,
+    'skos:inScheme':{'@id':'urn:noppadol:assets:scheme'},
+    'skos:broader':c.broader.map(id=>({'@id':semantic.concepts.find(x=>x.id===id).uri})),
+    'skos:related':c.related.map(id=>({'@id':semantic.concepts.find(x=>x.id===id).uri}))
+  }));
+  eleventyConfig.addFilter('noteJsonLd', n=>safeJson({
+    '@context':'https://schema.org','@type':'Article','@id':`https://noppadol.online/notes/${n.slug}/`,
+    headline:n.title,description:n.subtitle,inLanguage:'th',datePublished:n.date,
+    publisher:{'@type':'Organization',name:'noppadol.online','@id':'https://noppadol.online/#org'},
+    about:n.conceptIds.map(id=>({'@id':semantic.concepts.find(c=>c.id===id).uri}))
+  }));
+  configureGallery(eleventyConfig);
   // --- Markdown: เปิด {.pullquote} ฯลฯ ผ่าน attrs ---
   const md = markdownIt({ html: true, typographer: false }).use(markdownItAttrs);
   eleventyConfig.setLibrary("md", md);
@@ -105,7 +132,11 @@ export default function (eleventyConfig) {
         identifier: d.issue_code || undefined,
       };
     }
-    if (d.hero_image) {
+    if (d.gallery_image) {
+      const photo=loadGallery().photos.find(p=>p.id===d.gallery_image);
+      if(!photo) throw Error(`Unknown gallery image: ${d.gallery_image}`);
+      node.image={"@id":`${base}/gallery/${photo.id}/#image`};
+    } else if (d.hero_image) {
       node.image = {
         "@type": "ImageObject",
         url: `${base}/assets/img/${d.issue_dir}/${d.hero_image}`,
@@ -147,7 +178,7 @@ export default function (eleventyConfig) {
         };
       }
     }
-    return JSON.stringify(prune(node), null, 2);
+    return JSON.stringify(prune(node), null, 2).replace(/</g, '\\u003c');
   });
 
   function cap(s) {
@@ -172,7 +203,7 @@ export default function (eleventyConfig) {
       input: "src",
       includes: "_includes",
       data: "_data",
-      output: "_site",
+      output: process.env.GALLERY_PREVIEW === "1" ? ".gallery/preview-site" : "_site",
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",

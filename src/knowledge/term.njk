@@ -1,0 +1,20 @@
+---
+layout: layouts/knowledge.njk
+pagination:
+  data: semantic.concepts
+  size: 1
+  alias: concept
+permalink: "{{ concept.url }}"
+eleventyComputed:
+  title: "{{ concept.label }}"
+  subtitle: "{{ concept.definition }}"
+---
+<section class="hero compact"><a class="eyebrow" href="/knowledge/">← คลังความรู้</a><h1>{{ concept.label }}</h1><p class="english">{{ concept.graphLabel }}</p><p class="lead">{{ concept.definition }}</p></section>
+<div class="reading"><h2>ขอบเขตของคำ</h2><p>{{ concept.scopeNote }}</p>
+{% for lang, labels in concept.aliases %}{% if labels | length %}<p><strong>คำเรียกอื่น:</strong> {{ labels | join(' · ') }}</p>{% endif %}{% endfor %}
+{% if concept.broader | length %}<h2>อยู่ในกลุ่ม</h2><div class="chips">{% for id in concept.broader %}{% set c = id | conceptById %}<a href="{{ c.url }}">{{ c.label }}</a>{% endfor %}</div>{% endif %}
+{% if concept.narrower | length %}<h2>ชนิดที่เกี่ยวข้อง</h2><div class="chips">{% for id in concept.narrower %}{% set c = id | conceptById %}<a href="{{ c.url }}">{{ c.label }}</a>{% endfor %}</div>{% endif %}
+{% if concept.related | length %}<h2>อ่านต่อจากคำนี้</h2><div class="chips">{% for id in concept.related %}{% set c = id | conceptById %}<a href="{{ c.url }}">{{ c.label }}</a>{% endfor %}</div>{% endif %}
+<h2>เรื่องที่ใช้คำนี้</h2>{% set found = false %}{% for a in editorial.articles %}{% if concept.id in a.conceptIds %}{% set found = true %}<p><a href="/notes/{{ a.slug }}/">{{ a.title }} →</a></p>{% endif %}{% endfor %}{% if not found %}<p>ยังไม่มีบทความที่เชื่อมกับคำนี้</p>{% endif %}
+<p class="note">นิยามใช้งานของโครงการ · รุ่นคำศัพท์ {{ semantic.cvVersion }} · ยังเปิดให้ทบทวนความหมาย</p></div>
+<script type="application/ld+json">{{ concept | termJsonLd | safe }}</script>

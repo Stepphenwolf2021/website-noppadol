@@ -27,7 +27,9 @@ layout: layouts/base.njk
     </div>
   </header>
 
-  {% if hero_image %}
+  {% if gallery_image %}
+  {% galleryImage gallery_image, hero_alt, hero_caption %}
+  {% elif hero_image %}
   <figure class="lead-figure">
     <img src="/assets/img/{{ issue_dir }}/{{ hero_image }}" alt="{{ hero_alt }}">
     {% if hero_caption %}

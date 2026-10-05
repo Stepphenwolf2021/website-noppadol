@@ -1,0 +1,14 @@
+---
+layout: layouts/knowledge.njk
+pagination:
+  data: editorial.articles
+  size: 1
+  alias: note
+permalink: "/notes/{{ note.slug }}/"
+eleventyComputed:
+  title: "{{ note.title }}"
+  subtitle: "{{ note.subtitle }}"
+---
+<article><header class="hero"><a class="eyebrow" href="{{ '/woodworking/' if note.domain == 'woodworking' else '/records/' }}">{{ 'งานไม้' if note.domain == 'woodworking' else 'แผ่นเสียง' }} / บันทึก</a><h1>{{ note.title }}</h1><p class="lead">{{ note.subtitle }}</p><p class="byline">noppadol.online · 5 ตุลาคม 2569</p></header>
+<div class="reading prose">{{ note.body | editorialMarkdown | safe }}<aside class="related"><h2>เดินต่อจากเรื่องนี้</h2><div class="chips">{% for id in note.conceptIds %}{% set c = id | conceptById %}<a href="{{ c.url }}">{{ c.label }}</a>{% endfor %}</div></aside></div></article>
+<script type="application/ld+json">{{ note | noteJsonLd | safe }}</script>

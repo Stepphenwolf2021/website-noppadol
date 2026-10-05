@@ -1,0 +1,106 @@
+{
+  "version": "1.1.0",
+  "note": "Class model, not personal inventory or approved facts.",
+  "nodes": [
+    {
+      "id": "SourceRecord",
+      "label": "SourceRecord",
+      "th": "บันทึกต้นทาง",
+      "x": 110,
+      "y": 170
+    },
+    {
+      "id": "AssetObservation",
+      "label": "AssetObservation",
+      "th": "ค่าพร้อมหลักฐาน",
+      "x": 340,
+      "y": 70
+    },
+    {
+      "id": "ProductModel",
+      "label": "ProductModel",
+      "th": "รุ่นเครื่องมือ",
+      "x": 570,
+      "y": 70
+    },
+    {
+      "id": "AssetItem",
+      "label": "AssetItem",
+      "th": "วัตถุรายชิ้น",
+      "x": 790,
+      "y": 170
+    },
+    {
+      "id": "EditionMatch",
+      "label": "EditionMatch",
+      "th": "ข้อเสนอจับคู่ฉบับ",
+      "x": 340,
+      "y": 270
+    },
+    {
+      "id": "ReleaseEdition",
+      "label": "ReleaseEdition",
+      "th": "ฉบับวางจำหน่าย",
+      "x": 570,
+      "y": 270
+    },
+    {
+      "id": "ContentDraft",
+      "label": "ContentDraft",
+      "th": "ต้นฉบับเนื้อหา",
+      "x": 340,
+      "y": 440
+    },
+    {
+      "id": "PublicationDecision",
+      "label": "PublicationDecision",
+      "th": "การเลือกเผยแพร่",
+      "x": 670,
+      "y": 440
+    }
+  ],
+  "edges": [
+    {
+      "source": "AssetObservation",
+      "target": "SourceRecord",
+      "predicate": "observedSubject",
+      "note": "ค่าที่บันทึกอ้างถึงรายการต้นทางและ revision เดียวกัน"
+    },
+    {
+      "source": "AssetItem",
+      "target": "ProductModel",
+      "predicate": "model",
+      "note": "ชิ้นเครื่องมืออ้างรุ่นได้เมื่อมีหลักฐาน ไม่อนุมานชิ้นจากชื่อรุ่น"
+    },
+    {
+      "source": "EditionMatch",
+      "target": "SourceRecord",
+      "predicate": "forRecord",
+      "note": "ข้อเสนอจับคู่ผูกกับต้นทางที่ใช้ค้น"
+    },
+    {
+      "source": "EditionMatch",
+      "target": "ReleaseEdition",
+      "predicate": "candidateEdition",
+      "note": "รุ่นที่ค้นพบเป็นตัวเลือก ยังไม่ยืนยันว่าเป็นแผ่นที่ครอบครอง"
+    },
+    {
+      "source": "AssetItem",
+      "target": "ReleaseEdition",
+      "predicate": "edition",
+      "note": "ต้องยืนยันชิ้นแผ่นและฉบับก่อนใช้ความสัมพันธ์นี้"
+    },
+    {
+      "source": "ContentDraft",
+      "target": "SourceRecord",
+      "predicate": "describesRecord",
+      "note": "ร่างใช้วัตถุดิบโดยเก็บทะเบียนและหลักฐานไว้หลังบ้าน"
+    },
+    {
+      "source": "PublicationDecision",
+      "target": "ContentDraft",
+      "predicate": "selectsContent",
+      "note": "เลือกเฉพาะเนื้อหาสาธารณะ ข้อมูลส่วนตัวไม่ตามออกมาด้วย"
+    }
+  ]
+}

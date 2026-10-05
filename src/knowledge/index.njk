@@ -1,0 +1,10 @@
+---
+layout: layouts/knowledge.njk
+title: คลังความรู้
+permalink: /knowledge/
+---
+<section class="hero"><p class="eyebrow">คำ · ความหมาย · เรื่องที่เชื่อมกัน</p><h1>คลังความรู้</h1><p class="lead">เริ่มจากงานไม้หรือแผ่นเสียง แล้วเดินไปตามความสนใจ</p></section>
+<div class="search-bar"><label for="search">ค้นคำ</label><input id="search" type="search" placeholder="เช่น กบไสไม้ ใบกบ หรือฉบับวางจำหน่าย"><p id="search-count" aria-live="polite">{{ semantic.concepts | length }} คำ</p></div>
+<div class="term-grid" id="terms">{% for c in semantic.concepts %}<a href="{{ c.url }}" class="term" data-search="{{ c.label }} {{ c.graphLabel }} {{ c.aliases | dump | escape }}"><h2>{{ c.label }}</h2><span>{{ c.graphLabel }}</span><p>{{ c.definition }}</p></a>{% endfor %}</div>
+<p class="note">นิยามในคลังนี้เป็นนิยามใช้งานของโครงการ ปรับปรุงได้เมื่อมีหลักฐานและบริบทเพิ่มเติม</p>
+<script src="/assets/js/knowledge-search.js" defer></script>

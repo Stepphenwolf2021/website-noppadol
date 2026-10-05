@@ -8,10 +8,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
+import {galleryGraph,graphContext} from "./gallery/model.mjs";
+import {loadGallery} from "./gallery/load.mjs";
 
 const BASE = "https://noppadol.online";
 const CONTENT_DIR = "src/content";
-const OUT = "_site/knowledge-graph.jsonld";
+const OUT = process.env.GALLERY_PREVIEW === "1" ? ".gallery/preview-site/knowledge-graph.jsonld" : "_site/knowledge-graph.jsonld";
+const photos=loadGallery().photos;
 
 const TYPE_MAP = {
   Article: "Article", OpinionPiece: "OpinionNewsArticle", Review: "Review",
@@ -84,6 +87,12 @@ for (const file of walk(CONTENT_DIR)) {
     node.itemReviewed = id(d.review_item.id);
     addEntity(d.review_item, "CreativeWork");
   }
+  const raw=fs.readFileSync(file,'utf8');
+  const used=[...new Set([d.gallery_image,...[...raw.matchAll(/{%\s*galleryImage\s+["']([^"']+)["']/g)].map(m=>m[1])].filter(Boolean))];
+  if(used.length) node.image=used.map(photoId=>{
+    if(!photos.some(p=>p.id===photoId))throw Error(`Unknown or unpublished gallery image: ${photoId}`);
+    return {"@id":`${BASE}/gallery/${photoId}/#image`};
+  });
   nodes.push(prune(node));
 }
 
@@ -99,9 +108,26 @@ function prune(o) {
 }
 
 const graph = {
-  "@context": `${BASE}/ontology/std-context.jsonld`,
-  "@graph": [...nodes, ...concepts.values()],
+  "@context": [`${BASE}/ontology/std-context.jsonld`, graphContext],
+  "@graph": [...nodes, ...concepts.values(), ...galleryGraph(photos)["@graph"]],
 };
+
+// Public semantic projection is generated locally; it contains no personal catalog.
+const semantic=JSON.parse(fs.readFileSync('src/_data/semantic.json','utf8'));
+const editorial=JSON.parse(fs.readFileSync('src/_data/editorial.json','utf8'));
+graph['@context'].push({skos:'http://www.w3.org/2004/02/skos/core#'});
+const byId=new Map(semantic.concepts.map(c=>[c.id,c]));
+for(const c of semantic.concepts)graph['@graph'].push({
+  '@id':c.uri,'@type':['DefinedTerm','skos:Concept'],name:c.graphLabel,alternateName:c.label,
+  description:c.definitionEn,url:`${BASE}${c.url}`,
+  'skos:inScheme':{'@id':'urn:noppadol:assets:scheme'},
+  'skos:broader':c.broader.map(id=>({'@id':byId.get(id).uri})),
+  'skos:related':c.related.map(id=>({'@id':byId.get(id).uri})),
+});
+for(const n of editorial.articles)graph['@graph'].push({
+  '@id':`${BASE}/notes/${n.slug}/`,'@type':'Article',headline:n.title,inLanguage:'th',datePublished:n.date,
+  about:n.conceptIds.map(id=>({'@id':byId.get(id).uri})),
+});
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(graph, null, 2));

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title | escape }} — noppadol.online</title>
+<meta name="description" content="{{ (subtitle or 'บันทึกงานไม้และแผ่นเสียง เชื่อมคำ ความรู้ และเรื่องราว') | escape }}">
+<link rel="canonical" href="https://noppadol.online{{ page.url }}">
+<link rel="stylesheet" href="/assets/css/knowledge.css">
+{% if structured %}<script type="application/ld+json">{{ structured | safeJson | safe }}</script>{% endif %}
+</head>
+<body><header class="mast"><a class="brand" href="/">noppadol<span>·</span>online</a><nav aria-label="เมนูหลัก"><a href="/woodworking/">งานไม้</a><a href="/records/">แผ่นเสียง</a><a href="/knowledge/">คลังความรู้</a><a href="/gallery/">คลังภาพ</a></nav></header>
+<main>{{ content | safe }}</main>
+<footer class="footer"><a href="/">noppadol·online</a><span>บันทึกความคิดและความสนใจส่วนตัว</span><a href="/ontology/">โครงสร้างความรู้</a></footer>
+</body></html>
