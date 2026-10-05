@@ -1,0 +1,1594 @@
+{
+  "format": "noppadol-studio/1",
+  "revision": 0,
+  "sources": [
+    {
+      "id": "public-release",
+      "name": "Noppadol.Online public ontology",
+      "system": "noppadol.online",
+      "kind": "schema",
+      "authority": "Noppadol.Online",
+      "locator": "https://noppadol.online/ontology/",
+      "notes": "CV 1.2.0 / metadata 1.4.1 / ontology 1.1.0 · editorial proposal"
+    }
+  ],
+  "terms": [
+    {
+      "id": "asset-concept-physical-item",
+      "uri": "urn:noppadol:assets:concept:physical-item",
+      "labelEn": "Physical item",
+      "labelTh": "วัตถุรายชิ้น",
+      "definitionEn": "Individual tangible object that is identifiable separately from a product type or model.",
+      "definitionTh": "วัตถุที่แยกตัวตนและติดตามเป็นรายชิ้นได้",
+      "scope": "ชนิดสินค้าและชื่อรุ่นไม่ใช่ตัววัตถุ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-product-model",
+      "uri": "urn:noppadol:assets:concept:product-model",
+      "labelEn": "Product model",
+      "labelTh": "รุ่นผลิตภัณฑ์",
+      "definitionEn": "Product design designation that distinguishes a manufacturer's product design or model from individual items.",
+      "definitionTh": "แบบหรือรุ่นที่ผู้ผลิตใช้จำแนกผลิตภัณฑ์",
+      "scope": "หลายชิ้นอาจมีรุ่นเดียวกัน",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "รุ่นสินค้า"
+    },
+    {
+      "id": "asset-concept-woodworking-tool",
+      "uri": "urn:noppadol:assets:concept:woodworking-tool",
+      "labelEn": "Woodworking tool",
+      "labelTh": "เครื่องมืองานไม้",
+      "definitionEn": "Tool that performs a function in working wood rather than naming the activity itself.",
+      "definitionTh": "อุปกรณ์ที่ใช้ทำงานกับไม้ตามหน้าที่ของเครื่องมือ",
+      "scope": "งานไม้เป็นกิจกรรม ใช้แนวคิดเดิม",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "เครื่องมือช่างไม้"
+    },
+    {
+      "id": "asset-concept-hand-plane",
+      "uri": "urn:noppadol:assets:concept:hand-plane",
+      "labelEn": "Hand plane",
+      "labelTh": "กบไสไม้",
+      "definitionEn": "Manually powered cutting tool that uses a blade to shape or finish a wooden surface.",
+      "definitionTh": "เครื่องมือไสไม้ที่ใช้แรงมือขับใบตัดเพื่อตกแต่งผิวหรือรูปทรง",
+      "scope": "ไม่รวมกบไฟฟ้า; คำว่า กบ เดี่ยวกำกวม",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "handplane",
+      "aliasesTh": "กบไสไม้มือ"
+    },
+    {
+      "id": "asset-concept-chisel",
+      "uri": "urn:noppadol:assets:concept:chisel",
+      "labelEn": "Chisel",
+      "labelTh": "สิ่ว",
+      "definitionEn": "Bladed cutting tool that cuts or shapes material by a cutting edge, with wood use emphasized in this register.",
+      "definitionTh": "เครื่องมือใบตัดสำหรับสกัดหรือแต่งวัสดุ ในรุ่นนี้เน้นการใช้งานกับไม้",
+      "scope": "ไม่ระบุว่าสิ่วทุกชนิดใช้ค้อนได้",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-saw",
+      "uri": "urn:noppadol:assets:concept:saw",
+      "labelEn": "Saw",
+      "labelTh": "เลื่อย",
+      "definitionEn": "Toothed cutting tool that divides or shapes material using teeth, without yet separating manual and powered forms.",
+      "definitionTh": "เครื่องมือที่ใช้ฟันตัดแบ่งหรือแต่งวัสดุ",
+      "scope": "ยังไม่แยกแรงมือและกำลังไฟฟ้า",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-sharpening-stone",
+      "uri": "urn:noppadol:assets:concept:sharpening-stone",
+      "labelEn": "Sharpening stone",
+      "labelTh": "หินลับคม",
+      "definitionEn": "Abrasive block or plate that is used to form or maintain a tool's cutting edge.",
+      "definitionTh": "วัสดุลักษณะก้อนหรือแผ่นที่ใช้ขัดเพื่อสร้างหรือรักษาคมเครื่องมือ",
+      "scope": "ไม่รวมอุปกรณ์ลับคมทุกประเภท",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "หินลับคมเครื่องมือ"
+    },
+    {
+      "id": "asset-concept-maintenance",
+      "uri": "urn:noppadol:assets:concept:maintenance",
+      "labelEn": "Maintenance",
+      "labelTh": "การบำรุงรักษา",
+      "definitionEn": "Care activity that preserves or restores an asset's readiness for use.",
+      "definitionTh": "การดูแลเพื่อรักษาหรือฟื้นความพร้อมใช้งาน",
+      "scope": "ไม่ใช่ข้อยืนยันว่าได้ดำเนินการแล้ว",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "การดูแลบำรุงรักษา"
+    },
+    {
+      "id": "asset-concept-sharpening",
+      "uri": "urn:noppadol:assets:concept:sharpening",
+      "labelEn": "Sharpening",
+      "labelTh": "การลับคม",
+      "definitionEn": "Cutting-edge treatment activity that adjusts a tool edge for its intended use.",
+      "definitionTh": "การแต่งคมเครื่องมือให้เหมาะกับการใช้งาน",
+      "scope": "แยกจากหินลับคมที่เป็นอุปกรณ์",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "ลับคมเครื่องมือ"
+    },
+    {
+      "id": "asset-concept-repair",
+      "uri": "urn:noppadol:assets:concept:repair",
+      "labelEn": "Repair",
+      "labelTh": "การซ่อม",
+      "definitionEn": "Restorative activity that corrects damage or malfunction in an asset.",
+      "definitionTh": "การแก้ความชำรุดของทรัพย์สิน",
+      "scope": "แยกจากการปรับแต่งที่ไม่ได้แก้ความชำรุด",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "การซ่อมแซม"
+    },
+    {
+      "id": "asset-concept-use-session",
+      "uri": "urn:noppadol:assets:concept:use-session",
+      "labelEn": "Asset use session",
+      "labelTh": "กิจกรรมใช้ทรัพย์สิน",
+      "definitionEn": "Use or trial event that records an occasion of working or learning with an asset.",
+      "definitionTh": "เหตุการณ์ทดลองหรือใช้ทรัพย์สินเพื่อทำงานหรือเรียนรู้",
+      "scope": "การมีเครื่องมือไม่ยืนยันว่าเคยใช้งาน",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-observation",
+      "uri": "urn:noppadol:assets:concept:observation",
+      "labelEn": "Asset observation",
+      "labelTh": "บันทึกการสังเกตทรัพย์สิน",
+      "definitionEn": "Observation record that captures a finding from using, examining or studying an asset with observer and time.",
+      "definitionTh": "บันทึกสิ่งที่พบจากการใช้ ตรวจ หรือศึกษา พร้อมผู้บันทึกและเวลา",
+      "scope": "ไม่เท่ากับข้อเท็จจริงสากลหรือ MetadataObservation ของไฟล์",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-capability",
+      "uri": "urn:noppadol:assets:concept:capability",
+      "labelEn": "Asset capability",
+      "labelTh": "ความสามารถในการใช้งาน",
+      "definitionEn": "Conditional functional capacity that describes what an asset can support under stated conditions.",
+      "definitionTh": "หน้าที่หรือผลที่ทรัพย์สินรองรับภายใต้เงื่อนไขที่ระบุ",
+      "scope": "ไม่รับรองผลสำเร็จของผู้ใช้",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-material",
+      "uri": "urn:noppadol:assets:concept:material",
+      "labelEn": "Asset material",
+      "labelTh": "วัสดุของทรัพย์สิน",
+      "definitionEn": "Constituent material that forms all or part of an asset as documented by a source.",
+      "definitionTh": "วัสดุที่ประกอบเป็นทรัพย์สินหรือชิ้นส่วนตามข้อมูลที่มี",
+      "scope": "วัสดุของใบสิ่วอาจต่างจากวัสดุของด้าม",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-technique",
+      "uri": "urn:noppadol:assets:concept:technique",
+      "labelEn": "Use technique",
+      "labelTh": "เทคนิคการใช้งาน",
+      "definitionEn": "Use or care method that describes a way of working with an asset that can be reused as knowledge.",
+      "definitionTh": "วิธีใช้หรือดูแลทรัพย์สินที่บันทึกเป็นความรู้ได้",
+      "scope": "ไม่ใช่ตัวเครื่องมือหรือเหตุการณ์ใช้ครั้งหนึ่ง",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-content-rights",
+      "uri": "urn:noppadol:assets:concept:content-rights",
+      "labelEn": "Content usage rights",
+      "labelTh": "สิทธิในการใช้เนื้อหา",
+      "definitionEn": "Permission or restriction record that describes conditions for using content associated with an asset or document.",
+      "definitionTh": "สิทธิและเงื่อนไขในการนำเนื้อหาจากทรัพย์สินหรือเอกสารไปใช้",
+      "scope": "การเป็นเจ้าของแผ่นเสียงไม่เท่ากับได้สิทธิเผยแพร่เพลง",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "สิทธิการใช้เนื้อหา"
+    },
+    {
+      "id": "asset-concept-bench-plane",
+      "uri": "urn:noppadol:assets:concept:bench-plane",
+      "labelEn": "Bench plane",
+      "labelTh": "กบงานพื้นฐานบนโต๊ะช่าง",
+      "definitionEn": "Hand-plane category that groups planes intended for general bench woodworking in the source classification.",
+      "definitionTh": "กบสำหรับงานไสทั่วไปบนโต๊ะช่างตามการแบ่งกลุ่มเครื่องมือ",
+      "scope": "ไม่ใช่กบทุกชนิด",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-smoothing-plane",
+      "uri": "urn:noppadol:assets:concept:smoothing-plane",
+      "labelEn": "Smoothing plane",
+      "labelTh": "กบเก็บผิว",
+      "definitionEn": "Hand-plane category that is intended for finishing a wooden surface.",
+      "definitionTh": "กบที่ออกแบบสำหรับเก็บผิวงานไม้",
+      "scope": "แยกหน้าที่จากเลขรุ่น",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "smooth plane",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-jack-plane",
+      "uri": "urn:noppadol:assets:concept:jack-plane",
+      "labelEn": "Jack plane",
+      "labelTh": "กบแจ็ก",
+      "definitionEn": "Hand-plane category that is used for stock preparation and general planing under the source's jack-plane classification.",
+      "definitionTh": "กบที่จัดเป็นชนิด jack สำหรับเตรียมและไสงานทั่วไป",
+      "scope": "ชื่อหมวดไม่ใช่ตัวระบุรุ่น",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-jointer-plane",
+      "uri": "urn:noppadol:assets:concept:jointer-plane",
+      "labelEn": "Jointer plane",
+      "labelTh": "กบจอยเตอร์",
+      "definitionEn": "Long hand-plane category that is intended to straighten a wooden surface or edge.",
+      "definitionTh": "กบยาวสำหรับแต่งความตรงของผิวหรือขอบไม้",
+      "scope": "ไม่ใช่เครื่องไสไฟฟ้า",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-japanese-plane",
+      "uri": "urn:noppadol:assets:concept:japanese-plane",
+      "labelEn": "Japanese hand plane",
+      "labelTh": "กบญี่ปุ่น",
+      "definitionEn": "Hand-plane design category that uses the Japanese tool form without establishing the manufacture country of an individual item.",
+      "definitionTh": "กบมือในรูปแบบเครื่องมือญี่ปุ่น",
+      "scope": "ไม่ใช้ยืนยันประเทศผลิตรายชิ้น",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "Japanese plane",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-chamfer-plane",
+      "uri": "urn:noppadol:assets:concept:chamfer-plane",
+      "labelEn": "Chamfer plane",
+      "labelTh": "กบลบเหลี่ยม",
+      "definitionEn": "Hand-plane category that is intended to cut a bevel along an edge.",
+      "definitionTh": "กบสำหรับแต่งเหลี่ยมขอบงาน",
+      "scope": "มุมงานไม่ใช่มุมคมใบ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-compass-plane",
+      "uri": "urn:noppadol:assets:concept:compass-plane",
+      "labelEn": "Compass plane",
+      "labelTh": "กบไสผิวโค้ง",
+      "definitionEn": "Hand-plane category that is designed to work a curved surface with the supported curvature stated separately.",
+      "definitionTh": "กบที่ออกแบบให้ทำงานกับผิวโค้ง",
+      "scope": "ต้องระบุรูปแบบผิวที่รองรับ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-sole-flattening-plane",
+      "uri": "urn:noppadol:assets:concept:sole-flattening-plane",
+      "labelEn": "Sole flattening plane",
+      "labelTh": "กบปรับฐานกบ",
+      "definitionEn": "Hand-plane category that is used to adjust the sole of another plane.",
+      "definitionTh": "กบสำหรับแต่งฐานกบอีกตัว",
+      "scope": "แยกเครื่องมือจากกิจกรรมปรับฐาน",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-plane-blade",
+      "uri": "urn:noppadol:assets:concept:plane-blade",
+      "labelEn": "Plane blade",
+      "labelTh": "ใบกบ",
+      "definitionEn": "Cutting component that forms the cutting part of a plane and may be removable.",
+      "definitionTh": "ส่วนตัดของกบที่อาจถอดเปลี่ยนได้",
+      "scope": "แยกตัวตนจากกบทั้งตัว",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "ใบมีดกบไสไม้"
+    },
+    {
+      "id": "asset-concept-plane-body",
+      "uri": "urn:noppadol:assets:concept:plane-body",
+      "labelEn": "Plane body",
+      "labelTh": "ตัวกบ",
+      "definitionEn": "Structural component that supports a plane's working parts.",
+      "definitionTh": "โครงหลักที่รองรับส่วนประกอบกบ",
+      "scope": "วัสดุอาจต่างจากใบกบและด้าม",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "ตัวกบไสไม้"
+    },
+    {
+      "id": "asset-concept-chipbreaker",
+      "uri": "urn:noppadol:assets:concept:chipbreaker",
+      "labelEn": "Chipbreaker",
+      "labelTh": "เหล็กประกับใบกบ",
+      "definitionEn": "Blade-associated component that works with a plane blade to manage shavings.",
+      "definitionTh": "ชิ้นส่วนที่ทำงานร่วมกับใบกบเพื่อจัดการเศษไม้",
+      "scope": "ไม่ใช่ใบตัดหลักอีกใบโดยอัตโนมัติ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "chip breaker",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-frog",
+      "uri": "urn:noppadol:assets:concept:frog",
+      "labelEn": "Plane frog",
+      "labelTh": "ฐานรองใบกบแบบ frog",
+      "definitionEn": "Blade-support component that provides support for a blade assembly in planes using a frog construction.",
+      "definitionTh": "ชิ้นส่วนรองรับชุดใบในกบที่ใช้โครงสร้างแบบ frog",
+      "scope": "ไม่บังคับว่ากบทุกชนิดมี",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": "ฐานรองใบกบ"
+    },
+    {
+      "id": "asset-concept-oire-nomi",
+      "uri": "urn:noppadol:assets:concept:oire-nomi",
+      "labelEn": "Oire nomi",
+      "labelTh": "สิ่วญี่ปุ่นแบบ Oire nomi",
+      "definitionEn": "Source-designated Japanese chisel category that is distinguished by the Oire nomi designation in the referenced tool catalogue; functional boundaries remain to be verified.",
+      "definitionTh": "ชนิดสิ่วญี่ปุ่นที่แหล่งสินค้าเรียก Oire nomi",
+      "scope": "คำแปล bench chisel ไม่ทำให้เท่ากับสิ่วตะวันตกทุกแบบ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "Oirenomi\nOire-nomi",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-tataki-nomi",
+      "uri": "urn:noppadol:assets:concept:tataki-nomi",
+      "labelEn": "Tataki nomi",
+      "labelTh": "สิ่วญี่ปุ่นแบบ Tataki nomi",
+      "definitionEn": "Source-designated Japanese chisel category that is distinguished by the Tataki nomi designation in the referenced catalogue; size and material require separate evidence.",
+      "definitionTh": "ชนิดสิ่วญี่ปุ่นที่รายการสินค้าใช้ชื่อ Tataki nomi",
+      "scope": "ไม่อนุมานขนาดหรือวัสดุจากชื่อชนิด",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "Tatakinomi\nTataki-nomi",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-chisel-handle",
+      "uri": "urn:noppadol:assets:concept:chisel-handle",
+      "labelEn": "Chisel handle",
+      "labelTh": "ด้ามสิ่ว",
+      "definitionEn": "Gripping component that forms the part by which a chisel is held.",
+      "definitionTh": "ส่วนจับของสิ่ว",
+      "scope": "วัสดุด้ามไม่ใช่วัสดุใบ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-triple-ura",
+      "uri": "urn:noppadol:assets:concept:triple-ura",
+      "labelEn": "Triple ura",
+      "labelTh": "หลังใบสิ่วแบบสามร่อง",
+      "definitionEn": "Blade-back feature designation that indicates a three-recess form on the back of a chisel blade in the cited catalogue.",
+      "definitionTh": "ชื่อรูปแบบหลังใบสิ่วที่ระบุสามร่องในแค็ตตาล็อก",
+      "scope": "เก็บภาพและคำต้นทางประกอบ ไม่อนุมานประสิทธิภาพ",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-a2-steel",
+      "uri": "urn:noppadol:assets:concept:a2-steel",
+      "labelEn": "A2 tool steel",
+      "labelTh": "เหล็กเครื่องมือ A2",
+      "definitionEn": "Tool-steel grade designation that identifies material reported as A2 for a tool component without determining its hardness.",
+      "definitionTh": "ชื่อเกรดวัสดุสำหรับใช้จัดข้อมูลใบเครื่องมือเมื่อแหล่งระบุ A2",
+      "scope": "ไม่อนุมานความแข็งจากเกรดเพียงอย่างเดียว",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    },
+    {
+      "id": "asset-concept-high-speed-steel",
+      "uri": "urn:noppadol:assets:concept:high-speed-steel",
+      "labelEn": "High-speed steel",
+      "labelTh": "เหล็กไฮสปีด",
+      "definitionEn": "Steel material family that groups materials reported as high-speed steel without equating all grades.",
+      "definitionTh": "กลุ่มเหล็กที่แหล่งข้อมูลระบุเป็น high-speed steel",
+      "scope": "ไม่ใช่เกรดเฉพาะเดียวกันทั้งหมด",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "HSS",
+      "aliasesTh": "เหล็กความเร็วสูง"
+    },
+    {
+      "id": "asset-concept-laminated-blade",
+      "uri": "urn:noppadol:assets:concept:laminated-blade",
+      "labelEn": "Laminated blade construction",
+      "labelTh": "ใบเครื่องมือโครงสร้างหลายชั้น",
+      "definitionEn": "Blade-construction form that combines multiple material layers as described by a source.",
+      "definitionTh": "โครงสร้างใบที่ประกอบวัสดุหลายชั้นตามแหล่งระบุ",
+      "scope": "ไม่เท่ากับชื่อเกรดเหล็ก",
+      "scheme": "assets",
+      "status": "proposed",
+      "source": "public-release",
+      "aliasesEn": "",
+      "aliasesTh": ""
+    }
+  ],
+  "fields": [
+    {
+      "id": "common.brand",
+      "label": "ยี่ห้อ",
+      "encoding": "brand_ref",
+      "appliesTo": "model",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "brand identity; link to owner organization only with evidence",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.model",
+      "label": "ชื่อรุ่น",
+      "encoding": "text",
+      "appliesTo": "model",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.serial_number",
+      "label": "หมายเลขประจำชิ้น",
+      "encoding": "text",
+      "appliesTo": "item",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.maker",
+      "label": "ผู้สร้าง",
+      "encoding": "agent_ref",
+      "appliesTo": "model_or_item",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.manufacturer",
+      "label": "ผู้ผลิต",
+      "encoding": "organization_ref",
+      "appliesTo": "model_or_item",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.manufacture_country",
+      "label": "ประเทศผลิต",
+      "encoding": "place_ref",
+      "appliesTo": "item_or_batch",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.manufactured_at",
+      "label": "ช่วงเวลาผลิต",
+      "encoding": "date_or_interval",
+      "appliesTo": "item_or_batch",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.acquired_at",
+      "label": "วันที่ได้มา",
+      "encoding": "date",
+      "appliesTo": "acquisition",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.seller",
+      "label": "ซื้อจากใคร",
+      "encoding": "agent_ref",
+      "appliesTo": "acquisition",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.purchase_price",
+      "label": "ราคาที่ซื้อ",
+      "encoding": "money",
+      "appliesTo": "acquisition",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.purchase_condition",
+      "label": "สภาพเมื่อซื้อ",
+      "encoding": "text",
+      "appliesTo": "acquisition",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.location",
+      "label": "ที่เก็บ",
+      "encoding": "place_ref",
+      "appliesTo": "dated_observation",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.condition",
+      "label": "สภาพปัจจุบันที่ตรวจพบ",
+      "encoding": "text",
+      "appliesTo": "dated_observation",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.special_features",
+      "label": "ความพิเศษ",
+      "encoding": "annotated_text_list",
+      "appliesTo": "model_or_item",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.personal_story",
+      "label": "เรื่องราวและเหตุผลที่เลือก",
+      "encoding": "annotated_text",
+      "appliesTo": "item",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.source_documents",
+      "label": "คู่มือ ใบเสร็จ รูป และบันทึก",
+      "encoding": "knowledge_input_ref_list",
+      "appliesTo": "item",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "common.maintenance_events",
+      "label": "ประวัติดูแลและเปลี่ยนอะไหล่",
+      "encoding": "event_ref_list",
+      "appliesTo": "item",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.plane_type",
+      "label": "ประเภทกบตามการใช้งาน",
+      "encoding": "concept_ref",
+      "appliesTo": "model",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเภทกบตามการใช้งาน",
+      "vocabulary": "asset-concept-hand-plane, asset-concept-bench-plane, asset-concept-smoothing-plane, asset-concept-jack-plane, asset-concept-jointer-plane, asset-concept-japanese-plane, asset-concept-chamfer-plane, asset-concept-compass-plane, asset-concept-sole-flattening-plane"
+    },
+    {
+      "id": "hand_plane.body_material",
+      "label": "วัสดุตัวกบ",
+      "encoding": "material_ref_list",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ วัสดุตัวกบ",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.body_wood_species",
+      "label": "ชนิดไม้ที่ใช้ทำตัวกบ",
+      "encoding": "concept_ref",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชนิดไม้ที่ใช้ทำตัวกบ",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.blade_width",
+      "label": "ความกว้างใบกบ",
+      "encoding": "length",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.blade_steel",
+      "label": "ชนิดหรือเกรดเหล็กใบกบ",
+      "encoding": "material_ref",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ชนิดหรือเกรดเหล็กใบกบ",
+      "vocabulary": "asset-concept-a2-steel, asset-concept-high-speed-steel"
+    },
+    {
+      "id": "hand_plane.blade_maker",
+      "label": "ผู้สร้างใบกบ",
+      "encoding": "agent_ref",
+      "appliesTo": "component",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.primary_bevel_angle",
+      "label": "มุมคมหลักของใบกบ",
+      "encoding": "angle",
+      "appliesTo": "dated_observation",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.micro_bevel_angle",
+      "label": "มุมคมย่อยถ้ามี",
+      "encoding": "angle",
+      "appliesTo": "dated_observation",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.bed_angle",
+      "label": "มุมตั้งใบกบเทียบฐานกบ",
+      "encoding": "angle",
+      "appliesTo": "configuration",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.blade_orientation",
+      "label": "ทิศทางคมใบกบ",
+      "encoding": "controlled_text",
+      "appliesTo": "configuration",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ทิศทางคมใบกบ",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.cutting_angle",
+      "label": "มุมตัดที่ระบุหรือประเมิน",
+      "encoding": "angle_with_method",
+      "appliesTo": "configuration",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.cutting_stroke",
+      "label": "ทิศทางการไส",
+      "encoding": "controlled_text",
+      "appliesTo": "configuration",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ทิศทางการไส",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.blade_hardness",
+      "label": "ความแข็งใบและสเกลที่ใช้",
+      "encoding": "measured_range_with_scale",
+      "appliesTo": "component",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.chisel_type",
+      "label": "ประเภทสิ่ว",
+      "encoding": "concept_ref",
+      "appliesTo": "model",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ ประเภทสิ่ว",
+      "vocabulary": "asset-concept-chisel, asset-concept-oire-nomi, asset-concept-tataki-nomi"
+    },
+    {
+      "id": "chisel.blade_width",
+      "label": "ความกว้างใบสิ่ว",
+      "encoding": "length",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.full_length",
+      "label": "ความยาวรวม",
+      "encoding": "approximate_length",
+      "appliesTo": "item_or_model",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.blade_steel",
+      "label": "กลุ่มหรือเกรดเหล็ก",
+      "encoding": "material_ref",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ กลุ่มหรือเกรดเหล็ก",
+      "vocabulary": "asset-concept-a2-steel, asset-concept-high-speed-steel"
+    },
+    {
+      "id": "chisel.bevel_angle",
+      "label": "มุมคมสิ่วพร้อมฐานอ้างอิง",
+      "encoding": "approximate_angle",
+      "appliesTo": "dated_observation",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.ura_type",
+      "label": "รูปแบบหลังใบ",
+      "encoding": "concept_ref",
+      "appliesTo": "component",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ รูปแบบหลังใบ",
+      "vocabulary": "asset-concept-triple-ura"
+    },
+    {
+      "id": "chisel.surface_finish",
+      "label": "ลักษณะผิว",
+      "encoding": "annotated_text",
+      "appliesTo": "component",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.handle_wood",
+      "label": "วัสดุไม้ด้ามตามชื่อที่ระบุ",
+      "encoding": "qualified_material_ref",
+      "appliesTo": "component",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "ช่วยระบุ ดูแล หรือใช้ทรัพย์สินตามฟิลด์ วัสดุไม้ด้ามตามชื่อที่ระบุ",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.maker_attribution",
+      "label": "ผู้สร้างตามแหล่งข้อมูล",
+      "encoding": "attribution_list",
+      "appliesTo": "model_or_item",
+      "obligation": "recommended",
+      "occurrence": "not specified",
+      "guidelines": "not automatically a CV concept",
+      "vocabulary": ""
+    },
+    {
+      "id": "chisel.set_members",
+      "label": "สมาชิกชุดสิ่ว",
+      "encoding": "asset_ref_list",
+      "appliesTo": "collection",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "reference entities, not CV concepts; preserve unresolved reference explicitly",
+      "vocabulary": ""
+    },
+    {
+      "id": "hand_plane.body_iron_species",
+      "label": "hand_plane.body_iron_species",
+      "encoding": "unresolved_text",
+      "appliesTo": "ambiguous_source_field",
+      "obligation": "optional",
+      "occurrence": "not specified",
+      "guidelines": "รักษาข้อความต้นทางพร้อม provenance",
+      "vocabulary": ""
+    }
+  ],
+  "crosswalks": [
+    {
+      "id": "source-id",
+      "element": "dct:identifier",
+      "system": "Scrivener intake",
+      "field": "Asset ID",
+      "rule": "รักษาตัวตนบันทึกต้นทาง; ไม่ใช่กรรมสิทธิ์"
+    }
+  ],
+  "useCases": [
+    {
+      "id": "wood-content",
+      "label": "ค้นวัตถุดิบเพื่อเขียนเนื้อหางานไม้",
+      "problem": "คำเรียกและหมวดต้องใช้ร่วมกันได้",
+      "solution": "CV + hierarchy + discovery relations",
+      "priority": "High",
+      "owner": "เจ้าของโครงการ",
+      "status": "proposed"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "assets",
+      "label": "My Assets · Woodworking scope",
+      "uri": "urn:noppadol:assets:scheme",
+      "scope": "ขอบเขตงานไม้และคำร่วมจาก public vocabulary"
+    }
+  ],
+  "hierarchy": [
+    {
+      "id": "hierarchy-1",
+      "child": "asset-concept-hand-plane",
+      "parent": "asset-concept-woodworking-tool",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-2",
+      "child": "asset-concept-sharpening",
+      "parent": "asset-concept-maintenance",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-3",
+      "child": "asset-concept-repair",
+      "parent": "asset-concept-maintenance",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-4",
+      "child": "asset-concept-bench-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-5",
+      "child": "asset-concept-smoothing-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-6",
+      "child": "asset-concept-jack-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-7",
+      "child": "asset-concept-jointer-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-8",
+      "child": "asset-concept-japanese-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-9",
+      "child": "asset-concept-chamfer-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-10",
+      "child": "asset-concept-compass-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-11",
+      "child": "asset-concept-sole-flattening-plane",
+      "parent": "asset-concept-hand-plane",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-12",
+      "child": "asset-concept-oire-nomi",
+      "parent": "asset-concept-chisel",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-13",
+      "child": "asset-concept-tataki-nomi",
+      "parent": "asset-concept-chisel",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-14",
+      "child": "asset-concept-a2-steel",
+      "parent": "asset-concept-material",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    },
+    {
+      "id": "hierarchy-15",
+      "child": "asset-concept-high-speed-steel",
+      "parent": "asset-concept-material",
+      "scheme": "assets",
+      "rationale": "Inherited public editorial hierarchy; review pending",
+      "status": "proposed"
+    }
+  ],
+  "relations": [
+    {
+      "id": "related-1",
+      "from": "asset-concept-hand-plane",
+      "to": "asset-concept-plane-blade",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-2",
+      "from": "asset-concept-hand-plane",
+      "to": "asset-concept-plane-body",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-3",
+      "from": "asset-concept-hand-plane",
+      "to": "asset-concept-chipbreaker",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-4",
+      "from": "asset-concept-hand-plane",
+      "to": "asset-concept-frog",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-5",
+      "from": "asset-concept-chisel",
+      "to": "asset-concept-chisel-handle",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-6",
+      "from": "asset-concept-chisel",
+      "to": "asset-concept-triple-ura",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-7",
+      "from": "asset-concept-chisel",
+      "to": "asset-concept-sharpening",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-8",
+      "from": "asset-concept-sharpening-stone",
+      "to": "asset-concept-sharpening",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-9",
+      "from": "asset-concept-sharpening",
+      "to": "asset-concept-plane-blade",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-10",
+      "from": "asset-concept-use-session",
+      "to": "asset-concept-observation",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-11",
+      "from": "asset-concept-plane-blade",
+      "to": "asset-concept-a2-steel",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-12",
+      "from": "asset-concept-plane-blade",
+      "to": "asset-concept-high-speed-steel",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    },
+    {
+      "id": "related-13",
+      "from": "asset-concept-plane-blade",
+      "to": "asset-concept-laminated-blade",
+      "rationale": "Inherited discovery association; does not assert installed component",
+      "status": "proposed"
+    }
+  ],
+  "mappings": [],
+  "collections": [
+    {
+      "id": "asset-nav-woodworking",
+      "label": "เครื่องมือและชิ้นส่วนงานไม้",
+      "members": "asset-concept-woodworking-tool, asset-concept-hand-plane, asset-concept-chisel, asset-concept-saw, asset-concept-sharpening-stone, asset-concept-bench-plane, asset-concept-smoothing-plane, asset-concept-jack-plane, asset-concept-jointer-plane, asset-concept-japanese-plane, asset-concept-chamfer-plane, asset-concept-compass-plane, asset-concept-sole-flattening-plane, asset-concept-oire-nomi, asset-concept-tataki-nomi, asset-concept-plane-blade, asset-concept-plane-body, asset-concept-chipbreaker, asset-concept-frog, asset-concept-chisel-handle",
+      "note": "Membership is navigation only, not is-a, part-of or an ownership statement"
+    },
+    {
+      "id": "asset-nav-materials",
+      "label": "วัสดุและลักษณะโครงสร้าง",
+      "members": "asset-concept-material, asset-concept-a2-steel, asset-concept-high-speed-steel, asset-concept-laminated-blade, asset-concept-triple-ura",
+      "note": "Membership is navigation only, not is-a, part-of or an ownership statement"
+    },
+    {
+      "id": "asset-nav-care",
+      "label": "การใช้ ดูแล และเรียนรู้",
+      "members": "asset-concept-maintenance, asset-concept-sharpening, asset-concept-repair, asset-concept-use-session, asset-concept-observation, asset-concept-capability, asset-concept-technique",
+      "note": "Membership is navigation only, not is-a, part-of or an ownership statement"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CQ-W01",
+      "label": "แนวคิดใดเป็นชนิดย่อยของ Hand plane?",
+      "queryId": "plane-types",
+      "expected": "Direct narrower concepts from current hierarchy; compare expected bindings after edits"
+    }
+  ],
+  "classes": [
+    {
+      "id": "AgentRecord",
+      "uri": "urn:noppadol:assets:ontology:AgentRecord",
+      "label": "AgentRecord",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Referenced person or organization; distinct from a brand."
+    },
+    {
+      "id": "AssetEvent",
+      "uri": "urn:noppadol:assets:ontology:AssetEvent",
+      "label": "AssetEvent",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Dated when known, sourced acquisition, use, maintenance, repair, listening or component-change event."
+    },
+    {
+      "id": "AssetItem",
+      "uri": "urn:noppadol:assets:ontology:AssetItem",
+      "label": "AssetItem",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Individually tracked physical object, distinct from a product model or digital media revision."
+    },
+    {
+      "id": "AssetObservation",
+      "uri": "urn:noppadol:assets:ontology:AssetObservation",
+      "label": "AssetObservation",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "One recorded field value or explicit unknown/not-applicable state, scoped to a subject and source when known."
+    },
+    {
+      "id": "AssetRecord",
+      "uri": "urn:noppadol:assets:ontology:AssetRecord",
+      "label": "AssetRecord",
+      "parent": "urn:noppadol:ontology:ManagedRecord",
+      "definition": "Governed record in the personal assets module; not an assertion of ownership."
+    },
+    {
+      "id": "BrandRecord",
+      "uri": "urn:noppadol:assets:ontology:BrandRecord",
+      "label": "BrandRecord",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Referenced brand identity; not necessarily its owner or manufacturer organization."
+    },
+    {
+      "id": "Chisel",
+      "uri": "urn:noppadol:assets:ontology:Chisel",
+      "label": "Chisel",
+      "parent": "urn:noppadol:assets:ontology:WoodworkingTool",
+      "definition": ""
+    },
+    {
+      "id": "Component",
+      "uri": "urn:noppadol:assets:ontology:Component",
+      "label": "Component",
+      "parent": "urn:noppadol:assets:ontology:AssetItem",
+      "definition": "Physical item tracked separately as a component; composition is asserted through an evidenced bridge connection."
+    },
+    {
+      "id": "ContentDraft",
+      "uri": "urn:noppadol:assets:ontology:ContentDraft",
+      "label": "ContentDraft",
+      "parent": "",
+      "definition": ""
+    },
+    {
+      "id": "EditionMatch",
+      "uri": "urn:noppadol:assets:ontology:EditionMatch",
+      "label": "EditionMatch",
+      "parent": "",
+      "definition": "A proposal that a source record refers to an edition. It never asserts physical copy identity or ownership."
+    },
+    {
+      "id": "HandPlane",
+      "uri": "urn:noppadol:assets:ontology:HandPlane",
+      "label": "HandPlane",
+      "parent": "urn:noppadol:assets:ontology:WoodworkingTool",
+      "definition": ""
+    },
+    {
+      "id": "MusicalWork",
+      "uri": "urn:noppadol:assets:ontology:MusicalWork",
+      "label": "MusicalWork",
+      "parent": "",
+      "definition": ""
+    },
+    {
+      "id": "PlaneBlade",
+      "uri": "urn:noppadol:assets:ontology:PlaneBlade",
+      "label": "PlaneBlade",
+      "parent": "urn:noppadol:assets:ontology:Component",
+      "definition": ""
+    },
+    {
+      "id": "ProductModel",
+      "uri": "urn:noppadol:assets:ontology:ProductModel",
+      "label": "ProductModel",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Product design or model shared by individual objects."
+    },
+    {
+      "id": "PublicationDecision",
+      "uri": "urn:noppadol:assets:ontology:PublicationDecision",
+      "label": "PublicationDecision",
+      "parent": "",
+      "definition": ""
+    },
+    {
+      "id": "RecordDisc",
+      "uri": "urn:noppadol:assets:ontology:RecordDisc",
+      "label": "RecordDisc",
+      "parent": "urn:noppadol:assets:ontology:AssetItem",
+      "definition": ""
+    },
+    {
+      "id": "ReleaseEdition",
+      "uri": "urn:noppadol:assets:ontology:ReleaseEdition",
+      "label": "ReleaseEdition",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Specific released edition, distinct from an individually held copy."
+    },
+    {
+      "id": "ReleaseGroup",
+      "uri": "urn:noppadol:assets:ontology:ReleaseGroup",
+      "label": "ReleaseGroup",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Grouping of release editions, inspired by the Discogs master grouping; not a musical work."
+    },
+    {
+      "id": "Saw",
+      "uri": "urn:noppadol:assets:ontology:Saw",
+      "label": "Saw",
+      "parent": "urn:noppadol:assets:ontology:WoodworkingTool",
+      "definition": ""
+    },
+    {
+      "id": "SoundRecording",
+      "uri": "urn:noppadol:assets:ontology:SoundRecording",
+      "label": "SoundRecording",
+      "parent": "",
+      "definition": ""
+    },
+    {
+      "id": "SourceRecord",
+      "uri": "urn:noppadol:assets:ontology:SourceRecord",
+      "label": "SourceRecord",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": ""
+    },
+    {
+      "id": "TrackEntry",
+      "uri": "urn:noppadol:assets:ontology:TrackEntry",
+      "label": "TrackEntry",
+      "parent": "urn:noppadol:assets:ontology:AssetRecord",
+      "definition": "Track occurrence scoped to one release edition."
+    },
+    {
+      "id": "WoodworkingTool",
+      "uri": "urn:noppadol:assets:ontology:WoodworkingTool",
+      "label": "WoodworkingTool",
+      "parent": "urn:noppadol:assets:ontology:AssetItem",
+      "definition": ""
+    }
+  ],
+  "properties": [
+    {
+      "id": "actor",
+      "uri": "urn:noppadol:assets:ontology:actor",
+      "label": "actor",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetEvent",
+      "range": "urn:noppadol:assets:ontology:AgentRecord"
+    },
+    {
+      "id": "classifiedAs",
+      "uri": "urn:noppadol:assets:ontology:classifiedAs",
+      "label": "classifiedAs",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetItem",
+      "range": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "id": "edition",
+      "uri": "urn:noppadol:assets:ontology:edition",
+      "label": "edition",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetItem",
+      "range": "urn:noppadol:assets:ontology:ReleaseEdition"
+    },
+    {
+      "id": "field",
+      "uri": "urn:noppadol:assets:ontology:field",
+      "label": "field",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetObservation",
+      "range": ""
+    },
+    {
+      "id": "hasComponent",
+      "uri": "urn:noppadol:assets:ontology:hasComponent",
+      "label": "hasComponent",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetItem",
+      "range": "urn:noppadol:assets:ontology:Component"
+    },
+    {
+      "id": "hasRecording",
+      "uri": "urn:noppadol:assets:ontology:hasRecording",
+      "label": "hasRecording",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:ReleaseEdition",
+      "range": "urn:noppadol:assets:ontology:SoundRecording"
+    },
+    {
+      "id": "inEdition",
+      "uri": "urn:noppadol:assets:ontology:inEdition",
+      "label": "inEdition",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:TrackEntry",
+      "range": "urn:noppadol:assets:ontology:ReleaseEdition"
+    },
+    {
+      "id": "model",
+      "uri": "urn:noppadol:assets:ontology:model",
+      "label": "model",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetItem",
+      "range": "urn:noppadol:assets:ontology:ProductModel"
+    },
+    {
+      "id": "observedSubject",
+      "uri": "urn:noppadol:assets:ontology:observedSubject",
+      "label": "observedSubject",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetObservation",
+      "range": "urn:noppadol:assets:ontology:AssetRecord"
+    },
+    {
+      "id": "participant",
+      "uri": "urn:noppadol:assets:ontology:participant",
+      "label": "participant",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetEvent",
+      "range": "urn:noppadol:assets:ontology:AssetItem"
+    },
+    {
+      "id": "recordingOf",
+      "uri": "urn:noppadol:assets:ontology:recordingOf",
+      "label": "recordingOf",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:SoundRecording",
+      "range": "urn:noppadol:assets:ontology:MusicalWork"
+    },
+    {
+      "id": "referenceValue",
+      "uri": "urn:noppadol:assets:ontology:referenceValue",
+      "label": "referenceValue",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:AssetObservation",
+      "range": ""
+    },
+    {
+      "id": "releaseGroup",
+      "uri": "urn:noppadol:assets:ontology:releaseGroup",
+      "label": "releaseGroup",
+      "kind": "object",
+      "domain": "urn:noppadol:assets:ontology:ReleaseEdition",
+      "range": "urn:noppadol:assets:ontology:ReleaseGroup"
+    },
+    {
+      "id": "sourceInput",
+      "uri": "urn:noppadol:assets:ontology:sourceInput",
+      "label": "sourceInput",
+      "kind": "object",
+      "domain": "",
+      "range": "urn:noppadol:ontology:KnowledgeInput"
+    },
+    {
+      "id": "basis",
+      "uri": "urn:noppadol:assets:ontology:basis",
+      "label": "basis",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "id": "eventKind",
+      "uri": "urn:noppadol:assets:ontology:eventKind",
+      "label": "eventKind",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "id": "note",
+      "uri": "urn:noppadol:assets:ontology:note",
+      "label": "note",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "id": "numberValue",
+      "uri": "urn:noppadol:assets:ontology:numberValue",
+      "label": "numberValue",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    {
+      "id": "observedOn",
+      "uri": "urn:noppadol:assets:ontology:observedOn",
+      "label": "observedOn",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    {
+      "id": "occurredOn",
+      "uri": "urn:noppadol:assets:ontology:occurredOn",
+      "label": "occurredOn",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    {
+      "id": "profile",
+      "uri": "urn:noppadol:assets:ontology:profile",
+      "label": "profile",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "id": "textValue",
+      "uri": "urn:noppadol:assets:ontology:textValue",
+      "label": "textValue",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "id": "unit",
+      "uri": "urn:noppadol:assets:ontology:unit",
+      "label": "unit",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "id": "valueStatus",
+      "uri": "urn:noppadol:assets:ontology:valueStatus",
+      "label": "valueStatus",
+      "kind": "datatype",
+      "domain": "",
+      "range": "http://www.w3.org/2001/XMLSchema#string"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "label-required",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "path": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "minCount": "1",
+      "maxCount": "",
+      "datatype": "",
+      "note": "Concept ต้องมี preferred label; ตรวจด้วย external SHACL engine"
+    }
+  ],
+  "individuals": [],
+  "triples": [],
+  "queries": [
+    {
+      "id": "plane-types",
+      "label": "Direct hand-plane narrower concepts",
+      "query": "SELECT ?concept WHERE { ?concept <http://www.w3.org/2004/02/skos/core#broader> <urn:noppadol:assets:concept:hand-plane> . }",
+      "expected": "[{\"concept\": \"urn:noppadol:assets:concept:bench-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:smoothing-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:jack-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:jointer-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:japanese-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:chamfer-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:compass-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:sole-flattening-plane\"}]"
+    }
+  ],
+  "content": [],
+  "config": {
+    "title": "Woodworking knowledge infrastructure",
+    "version": "0.1.0-draft",
+    "namespace": "urn:noppadol:studio:ontology:",
+    "cboxNamespace": "urn:noppadol:studio:concept:",
+    "aboxNamespace": "urn:noppadol:studio:individual:",
+    "purpose": "ค้น ติดหัวเรื่อง ดูแลการอ้างอิง และสร้างเนื้อหางานไม้",
+    "inScope": "เครื่องมืองานไม้ ชิ้นส่วน วัสดุ การใช้ และการดูแล",
+    "outScope": "ไม่ยืนยันกรรมสิทธิ์หรือสเปกจากชื่อเพียงอย่างเดียว",
+    "profileTitle": "Woodworking metadata application profile",
+    "appliesTo": "source records / product models / observations",
+    "profileDescription": "ใช้ฟิลด์งานไม้และข้อมูลร่วม พร้อม provenance",
+    "capitalization": "Sentence case",
+    "abbreviations": "Spell out; acronym as alternative label",
+    "number": "Singular unless inherent",
+    "multiWord": "Spaces",
+    "wordOrder": "Natural order",
+    "coverage": "เครื่องมือ ชิ้นส่วน วัสดุ และการดูแล",
+    "depth": "ตาม broader ที่มีเหตุผลและตรวจทบทวน",
+    "granularity": "หัวเรื่องสำหรับค้นและติด tag",
+    "standards": "SKOS / Dublin Core / RDF / RDFS / OWL / SHACL",
+    "thesaurusPurpose": "คำพ้อง ความสัมพันธ์เพื่อค้นพบเนื้อหา และ mappings ที่มีหลักฐาน",
+    "graphPurpose": "เชื่อมข้อมูลกับหลักฐานและต้นฉบับเนื้อหา"
+  }
+}
