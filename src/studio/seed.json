@@ -1259,6 +1259,12 @@
       "label": "การใช้ ดูแล และเรียนรู้",
       "members": "asset-concept-maintenance, asset-concept-sharpening, asset-concept-repair, asset-concept-use-session, asset-concept-observation, asset-concept-capability, asset-concept-technique",
       "note": "Membership is navigation only, not is-a, part-of or an ownership statement"
+    },
+    {
+      "id": "demo-reading-sharpening",
+      "label": "ชุดอ่านจำลอง · เริ่มต้นลับคม",
+      "members": "asset-concept-sharpening, asset-concept-sharpening-stone, asset-concept-plane-blade",
+      "note": "สถานการณ์จำลองเพื่อจัดหน้าเนื้อหา; ไม่ใช่ is-a, part-of หรือลำดับขั้นลับจริง"
     }
   ],
   "questions": [
@@ -1267,6 +1273,27 @@
       "label": "แนวคิดใดเป็นชนิดย่อยของ Hand plane?",
       "queryId": "plane-types",
       "expected": "Direct narrower concepts from current hierarchy; compare expected bindings after edits"
+    },
+    {
+      "id": "CQ-DEMO-COMPONENTS",
+      "label": "กบจำลองเชื่อมกับใบใด?",
+      "queryId": "demo-components",
+      "expected": "[{\"plane\":\"urn:noppadol:example:demo-plane-a\",\"blade\":\"urn:noppadol:example:demo-blade-a\"}]",
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "CQ-DEMO-MODEL-ITEMS",
+      "label": "เครื่องมือจำลองใดใช้รุ่นเดียวกัน?",
+      "queryId": "demo-model-items",
+      "expected": "[{\"item\":\"urn:noppadol:example:demo-plane-a\"},{\"item\":\"urn:noppadol:example:demo-plane-b\"}]",
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "CQ-DEMO-LATEST-CARE",
+      "label": "เหตุการณ์ดูแลล่าสุดของกบจำลองคืออะไร?",
+      "queryId": "demo-latest-care",
+      "expected": "[{\"event\":\"urn:noppadol:example:demo-care-1\",\"date\":\"2026-10-01\"}]",
+      "basis": "synthetic_fixture"
     }
   ],
   "classes": [
@@ -1645,6 +1672,30 @@
       "label": "Direct hand-plane narrower concepts",
       "query": "SELECT ?concept WHERE { ?concept <http://www.w3.org/2004/02/skos/core#broader> <urn:noppadol:assets:concept:hand-plane> . }",
       "expected": "[{\"concept\": \"urn:noppadol:assets:concept:bench-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:smoothing-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:jack-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:jointer-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:japanese-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:chamfer-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:compass-plane\"}, {\"concept\": \"urn:noppadol:assets:concept:sole-flattening-plane\"}]"
+    },
+    {
+      "id": "demo-components",
+      "label": "กบจำลองเชื่อมกับใบใด?",
+      "query": "SELECT ?plane ?blade WHERE { ?plane <urn:noppadol:assets:ontology:hasComponent> ?blade . } ORDER BY ?plane",
+      "expected": "[{\"plane\":\"urn:noppadol:example:demo-plane-a\",\"blade\":\"urn:noppadol:example:demo-blade-a\"}]",
+      "dataset": "examples/woodworking-demo.ttl",
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "demo-model-items",
+      "label": "เครื่องมือจำลองใดใช้รุ่นเดียวกัน?",
+      "query": "SELECT ?item WHERE { ?item <urn:noppadol:assets:ontology:model> <urn:noppadol:example:demo-model-a> . } ORDER BY ?item",
+      "expected": "[{\"item\":\"urn:noppadol:example:demo-plane-a\"},{\"item\":\"urn:noppadol:example:demo-plane-b\"}]",
+      "dataset": "examples/woodworking-demo.ttl",
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "demo-latest-care",
+      "label": "เหตุการณ์ดูแลล่าสุดของกบจำลองคืออะไร?",
+      "query": "SELECT ?event ?date WHERE { ?event <urn:noppadol:assets:ontology:participant> <urn:noppadol:example:demo-plane-a> ; <urn:noppadol:assets:ontology:eventKind> \"sharpening\" ; <urn:noppadol:assets:ontology:occurredOn> ?date . } ORDER BY DESC(?date) LIMIT 1",
+      "expected": "[{\"event\":\"urn:noppadol:example:demo-care-1\",\"date\":\"2026-10-01\"}]",
+      "dataset": "examples/woodworking-demo.ttl",
+      "basis": "synthetic_fixture"
     }
   ],
   "content": [],
@@ -1672,5 +1723,107 @@
     "thesaurusPurpose": "คำพ้อง ความสัมพันธ์เพื่อค้นพบเนื้อหา และ mappings ที่มีหลักฐาน",
     "graphPurpose": "เชื่อมข้อมูลกับหลักฐานและต้นฉบับเนื้อหา"
   },
-  "taxonomyExamplesVersion": "woodworking-taxonomy-examples-1"
+  "taxonomyExamplesVersion": "woodworking-taxonomy-examples-1",
+  "practiceExamples": [
+    {
+      "id": "th-reading-plane",
+      "stage": "thesaurus",
+      "box": "",
+      "label": "อ่านต่อจากกบไปยังส่วนประกอบ",
+      "scenario": "ผู้อ่านเปิดเรื่อง Hand plane และต้องการอ่านเรื่องใบกบกับเหล็กประกับต่อ",
+      "method": "ใช้ skos:related ระหว่าง Hand plane กับ Plane blade / Chipbreaker เพื่อแนะนำเนื้อหาที่เกี่ยวข้อง",
+      "result": "ได้หัวข้ออ่านต่อ โดยไม่อ้างว่าใบกบรุ่นใดติดตั้งอยู่กับเครื่องมือชิ้นจริง",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "th-sharpening",
+      "stage": "thesaurus",
+      "box": "",
+      "label": "รวบรวมเรื่องลับคมสำหรับผู้เริ่มต้น",
+      "scenario": "ผู้เขียนเตรียมชุดบทความลับคม มีทั้งเรื่องกิจกรรม หิน และใบเครื่องมือ",
+      "method": "ใช้ related ระหว่าง Sharpening stone ↔ Sharpening และ Sharpening ↔ Plane blade; รวมคำไว้ใน Collection เพื่อจัดหน้าเว็บ",
+      "result": "หน้าชุดอ่านเชื่อมกิจกรรมกับเครื่องมือ โดยไม่จัดหินลับเป็นชนิดของการลับคม",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "th-steel",
+      "stage": "thesaurus",
+      "box": "",
+      "label": "อ่านเปรียบเทียบวัสดุใบกบ",
+      "scenario": "ผู้อ่านอ่าน Plane blade แล้วสนใจ A2 tool steel กับ High-speed steel",
+      "method": "ใช้ related ไปยังแนวคิดวัสดุ และใช้ scope note แยกวัสดุออกจากรุ่นสินค้า",
+      "result": "เสนอหัวข้อเปรียบเทียบได้ แต่ยังไม่สรุปว่าใบกบทุกใบทำจากวัสดุใดวัสดุหนึ่ง",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "th-boundary",
+      "stage": "thesaurus",
+      "box": "",
+      "label": "แยกคำค้นชื่อชนิดกับชิ้นส่วน",
+      "scenario": "ผู้เขียนพบคำ Plane body และ Hand plane ในต้นฉบับ และต้องติดแท็กให้ตรงเรื่อง",
+      "method": "อ่าน preferred label, alternative labels และ scope note ก่อนแท็ก; external mapping ต้องตรวจขอบเขตและหลักฐานก่อนบันทึก",
+      "result": "ไม่ใช้คำเกี่ยวข้องเป็น synonym และไม่ใช้ URL อ้างอิงแทน exactMatch",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "on-questions",
+      "stage": "ontology",
+      "box": "cbox",
+      "label": "ตั้งคำถามก่อนเขียนแบบจำลอง",
+      "scenario": "เจ้าของจะเขียนเรื่องกบกับใบที่ถอดเปลี่ยนได้ จึงต้องรู้ว่ากบตัวอย่างเชื่อมใบใด",
+      "method": "CBox: CQ-DEMO-COMPONENTS ระบุสิ่งที่ต้องตอบและผลที่คาด; ใช้ queries/demo-components.rq กับ examples/woodworking-demo.ttl",
+      "result": "คำตอบ fixture: demo-plane-a → demo-blade-a; ผลนี้เป็นข้อมูลจำลอง ไม่ใช่ทะเบียนจริง",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "on-component",
+      "stage": "ontology",
+      "box": "tbox",
+      "label": "ระบุส่วนประกอบของเครื่องมือ",
+      "scenario": "จำลองกบหนึ่งชิ้นและใบกบหนึ่งชิ้น แยกจากแนวคิด Hand plane / Plane blade",
+      "method": "TBox: HandPlane, PlaneBlade และ hasComponent (AssetItem → Component); hasComponent ต่างจาก skos:related ที่เชื่อมหัวข้อ",
+      "result": "แสดงความสัมพันธ์ชิ้นต่อชิ้นได้ Domain/range ใช้อนุมานประเภท ส่วน required fields ใช้ SHACL แยก",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "on-model",
+      "stage": "ontology",
+      "box": "abox",
+      "label": "แยกเครื่องมือสองชิ้นที่เป็นรุ่นเดียวกัน",
+      "scenario": "จำลอง demo-plane-a และ demo-plane-b มี ProductModel เดียวกัน แต่เป็นคนละวัตถุ",
+      "method": "ABox: สอง URI แยกกัน ใช้ model เชื่อม ProductModel และ classifiedAs เชื่อมแนวคิดกบไสไม้; ตัวอย่างส่งออกแยกจาก workspace graph",
+      "result": "Query demo-model-items ให้สองชิ้น โดยไม่รวม identity เพราะชื่อรุ่นตรงกัน",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "on-care",
+      "stage": "ontology",
+      "box": "abox",
+      "label": "ค้นเหตุการณ์ดูแลล่าสุดที่บันทึก",
+      "scenario": "จำลองกิจกรรมลับคมวันที่ 2026-10-01 เชื่อมกบ demo-plane-a",
+      "method": "ABox: AssetEvent ใช้ participant, eventKind และ occurredOn; CQ-DEMO-LATEST-CARE เรียงวันที่ลงมาและ LIMIT 1",
+      "result": "Query demo-latest-care ให้ demo-care-1 วันที่ 2026-10-01 เฉพาะ fixture; ถ้าไม่มีข้อมูลให้ตอบว่าไม่พบบันทึก",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "on-check",
+      "stage": "ontology",
+      "box": "check",
+      "label": "ตรวจคำตอบกับสิ่งที่คาด",
+      "scenario": "ก่อนใช้แบบจำลองกับข้อมูลจริง ต้องรู้ว่า query ตอบโจทย์ตัวอย่างถูกหรือไม่",
+      "method": "Check: ส่งออก dataset และ query 3 ไฟล์ แล้วเทียบ bindings กับ expected; checklist ในเว็บตรวจโครงสร้างเท่านั้น",
+      "result": "ผลจากการรันทดสอบภายนอกไม่ใช่การอนุมัติ ontology หรือการรัน SPARQL ในเบราว์เซอร์",
+      "done": false,
+      "basis": "synthetic_fixture"
+    }
+  ],
+  "practiceExamplesVersion": "woodworking-practice-1"
 }
