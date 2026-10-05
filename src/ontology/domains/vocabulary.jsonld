@@ -32,19 +32,15 @@
   },
   "@graph": [
     {
-      "@id": "urn:noppadol:assets:concept:smoothing-plane",
+      "@id": "urn:noppadol:assets:concept:a2-steel",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "en",
-        "@value": "smooth plane"
-      },
       "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
+        "@id": "urn:noppadol:assets:concept:material"
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "Hand-plane category that is intended for finishing a wooden surface."
+        "@value": "Tool-steel grade designation that identifies material reported as A2 for a tool component without determining its hardness."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
@@ -52,109 +48,224 @@
       "skos:prefLabel": [
         {
           "@language": "en",
-          "@value": "Smoothing plane"
+          "@value": "A2 tool steel"
         },
         {
           "@language": "th",
-          "@value": "กบเก็บผิว"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:technique",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Use or care method that describes a way of working with an asset that can be reused as knowledge."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Use technique"
-        },
-        {
-          "@language": "th",
-          "@value": "เทคนิคการใช้งาน"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:japanese-plane",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "en",
-        "@value": "Japanese plane"
-      },
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Hand-plane design category that uses the Japanese tool form without establishing the manufacture country of an individual item."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Japanese hand plane"
-        },
-        {
-          "@language": "th",
-          "@value": "กบญี่ปุ่น"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:observation",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Observation record that captures a finding from using, examining or studying an asset with observer and time."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "บันทึกการสังเกตทรัพย์สิน"
-        },
-        {
-          "@language": "en",
-          "@value": "Asset observation"
+          "@value": "เหล็กเครื่องมือ A2"
         }
       ],
       "skos:related": {
-        "@id": "urn:noppadol:assets:concept:use-session"
+        "@id": "urn:noppadol:assets:concept:plane-blade"
       }
     },
     {
-      "@id": "urn:noppadol:assets:concept:turntable",
+      "@id": "urn:noppadol:assets:concept:bench-plane",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      },
       "skos:definition": {
         "@language": "en",
-        "@value": "Grooved-disc playback device that reads a phonograph record for sound playback."
+        "@value": "Hand-plane category that groups planes intended for general bench woodworking in the source classification."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
       },
       "skos:prefLabel": [
         {
-          "@language": "th",
-          "@value": "เครื่องเล่นแผ่นเสียง"
+          "@language": "en",
+          "@value": "Bench plane"
         },
         {
+          "@language": "th",
+          "@value": "กบงานพื้นฐานบนโต๊ะช่าง"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:capability",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Conditional functional capacity that describes what an asset can support under stated conditions."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
           "@language": "en",
-          "@value": "Record player"
+          "@value": "Asset capability"
+        },
+        {
+          "@language": "th",
+          "@value": "ความสามารถในการใช้งาน"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:chamfer-plane",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Hand-plane category that is intended to cut a bevel along an edge."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Chamfer plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบลบเหลี่ยม"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:chipbreaker",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "chip breaker"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Blade-associated component that works with a plane blade to manage shavings."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Chipbreaker"
+        },
+        {
+          "@language": "th",
+          "@value": "เหล็กประกับใบกบ"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      }
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:chisel",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Bladed cutting tool that cuts or shapes material by a cutting edge, with wood use emphasized in this register."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Chisel"
+        },
+        {
+          "@language": "th",
+          "@value": "สิ่ว"
+        }
+      ],
+      "skos:related": [
+        {
+          "@id": "urn:noppadol:assets:concept:chisel-handle"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:sharpening"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:triple-ura"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:chisel-handle",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Gripping component that forms the part by which a chisel is held."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Chisel handle"
+        },
+        {
+          "@language": "th",
+          "@value": "ด้ามสิ่ว"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:chisel"
+      }
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:compass-plane",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Hand-plane category that is designed to work a curved surface with the supported curvature stated separately."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Compass plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบไสผิวโค้ง"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:content-rights",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "th",
+        "@value": "สิทธิการใช้เนื้อหา"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Permission or restriction record that describes conditions for using content associated with an asset or document."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Content usage rights"
+        },
+        {
+          "@language": "th",
+          "@value": "สิทธิในการใช้เนื้อหา"
         }
       ],
       "skos:related": {
@@ -162,46 +273,16 @@
       }
     },
     {
-      "@id": "urn:noppadol:assets:concept:sound-recording",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Identifiable recorded audio content that represents a recorded realization rather than the act of recording or a physical copy."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Sound recording"
-        },
-        {
-          "@language": "th",
-          "@value": "สิ่งบันทึกเสียง"
-        }
-      ],
-      "skos:related": [
-        {
-          "@id": "urn:noppadol:assets:concept:musical-work"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:release-edition"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:plane-blade",
+      "@id": "urn:noppadol:assets:concept:frog",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
       "skos:altLabel": {
         "@language": "th",
-        "@value": "ใบมีดกบไสไม้"
+        "@value": "ฐานรองใบกบ"
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "Cutting component that forms the cutting part of a plane and may be removable."
+        "@value": "Blade-support component that provides support for a blade assembly in planes using a frog construction."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
@@ -209,54 +290,11 @@
       "skos:prefLabel": [
         {
           "@language": "en",
-          "@value": "Plane blade"
+          "@value": "Plane frog"
         },
         {
           "@language": "th",
-          "@value": "ใบกบ"
-        }
-      ],
-      "skos:related": [
-        {
-          "@id": "urn:noppadol:assets:concept:a2-steel"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:laminated-blade"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:hand-plane"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:sharpening"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:high-speed-steel"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:plane-body",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "th",
-        "@value": "ตัวกบไสไม้"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Structural component that supports a plane's working parts."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Plane body"
-        },
-        {
-          "@language": "th",
-          "@value": "ตัวกบ"
+          "@value": "ฐานรองใบกบแบบ frog"
         }
       ],
       "skos:related": {
@@ -264,17 +302,66 @@
       }
     },
     {
+      "@id": "urn:noppadol:assets:concept:hand-plane",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": [
+        {
+          "@language": "en",
+          "@value": "handplane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบไสไม้มือ"
+        }
+      ],
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:woodworking-tool"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Manually powered cutting tool that uses a blade to shape or finish a wooden surface."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Hand plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบไสไม้"
+        }
+      ],
+      "skos:related": [
+        {
+          "@id": "urn:noppadol:assets:concept:chipbreaker"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:frog"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:plane-blade"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:plane-body"
+        }
+      ]
+    },
+    {
       "@id": "urn:noppadol:assets:concept:high-speed-steel",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
       "skos:altLabel": [
         {
-          "@language": "th",
-          "@value": "เหล็กความเร็วสูง"
-        },
-        {
           "@language": "en",
           "@value": "HSS"
+        },
+        {
+          "@language": "th",
+          "@value": "เหล็กความเร็วสูง"
         }
       ],
       "skos:broader": {
@@ -317,38 +404,117 @@
       },
       "skos:prefLabel": [
         {
-          "@language": "th",
-          "@value": "กบแจ็ก"
-        },
-        {
           "@language": "en",
           "@value": "Jack plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบแจ็ก"
         }
       ]
     },
     {
-      "@id": "urn:noppadol:assets:concept:woodworking-tool",
+      "@id": "urn:noppadol:assets:concept:japanese-plane",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
       "skos:altLabel": {
-        "@language": "th",
-        "@value": "เครื่องมือช่างไม้"
+        "@language": "en",
+        "@value": "Japanese plane"
+      },
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "Tool that performs a function in working wood rather than naming the activity itself."
+        "@value": "Hand-plane design category that uses the Japanese tool form without establishing the manufacture country of an individual item."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
       },
       "skos:prefLabel": [
         {
-          "@language": "th",
-          "@value": "เครื่องมืองานไม้"
+          "@language": "en",
+          "@value": "Japanese hand plane"
         },
         {
+          "@language": "th",
+          "@value": "กบญี่ปุ่น"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:jointer-plane",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Long hand-plane category that is intended to straighten a wooden surface or edge."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
           "@language": "en",
-          "@value": "Woodworking tool"
+          "@value": "Jointer plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบจอยเตอร์"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:laminated-blade",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Blade-construction form that combines multiple material layers as described by a source."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Laminated blade construction"
+        },
+        {
+          "@language": "th",
+          "@value": "ใบเครื่องมือโครงสร้างหลายชั้น"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:plane-blade"
+      }
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:maintenance",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "th",
+        "@value": "การดูแลบำรุงรักษา"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Care activity that preserves or restores an asset's readiness for use."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Maintenance"
+        },
+        {
+          "@language": "th",
+          "@value": "การบำรุงรักษา"
         }
       ]
     },
@@ -373,6 +539,56 @@
           "@value": "วัสดุของทรัพย์สิน"
         }
       ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:musical-work",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Musical composition that can be realized in multiple performances or recordings."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Musical work"
+        },
+        {
+          "@language": "th",
+          "@value": "ผลงานดนตรี"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:sound-recording"
+      }
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:observation",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Observation record that captures a finding from using, examining or studying an asset with observer and time."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Asset observation"
+        },
+        {
+          "@language": "th",
+          "@value": "บันทึกการสังเกตทรัพย์สิน"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:use-session"
+      }
     },
     {
       "@id": "urn:noppadol:assets:concept:oire-nomi",
@@ -410,114 +626,6 @@
       ]
     },
     {
-      "@id": "urn:noppadol:assets:concept:triple-ura",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Blade-back feature designation that indicates a three-recess form on the back of a chisel blade in the cited catalogue."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "หลังใบสิ่วแบบสามร่อง"
-        },
-        {
-          "@language": "en",
-          "@value": "Triple ura"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:chisel"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:jointer-plane",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Long hand-plane category that is intended to straighten a wooden surface or edge."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "กบจอยเตอร์"
-        },
-        {
-          "@language": "en",
-          "@value": "Jointer plane"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:chisel-handle",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Gripping component that forms the part by which a chisel is held."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "ด้ามสิ่ว"
-        },
-        {
-          "@language": "en",
-          "@value": "Chisel handle"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:chisel"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:chisel",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Bladed cutting tool that cuts or shapes material by a cutting edge, with wood use emphasized in this register."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Chisel"
-        },
-        {
-          "@language": "th",
-          "@value": "สิ่ว"
-        }
-      ],
-      "skos:related": [
-        {
-          "@id": "urn:noppadol:assets:concept:chisel-handle"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:sharpening"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:triple-ura"
-        }
-      ]
-    },
-    {
       "@id": "urn:noppadol:assets:concept:physical-item",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
@@ -540,85 +648,71 @@
       ]
     },
     {
-      "@id": "urn:noppadol:assets:concept:tataki-nomi",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": [
-        {
-          "@language": "en",
-          "@value": "Tatakinomi"
-        },
-        {
-          "@language": "en",
-          "@value": "Tataki-nomi"
-        }
-      ],
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:chisel"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Source-designated Japanese chisel category that is distinguished by the Tataki nomi designation in the referenced catalogue; size and material require separate evidence."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "สิ่วญี่ปุ่นแบบ Tataki nomi"
-        },
-        {
-          "@language": "en",
-          "@value": "Tataki nomi"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:saw",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Toothed cutting tool that divides or shapes material using teeth, without yet separating manual and powered forms."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Saw"
-        },
-        {
-          "@language": "th",
-          "@value": "เลื่อย"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:chipbreaker",
+      "@id": "urn:noppadol:assets:concept:plane-blade",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
       "skos:altLabel": {
-        "@language": "en",
-        "@value": "chip breaker"
+        "@language": "th",
+        "@value": "ใบมีดกบไสไม้"
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "Blade-associated component that works with a plane blade to manage shavings."
+        "@value": "Cutting component that forms the cutting part of a plane and may be removable."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
       },
       "skos:prefLabel": [
         {
-          "@language": "th",
-          "@value": "เหล็กประกับใบกบ"
+          "@language": "en",
+          "@value": "Plane blade"
         },
         {
+          "@language": "th",
+          "@value": "ใบกบ"
+        }
+      ],
+      "skos:related": [
+        {
+          "@id": "urn:noppadol:assets:concept:a2-steel"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:hand-plane"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:high-speed-steel"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:laminated-blade"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:sharpening"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:plane-body",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "th",
+        "@value": "ตัวกบไสไม้"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Structural component that supports a plane's working parts."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
           "@language": "en",
-          "@value": "Chipbreaker"
+          "@value": "Plane body"
+        },
+        {
+          "@language": "th",
+          "@value": "ตัวกบ"
         }
       ],
       "skos:related": {
@@ -626,15 +720,16 @@
       }
     },
     {
-      "@id": "urn:noppadol:assets:concept:chamfer-plane",
+      "@id": "urn:noppadol:assets:concept:product-model",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
+      "skos:altLabel": {
+        "@language": "th",
+        "@value": "รุ่นสินค้า"
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "Hand-plane category that is intended to cut a bevel along an edge."
+        "@value": "Product design designation that distinguishes a manufacturer's product design or model from individual items."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
@@ -642,11 +737,78 @@
       "skos:prefLabel": [
         {
           "@language": "en",
-          "@value": "Chamfer plane"
+          "@value": "Product model"
         },
         {
           "@language": "th",
-          "@value": "กบลบเหลี่ยม"
+          "@value": "รุ่นผลิตภัณฑ์"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:record-disc",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "phonograph disc"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Grooved audio disc that stores sound in grooves for playback without implying that every disc is vinyl."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Phonograph record"
+        },
+        {
+          "@language": "th",
+          "@value": "แผ่นเสียง"
+        }
+      ],
+      "skos:related": [
+        {
+          "@id": "urn:noppadol:assets:concept:content-rights"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:release-edition"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:turntable"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:release-edition",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Publication edition that distinguishes a released version of a work or recording from its individual copies."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Release edition"
+        },
+        {
+          "@language": "th",
+          "@value": "ฉบับเผยแพร่"
+        }
+      ],
+      "skos:related": [
+        {
+          "@id": "urn:noppadol:assets:concept:record-disc"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:sound-recording"
         }
       ]
     },
@@ -680,275 +842,24 @@
       ]
     },
     {
-      "@id": "urn:noppadol:assets:concept:a2-steel",
+      "@id": "urn:noppadol:assets:concept:saw",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:material"
-      },
       "skos:definition": {
         "@language": "en",
-        "@value": "Tool-steel grade designation that identifies material reported as A2 for a tool component without determining its hardness."
+        "@value": "Toothed cutting tool that divides or shapes material using teeth, without yet separating manual and powered forms."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
       },
       "skos:prefLabel": [
         {
-          "@language": "th",
-          "@value": "เหล็กเครื่องมือ A2"
-        },
-        {
           "@language": "en",
-          "@value": "A2 tool steel"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:plane-blade"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:capability",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Conditional functional capacity that describes what an asset can support under stated conditions."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
+          "@value": "Saw"
+        },
         {
           "@language": "th",
-          "@value": "ความสามารถในการใช้งาน"
-        },
-        {
-          "@language": "en",
-          "@value": "Asset capability"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:sharpening-stone",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "th",
-        "@value": "หินลับคมเครื่องมือ"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Abrasive block or plate that is used to form or maintain a tool's cutting edge."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "หินลับคม"
-        },
-        {
-          "@language": "en",
-          "@value": "Sharpening stone"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:sharpening"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:laminated-blade",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Blade-construction form that combines multiple material layers as described by a source."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "ใบเครื่องมือโครงสร้างหลายชั้น"
-        },
-        {
-          "@language": "en",
-          "@value": "Laminated blade construction"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:plane-blade"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:sole-flattening-plane",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Hand-plane category that is used to adjust the sole of another plane."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "กบปรับฐานกบ"
-        },
-        {
-          "@language": "en",
-          "@value": "Sole flattening plane"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:content-rights",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "th",
-        "@value": "สิทธิการใช้เนื้อหา"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Permission or restriction record that describes conditions for using content associated with an asset or document."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "สิทธิในการใช้เนื้อหา"
-        },
-        {
-          "@language": "en",
-          "@value": "Content usage rights"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:record-disc"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:hand-plane",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": [
-        {
-          "@language": "th",
-          "@value": "กบไสไม้มือ"
-        },
-        {
-          "@language": "en",
-          "@value": "handplane"
-        }
-      ],
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:woodworking-tool"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Manually powered cutting tool that uses a blade to shape or finish a wooden surface."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "กบไสไม้"
-        },
-        {
-          "@language": "en",
-          "@value": "Hand plane"
-        }
-      ],
-      "skos:related": [
-        {
-          "@id": "urn:noppadol:assets:concept:frog"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:plane-body"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:plane-blade"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:chipbreaker"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:frog",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "th",
-        "@value": "ฐานรองใบกบ"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Blade-support component that provides support for a blade assembly in planes using a frog construction."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "ฐานรองใบกบแบบ frog"
-        },
-        {
-          "@language": "en",
-          "@value": "Plane frog"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:record-disc",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "en",
-        "@value": "phonograph disc"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Grooved audio disc that stores sound in grooves for playback without implying that every disc is vinyl."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "แผ่นเสียง"
-        },
-        {
-          "@language": "en",
-          "@value": "Phonograph record"
-        }
-      ],
-      "skos:related": [
-        {
-          "@id": "urn:noppadol:assets:concept:turntable"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:release-edition"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:content-rights"
+          "@value": "เลื่อย"
         }
       ]
     },
@@ -982,15 +893,235 @@
       ],
       "skos:related": [
         {
-          "@id": "urn:noppadol:assets:concept:sharpening-stone"
-        },
-        {
           "@id": "urn:noppadol:assets:concept:chisel"
         },
         {
           "@id": "urn:noppadol:assets:concept:plane-blade"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:sharpening-stone"
         }
       ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:sharpening-stone",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "th",
+        "@value": "หินลับคมเครื่องมือ"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Abrasive block or plate that is used to form or maintain a tool's cutting edge."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Sharpening stone"
+        },
+        {
+          "@language": "th",
+          "@value": "หินลับคม"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:sharpening"
+      }
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:smoothing-plane",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "smooth plane"
+      },
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Hand-plane category that is intended for finishing a wooden surface."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Smoothing plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบเก็บผิว"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:sole-flattening-plane",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:hand-plane"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Hand-plane category that is used to adjust the sole of another plane."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Sole flattening plane"
+        },
+        {
+          "@language": "th",
+          "@value": "กบปรับฐานกบ"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:sound-recording",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Identifiable recorded audio content that represents a recorded realization rather than the act of recording or a physical copy."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Sound recording"
+        },
+        {
+          "@language": "th",
+          "@value": "สิ่งบันทึกเสียง"
+        }
+      ],
+      "skos:related": [
+        {
+          "@id": "urn:noppadol:assets:concept:musical-work"
+        },
+        {
+          "@id": "urn:noppadol:assets:concept:release-edition"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:tataki-nomi",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:altLabel": [
+        {
+          "@language": "en",
+          "@value": "Tataki-nomi"
+        },
+        {
+          "@language": "en",
+          "@value": "Tatakinomi"
+        }
+      ],
+      "skos:broader": {
+        "@id": "urn:noppadol:assets:concept:chisel"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Source-designated Japanese chisel category that is distinguished by the Tataki nomi designation in the referenced catalogue; size and material require separate evidence."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Tataki nomi"
+        },
+        {
+          "@language": "th",
+          "@value": "สิ่วญี่ปุ่นแบบ Tataki nomi"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:technique",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Use or care method that describes a way of working with an asset that can be reused as knowledge."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Use technique"
+        },
+        {
+          "@language": "th",
+          "@value": "เทคนิคการใช้งาน"
+        }
+      ]
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:triple-ura",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Blade-back feature designation that indicates a three-recess form on the back of a chisel blade in the cited catalogue."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Triple ura"
+        },
+        {
+          "@language": "th",
+          "@value": "หลังใบสิ่วแบบสามร่อง"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:chisel"
+      }
+    },
+    {
+      "@id": "urn:noppadol:assets:concept:turntable",
+      "@type": "skos:Concept",
+      "ns1:reviewStatus": "proposed",
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Grooved-disc playback device that reads a phonograph record for sound playback."
+      },
+      "skos:inScheme": {
+        "@id": "urn:noppadol:assets:scheme"
+      },
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Record player"
+        },
+        {
+          "@language": "th",
+          "@value": "เครื่องเล่นแผ่นเสียง"
+        }
+      ],
+      "skos:related": {
+        "@id": "urn:noppadol:assets:concept:record-disc"
+      }
     },
     {
       "@id": "urn:noppadol:assets:concept:use-session",
@@ -1005,12 +1136,12 @@
       },
       "skos:prefLabel": [
         {
-          "@language": "th",
-          "@value": "กิจกรรมใช้ทรัพย์สิน"
-        },
-        {
           "@language": "en",
           "@value": "Asset use session"
+        },
+        {
+          "@language": "th",
+          "@value": "กิจกรรมใช้ทรัพย์สิน"
         }
       ],
       "skos:related": {
@@ -1018,16 +1149,16 @@
       }
     },
     {
-      "@id": "urn:noppadol:assets:concept:maintenance",
+      "@id": "urn:noppadol:assets:concept:woodworking-tool",
       "@type": "skos:Concept",
       "ns1:reviewStatus": "proposed",
       "skos:altLabel": {
         "@language": "th",
-        "@value": "การดูแลบำรุงรักษา"
+        "@value": "เครื่องมือช่างไม้"
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "Care activity that preserves or restores an asset's readiness for use."
+        "@value": "Tool that performs a function in working wood rather than naming the activity itself."
       },
       "skos:inScheme": {
         "@id": "urn:noppadol:assets:scheme"
@@ -1035,142 +1166,11 @@
       "skos:prefLabel": [
         {
           "@language": "en",
-          "@value": "Maintenance"
+          "@value": "Woodworking tool"
         },
         {
           "@language": "th",
-          "@value": "การบำรุงรักษา"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:product-model",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:altLabel": {
-        "@language": "th",
-        "@value": "รุ่นสินค้า"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Product design designation that distinguishes a manufacturer's product design or model from individual items."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "รุ่นผลิตภัณฑ์"
-        },
-        {
-          "@language": "en",
-          "@value": "Product model"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:musical-work",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Musical composition that can be realized in multiple performances or recordings."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "ผลงานดนตรี"
-        },
-        {
-          "@language": "en",
-          "@value": "Musical work"
-        }
-      ],
-      "skos:related": {
-        "@id": "urn:noppadol:assets:concept:sound-recording"
-      }
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:release-edition",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Publication edition that distinguishes a released version of a work or recording from its individual copies."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "en",
-          "@value": "Release edition"
-        },
-        {
-          "@language": "th",
-          "@value": "ฉบับเผยแพร่"
-        }
-      ],
-      "skos:related": [
-        {
-          "@id": "urn:noppadol:assets:concept:sound-recording"
-        },
-        {
-          "@id": "urn:noppadol:assets:concept:record-disc"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:compass-plane",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Hand-plane category that is designed to work a curved surface with the supported curvature stated separately."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "กบไสผิวโค้ง"
-        },
-        {
-          "@language": "en",
-          "@value": "Compass plane"
-        }
-      ]
-    },
-    {
-      "@id": "urn:noppadol:assets:concept:bench-plane",
-      "@type": "skos:Concept",
-      "ns1:reviewStatus": "proposed",
-      "skos:broader": {
-        "@id": "urn:noppadol:assets:concept:hand-plane"
-      },
-      "skos:definition": {
-        "@language": "en",
-        "@value": "Hand-plane category that groups planes intended for general bench woodworking in the source classification."
-      },
-      "skos:inScheme": {
-        "@id": "urn:noppadol:assets:scheme"
-      },
-      "skos:prefLabel": [
-        {
-          "@language": "th",
-          "@value": "กบงานพื้นฐานบนโต๊ะช่าง"
-        },
-        {
-          "@language": "en",
-          "@value": "Bench plane"
+          "@value": "เครื่องมืองานไม้"
         }
       ]
     }

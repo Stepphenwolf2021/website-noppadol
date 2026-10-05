@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const semantic=read('src/_data/semantic.json'),editorial=read('src/_data/editorial.json');
 const byId=new Map(semantic.concepts.map(c=>[c.id,c]));
@@ -43,4 +44,11 @@ test('New public artifacts contain no inventory, private evidence or workbench',
  for(const f of inspect){const text=fs.readFileSync(f,'utf8');assert.doesNotMatch(text,/AST-\d{6}|binderPath|sourceText|\/Users\/|\/Draft\/Asset\//,f);}
  assert.ok(!fs.existsSync('_site/workflow'));assert.ok(!fs.existsSync('_site/data/processed-assets'));
  for(const a of editorial.articles){assert.ok(a.title&&a.body);assert.ok(!('sourceIds' in a));}
+});
+
+test('Release hashes match every shipped ontology artifact',()=>{
+ const release=read('src/ontology/domains/release.json');
+ for(const [name,expected] of Object.entries(release.files)){
+  for(const base of ['src/ontology/domains','_site/ontology/domains'])assert.equal(createHash('sha256').update(fs.readFileSync(path.join(base,name))).digest('hex'),expected,name);
+ }
 });
