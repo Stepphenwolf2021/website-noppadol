@@ -52,3 +52,11 @@ test('Release hashes match every shipped ontology artifact',()=>{
   for(const base of ['src/ontology/domains','_site/ontology/domains'])assert.equal(createHash('sha256').update(fs.readFileSync(path.join(base,name))).digest('hex'),expected,name);
  }
 });
+
+test('Hand plane metadata omits the ten fields removed by the owner',()=>{
+ const profile=read('src/ontology/domains/metadata-profile.json');
+ assert.equal(profile.version,'1.4.1');
+ const fields=profile.fields.filter(f=>f.id.startsWith('hand_plane.'));
+ assert.equal(fields.length,14);
+ for(const name of ['intended_workpiece_wood','blade','blade_thickness','blade_construction','setup_notes','sharpening_history','chipbreaker','frog','heat_treatment','sole_adjustments'])assert.ok(!fields.some(f=>f.id==='hand_plane.'+name),name);
+});
