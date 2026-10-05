@@ -934,12 +934,78 @@
       "priority": "High",
       "owner": "เจ้าของโครงการ",
       "status": "proposed"
+    },
+    {
+      "id": "scenario-prepare-board",
+      "label": "หาแนวอ่านก่อนไสกระดานทำชั้นวาง",
+      "problem": "ผู้เริ่มต้นมีไม้สำหรับทำชั้นวาง แต่ค้นคำว่า “กบ” แล้วได้เนื้อหาหลายชนิดปนกัน",
+      "solution": "เริ่มที่ Woodworking tool → Hand plane แล้วเปรียบเทียบ Jack plane, Jointer plane และ Smoothing plane; ลำดับขั้นการทำงานเขียนในบทความ ไม่ใช้เป็นความสัมพันธ์ is-a",
+      "priority": "High",
+      "owner": "เจ้าของโครงการ / ผู้เขียนเนื้อหา",
+      "status": "proposed",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "scenario-japanese-plane",
+      "label": "ค้นเนื้อหาเรื่องกบญี่ปุ่น",
+      "problem": "ผู้อ่านเห็นคำว่า kanna ในบทความและอยากรู้ว่าเกี่ยวกับกบไสไม้ชนิดใด",
+      "solution": "เลือก Japanese hand plane ใต้ Hand plane และใช้คำเรียกจาก CV เพื่อค้นเนื้อหาที่ติดแท็กเดียวกัน",
+      "priority": "High",
+      "owner": "เจ้าของโครงการ / ผู้เขียนเนื้อหา",
+      "status": "proposed",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "scenario-joinery-chisel",
+      "label": "เปรียบเทียบสิ่วก่อนเขียนเรื่องเข้าไม้",
+      "problem": "ผู้เขียนกำลังเตรียมบทความเข้าไม้ ต้องแยก Oire nomi กับ Tataki nomi ให้ผู้อ่านเห็นขอบเขต",
+      "solution": "เปิด Chisel แล้วเทียบแนวคิดลูกทั้งสองพร้อมนิยาม; ความเหมาะสมกับงานต้องมีหลักฐานเพิ่มเติมในเนื้อหา",
+      "priority": "High",
+      "owner": "เจ้าของโครงการ / ผู้เขียนเนื้อหา",
+      "status": "proposed",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "scenario-sharpening-guide",
+      "label": "หาเนื้อหาการลับคม",
+      "problem": "เจ้าของจะรวบรวมบทความดูแลเครื่องมือ แต่ผลค้นปะปนหินลับกับกิจกรรมลับคม",
+      "solution": "ใช้ Maintenance → Sharpening จัดกลุ่มกิจกรรม ส่วน Sharpening stone เป็นแนวคิดเครื่องมือที่เชื่อมด้วย related ใน Thesaurus",
+      "priority": "High",
+      "owner": "เจ้าของโครงการ / ผู้เขียนเนื้อหา",
+      "status": "proposed",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "scenario-plane-parts",
+      "label": "จัดบทความอธิบายส่วนประกอบกบ",
+      "problem": "ผู้เขียนจะอธิบาย Plane blade, Chipbreaker และ Plane frog โดยไม่ให้ผู้อ่านเข้าใจว่าเป็นชนิดของกบ",
+      "solution": "คงแนวคิดส่วนประกอบแยกจาก Hand plane; ความสัมพันธ์ part-of จัดใน Ontology ไม่ใส่เป็น parent แบบ is-a",
+      "priority": "Medium",
+      "owner": "เจ้าของโครงการ / ผู้เขียนเนื้อหา",
+      "status": "proposed",
+      "done": false,
+      "basis": "synthetic_fixture"
+    },
+    {
+      "id": "scenario-tool-steel",
+      "label": "ค้นเนื้อหาวัสดุใบเครื่องมือ",
+      "problem": "ผู้อ่านต้องการอ่านเปรียบเทียบ A2 กับเหล็ก HSS แต่ไม่ต้องการรายชื่อทรัพย์สินส่วนตัว",
+      "solution": "เปิด Asset material → A2 tool steel / High-speed steel เพื่อจัดแท็กเรื่องวัสดุ โดยไม่จำแนกเหล็กเป็นชนิดของกบ",
+      "priority": "Medium",
+      "owner": "เจ้าของโครงการ / ผู้เขียนเนื้อหา",
+      "status": "proposed",
+      "done": false,
+      "basis": "synthetic_fixture"
     }
   ],
   "schemes": [
     {
       "id": "assets",
-      "label": "My Assets · Woodworking scope",
+      "label": "Woodworking knowledge · ความรู้เรื่องงานไม้",
       "uri": "urn:noppadol:assets:scheme",
       "scope": "ขอบเขตงานไม้และคำร่วมจาก public vocabulary"
     }
@@ -951,7 +1017,8 @@
       "parent": "asset-concept-woodworking-tool",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Hand plane → Woodworking tool"
     },
     {
       "id": "hierarchy-2",
@@ -959,7 +1026,8 @@
       "parent": "asset-concept-maintenance",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Sharpening → Maintenance"
     },
     {
       "id": "hierarchy-3",
@@ -967,7 +1035,8 @@
       "parent": "asset-concept-maintenance",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Repair → Maintenance"
     },
     {
       "id": "hierarchy-4",
@@ -975,7 +1044,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Bench plane → Hand plane"
     },
     {
       "id": "hierarchy-5",
@@ -983,7 +1053,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Smoothing plane → Hand plane"
     },
     {
       "id": "hierarchy-6",
@@ -991,7 +1062,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Jack plane → Hand plane"
     },
     {
       "id": "hierarchy-7",
@@ -999,7 +1071,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Jointer plane → Hand plane"
     },
     {
       "id": "hierarchy-8",
@@ -1007,7 +1080,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Japanese hand plane → Hand plane"
     },
     {
       "id": "hierarchy-9",
@@ -1015,7 +1089,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Chamfer plane → Hand plane"
     },
     {
       "id": "hierarchy-10",
@@ -1023,7 +1098,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Compass plane → Hand plane"
     },
     {
       "id": "hierarchy-11",
@@ -1031,7 +1107,8 @@
       "parent": "asset-concept-hand-plane",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Sole flattening plane → Hand plane"
     },
     {
       "id": "hierarchy-12",
@@ -1039,7 +1116,8 @@
       "parent": "asset-concept-chisel",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Oire nomi → Chisel"
     },
     {
       "id": "hierarchy-13",
@@ -1047,7 +1125,8 @@
       "parent": "asset-concept-chisel",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "Tataki nomi → Chisel"
     },
     {
       "id": "hierarchy-14",
@@ -1055,7 +1134,8 @@
       "parent": "asset-concept-material",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "A2 tool steel → Asset material"
     },
     {
       "id": "hierarchy-15",
@@ -1063,7 +1143,8 @@
       "parent": "asset-concept-material",
       "scheme": "assets",
       "rationale": "Inherited public editorial hierarchy; review pending",
-      "status": "proposed"
+      "status": "proposed",
+      "label": "High-speed steel → Asset material"
     }
   ],
   "relations": [
@@ -1590,5 +1671,6 @@
     "standards": "SKOS / Dublin Core / RDF / RDFS / OWL / SHACL",
     "thesaurusPurpose": "คำพ้อง ความสัมพันธ์เพื่อค้นพบเนื้อหา และ mappings ที่มีหลักฐาน",
     "graphPurpose": "เชื่อมข้อมูลกับหลักฐานและต้นฉบับเนื้อหา"
-  }
+  },
+  "taxonomyExamplesVersion": "woodworking-taxonomy-examples-1"
 }
