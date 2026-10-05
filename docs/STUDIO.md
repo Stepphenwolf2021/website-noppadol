@@ -13,3 +13,8 @@
 - เว็บไซต์เสิร์ฟโค้ดแอปต่อสาธารณะ; workspace ของเจ้าของไม่อยู่ใน repo/server ไม่ได้ซ่อนด้วย login และไม่ส่งข้อมูลไป backend
 
 ทดสอบ: `npm run test:studio`; build กับ Eleventy ตามเดิม
+
+## Taxonomy layout (20261005-2)
+Stage 3 provides a use-case table, collapsible coverage model and scheme-grouped concept tree with editable broader concept, scheme, definition and Is-a rationale. The tree displays concept labels, retaining legacy relation IDs. Parent options exclude self and descendants. Definitions edit the same CV records used by export.
+
+Six woodworking scenarios are explicitly simulated and start with Done unchecked. Done records the owner's scenario trial, separately from semantic review. Existing browser workspaces receive missing scenario IDs once; edited rows are preserved, and subsequently deleted examples are not restored. No stored workspace is replaced by the new seed. Scheme titles already edited by the owner remain unchanged.
