@@ -3,7 +3,7 @@
 เปิด `/studio/` บน noppadol.online เป็นเว็บแอป static สำหรับเจ้าของ ใช้ IndexedDB ในเบราว์เซอร์ ไม่มี backend/login/cloud sync ตามที่เจ้าของเลือกวันที่ 5 ตุลาคม 2026
 
 - เพิ่ม แก้ไข ลบ Sources/Terms/Metadata/Crosswalk/Use cases/Schemes/Hierarchy/Related/Mappings/Collections/CQ/Classes/Properties/Constraints/Individuals/Triples/Queries/Content
-- ช่องแก้ไขบันทึกเมื่อออกจากช่อง; สถานะด้านบนยืนยันเมื่อ transaction บันทึกสำเร็จ
+- ช่องแก้ไขบันทึกอัตโนมัติระหว่างพิมพ์; สถานะด้านบนยืนยันเมื่อ transaction บันทึกสำเร็จ
 - ปุ่มย้อนกลับเก็บ 30 การแก้ไขใน session นี้ ดาวน์โหลดไฟล์สำรองก่อนล้างข้อมูลเบราว์เซอร์/ย้ายเครื่อง/เปลี่ยนโดเมน
 - Import ตรวจรูปแบบก่อนแทน workspace ย้อนกลับได้ภายใน session; export ZIP มี project.json, RDF Turtle/JSON-LD, metadata, CSV, SHACL, queries, Markdown, manifest พร้อม SHA256
 - `website/content.json` เลือกเฉพาะร่าง public + ready และไม่รวม source references; ไม่มีการ publish อัตโนมัติ
