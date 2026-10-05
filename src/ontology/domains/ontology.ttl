@@ -262,4 +262,3 @@ a:AssetRecord a owl:Class ;
     rdfs:label "Asset record"@en ;
     rdfs:comment "Governed record in the personal assets module; not an assertion of ownership."@en ;
     rdfs:subClassOf n:ManagedRecord .
-

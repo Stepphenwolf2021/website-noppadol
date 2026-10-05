@@ -353,4 +353,3 @@
         <urn:noppadol:assets:concept:plane-blade>,
         <urn:noppadol:assets:concept:plane-body> ;
     ns1:reviewStatus "proposed" .
-
