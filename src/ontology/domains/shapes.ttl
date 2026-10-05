@@ -1,0 +1,75 @@
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix n: <urn:noppadol:ontology:> .
+@prefix w: <https://noppadol.online/ns/workflow#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+a:SourceShape a sh:NodeShape; sh:targetClass a:SourceRecord;
+ sh:not [sh:or ([sh:class a:AssetItem] [sh:class a:ProductModel] [sh:class a:ReleaseEdition])];
+ sh:property [sh:path dct:identifier; sh:minCount 1; sh:maxCount 1; sh:pattern "^AST-[0-9]{6}$"];
+ sh:property [sh:path n:title; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path a:sourceUUID; sh:minCount 1; sh:maxCount 1; sh:pattern "^[0-9A-F-]{36}$"];
+ sh:property [sh:path a:recordRevision; sh:minCount 1; sh:maxCount 1; sh:pattern "^[a-f0-9]{64}$"];
+ sh:property [sh:path a:sourceRevision; sh:minCount 1; sh:maxCount 1; sh:class n:SourceRevision];
+ sh:property [sh:path w:access; sh:hasValue "private"; sh:maxCount 1];
+ sh:property [sh:path w:publicationStatus; sh:hasValue "draft"; sh:maxCount 1];
+ sh:property [sh:path w:reviewStatus; sh:hasValue "unreviewed"; sh:maxCount 1];
+ sh:property [sh:path a:edition; sh:maxCount 0];
+ sh:property [sh:path a:candidateConcept; sh:minCount 1; sh:class skos:Concept] .
+n:RevisionShape a sh:NodeShape; sh:targetClass n:SourceRevision;
+ sh:property [sh:path n:sha256; sh:minCount 1; sh:maxCount 1; sh:pattern "^[a-f0-9]{64}$"] .
+a:ObservationShape a sh:NodeShape; sh:targetClass a:AssetObservation;
+ sh:property [sh:path a:observedSubject; sh:minCount 1; sh:maxCount 1; sh:class a:SourceRecord];
+ sh:property [sh:path a:field; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI];
+ sh:property [sh:path a:textValue; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path a:excerpt; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path a:startLine; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:integer; sh:minInclusive 1];
+ sh:property [sh:path a:endLine; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:integer; sh:minInclusive 1];
+ sh:property [sh:path a:sourceRevision; sh:minCount 1; sh:maxCount 1; sh:class n:SourceRevision];
+ sh:property [sh:path w:reviewStatus; sh:hasValue "source_derived_unreviewed"; sh:maxCount 1];
+ sh:sparql [sh:message "Observation revision must match its source record, and line range must be ordered.";
+ sh:select """PREFIX a: <urn:noppadol:assets:ontology:>
+ SELECT $this WHERE {$this a:observedSubject ?r; a:sourceRevision ?v; a:startLine ?s; a:endLine ?e .
+ ?r a:sourceRevision ?rv . FILTER (?v != ?rv || ?e < ?s)}"""] .
+a:MatchShape a sh:NodeShape; sh:targetClass a:EditionMatch;
+ sh:property [sh:path prov:wasDerivedFrom; sh:minCount 1; sh:class prov:Entity];
+ sh:property [sh:path a:forRecord; sh:minCount 1; sh:maxCount 1; sh:class a:SourceRecord];
+ sh:property [sh:path a:candidateEdition; sh:minCount 1; sh:maxCount 1; sh:class a:ReleaseEdition];
+ sh:property [sh:path a:sourceRevision; sh:minCount 1; sh:maxCount 1; sh:class n:SourceRevision];
+ sh:property [sh:path w:reviewStatus; sh:hasValue "proposed"; sh:maxCount 1];
+ sh:property [sh:path a:searchMethod; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
+ sh:property [sh:path a:rationale; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:sparql [sh:message "Edition proposal source revision is stale.";
+ sh:select """PREFIX a: <urn:noppadol:assets:ontology:>
+ SELECT $this WHERE {$this a:forRecord ?r; a:sourceRevision ?v . ?r a:sourceRevision ?rv . FILTER(?v != ?rv)}"""] .
+a:EditionShape a sh:NodeShape; sh:targetClass a:ReleaseEdition;
+ sh:not [sh:or ([sh:class a:AssetItem] [sh:class a:SourceRecord] [sh:class a:ReleaseGroup])];
+ sh:property [sh:path n:title; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string] .
+a:TrackShape a sh:NodeShape; sh:targetClass a:TrackEntry;
+ sh:property [sh:path a:inEdition; sh:minCount 1; sh:maxCount 1; sh:class a:ReleaseEdition] .
+a:ContentShape a sh:NodeShape; sh:targetClass a:ContentDraft;
+ sh:property [sh:path n:title; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string; sh:minLength 1];
+ sh:property [sh:path w:stage; sh:minCount 1; sh:maxCount 1; sh:in ("idea" "draft" "review" "ready" "published")];
+ sh:property [sh:path w:access; sh:minCount 1; sh:maxCount 1; sh:in ("private" "public")];
+ sh:property [sh:path w:revision; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:integer; sh:minInclusive 1];
+ sh:property [sh:path w:describesRecord; sh:class a:SourceRecord];
+ sh:sparql [sh:message "Content source link must have the current source revision.";
+ sh:select """PREFIX a: <urn:noppadol:assets:ontology:> PREFIX w: <https://noppadol.online/ns/workflow#>
+ SELECT $this WHERE {$this w:describesRecord ?r . ?r a:sourceRevision ?rev . FILTER NOT EXISTS {$this w:sourceRevision ?rev}}"""] .
+a:PhysicalItemShape a sh:NodeShape; sh:targetClass a:AssetItem;
+ sh:not [sh:or ([sh:class a:SourceRecord] [sh:class a:ProductModel] [sh:class a:ReleaseEdition])];
+ sh:property [sh:path a:model; sh:maxCount 1; sh:class a:ProductModel];
+ sh:property [sh:path a:edition; sh:maxCount 1; sh:class a:ReleaseEdition];
+ sh:property [sh:path a:hasComponent; sh:class a:Component] .
+a:ModelShape a sh:NodeShape; sh:targetClass a:ProductModel;
+ sh:not [sh:or ([sh:class a:AssetItem] [sh:class a:SourceRecord] [sh:class a:ReleaseEdition])] .
+a:MusicalWorkShape a sh:NodeShape; sh:targetClass a:MusicalWork;
+ sh:not [sh:or ([sh:class a:SoundRecording] [sh:class a:ReleaseEdition] [sh:class a:AssetItem])] .
+a:RecordingShape a sh:NodeShape; sh:targetClass a:SoundRecording;
+ sh:not [sh:or ([sh:class a:MusicalWork] [sh:class a:ReleaseEdition] [sh:class a:AssetItem])];
+ sh:property [sh:path a:recordingOf; sh:class a:MusicalWork] .
+a:EditionRecordingShape a sh:NodeShape; sh:targetClass a:ReleaseEdition;
+ sh:property [sh:path a:hasRecording; sh:class a:SoundRecording] .

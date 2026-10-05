@@ -12,13 +12,15 @@
     "gallery:import": "node tools/gallery/cli.mjs import",
     "gallery:approve": "node tools/gallery/cli.mjs approve",
     "gallery:preview": "node tools/gallery/preview.mjs",
-    "test:gallery": "node --test tests/gallery.test.mjs"
+    "test:gallery": "node --test tests/gallery.test.mjs",
+    "test:domains": "node --test tests/domains.test.mjs"
   },
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "js-yaml": "^4.1.0",
+    "markdown-it": "^14.3.1",
     "markdown-it-attrs": "^4.3.1",
     "sharp": "0.35.5"
   }

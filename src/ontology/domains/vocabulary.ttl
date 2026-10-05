@@ -1,0 +1,356 @@
+@prefix ns1: <https://noppadol.online/ns/workflow#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<urn:noppadol:assets:concept:bench-plane> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane category that groups planes intended for general bench woodworking in the source classification."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Bench plane"@en,
+        "กบงานพื้นฐานบนโต๊ะช่าง"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:capability> a skos:Concept ;
+    skos:definition "Conditional functional capacity that describes what an asset can support under stated conditions."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Asset capability"@en,
+        "ความสามารถในการใช้งาน"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:chamfer-plane> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane category that is intended to cut a bevel along an edge."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Chamfer plane"@en,
+        "กบลบเหลี่ยม"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:compass-plane> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane category that is designed to work a curved surface with the supported curvature stated separately."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Compass plane"@en,
+        "กบไสผิวโค้ง"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:jack-plane> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane category that is used for stock preparation and general planing under the source's jack-plane classification."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Jack plane"@en,
+        "กบแจ็ก"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:japanese-plane> a skos:Concept ;
+    skos:altLabel "Japanese plane"@en ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane design category that uses the Japanese tool form without establishing the manufacture country of an individual item."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Japanese hand plane"@en,
+        "กบญี่ปุ่น"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:jointer-plane> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Long hand-plane category that is intended to straighten a wooden surface or edge."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Jointer plane"@en,
+        "กบจอยเตอร์"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:oire-nomi> a skos:Concept ;
+    skos:altLabel "Oire-nomi"@en,
+        "Oirenomi"@en ;
+    skos:broader <urn:noppadol:assets:concept:chisel> ;
+    skos:definition "Source-designated Japanese chisel category that is distinguished by the Oire nomi designation in the referenced tool catalogue; functional boundaries remain to be verified."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Oire nomi"@en,
+        "สิ่วญี่ปุ่นแบบ Oire nomi"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:physical-item> a skos:Concept ;
+    skos:definition "Individual tangible object that is identifiable separately from a product type or model."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Physical item"@en,
+        "วัตถุรายชิ้น"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:product-model> a skos:Concept ;
+    skos:altLabel "รุ่นสินค้า"@th ;
+    skos:definition "Product design designation that distinguishes a manufacturer's product design or model from individual items."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Product model"@en,
+        "รุ่นผลิตภัณฑ์"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:repair> a skos:Concept ;
+    skos:altLabel "การซ่อมแซม"@th ;
+    skos:broader <urn:noppadol:assets:concept:maintenance> ;
+    skos:definition "Restorative activity that corrects damage or malfunction in an asset."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Repair"@en,
+        "การซ่อม"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:saw> a skos:Concept ;
+    skos:definition "Toothed cutting tool that divides or shapes material using teeth, without yet separating manual and powered forms."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Saw"@en,
+        "เลื่อย"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:smoothing-plane> a skos:Concept ;
+    skos:altLabel "smooth plane"@en ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane category that is intended for finishing a wooden surface."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Smoothing plane"@en,
+        "กบเก็บผิว"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:sole-flattening-plane> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:hand-plane> ;
+    skos:definition "Hand-plane category that is used to adjust the sole of another plane."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Sole flattening plane"@en,
+        "กบปรับฐานกบ"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:tataki-nomi> a skos:Concept ;
+    skos:altLabel "Tataki-nomi"@en,
+        "Tatakinomi"@en ;
+    skos:broader <urn:noppadol:assets:concept:chisel> ;
+    skos:definition "Source-designated Japanese chisel category that is distinguished by the Tataki nomi designation in the referenced catalogue; size and material require separate evidence."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Tataki nomi"@en,
+        "สิ่วญี่ปุ่นแบบ Tataki nomi"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:technique> a skos:Concept ;
+    skos:definition "Use or care method that describes a way of working with an asset that can be reused as knowledge."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Use technique"@en,
+        "เทคนิคการใช้งาน"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:a2-steel> a skos:Concept ;
+    skos:broader <urn:noppadol:assets:concept:material> ;
+    skos:definition "Tool-steel grade designation that identifies material reported as A2 for a tool component without determining its hardness."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "A2 tool steel"@en,
+        "เหล็กเครื่องมือ A2"@th ;
+    skos:related <urn:noppadol:assets:concept:plane-blade> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:chipbreaker> a skos:Concept ;
+    skos:altLabel "chip breaker"@en ;
+    skos:definition "Blade-associated component that works with a plane blade to manage shavings."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Chipbreaker"@en,
+        "เหล็กประกับใบกบ"@th ;
+    skos:related <urn:noppadol:assets:concept:hand-plane> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:chisel-handle> a skos:Concept ;
+    skos:definition "Gripping component that forms the part by which a chisel is held."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Chisel handle"@en,
+        "ด้ามสิ่ว"@th ;
+    skos:related <urn:noppadol:assets:concept:chisel> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:content-rights> a skos:Concept ;
+    skos:altLabel "สิทธิการใช้เนื้อหา"@th ;
+    skos:definition "Permission or restriction record that describes conditions for using content associated with an asset or document."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Content usage rights"@en,
+        "สิทธิในการใช้เนื้อหา"@th ;
+    skos:related <urn:noppadol:assets:concept:record-disc> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:frog> a skos:Concept ;
+    skos:altLabel "ฐานรองใบกบ"@th ;
+    skos:definition "Blade-support component that provides support for a blade assembly in planes using a frog construction."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Plane frog"@en,
+        "ฐานรองใบกบแบบ frog"@th ;
+    skos:related <urn:noppadol:assets:concept:hand-plane> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:high-speed-steel> a skos:Concept ;
+    skos:altLabel "HSS"@en,
+        "เหล็กความเร็วสูง"@th ;
+    skos:broader <urn:noppadol:assets:concept:material> ;
+    skos:definition "Steel material family that groups materials reported as high-speed steel without equating all grades."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "High-speed steel"@en,
+        "เหล็กไฮสปีด"@th ;
+    skos:related <urn:noppadol:assets:concept:plane-blade> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:laminated-blade> a skos:Concept ;
+    skos:definition "Blade-construction form that combines multiple material layers as described by a source."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Laminated blade construction"@en,
+        "ใบเครื่องมือโครงสร้างหลายชั้น"@th ;
+    skos:related <urn:noppadol:assets:concept:plane-blade> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:musical-work> a skos:Concept ;
+    skos:definition "Musical composition that can be realized in multiple performances or recordings."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Musical work"@en,
+        "ผลงานดนตรี"@th ;
+    skos:related <urn:noppadol:assets:concept:sound-recording> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:observation> a skos:Concept ;
+    skos:definition "Observation record that captures a finding from using, examining or studying an asset with observer and time."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Asset observation"@en,
+        "บันทึกการสังเกตทรัพย์สิน"@th ;
+    skos:related <urn:noppadol:assets:concept:use-session> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:plane-body> a skos:Concept ;
+    skos:altLabel "ตัวกบไสไม้"@th ;
+    skos:definition "Structural component that supports a plane's working parts."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Plane body"@en,
+        "ตัวกบ"@th ;
+    skos:related <urn:noppadol:assets:concept:hand-plane> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:sharpening-stone> a skos:Concept ;
+    skos:altLabel "หินลับคมเครื่องมือ"@th ;
+    skos:definition "Abrasive block or plate that is used to form or maintain a tool's cutting edge."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Sharpening stone"@en,
+        "หินลับคม"@th ;
+    skos:related <urn:noppadol:assets:concept:sharpening> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:triple-ura> a skos:Concept ;
+    skos:definition "Blade-back feature designation that indicates a three-recess form on the back of a chisel blade in the cited catalogue."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Triple ura"@en,
+        "หลังใบสิ่วแบบสามร่อง"@th ;
+    skos:related <urn:noppadol:assets:concept:chisel> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:turntable> a skos:Concept ;
+    skos:definition "Grooved-disc playback device that reads a phonograph record for sound playback."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Record player"@en,
+        "เครื่องเล่นแผ่นเสียง"@th ;
+    skos:related <urn:noppadol:assets:concept:record-disc> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:use-session> a skos:Concept ;
+    skos:definition "Use or trial event that records an occasion of working or learning with an asset."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Asset use session"@en,
+        "กิจกรรมใช้ทรัพย์สิน"@th ;
+    skos:related <urn:noppadol:assets:concept:observation> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:woodworking-tool> a skos:Concept ;
+    skos:altLabel "เครื่องมือช่างไม้"@th ;
+    skos:definition "Tool that performs a function in working wood rather than naming the activity itself."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Woodworking tool"@en,
+        "เครื่องมืองานไม้"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:maintenance> a skos:Concept ;
+    skos:altLabel "การดูแลบำรุงรักษา"@th ;
+    skos:definition "Care activity that preserves or restores an asset's readiness for use."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Maintenance"@en,
+        "การบำรุงรักษา"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:material> a skos:Concept ;
+    skos:definition "Constituent material that forms all or part of an asset as documented by a source."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Asset material"@en,
+        "วัสดุของทรัพย์สิน"@th ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:release-edition> a skos:Concept ;
+    skos:definition "Publication edition that distinguishes a released version of a work or recording from its individual copies."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Release edition"@en,
+        "ฉบับเผยแพร่"@th ;
+    skos:related <urn:noppadol:assets:concept:record-disc>,
+        <urn:noppadol:assets:concept:sound-recording> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:sound-recording> a skos:Concept ;
+    skos:definition "Identifiable recorded audio content that represents a recorded realization rather than the act of recording or a physical copy."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Sound recording"@en,
+        "สิ่งบันทึกเสียง"@th ;
+    skos:related <urn:noppadol:assets:concept:musical-work>,
+        <urn:noppadol:assets:concept:release-edition> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:record-disc> a skos:Concept ;
+    skos:altLabel "phonograph disc"@en ;
+    skos:definition "Grooved audio disc that stores sound in grooves for playback without implying that every disc is vinyl."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Phonograph record"@en,
+        "แผ่นเสียง"@th ;
+    skos:related <urn:noppadol:assets:concept:content-rights>,
+        <urn:noppadol:assets:concept:release-edition>,
+        <urn:noppadol:assets:concept:turntable> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:sharpening> a skos:Concept ;
+    skos:altLabel "ลับคมเครื่องมือ"@th ;
+    skos:broader <urn:noppadol:assets:concept:maintenance> ;
+    skos:definition "Cutting-edge treatment activity that adjusts a tool edge for its intended use."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Sharpening"@en,
+        "การลับคม"@th ;
+    skos:related <urn:noppadol:assets:concept:chisel>,
+        <urn:noppadol:assets:concept:plane-blade>,
+        <urn:noppadol:assets:concept:sharpening-stone> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:chisel> a skos:Concept ;
+    skos:definition "Bladed cutting tool that cuts or shapes material by a cutting edge, with wood use emphasized in this register."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Chisel"@en,
+        "สิ่ว"@th ;
+    skos:related <urn:noppadol:assets:concept:chisel-handle>,
+        <urn:noppadol:assets:concept:sharpening>,
+        <urn:noppadol:assets:concept:triple-ura> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:plane-blade> a skos:Concept ;
+    skos:altLabel "ใบมีดกบไสไม้"@th ;
+    skos:definition "Cutting component that forms the cutting part of a plane and may be removable."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Plane blade"@en,
+        "ใบกบ"@th ;
+    skos:related <urn:noppadol:assets:concept:a2-steel>,
+        <urn:noppadol:assets:concept:hand-plane>,
+        <urn:noppadol:assets:concept:high-speed-steel>,
+        <urn:noppadol:assets:concept:laminated-blade>,
+        <urn:noppadol:assets:concept:sharpening> ;
+    ns1:reviewStatus "proposed" .
+
+<urn:noppadol:assets:concept:hand-plane> a skos:Concept ;
+    skos:altLabel "handplane"@en,
+        "กบไสไม้มือ"@th ;
+    skos:broader <urn:noppadol:assets:concept:woodworking-tool> ;
+    skos:definition "Manually powered cutting tool that uses a blade to shape or finish a wooden surface."@en ;
+    skos:inScheme <urn:noppadol:assets:scheme> ;
+    skos:prefLabel "Hand plane"@en,
+        "กบไสไม้"@th ;
+    skos:related <urn:noppadol:assets:concept:chipbreaker>,
+        <urn:noppadol:assets:concept:frog>,
+        <urn:noppadol:assets:concept:plane-blade>,
+        <urn:noppadol:assets:concept:plane-body> ;
+    ns1:reviewStatus "proposed" .
+

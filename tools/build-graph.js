@@ -112,6 +112,23 @@ const graph = {
   "@graph": [...nodes, ...concepts.values(), ...galleryGraph(photos)["@graph"]],
 };
 
+// Public semantic projection is generated locally; it contains no personal catalog.
+const semantic=JSON.parse(fs.readFileSync('src/_data/semantic.json','utf8'));
+const editorial=JSON.parse(fs.readFileSync('src/_data/editorial.json','utf8'));
+graph['@context'].push({skos:'http://www.w3.org/2004/02/skos/core#'});
+const byId=new Map(semantic.concepts.map(c=>[c.id,c]));
+for(const c of semantic.concepts)graph['@graph'].push({
+  '@id':c.uri,'@type':['DefinedTerm','skos:Concept'],name:c.graphLabel,alternateName:c.label,
+  description:c.definitionEn,url:`${BASE}${c.url}`,
+  'skos:inScheme':{'@id':'urn:noppadol:assets:scheme'},
+  'skos:broader':c.broader.map(id=>({'@id':byId.get(id).uri})),
+  'skos:related':c.related.map(id=>({'@id':byId.get(id).uri})),
+});
+for(const n of editorial.articles)graph['@graph'].push({
+  '@id':`${BASE}/notes/${n.slug}/`,'@type':'Article',headline:n.title,inLanguage:'th',datePublished:n.date,
+  about:n.conceptIds.map(id=>({'@id':byId.get(id).uri})),
+});
+
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(graph, null, 2));
 console.log(`✓ knowledge-graph.jsonld — ${nodes.length} บทความ, ${concepts.size} entity → ${OUT}`);

@@ -1,0 +1,31 @@
+{
+  "version": "1.1.0",
+  "date": "2026-10-05",
+  "scope": [
+    "woodworking",
+    "records"
+  ],
+  "stages": [
+    "Controlled vocabulary",
+    "Metadata schema",
+    "Taxonomy",
+    "Thesaurus",
+    "Ontology",
+    "Knowledge graph"
+  ],
+  "concepts": 40,
+  "personalRecordsIncluded": 0,
+  "semanticReview": "editorial_proposal",
+  "validation": {
+    "checksPassed": 882,
+    "shaclConforms": true
+  },
+  "files": {
+    "model.json": "967201de0c545327fe47840d2201dd344631fe48b79bb7ac1d48ee1dc27e99e2",
+    "shapes.ttl": "a334ea59889c575b466c13e42496efbee4b84e70e3396f32f6669a306cfc1df2",
+    "metadata-profile.json": "2003d7b6eab8d2074507bd9a2b1501ea2ba83c8a4bb978b2c6251d5e229b7b0b",
+    "vocabulary.ttl": "188832102e0332da4d6c31ee603955578d5b3971647725b31bbf0a95afa00b50",
+    "vocabulary.jsonld": "c00ea7abef968fe42a42617dcd5fc5a5278cb99e52062cf545d9e6f0cacf56a0",
+    "ontology.ttl": "e59401159b3c08ebf20421b762a4684820d81b20ee75779151387e9e40f851c2"
+  }
+}

@@ -1,0 +1,2 @@
+const search=document.querySelector('#search');
+if(search){const terms=[...document.querySelectorAll('[data-search]')];search.addEventListener('input',()=>{const q=search.value.normalize('NFKC').toLocaleLowerCase().trim();let n=0;for(const term of terms){term.hidden=!term.dataset.search.normalize('NFKC').toLocaleLowerCase().includes(q);if(!term.hidden)n++;}document.querySelector('#search-count').textContent=n+' คำ';});}

@@ -1,0 +1,18 @@
+---
+layout: layouts/knowledge.njk
+pagination:
+  data: semantic.domains
+  size: 1
+  alias: domain
+permalink: "{{ '/woodworking/' if domain.id == 'woodworking' else '/records/' }}"
+eleventyComputed:
+  title: "{{ domain.label }}"
+---
+<section class="hero"><p class="eyebrow">บันทึกความสนใจ / {{ domain.label }}</p><h1>{{ domain.label }}</h1>
+<p class="lead">{% if domain.id == 'woodworking' %}เครื่องมือ วัสดุ และสิ่งที่เรียนรู้ระหว่างลงมือทำ{% else %}บทเพลง เสียงบันทึก และเรื่องราวจากการฟัง{% endif %}</p></section>
+<section class="section"><h2>เรื่องที่ชวนอ่าน</h2><div class="story-grid">
+{% for a in editorial.articles %}{% if a.domain == domain.id %}<a class="story" href="/notes/{{ a.slug }}/"><p class="eyebrow">บันทึก / 5 ตุลาคม 2569</p><h3>{{ a.title }}</h3><p>{{ a.subtitle }}</p><span class="arrow">อ่านเรื่องนี้ →</span></a>{% endif %}{% endfor %}
+</div></section>
+<section class="section"><div class="section-head"><h2>เริ่มจากคำที่สนใจ</h2><a href="/ontology/#{{ domain.id }}">ดูความสัมพันธ์ →</a></div><div class="term-grid">
+{% for c in semantic.concepts %}{% if domain.id in c.domains %}<a href="{{ c.url }}" class="term"><h3>{{ c.label }}</h3><span>{{ c.graphLabel }}</span><p>{{ c.definition }}</p></a>{% endif %}{% endfor %}
+</div></section>

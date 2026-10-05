@@ -1,0 +1,421 @@
+{
+  "version": "1.4.0",
+  "nullPolicy": "Absent = unknown; never zero. Original dates are text until calendar review.",
+  "identifierPolicy": "Barcode/Cat No. are strings; preserve spaces and leading zeroes.",
+  "scopePolicy": "SourceRecord, ProductModel, ReleaseEdition and AssetItem remain distinct.",
+  "fields": [
+    {
+      "id": "hand_plane.plane_type",
+      "label_th": "ประเภทกบตามการใช้งาน",
+      "valueType": "concept_ref",
+      "appliesTo": "model",
+      "required": false
+    },
+    {
+      "id": "hand_plane.body_material",
+      "label_th": "วัสดุตัวกบ",
+      "valueType": "material_ref_list",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.body_wood_species",
+      "label_th": "ชนิดไม้ที่ใช้ทำตัวกบ",
+      "valueType": "concept_ref",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.intended_workpiece_wood",
+      "label_th": "ชนิดไม้ที่เหมาะสำหรับไส",
+      "valueType": "qualified_concept_ref_list",
+      "appliesTo": "model_or_observation",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade",
+      "label_th": "ใบกบที่ติดตั้ง",
+      "valueType": "component_ref",
+      "appliesTo": "dated_configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_width",
+      "label_th": "ความกว้างใบกบ",
+      "valueType": "length",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_thickness",
+      "label_th": "ความหนาใบกบ",
+      "valueType": "length",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_steel",
+      "label_th": "ชนิดหรือเกรดเหล็กใบกบ",
+      "valueType": "material_ref",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_construction",
+      "label_th": "โครงสร้างใบกบ เช่นชั้นวัสดุ",
+      "valueType": "annotated_text",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_maker",
+      "label_th": "ผู้สร้างใบกบ",
+      "valueType": "agent_ref",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.primary_bevel_angle",
+      "label_th": "มุมคมหลักของใบกบ",
+      "valueType": "angle",
+      "appliesTo": "dated_observation",
+      "required": false
+    },
+    {
+      "id": "hand_plane.micro_bevel_angle",
+      "label_th": "มุมคมย่อยถ้ามี",
+      "valueType": "angle",
+      "appliesTo": "dated_observation",
+      "required": false
+    },
+    {
+      "id": "hand_plane.bed_angle",
+      "label_th": "มุมตั้งใบกบเทียบฐานกบ",
+      "valueType": "angle",
+      "appliesTo": "configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_orientation",
+      "label_th": "ทิศทางคมใบกบ",
+      "valueType": "controlled_text",
+      "appliesTo": "configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.cutting_angle",
+      "label_th": "มุมตัดที่ระบุหรือประเมิน",
+      "valueType": "angle_with_method",
+      "appliesTo": "configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.setup_notes",
+      "label_th": "การตั้งปากกบและการปรับแต่ง",
+      "valueType": "annotated_text",
+      "appliesTo": "dated_configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.sharpening_history",
+      "label_th": "ประวัติลับคมและหินที่ใช้",
+      "valueType": "event_ref_list",
+      "appliesTo": "item",
+      "required": false
+    },
+    {
+      "id": "hand_plane.cutting_stroke",
+      "label_th": "ทิศทางการไส",
+      "valueType": "controlled_text",
+      "appliesTo": "configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.chipbreaker",
+      "label_th": "เหล็กประกับที่ติดตั้ง",
+      "valueType": "component_ref",
+      "appliesTo": "dated_configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.frog",
+      "label_th": "ฐานรองใบที่ติดตั้ง",
+      "valueType": "component_ref",
+      "appliesTo": "dated_configuration",
+      "required": false
+    },
+    {
+      "id": "hand_plane.blade_hardness",
+      "label_th": "ความแข็งใบและสเกลที่ใช้",
+      "valueType": "measured_range_with_scale",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.heat_treatment",
+      "label_th": "ข้อมูลกรรมวิธีทางความร้อน",
+      "valueType": "annotated_text",
+      "appliesTo": "component",
+      "required": false
+    },
+    {
+      "id": "hand_plane.sole_adjustments",
+      "label_th": "ประวัติปรับฐานกบ",
+      "valueType": "event_ref_list",
+      "appliesTo": "item",
+      "required": false
+    },
+    {
+      "id": "record_disc.release_title",
+      "label_th": "ชื่ออัลบั้มหรือฉบับเผยแพร่",
+      "valueType": "text",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.musical_works",
+      "label_th": "ผลงานเพลง",
+      "valueType": "work_ref_list",
+      "appliesTo": "recording",
+      "required": false
+    },
+    {
+      "id": "record_disc.recordings",
+      "label_th": "สิ่งบันทึกเสียง",
+      "valueType": "recording_ref_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.artist_credits",
+      "label_th": "ศิลปินและบทบาท",
+      "valueType": "credit_list",
+      "appliesTo": "release_or_track",
+      "required": false
+    },
+    {
+      "id": "record_disc.engineering_credits",
+      "label_th": "วิศวกรเสียงและหน้าที่",
+      "valueType": "credit_list",
+      "appliesTo": "recording_or_release_or_track",
+      "required": false
+    },
+    {
+      "id": "record_disc.producer_credits",
+      "label_th": "โปรดิวเซอร์",
+      "valueType": "credit_list",
+      "appliesTo": "recording_or_release",
+      "required": false
+    },
+    {
+      "id": "record_disc.label",
+      "label_th": "ค่ายเพลง",
+      "valueType": "organization_ref",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.record_manufacturer",
+      "label_th": "บริษัทผู้ผลิตแผ่น",
+      "valueType": "organization_ref",
+      "appliesTo": "pressing",
+      "required": false
+    },
+    {
+      "id": "record_disc.pressing_plant",
+      "label_th": "โรงงานปั๊มแผ่น",
+      "valueType": "organization_ref",
+      "appliesTo": "pressing",
+      "required": false
+    },
+    {
+      "id": "record_disc.release_country",
+      "label_th": "ประเทศที่เผยแพร่ฉบับนี้",
+      "valueType": "place_ref",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.pressing_country",
+      "label_th": "ประเทศผลิตแผ่น",
+      "valueType": "place_ref",
+      "appliesTo": "pressing",
+      "required": false
+    },
+    {
+      "id": "record_disc.catalog_number",
+      "label_th": "รหัสแค็ตตาล็อก",
+      "valueType": "text",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.matrix_runout",
+      "label_th": "ข้อความหรือรหัสบนร่องท้ายแผ่นแต่ละด้าน",
+      "valueType": "side_text_list",
+      "appliesTo": "item",
+      "required": false
+    },
+    {
+      "id": "record_disc.playback_speed",
+      "label_th": "ความเร็วเล่นแยกตามด้าน",
+      "valueType": "side_rotation_rate_list",
+      "appliesTo": "release_or_side",
+      "required": false
+    },
+    {
+      "id": "record_disc.record_diameter",
+      "label_th": "เส้นผ่านศูนย์กลาง",
+      "valueType": "length",
+      "appliesTo": "item_or_release",
+      "required": false
+    },
+    {
+      "id": "record_disc.edition_features",
+      "label_th": "ความพิเศษของฉบับ",
+      "valueType": "annotated_text_list",
+      "appliesTo": "release_or_pressing",
+      "required": false
+    },
+    {
+      "id": "record_disc.copy_features",
+      "label_th": "ความพิเศษเฉพาะแผ่น เช่นลายเซ็น",
+      "valueType": "annotated_text_list",
+      "appliesTo": "item",
+      "required": false
+    },
+    {
+      "id": "record_disc.media_condition",
+      "label_th": "สภาพตัวแผ่น",
+      "valueType": "grading_observation",
+      "appliesTo": "dated_observation",
+      "required": false
+    },
+    {
+      "id": "record_disc.sleeve_condition",
+      "label_th": "สภาพปก",
+      "valueType": "grading_observation",
+      "appliesTo": "dated_observation",
+      "required": false
+    },
+    {
+      "id": "record_disc.discogs_master_ref",
+      "label_th": "กลุ่ม Master ของ Discogs",
+      "valueType": "external_ref",
+      "appliesTo": "release_group",
+      "required": false
+    },
+    {
+      "id": "record_disc.discogs_release_ref",
+      "label_th": "ฉบับ Release ของ Discogs",
+      "valueType": "external_ref",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.release_date",
+      "label_th": "วันที่เผยแพร่และความละเอียดวันที่",
+      "valueType": "partial_date",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.formats",
+      "label_th": "รูปแบบ จำนวนสื่อ และคำอธิบาย",
+      "valueType": "format_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.label_catalog_entries",
+      "label_th": "ค่ายและรหัสแค็ตตาล็อกหลายรายการ",
+      "valueType": "label_catalog_pair_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.company_credits",
+      "label_th": "บริษัทและบทบาทที่เกี่ยวข้อง",
+      "valueType": "company_role_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.tracklist",
+      "label_th": "รายการแทร็ก ลำดับ ด้าน และหัวข้อ",
+      "valueType": "track_entry_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.genres",
+      "label_th": "แนวเพลงกว้างตามต้นทาง",
+      "valueType": "external_term_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.styles",
+      "label_th": "สไตล์ตามต้นทาง",
+      "valueType": "external_term_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.release_identifiers",
+      "label_th": "บาร์โค้ดและรหัสอื่นจากฉบับ",
+      "valueType": "identifier_list",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.source_release_notes",
+      "label_th": "ข้อสังเกตฉบับตามต้นทาง",
+      "valueType": "sourced_text",
+      "appliesTo": "release",
+      "required": false
+    },
+    {
+      "id": "record_disc.release_match",
+      "label_th": "ผลจับคู่ชิ้นจริงกับฉบับ",
+      "valueType": "match_assessment",
+      "appliesTo": "item",
+      "required": false
+    },
+    {
+      "id": "record_disc.carrier_members",
+      "label_th": "แผ่นแต่ละแผ่นในชุด",
+      "valueType": "asset_ref_list",
+      "appliesTo": "item_set",
+      "required": false
+    },
+    {
+      "id": "record_disc.listening_sessions",
+      "label_th": "ประสบการณ์ฟังและชุดอุปกรณ์",
+      "valueType": "event_ref_list",
+      "appliesTo": "item",
+      "required": false
+    },
+    {
+      "id": "record_disc.barcode",
+      "label_en": "Barcode as printed",
+      "valueType": "text_identifier",
+      "appliesTo": "edition_lookup",
+      "required": false
+    },
+    {
+      "id": "record_disc.discogs_match_status",
+      "label_en": "Source lookup status",
+      "valueType": "text",
+      "appliesTo": "source_reported_workflow",
+      "required": false
+    },
+    {
+      "id": "hand_plane.body_iron_species",
+      "label_en": "Source field: body_iron_species",
+      "valueType": "unresolved_text",
+      "appliesTo": "ambiguous_source_field",
+      "required": false
+    }
+  ]
+}
