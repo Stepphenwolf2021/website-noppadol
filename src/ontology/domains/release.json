@@ -1,5 +1,6 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
+  "metadataVersion": "1.4.1",
   "date": "2026-10-05",
   "scope": [
     "woodworking",
@@ -17,13 +18,13 @@
   "personalRecordsIncluded": 0,
   "semanticReview": "editorial_proposal",
   "validation": {
-    "checksPassed": 882,
+    "checksPassed": 885,
     "shaclConforms": true
   },
   "files": {
     "model.json": "967201de0c545327fe47840d2201dd344631fe48b79bb7ac1d48ee1dc27e99e2",
     "shapes.ttl": "a334ea59889c575b466c13e42496efbee4b84e70e3396f32f6669a306cfc1df2",
-    "metadata-profile.json": "2003d7b6eab8d2074507bd9a2b1501ea2ba83c8a4bb978b2c6251d5e229b7b0b",
+    "metadata-profile.json": "bbddf1503c3682fc822c6e022596aaac61dd1b4fe93b34b707bb2befae566778",
     "vocabulary.ttl": "5f5ee37d6d6bdf4d6aa48ae759f1563b35ed23ea8a67346b0d9dbda66fb232b4",
     "vocabulary.jsonld": "1d89f6378a7ae21e748cf834be9904924b801c9c6af0ef4f1fe3f7e0b43e0a32",
     "ontology.ttl": "a78396533537e8d8773c64ad411b1db24b8a57329855db75921d68dba1909432"
