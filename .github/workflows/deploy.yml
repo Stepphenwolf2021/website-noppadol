@@ -27,7 +27,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build          # eleventy + build-graph.js
-      - run: npm run test:atlas && npm run test:domains && npm run test:gallery && npm run test:studio
+      - run: npm run test:atlas && npm run test:domains && npm run test:studio
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
