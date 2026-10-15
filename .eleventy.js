@@ -5,6 +5,7 @@ import markdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 
 export default function (eleventyConfig) {
+  eleventyConfig.addFilter('atlasDepartments', keys => Object.entries({wood:'bench',screen:'critics',books:'reading',coffee:'cup',farm:'garden',tech:'annals',living:'comment'}).filter(([k]) => keys.includes(k)).map(([,v]) => v));
   const semantic = JSON.parse(fs.readFileSync('src/_data/semantic.json', 'utf8'));
   const safeJson = value => JSON.stringify(value).replace(/</g, '\\u003c');
   eleventyConfig.addFilter('safeJson', safeJson);
