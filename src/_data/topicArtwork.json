@@ -1,0 +1,74 @@
+{
+  "woodworking": {
+    "url": "/assets/atlas/topics/woodworking.webp",
+    "alt": "ภาพประกอบกบไสไม้บนโต๊ะทำงานในห้องแสงเฉียง",
+    "width": 310,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "42c5438bb5719f3a3a3862bb507ebd1cdccdb8f5d3c02a30635eedc2cc176f78"
+  },
+  "book-movie-music": {
+    "url": "/assets/atlas/topics/book-movie-music.webp",
+    "alt": "ภาพประกอบหนังสือ แผ่นเสียง และเครื่องฉายภาพยนตร์",
+    "width": 305,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "641c01222d1077126fa850885b4d3a6e4fc355efccfbbcb555d5a6b8533f8364"
+  },
+  "coffee": {
+    "url": "/assets/atlas/topics/coffee.webp",
+    "alt": "ภาพประกอบนพดลหันข้างชงกาแฟดริป",
+    "width": 306,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "a7fb7492defd1890d54d9b87c23fa8fb975ed51886288c9b0d9604a757b0f7f9"
+  },
+  "gardening": {
+    "url": "/assets/atlas/topics/gardening.webp",
+    "alt": "ภาพประกอบสวนในบ้านพร้อมบัวรดน้ำและเกรียงปลูก",
+    "width": 309,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "95a48154ba818cefa23001afff3f798c3b453e18a622fd57b777bd0640866c3c"
+  },
+  "ai": {
+    "url": "/assets/atlas/topics/ai.webp",
+    "alt": "ภาพประกอบประติมากรรมกราฟความรู้สีฟ้า ครีม และเหลือง",
+    "width": 1024,
+    "height": 1536,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "ai-selected-c-v2",
+    "sha256": "d00e60cc5bfc20ceb820ab992b902bed49afb59985fe2a77d617b4d6e5dcfbda"
+  },
+  "perspective": {
+    "url": "/assets/atlas/topics/perspective.webp",
+    "alt": "ภาพประกอบประตูเปิดสู่เก้าอี้ในห้องที่มีแสงแดด",
+    "width": 305,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "019999f1ba7913203428c416ccba4d8e3d61f050d1f09890869fb5d503eae379"
+  },
+  "knowledge-management": {
+    "url": "/assets/atlas/topics/knowledge-management.webp",
+    "alt": "ภาพประกอบกองสมุดบันทึกซ้อนกันบนชั้น",
+    "width": 306,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "e7039d1f7d0ca3e8abeaa56214e7f1f22dd10e3386078be215d9200a5094d549"
+  },
+  "photography": {
+    "url": "/assets/atlas/topics/photography.webp",
+    "alt": "ภาพประกอบกล้องถ่ายภาพบนแท่นกับแสงเงาเฉียง",
+    "width": 309,
+    "height": 623,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "spatial-colour-v7",
+    "sha256": "cbd37534dab309f0bf1c72adba767b40b94d7fe338130fb6668e7f71aadcf91a"
+  }
+}

@@ -26,4 +26,8 @@ Pipeline scope: learning_content, stage3 navigation projection และ stage6 
 
 ## Ontology hover hints — 16 October 2026
 
-Hover/focus on each desktop topic zooms its circle to 116% and reveals three concentric SVG rings. Text uses rgba(0,0,0,.3); rings show public vocabulary examples, metadata properties, and existing InterestMap types. Domain terms come from semantic.json; other topic labels/mappings come from interestGraph.json. This UI view adds no assertions or approval status to the graph. Keyboard focus uses the same effect; reduced-motion disables transitions. Small screens retain direct category links. Ring width adapts to available horizontal space.
+Hover/focus on each desktop topic zooms its circle to 116% and reveals three concentric SVG rings. Navy bands use 24px strokes (rgba(25,62,102,.3)) and text uses rgba(0,0,0,.3); rings show public vocabulary examples, metadata properties, and existing InterestMap types. Domain terms come from semantic.json; other topic labels/mappings come from interestGraph.json. This UI view adds no assertions or approval status to the graph. Keyboard focus uses the same effect; reduced-motion disables transitions. Small screens retain direct category links. Ring width adapts to available horizontal space.
+
+## Selected topic paintings — 16 October 2026
+
+Each category page displays its selected painting beside its introduction (stacked on mobile). `src/_data/topicArtwork.json` records Thai alt text, dimensions, source version, and derivative hashes. `src/assets/atlas/topics/` contains eight WebP assets: seven exact panel extractions from owner-selected spatial-colour-v7, plus the full AI selected-C-v2. Original boards remain outside the website; no private source paths or personal catalog is shipped. Complete image compositions are shown without CSS cropping. This owner-selected spatial painting direction applies to this set, without rewriting the default illustration skill.
