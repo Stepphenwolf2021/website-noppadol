@@ -1,6 +1,6 @@
 # Knowledge Atlas — 15 October 2026
 
-หน้าแรกใช้เจ็ดหมวดที่เจ้าของเลือก ภาพกลางเป็น editorial illustration ตาม Seize the Day Illustration ข้อความอังกฤษ lowercase/sans-serif และชื่อ universe แสดงเมื่อ hover/focus บนภาพ; อุปกรณ์ไม่มี hover แสดงชื่อไว้ให้อ่านได้ การกดวงหมวดเป็นลิงก์ HTML ปกติ ใช้งานได้แม้ปิด JavaScript
+หน้าแรกใช้แปดหมวดที่เจ้าของเลือก ภาพกลางเป็น editorial illustration ตาม Seize the Day Illustration ข้อความอังกฤษ lowercase/sans-serif และชื่อ universe แสดงเมื่อ hover/focus บนภาพ; อุปกรณ์ไม่มี hover แสดงชื่อไว้ให้อ่านได้ การกดวงหมวดเป็นลิงก์ HTML ปกติ ใช้งานได้แม้ปิด JavaScript
 
 หน้าหมวดใช้ editorial layout กับแผนที่จุดแนวตั้งด้านขวาตามแบบที่เลือก รูปและข้อความบทความมาจากเนื้อหาสาธารณะเดิมเท่านั้น หมวดว่างแสดงว่าไม่มีบทความ ไม่สร้างบทความสมมติแทนตัวอย่าง mockup
 
@@ -19,3 +19,7 @@ Pipeline scope: learning_content, stage3 navigation projection และ stage6 
 ## Validation / preview
 
 ใช้ Node20+ (runtimeปัจจุบันที่ทดสอบรองรับEleventy3/sharp). `npm run build`, `npm run test:atlas`, `npm run test:domains`, `npm run test:gallery`, `npm run test:studio`. Preview: serve `_site` ด้วยlocalHTTPserver. `_site` เป็นgenerated output ไม่commit. Deployใช้GitHub Pages workflowเดิมเมื่อmerge/pushเข้าmain;งานbranch/PRยังไม่publish
+
+## Photography — 16 October 2026
+
+เพิ่ม navigation ID `photography` / การถ่ายภาพ ที่ `/topics/photography/` เป็นหมวดที่ 8 โดย reuse semantic identity เดิม `https://noppadol.online/topic/photo` ผ่าน legacy mapping `photo`. ไม่สร้าง concept ซ้ำหรือแก้ URI เดิม; photography navigation ไม่ใช่ asset catalog และไม่เผยแพร่ภาพ Gallery อัตโนมัติ. Interest Map เดิมมี Photography อยู่แล้วใน SKOS/JSON-LD. หมวดแสดงเนื้อหาสาธารณะเดิมที่ติด topic photo หรือสถานะว่างตามจริง.
