@@ -10,3 +10,18 @@
 .portrait{mix-blend-mode:multiply}
 
 @media(max-width:760px){.photography{--x:50%!important;--y:90%!important}.ai{--y:79%!important}.perspective{--y:79%!important}}
+
+/* Three public ontology layers emerge around the zoomed topic. Text is black at 30%. */
+.topic-orbit{isolation:isolate;z-index:3;transition:background .25s,box-shadow .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
+.ontology-halo{position:absolute;left:50%;top:50%;width:var(--halo-size,360px);height:var(--halo-size,360px);max-width:none;overflow:visible;transform:translate(-50%,-50%) scale(.72);opacity:0;pointer-events:none;transition:opacity .3s,transform .4s cubic-bezier(.2,.7,.2,1);z-index:-1}
+.ontology-halo circle{fill:none;stroke:rgba(0,0,0,.09);stroke-width:1}
+.ontology-halo text{fill:rgba(0,0,0,.3);font:12px Arial,Helvetica,sans-serif;letter-spacing:.45px}
+@media(min-width:761px){
+ .topic-orbit:hover,.topic-orbit:focus-visible{z-index:8;transform:translate(-50%,-50%) scale(1.16);box-shadow:0 0 0 1px #fff}
+ .topic-orbit:hover .ontology-halo,.topic-orbit:focus-visible .ontology-halo{opacity:1;transform:translate(-50%,-50%) scale(1)}
+ .universe:has(.topic-orbit:hover) .topic-orbit:not(:hover),.universe:has(.topic-orbit:focus-visible) .topic-orbit:not(:focus-visible){z-index:2}
+ .topic-orbit:hover:before,.topic-orbit:hover:after,.topic-orbit:focus-visible:before,.topic-orbit:focus-visible:after{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.topic-orbit,.ontology-halo{transition:none}}
+
+@media(max-width:760px){.ontology-halo{display:none}}

@@ -23,3 +23,7 @@ Pipeline scope: learning_content, stage3 navigation projection และ stage6 
 ## Photography — 16 October 2026
 
 เพิ่ม navigation ID `photography` / การถ่ายภาพ ที่ `/topics/photography/` เป็นหมวดที่ 8 โดย reuse semantic identity เดิม `https://noppadol.online/topic/photo` ผ่าน legacy mapping `photo`. ไม่สร้าง concept ซ้ำหรือแก้ URI เดิม; photography navigation ไม่ใช่ asset catalog และไม่เผยแพร่ภาพ Gallery อัตโนมัติ. Interest Map เดิมมี Photography อยู่แล้วใน SKOS/JSON-LD. หมวดแสดงเนื้อหาสาธารณะเดิมที่ติด topic photo หรือสถานะว่างตามจริง.
+
+## Ontology hover hints — 16 October 2026
+
+Hover/focus on each desktop topic zooms its circle to 116% and reveals three concentric SVG rings. Text uses rgba(0,0,0,.3); rings show public vocabulary examples, metadata properties, and existing InterestMap types. Domain terms come from semantic.json; other topic labels/mappings come from interestGraph.json. This UI view adds no assertions or approval status to the graph. Keyboard focus uses the same effect; reduced-motion disables transitions. Small screens retain direct category links. Ring width adapts to available horizontal space.
