@@ -18,6 +18,7 @@ export default function (eleventyConfig) {
   });
   const editorialMd=markdownIt({html:false,linkify:false});
   eleventyConfig.addFilter('editorialMarkdown', body => editorialMd.render(body));
+  eleventyConfig.addFilter('articleOpening', body => editorialMd.render(body.trim().split(/\n\s*\n/).slice(0,2).join('\n\n')));
   eleventyConfig.addFilter('termJsonLd', c=>safeJson({
     '@context':{'@vocab':'https://schema.org/',skos:'http://www.w3.org/2004/02/skos/core#'},
     '@id':c.uri,'@type':['DefinedTerm','skos:Concept'],name:c.graphLabel,
