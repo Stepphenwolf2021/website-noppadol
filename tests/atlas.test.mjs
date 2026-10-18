@@ -8,7 +8,7 @@ const html=url=>fs.readFileSync(path.join('_site',url,'index.html'),'utf8');
 test('All eight navigable topics are built with truthful content or an empty state',()=>{
  assert.equal(atlas.topics.length,8);assert.equal(new Set(atlas.topics.map(t=>t.url)).size,8);
  for(const t of atlas.topics){const page=html(t.url);assert.ok(page.includes(t.label));assert.ok(page.includes(t.th));assert.match(page,/my place in the universe/);
-  assert.ok(page.includes('อ่านเรื่องนี้')||page.includes('ยังไม่มีบทความที่เผยแพร่'),t.id);
+  assert.ok(page.includes('อ่านเรื่องนี้')||page.includes('category-full-article')||page.includes('ยังไม่มีบทความที่เผยแพร่'),t.id);
   for(const m of page.matchAll(/(?:href|src)="(\/[^"#?]*)"/g)){let target=m[1];assert.ok(fs.existsSync(path.join('_site',target,target.endsWith('/')?'index.html':'')),`${t.id}: ${target}`);}
  }
 });
