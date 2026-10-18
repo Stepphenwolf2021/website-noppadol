@@ -1,10 +1,12 @@
 import fs from "node:fs";
+import {articleInTopic} from "./tools/topic-membership.mjs";
 import {configureGallery} from "./tools/gallery/eleventy.mjs";
 import {loadGallery} from "./tools/gallery/load.mjs";
 import markdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 
 export default function (eleventyConfig) {
+  eleventyConfig.addFilter("articleInTopic",articleInTopic);
   eleventyConfig.addFilter('atlasDepartments', keys => Object.entries({wood:'bench',screen:'critics',books:'reading',coffee:'cup',farm:'garden',tech:'annals',living:'comment'}).filter(([k]) => keys.includes(k)).map(([,v]) => v));
   const semantic = JSON.parse(fs.readFileSync('src/_data/semantic.json', 'utf8'));
   const safeJson = value => JSON.stringify(value).replace(/</g, '\\u003c');
@@ -27,6 +29,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('noteJsonLd', n=>safeJson({
     '@context':'https://schema.org','@type':'Article','@id':`https://noppadol.online/notes/${n.slug}/`,
     headline:n.title,description:n.subtitle,inLanguage:'th',datePublished:n.date,
+    ...(n.primaryTopicId?{isPartOf:[n.primaryTopicId,...(n.additionalTopicIds||[])].map(id=>({'@id':`https://noppadol.online/topics/${id}/#topic`}))}:{}),
+    ...(n.author?{author:{'@type':'Person',name:n.author}}:{}),
+    ...(n.image?{image:`https://noppadol.online${n.image}`} : {}),
     publisher:{'@type':'Organization',name:'noppadol.online','@id':'https://noppadol.online/#org'},
     about:n.conceptIds.map(id=>({'@id':semantic.concepts.find(c=>c.id===id).uri}))
   }));

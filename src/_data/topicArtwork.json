@@ -1,0 +1,74 @@
+{
+  "woodworking": {
+    "url": "/assets/atlas/topics/woodworking.webp",
+    "alt": "ภาพขาวดำกบไสไม้และขี้กบบนโต๊ะในแสงเฉียง",
+    "width": 252,
+    "height": 764,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "f137184e56548b2a70ef9039bc802592e88c3c43e27b678b8e01cf653225ee36"
+  },
+  "book-movie-music": {
+    "url": "/assets/atlas/topics/book-movie-music.webp",
+    "alt": "ภาพขาวดำหนังสือ แผ่นเสียง และเครื่องฉายภาพยนตร์",
+    "width": 249,
+    "height": 764,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "2a6ff752150de16a7d795e9c9566d6085fb27860eecba159d632fa63aa519234"
+  },
+  "coffee": {
+    "url": "/assets/atlas/topics/coffee.webp",
+    "alt": "ภาพขาวดำชายหันข้างชงกาแฟดริป",
+    "width": 247,
+    "height": 764,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "9dd285ae93fc228f7d7948c504f6d96c28d936ffa36f3ca9e3b06d0363b5afd6"
+  },
+  "gardening": {
+    "url": "/assets/atlas/topics/gardening.webp",
+    "alt": "ภาพขาวดำสวนในบ้านพร้อมบัวรดน้ำและเกรียงปลูก",
+    "width": 252,
+    "height": 764,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "9ba5674244a230dcd4c78992a23df9deed9f862d92ed2e9150bcf4d35c225284"
+  },
+  "ai": {
+    "url": "/assets/atlas/topics/ai.webp",
+    "alt": "ภาพขาวดำประติมากรรมทรงกลมเชื่อมกันเป็นกราฟความรู้",
+    "width": 252,
+    "height": 765,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "f941461844f0c9fc04e338695bcf55b0893ea90f9563b5d582f3be4b7b5f2b52"
+  },
+  "perspective": {
+    "url": "/assets/atlas/topics/perspective.webp",
+    "alt": "ภาพขาวดำประตูเปิดและขาของคนนั่งในห้องด้านใน",
+    "width": 249,
+    "height": 765,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "5524bc09b9b86a060c1efafec9c8b0ed74f4a7acf85765323aab8cf3acece5ba"
+  },
+  "knowledge-management": {
+    "url": "/assets/atlas/topics/knowledge-management.webp",
+    "alt": "ภาพขาวดำกองสมุดบันทึกพร้อมสมุดที่เปิดอยู่ด้านบน",
+    "width": 247,
+    "height": 765,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "c657b20059407bae3ea1c1f4592a36e7bd075737dfca1b9595285ef057296099"
+  },
+  "photography": {
+    "url": "/assets/atlas/topics/photography.webp",
+    "alt": "ภาพขาวดำกล้องถ่ายภาพและสายคล้องบนแท่นในแสงเฉียง",
+    "width": 252,
+    "height": 765,
+    "origin": "owner-selected generated editorial illustration",
+    "sourceVersion": "monochrome-v8",
+    "sha256": "b4d98d43f8de07c86d5176d65b3f98c7e6440083e79c165199615aea1542be48"
+  }
+}

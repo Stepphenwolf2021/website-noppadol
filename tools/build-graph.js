@@ -6,6 +6,7 @@
 // หรือ:                    npm run build
 
 import fs from "node:fs";
+import atlas from "../src/_data/atlas.js";
 import path from "node:path";
 import yaml from "js-yaml";
 import {galleryGraph,graphContext} from "./gallery/model.mjs";
@@ -127,7 +128,12 @@ for(const c of semantic.concepts)graph['@graph'].push({
 for(const n of editorial.articles)graph['@graph'].push({
   '@id':`${BASE}/notes/${n.slug}/`,'@type':'Article',headline:n.title,inLanguage:'th',datePublished:n.date,
   about:n.conceptIds.map(id=>({'@id':byId.get(id).uri})),
+  ...(n.primaryTopicId?{isPartOf:[n.primaryTopicId,...(n.additionalTopicIds||[])].map(id=>({'@id':`${BASE}/topics/${id}/#topic`}))}:{}),
+  ...(n.author?{author:{'@type':'Person',name:n.author}}:{}),
+  ...(n.image?{image:`${BASE}${n.image}`} : {}),
 });
+
+graph['@graph'].push(...atlas.graph['@graph']);
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(graph, null, 2));

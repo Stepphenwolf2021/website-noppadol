@@ -1,6 +1,6 @@
 # Knowledge Atlas — 15 October 2026
 
-หน้าแรกใช้เจ็ดหมวดที่เจ้าของเลือก ภาพกลางเป็น editorial illustration ตาม Seize the Day Illustration ข้อความอังกฤษ lowercase/sans-serif และชื่อ universe แสดงเมื่อ hover/focus บนภาพ; อุปกรณ์ไม่มี hover แสดงชื่อไว้ให้อ่านได้ การกดวงหมวดเป็นลิงก์ HTML ปกติ ใช้งานได้แม้ปิด JavaScript
+หน้าแรกใช้แปดหมวดที่เจ้าของเลือก ภาพกลางเป็น editorial illustration ตาม Seize the Day Illustration ข้อความอังกฤษ lowercase/sans-serif และชื่อ universe แสดงเมื่อ hover/focus บนภาพ; อุปกรณ์ไม่มี hover แสดงชื่อไว้ให้อ่านได้ การกดวงหมวดเป็นลิงก์ HTML ปกติ ใช้งานได้แม้ปิด JavaScript
 
 หน้าหมวดใช้ editorial layout กับแผนที่จุดแนวตั้งด้านขวาตามแบบที่เลือก รูปและข้อความบทความมาจากเนื้อหาสาธารณะเดิมเท่านั้น หมวดว่างแสดงว่าไม่มีบทความ ไม่สร้างบทความสมมติแทนตัวอย่าง mockup
 
@@ -19,3 +19,17 @@ Pipeline scope: learning_content, stage3 navigation projection และ stage6 
 ## Validation / preview
 
 ใช้ Node20+ (runtimeปัจจุบันที่ทดสอบรองรับEleventy3/sharp). `npm run build`, `npm run test:atlas`, `npm run test:domains`, `npm run test:gallery`, `npm run test:studio`. Preview: serve `_site` ด้วยlocalHTTPserver. `_site` เป็นgenerated output ไม่commit. Deployใช้GitHub Pages workflowเดิมเมื่อmerge/pushเข้าmain;งานbranch/PRยังไม่publish
+
+## Photography — 16 October 2026
+
+เพิ่ม navigation ID `photography` / การถ่ายภาพ ที่ `/topics/photography/` เป็นหมวดที่ 8 โดย reuse semantic identity เดิม `https://noppadol.online/topic/photo` ผ่าน legacy mapping `photo`. ไม่สร้าง concept ซ้ำหรือแก้ URI เดิม; photography navigation ไม่ใช่ asset catalog และไม่เผยแพร่ภาพ Gallery อัตโนมัติ. Interest Map เดิมมี Photography อยู่แล้วใน SKOS/JSON-LD. หมวดแสดงเนื้อหาสาธารณะเดิมที่ติด topic photo หรือสถานะว่างตามจริง.
+
+## Ontology hover hints — 16 October 2026
+
+Hover/focus on each desktop topic zooms its circle to 116% and reveals three concentric SVG rings. Navy bands use 24px strokes (rgba(25,62,102,.3)) and text uses rgba(0,0,0,.3); rings show public vocabulary examples, metadata properties, and existing InterestMap types. Domain terms come from semantic.json; other topic labels/mappings come from interestGraph.json. This UI view adds no assertions or approval status to the graph. Keyboard focus uses the same effect; reduced-motion disables transitions. Small screens retain direct category links. Ring width adapts to available horizontal space.
+
+## Selected topic paintings — 16 October 2026
+
+Each category page uses selected monochrome artwork as a small visual signature beside its introduction (56–72px wide, including mobile). The main column leads into a counted list of published stories, concise empty states and existing vocabulary links. Story listings prioritise titles and excerpts without large category or article illustrations. The narrower secondary column retains the topic map and neighboring categories. `src/_data/topicArtwork.json` records Thai alt text, dimensions, source version, and derivative hashes. `src/assets/atlas/topics/` contains eight WebP assets: eight panel extractions from owner-selected monochrome-v8 (17 October 2026), replacing the earlier colour set. Original boards remain outside the website; no private source paths or personal catalog is shipped. Complete image compositions are shown without CSS cropping. This owner-selected monochrome direction applies to this set, without rewriting the default illustration skill.
+
+Text position names and content sources: [CATEGORY-CONTENT-MAP.md](CATEGORY-CONTENT-MAP.md). Category templates expose corresponding `data-content-key` attributes for editing references; these are UI field names, not semantic assertions.
