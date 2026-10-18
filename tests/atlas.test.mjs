@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import atlas from '../src/_data/atlas.js';
+import {articleInTopic} from '../tools/topic-membership.mjs';
 const html=url=>fs.readFileSync(path.join('_site',url,'index.html'),'utf8');
 test('All eight navigable topics are built with truthful content or an empty state',()=>{
  assert.equal(atlas.topics.length,8);assert.equal(new Set(atlas.topics.map(t=>t.url)).size,8);
@@ -20,7 +21,7 @@ test('Homepage and exported graph derive topic links from the same public data',
 });
 test('Editorial memberships and concept links reuse public source identities',()=>{
  const graph=JSON.parse(fs.readFileSync('_site/atlas.json','utf8'))['@graph'];
- for(const t of atlas.topics){const actual=graph.find(n=>n['@id']===t.uri).hasPart.map(n=>n['@id']);const expected=atlas.articles.filter(a=>t.domain&&a.domain===t.domain).map(a=>`https://noppadol.online${a.url}`);assert.deepEqual(actual,expected);}
+ for(const t of atlas.topics){const actual=graph.find(n=>n['@id']===t.uri).hasPart.map(n=>n['@id']);const expected=atlas.articles.filter(a=>articleInTopic(a,t)).map(a=>`https://noppadol.online${a.url}`);assert.deepEqual(actual,expected);}
  for(const a of atlas.articles){for(const c of a.concepts){assert.ok(html(a.url).includes(c.url));assert.ok(fs.existsSync(path.join('_site',c.url,'index.html')));}}
 });
 test('Atlas projection ships no private workbench or mockup articles',()=>{

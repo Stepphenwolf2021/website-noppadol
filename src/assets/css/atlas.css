@@ -26,5 +26,44 @@
 
 @media(max-width:760px){.ontology-halo{display:none}}
 
-/* Owner-selected category paintings; retain the complete artwork. */
-.topic-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,44%);gap:28px;align-items:center;margin-bottom:35px}.topic-intro h1{overflow-wrap:anywhere}.topic-art{margin:0}.topic-art img{display:block;width:100%;height:auto}.topic-intro .deck{font-size:16px}.topic-intro .thai-title{font-size:21px}@media(max-width:1000px){.topic-intro h1{font-size:36px}}@media(max-width:760px){.topic-intro{grid-template-columns:1fr;gap:22px}.topic-art{width:100%;max-width:250px;margin:0 auto}.topic-intro h1{font-size:38px}}
+/* Category artwork is a small visual signature; reading content leads the page. */
+.category-layout{grid-template-columns:minmax(0,1fr) 235px;gap:54px;margin-top:38px}
+.topic-intro{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:28px;align-items:center;min-height:210px;margin-bottom:30px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.topic-intro h1{font-size:clamp(28px,3.4vw,44px);overflow-wrap:anywhere;letter-spacing:-1.3px}
+.topic-intro .thai-title{font-size:19px;margin:9px 0 13px}
+.topic-intro .deck{font-size:15px;line-height:1.85;margin:0;max-width:510px}
+.topic-art{margin:0;width:72px;align-self:center}
+.topic-art img{display:block;width:100%;height:auto}
+.section-heading{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding-bottom:17px;border-bottom:1px solid var(--ink)}
+.section-heading h2{font-size:16px;font-weight:500;margin:0}
+.section-heading>span{font-size:12px;color:var(--muted);white-space:nowrap}
+.category-story{padding:25px 0 30px}
+.category-story h2{font-size:clamp(22px,2.4vw,29px);font-weight:500;line-height:1.55;max-width:760px}
+.category-story .eyebrow{margin:0 0 8px}
+.category-story p{max-width:700px;line-height:1.9}
+.category-story .read-link{margin:4px 0}
+.category-layout .empty-state{padding:26px 0 35px;max-width:520px}
+.category-layout .empty-state h3{font-size:20px;font-weight:400;margin:0 0 10px}
+.category-layout .empty-state p{font-size:14px;margin:0 0 12px}
+.category-layout .vocabulary{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+.category-layout .vocabulary h2{font-size:16px;margin:0}
+.category-layout .context{padding-left:25px}
+.category-layout .context>h2{margin-top:0;font-size:11px!important}
+.category-layout .local-map{padding:5px 0 22px}
+.category-layout .map-trunk{height:25px}
+.category-layout .map-branches{margin-top:16px;padding-top:12px}
+.category-layout .neighbor-links h2{font-size:14px}
+@media(max-width:1000px) and (min-width:761px){.category-layout{grid-template-columns:minmax(0,1fr) 210px;gap:30px}.topic-intro{gap:20px;grid-template-columns:minmax(0,1fr) 62px}.topic-art{width:62px}}
+@media(max-width:760px){
+ .category-layout{grid-template-columns:1fr;gap:36px;margin-top:28px}
+ .topic-intro{grid-template-columns:minmax(0,1fr) 56px;gap:18px;min-height:0;margin-bottom:24px;padding-bottom:24px;align-items:start}
+ .topic-intro h1{font-size:30px;letter-spacing:-1px}
+ .topic-intro .thai-title{font-size:17px;margin-bottom:10px}
+ .topic-intro .deck{font-size:14px}
+ .topic-art{width:56px;margin:0;align-self:start}
+ .category-layout .context{padding:22px 0 0}
+ .category-story h2{font-size:23px}
+}
+
+/* Preserve owner-authored line breaks in category descriptions. */
+.topic-intro .deck{white-space:pre-line}
