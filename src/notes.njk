@@ -11,7 +11,7 @@ eleventyComputed:
   description: "{{ note.subtitle }}"
 ---
 {% if note.presentation == "foundation" %}
-<link rel="stylesheet" href="/assets/css/article.css?v=20261019-fullstory">
+<link rel="stylesheet" href="/assets/css/article.css?v=20261019-v05">
 {% include "foundation-article.njk" %}
 {% else %}
 <article><header class="hero"><a class="eyebrow" href="{{ '/woodworking/' if note.domain == 'woodworking' else '/records/' }}">{{ 'งานไม้' if note.domain == 'woodworking' else 'แผ่นเสียง' }} / บันทึก</a><h1>{{ note.title }}</h1><p class="lead">{{ note.subtitle }}</p><p class="byline">noppadol.online · 5 ตุลาคม 2569</p></header>

@@ -9,14 +9,15 @@ eleventyComputed:
   title: "{{ topic.label }}"
   description: "{{ topic.description }}"
 ---
-<div class="topic-layout category-layout"><section class="editorial"><header class="topic-heading topic-intro"><div class="topic-intro-copy"><h1 lang="en" data-content-key="category.title.en">{{ topic.label }}</h1><p class="thai-title" data-content-key="category.title.th">{{ topic.th }}</p><p class="deck" data-content-key="category.description">{{ topic.description }}</p></div><figure class="topic-art" data-content-key="category.visual"><img src="{{ topicArtwork[topic.id].url }}" alt="{{ topicArtwork[topic.id].alt }}" width="{{ topicArtwork[topic.id].width }}" height="{{ topicArtwork[topic.id].height }}" decoding="async"></figure></header>
+{% if topic.id == "knowledge-management" %}<link rel="stylesheet" href="/assets/css/km-editorial.css?v=20261019-v05">{% endif %}
+<div class="topic-layout category-layout{% if topic.id == "knowledge-management" %} km-editorial{% endif %}"><section class="editorial"><header class="topic-heading topic-intro"><div class="topic-intro-copy"><h1 lang="en" data-content-key="category.title.en">{{ topic.label }}</h1><p class="thai-title" data-content-key="category.title.th">{{ topic.th }}</p><p class="deck" data-content-key="category.description">{{ topic.description }}</p></div><figure class="topic-art" data-content-key="category.visual"><img src="{{ topicArtwork[topic.id].url }}" alt="{{ topicArtwork[topic.id].alt }}" width="{{ topicArtwork[topic.id].width }}" height="{{ topicArtwork[topic.id].height }}" decoding="async"></figure></header>
 {% set articleCount = 0 %}
 {% for a in atlas.articles %}{% if a | articleInTopic(topic) %}{% set articleCount = articleCount + 1 %}{% endif %}{% endfor %}
 {% for a in collections.articles %}{% if a.data.department in (topic.legacy | atlasDepartments) %}{% set articleCount = articleCount + 1 %}{% endif %}{% endfor %}
 <section class="category-content" aria-labelledby="category-content-title"><div class="section-heading"><h2 id="category-content-title" data-content-key="content.heading">บันทึกในหมวดนี้</h2><span data-content-key="content.count">{{ articleCount }} เรื่อง</span></div>
 {% if articleCount == 1 %}
 {% for a in atlas.articles %}{% if a | articleInTopic(topic) %}
-{% if a.presentation == "foundation" %}<link rel="stylesheet" href="/assets/css/article.css?v=20261019-inline"><div class="category-full-article">{% include "foundation-article.njk" %}</div>{% else %}<article class="category-full-article reading prose"><header><h2>{{ a.title }}</h2><p class="lead">{{ a.subtitle }}</p></header>{{ a.body | editorialMarkdown | safe }}</article>{% endif %}
+{% if a.presentation == "foundation" %}<link rel="stylesheet" href="/assets/css/article.css?v=20261019-v05"><div class="category-full-article">{% include "foundation-article.njk" %}</div>{% else %}<article class="category-full-article reading prose"><header><h2>{{ a.title }}</h2><p class="lead">{{ a.subtitle }}</p></header>{{ a.body | editorialMarkdown | safe }}</article>{% endif %}
 <script type="application/ld+json">{{ a | noteJsonLd | safe }}</script>
 {% endif %}{% endfor %}
 {% for a in collections.articles %}{% if a.data.department in (topic.legacy | atlasDepartments) %}<article class="category-full-article reading prose"><header><h2>{{ a.data.title }}</h2><p class="lead">{{ a.data.subtitle }}</p></header>{{ a.templateContent | safe }}<a class="read-link" href="{{ a.url }}">เปิดหน้าบทความ →</a></article>{% endif %}{% endfor %}
