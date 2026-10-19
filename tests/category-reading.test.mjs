@@ -11,8 +11,8 @@ test('Single-story categories render full content; empty and multi-story categor
   else{empty++;assert.ok(page.includes('empty-state'));}
  }
  assert.ok(single>0);assert.ok(multiple>0);assert.ok(empty>0);
- const km=read('/topics/knowledge-management/');assert.ok(km.includes('ไม่ได้แปลว่า AI จะไม่มั่วอีก'));assert.ok(km.includes('platform-v6.webp'));assert.ok(km.includes('memex.webp'));assert.equal((km.match(/<h1[ >]/g)||[]).length,1);
+ const km=read('/topics/knowledge-management/');assert.ok(km.includes('ไม่ได้การันตีว่า AI จะไม่มั่วอีก'));assert.ok(km.includes('platform-v10.webp'));assert.ok(km.includes('memex.webp'));assert.equal((km.match(/<h1[ >]/g)||[]).length,1);
 });
 test('Homepage introduces Foundation with actual opening paragraphs and a link to its full article',()=>{
- const page=read('/');const a=atlas.articles.find(a=>a.id==='the-foundation-01');assert.ok(page.includes('home-feature'));assert.ok(page.includes(a.body.trim().split('\n\n')[0]));assert.ok(page.includes('platform-v6.webp'));assert.ok(page.includes(`href="${a.url}"`));assert.equal((page.match(/class="topic-orbit /g)||[]).length,8);
+ const page=read('/');const a=atlas.articles.find(a=>a.id==='the-foundation-01');assert.ok(page.includes('home-feature'));assert.ok(page.includes(a.body.trim().split('\n\n')[0]));assert.ok(page.includes('platform-v10.webp'));assert.ok(page.includes(`href="${a.url}"`));assert.equal((page.match(/class="topic-orbit /g)||[]).length,8);
 });
