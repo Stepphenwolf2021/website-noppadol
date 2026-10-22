@@ -1,6 +1,6 @@
 {
   "schemaVersion": "tool-catalog-1.0.0",
-  "version": "lie-nielsen-2026-10-22.1",
+  "version": "lie-nielsen-2026-10-22.2",
   "retrievedAt": "2026-10-22T11:08:12.974158+00:00",
   "provider": {
     "id": "urn:noppadol:catalog:seller:lie-nielsen",
@@ -41,9 +41,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4088": "402"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4088": "402"
       },
@@ -129,9 +127,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4088": "403"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4088": "403"
       },
@@ -218,9 +214,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4088": "404"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4088": "404"
       },
@@ -622,9 +616,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4128": "330"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4128": "330"
       },
@@ -755,9 +747,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4006": "287"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4006": "287"
       },
@@ -1213,10 +1203,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4079": "332",
-        "sourceAttribute:4074": "257"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4079": "332",
         "4074": "257"
@@ -1436,9 +1423,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4089": "473"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4089": "473"
       },
@@ -1523,9 +1508,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4089": "474"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4089": "474"
       },
@@ -1848,9 +1831,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -2102,9 +2083,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -2191,9 +2170,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4091": "272"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4091": "272"
       },
@@ -2276,9 +2253,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4091": "273"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4091": "273"
       },
@@ -2360,9 +2335,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -2448,9 +2421,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -2535,9 +2506,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4006": "286"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4006": "286"
       },
@@ -2624,9 +2593,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -2793,9 +2760,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4006": "287"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4006": "287"
       },
@@ -2881,9 +2846,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -3365,9 +3328,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4073": "239"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4073": "239"
       },
@@ -3458,9 +3419,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4089": "475"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4089": "475"
       },
@@ -3615,9 +3574,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4089": "476"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4089": "476"
       },
@@ -3928,9 +3885,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4006": "286"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4006": "286"
       },
@@ -9646,9 +9601,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4112": "397"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4112": "397"
       },
@@ -10745,8 +10698,7 @@
         "license": "not_asserted"
       },
       "attributes": {
-        "Type": "Standard",
-        "sourceAttribute:4084": "385"
+        "Type": "Standard"
       },
       "sourceAttributeValues": {
         "3989": "419",
@@ -10808,8 +10760,7 @@
         "license": "not_asserted"
       },
       "attributes": {
-        "Type": "Metric",
-        "sourceAttribute:4084": "385"
+        "Type": "Metric"
       },
       "sourceAttributeValues": {
         "3989": "420",
@@ -12117,9 +12068,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4085": "289"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4085": "289"
       },
@@ -12202,10 +12151,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4085": "290",
-        "sourceAttribute:4084": "385"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4085": "290",
         "4084": "385"
@@ -12278,10 +12224,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4085": "288",
-        "sourceAttribute:4084": "385"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4085": "288",
         "4084": "385"
@@ -12366,9 +12309,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4086": "345"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4086": "345"
       },
@@ -12446,10 +12387,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4086": "344",
-        "sourceAttribute:4084": "385"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4086": "344",
         "4084": "385"
@@ -19905,9 +19843,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4135": "498"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4135": "498"
       },
@@ -20064,9 +20000,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4135": "498"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4135": "498"
       },
@@ -23588,10 +23522,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4148": "620",
-        "sourceAttribute:4149": "621"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4148": "620",
         "4149": "621"
@@ -23679,10 +23610,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4148": "539",
-        "sourceAttribute:4149": "542"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4148": "539",
         "4149": "542"
@@ -23771,10 +23699,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4148": "620",
-        "sourceAttribute:4149": "622"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4148": "620",
         "4149": "622"
@@ -23862,9 +23787,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4006": "286"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4006": "286"
       },
@@ -24046,9 +23969,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4105": "349"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4105": "349"
       },
@@ -24256,10 +24177,7 @@
         "usage": "URL reference only; no image files copied",
         "license": "not_asserted"
       },
-      "attributes": {
-        "sourceAttribute:4148": "539",
-        "sourceAttribute:4149": "621"
-      },
+      "attributes": {},
       "sourceAttributeValues": {
         "4148": "539",
         "4149": "621"

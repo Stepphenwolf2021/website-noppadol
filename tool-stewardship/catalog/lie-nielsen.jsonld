@@ -45,9 +45,7 @@
         "https://lie-nielsen.gumlet.io/catalog/large-shoulder-plane-use.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4088": "402"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -99,9 +97,7 @@
         "https://lie-nielsen.gumlet.io/catalog/large-shoulder-plane-use.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4088": "403"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -154,9 +150,7 @@
         "https://lie-nielsen.gumlet.io/default/large-shoulder-plane-use-2.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4088": "404"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -428,9 +422,7 @@
         "https://lie-nielsen.gumlet.io/default/1-102_use2018.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4128": "330"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -534,9 +526,7 @@
         "https://lie-nielsen.gumlet.io/catalog/140B-Left_nickerside_20261005.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4006": "287"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -854,10 +844,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-212-A.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4079": "332",
-          "sourceAttribute:4074": "257"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1023,9 +1010,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-271-A.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4089": "473"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1084,9 +1069,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-271-C.JPG"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4089": "474"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1297,9 +1280,7 @@
         "https://lie-nielsen.gumlet.io/catalog/No.4Bronze-glam copy.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1464,9 +1445,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-4-1-2-smooth-plane-use-2.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1523,9 +1502,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-48-E.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4091": "272"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1578,9 +1555,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-48-C.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4091": "273"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1631,9 +1606,7 @@
         "https://lie-nielsen.gumlet.io/catalog/No4_1_2_Glamour.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1688,9 +1661,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-5-Inuse1.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1745,9 +1716,7 @@
         "https://lie-nielsen.gumlet.io/catalog/Inuse.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4006": "286"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1803,9 +1772,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-5-1-2-Inuse.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1914,9 +1881,7 @@
         "https://lie-nielsen.gumlet.io/catalog/Inuse.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4006": "287"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -1971,9 +1936,7 @@
         "https://lie-nielsen.gumlet.io/default/no-6-fore-plane-resting.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -2312,9 +2275,7 @@
         "https://lie-nielsen.gumlet.io/default/1-7-jointer-plane-use.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4073": "239"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -2375,9 +2336,7 @@
         "https://lie-nielsen.gumlet.io/default/large-rout-plane-ot-inuse.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4089": "475"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -2487,9 +2446,7 @@
         "https://lie-nielsen.gumlet.io/catalog/large-router-plane-closed-use.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4089": "476"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -2711,9 +2668,7 @@
         "https://lie-nielsen.gumlet.io/default/1-95_left-right.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4006": "286"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -6941,9 +6896,7 @@
         "https://lie-nielsen.gumlet.io/default/corner-chisel-3-8.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4112": "397"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -7697,8 +7650,7 @@
       ],
       "attributes": {
         "@value": {
-          "Type": "Standard",
-          "sourceAttribute:4084": "385"
+          "Type": "Standard"
         },
         "@type": "@json"
       },
@@ -7754,8 +7706,7 @@
       ],
       "attributes": {
         "@value": {
-          "Type": "Metric",
-          "sourceAttribute:4084": "385"
+          "Type": "Metric"
         },
         "@type": "@json"
       },
@@ -8975,9 +8926,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-SP-Boggs-C.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4085": "289"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -9035,10 +8984,7 @@
         "https://lie-nielsen.gumlet.io/default/concave-boggs-spokeshave-2019.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4085": "290",
-          "sourceAttribute:4084": "385"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -9094,10 +9040,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-SP-Boggs-F.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4085": "288",
-          "sourceAttribute:4084": "385"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -9157,9 +9100,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-SP-C_curvedsole.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4086": "345"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -9216,10 +9157,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-sp-c-1.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4086": "344",
-          "sourceAttribute:4084": "385"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -16038,9 +15976,7 @@
         "https://lie-nielsen.gumlet.io/default/9b28c69d-a671-4def-8703-f9b2304033a6-2-dvd-sl-in-ftl.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4135": "498"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -16187,9 +16123,7 @@
         "https://lie-nielsen.gumlet.io/default/6794789f-1db0-4c44-b070-5d3999ad9af2-DC_DVD.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4135": "498"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -19266,10 +19200,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-BL-71-3-8-P-75Deg (in use) 1.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4148": "620",
-          "sourceAttribute:4149": "621"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -19328,10 +19259,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-BL-71-1-4-S (in use) 1.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4148": "539",
-          "sourceAttribute:4149": "542"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -19391,10 +19319,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-BL-71-3-8-P-100Deg (in use) 2.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4148": "620",
-          "sourceAttribute:4149": "622"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -19451,9 +19376,7 @@
         "https://lie-nielsen.gumlet.io/default/1-95I-R_ISO.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4006": "286"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -19612,9 +19535,7 @@
         "https://lie-nielsen.gumlet.io/catalog/TaperedTenonInuse.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4105": "349"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {
@@ -19777,10 +19698,7 @@
         "https://lie-nielsen.gumlet.io/catalog/1-BL-71-1-4-P-75Deg (in use) 2.jpg"
       ],
       "attributes": {
-        "@value": {
-          "sourceAttribute:4148": "539",
-          "sourceAttribute:4149": "621"
-        },
+        "@value": {},
         "@type": "@json"
       },
       "sourceAttributeValues": {

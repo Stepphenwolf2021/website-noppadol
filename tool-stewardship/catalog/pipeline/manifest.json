@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "sourceCatalogVersion": "lie-nielsen-2026-10-22.1",
-  "sourceDatasetSHA256": "cda4d441ac389591d2278da34eab4e1394b4192d5e5fdf1906a285cab762a56c",
+  "sourceCatalogVersion": "lie-nielsen-2026-10-22.2",
+  "sourceDatasetSHA256": "5c982db53e781fb3c1f1a3a1a57591fe6ecfcc31d3ec791d60956423ef765173",
   "scope": "My Assets catalog extension; Mission Core and AST registry unchanged",
   "competencyQuestions": [
     "Which source SKU is this model?",

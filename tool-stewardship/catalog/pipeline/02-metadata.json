@@ -88,6 +88,6 @@
     "price": "offerSnapshot USD",
     "inventory_status": "availability.status"
   },
-  "sourceVersion": "lie-nielsen-2026-10-22.1",
+  "sourceVersion": "lie-nielsen-2026-10-22.2",
   "modelVsItem": "a:ProductModel in shared dataset; owned user item optionally a:model references it. Wishlist/reference use LibrarySelection, not ToolPassport."
 }
