@@ -1,5 +1,5 @@
-import {validateCatalog,searchModels,makeLibraryRecord,libraryLabels,categoryLabels,safeURL,providerLabels,providerKey} from './catalog.mjs?v=1.2.0';
-import {blank,validate,gaps,graph,publicPassport,intentLabels,purposeLabels} from './model.mjs?v=1.2.0';
+import {validateCatalog,searchModels,makeLibraryRecord,libraryLabels,categoryLabels,safeURL,providerLabels,providerKey} from './catalog.mjs?v=1.3.0';
+import {blank,validate,gaps,graph,publicPassport,intentLabels,purposeLabels} from './model.mjs?v=1.3.0';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const KEY='noppadol-tool-stewardship-v1';let db={version:'1.0.0',access:'private',records:[]},selected=null,dirty=false,share=null;
 const labels={story:'ทำไมชิ้นนี้จึงสำคัญ',learning:'ประสบการณ์และสิ่งที่เรียนรู้',care:'การดูแล / การลับ / การตั้ง',condition:'สภาพที่ตรวจล่าสุด',conditionDate:'วันที่ตรวจสภาพ',defects:'ตำหนิและข้อจำกัด (หากไม่มี ให้ระบุ)',includes:'ชิ้นส่วนและอุปกรณ์ที่ส่งมอบ',handover:'ความรู้ที่อยากส่งให้คนถัดไป',successor:'เหมาะกับงานหรือผู้รับแบบไหน'};

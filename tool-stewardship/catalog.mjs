@@ -1,4 +1,4 @@
-import {blank,catalogIDPattern} from './model.mjs?v=1.2.0';
+import {blank,catalogIDPattern} from './model.mjs?v=1.3.0';
 export const providerLabels={'lie-nielsen':'Lie-Nielsen',lubanplane:'Luban · lubanplane.com'};
 export const providerKey=m=>m.id.split(':')[3];
 export const libraryLabels={owned:'มีอยู่แล้ว',wishlist:'อยากมี',reference:'เก็บไว้ศึกษา'};
