@@ -1,0 +1,41 @@
+{
+  "version": "all-tools-2026-10-22.3",
+  "totalModels": 408,
+  "equipmentModels": 303,
+  "providers": [
+    {
+      "key": "lie-nielsen",
+      "name": "Lie-Nielsen Toolworks",
+      "url": "https://www.lie-nielsen.com",
+      "version": "lie-nielsen-2026-10-22.2",
+      "models": 381
+    },
+    {
+      "key": "lubanplane",
+      "name": "lubanplane.com",
+      "url": "https://lubanplane.com",
+      "version": "lubanplane-2026-10-22.1",
+      "models": 27
+    }
+  ],
+  "lubanCoverage": {
+    "version": "lubanplane-2026-10-22.1",
+    "publicProductPages": 23,
+    "sitemapProductPages": 23,
+    "modelVariants": 27,
+    "variableFamilies": 3,
+    "withoutSKU": 27,
+    "withImages": 27,
+    "sourceImageDownloads": 0,
+    "uncategorizedProductsIncluded": [
+      "Luban Cast Iron 12° Block Plane",
+      "Luban Brass Block 12° Plane &#8211; 102",
+      "Luban No 4-1/2 Plane"
+    ],
+    "sitemapMissingFromAPI": [],
+    "sourceAPISHA256": "c9226c8ebc2c0160b75c88c18a7749401fc518d97ff735aa1c2f78b38af03958"
+  },
+  "oldLieNielsenPreservationSHA256": "2fe6a4ddf05d77c00269b79618c5782644a2e05055c91cbe36d0897d8006a062",
+  "missingImages": 1,
+  "imageFilesCopied": 0
+}

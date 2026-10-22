@@ -1,3 +1,4 @@
+export const catalogIDPattern=/^urn:noppadol:catalog:(?:lie-nielsen|lubanplane):[0-9]+$/;
 export const intentLabels={undecided:'ยังไม่ตัดสินใจ',retain:'เก็บใช้งานต่อ',sell:'ขายส่งต่อ',gift:'มอบให้',bequeath:'วางแผนมรดก'};
 export const purposeLabels={insurance_replacement:'มูลค่าทดแทนเพื่อประกัน',resale_estimate:'ประมาณราคาขายต่อ',asking_price:'ราคาที่ตั้งขาย'};
 export const blank=()=>({story:'',learning:'',care:'',condition:'',conditionDate:'',defects:'',includes:'',handover:'',successor:'',intent:'undecided',valuation:null});
@@ -9,7 +10,7 @@ export function validate(db){
   if(!['AssetItem','Component','ProductModel'].includes(r.declaredKind))throw Error('ชนิดรายการไม่รองรับ');
   if(typeof r.title!=='string'||!r.title.trim()||typeof r.sourceText!=='string'||!Array.isArray(r.observations)||!r.revision||!r.source.textHash||r.access!=='private')throw Error('ข้อมูลต้นทางไม่ครบหรือสิทธิ์ไม่ถูกต้อง');
   if(r.libraryStatus&&!['owned','wishlist','reference'].includes(r.libraryStatus))throw Error('สถานะคลังไม่ถูกต้อง');
-  if(r.catalogModelId&&(!r.catalogModelId.startsWith('urn:noppadol:catalog:lie-nielsen:')||!r.catalogReference?.sku))throw Error('การอ้างอิงแค็ตตาล็อกไม่ครบ');
+  if(r.catalogModelId&&(!catalogIDPattern.test(r.catalogModelId)||!(r.catalogReference?.sku||r.catalogReference?.sourceProductId)))throw Error('การอ้างอิงแค็ตตาล็อกไม่ครบ');
   if(r.catalogReference){const ref=r.catalogReference;const https=u=>{try{return new URL(u).protocol==='https:';}catch{return false;}};if(!https(ref.sourceURL)||!Array.isArray(ref.imageURLs)||ref.imageURLs.some(u=>!https(u)))throw Error('URL อ้างอิงรุ่นสินค้าต้องเป็น HTTPS');}
   const s=r.stewardship;if(!s||!Object.hasOwn(intentLabels,s.intent))throw Error('แผนส่งต่อไม่ถูกต้อง');
   for(const k of Object.keys(blank()).filter(k=>!['valuation','intent'].includes(k)))if(typeof s[k]!=='string'||s[k].length>20000)throw Error('ข้อความรายละเอียดไม่ถูกต้อง');
@@ -32,7 +33,7 @@ export function publicPassport(r,selected){
 export function graph(db){
  validate(db);const nodes=[];const catalogNodes=new Set();
  for(const r of db.records){const id='urn:noppadol:asset:'+r.id,src='urn:noppadol:source:'+r.source.uuid+':'+r.source.textHash,pid=id+':passport';
- if(r.catalogModelId&&!catalogNodes.has(r.catalogModelId)){catalogNodes.add(r.catalogModelId);nodes.push({'@id':r.catalogModelId,'@type':'a:ProductModel','label':r.catalogReference.name,'sku':r.catalogReference.sku,'sourceURL':r.catalogReference.sourceURL,'catalogVersion':r.catalogVersion});}
+ if(r.catalogModelId&&!catalogNodes.has(r.catalogModelId)){catalogNodes.add(r.catalogModelId);nodes.push({'@id':r.catalogModelId,'@type':'a:ProductModel','label':r.catalogReference.name,'sku':r.catalogReference.sku,'sourceProductId':r.catalogReference.sourceProductId??null,'sourceURL':r.catalogReference.sourceURL,'catalogVersion':r.catalogVersion});}
  nodes.push({'@id':id,...(r.catalogModelId?{'s:catalogEntry':{'@id':r.catalogModelId},...(r.declaredKind==='AssetItem'?{'a:model':{'@id':r.catalogModelId}}:{}),'libraryStatus':r.libraryStatus}:{}),'@type':'a:'+r.declaredKind,'label':r.id,'sourceTitle':r.title,'identityStatus':r.identityStatus,'prov:wasDerivedFrom':{'@id':src},'observations':r.observations,'access':'private','reviewStatus':r.reviewStatus});
  nodes.push({'@id':src,'@type':'prov:Entity','sourceUUID':r.source.uuid,'textHash':r.source.textHash,'sourceText':r.sourceText});
  const p={'@id':pid,'@type':r.declaredKind==='ProductModel'?'s:LibrarySelection':'s:ToolPassport','label':r.declaredKind==='ProductModel'?'LibrarySelection':'ToolPassport',...(r.declaredKind==='ProductModel'?{'s:selectsModel':{'@id':id}}:{'s:describesAsset':{'@id':id}}),'ownerNotes':r.stewardship,'access':'private','publication':'draft'};

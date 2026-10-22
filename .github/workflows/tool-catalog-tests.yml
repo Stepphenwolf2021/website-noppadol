@@ -2,9 +2,9 @@ name: Tool catalog validation
 on:
   push:
     branches: [main]
-    paths: ['tool-stewardship/**', 'tests/tool-catalog.test.mjs', '.github/workflows/tool-catalog-tests.yml']
+    paths: ['tool-stewardship/**', 'tests/tool-catalog.test.mjs', 'tests/multi-catalog.test.mjs', '.github/workflows/tool-catalog-tests.yml']
   pull_request:
-    paths: ['tool-stewardship/**', 'tests/tool-catalog.test.mjs', '.github/workflows/tool-catalog-tests.yml']
+    paths: ['tool-stewardship/**', 'tests/tool-catalog.test.mjs', 'tests/multi-catalog.test.mjs', '.github/workflows/tool-catalog-tests.yml']
 permissions:
   contents: read
 jobs:
@@ -15,4 +15,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: node --test tests/tool-catalog.test.mjs
+      - run: node --test tests/tool-catalog.test.mjs tests/multi-catalog.test.mjs

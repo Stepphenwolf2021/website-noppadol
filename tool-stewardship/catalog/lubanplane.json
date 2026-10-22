@@ -1,0 +1,1507 @@
+{
+  "schemaVersion": "tool-catalog-1.0.0",
+  "version": "lubanplane-2026-10-22.1",
+  "retrievedAt": "2026-10-22T16:09:57.248584+00:00",
+  "provider": {
+    "id": "urn:noppadol:catalog:seller:lubanplane",
+    "name": "lubanplane.com",
+    "url": "https://lubanplane.com"
+  },
+  "scope": "All public WooCommerce Store API products, reconciled to public product sitemap; variations extracted from each product page. No manufacturer authorization asserted.",
+  "models": [
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7764",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7764",
+      "sourceParentProductId": "7763",
+      "sku": null,
+      "name": "Luban Chisel Plane — Type: L",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-chisel-plane/?attribute_type=L",
+      "evidenceURL": "https://lubanplane.com/product/luban-chisel-plane/",
+      "sourcePageSHA256": "4ebfebbdea0b21b93a7bdd4c854afe26ce7b92e7e70f63b31298c6a033a982fa",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:52.958234+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764510933035.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Type": "L"
+      },
+      "sourceAttributeValues": {
+        "attribute_type": "L"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 239.9,
+        "currency": "USD",
+        "raw": "USD 239.90",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:52.958234+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-chisel-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:52.958234+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7765",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7765",
+      "sourceParentProductId": "7763",
+      "sku": null,
+      "name": "Luban Chisel Plane — Type: S",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-chisel-plane/?attribute_type=S",
+      "evidenceURL": "https://lubanplane.com/product/luban-chisel-plane/",
+      "sourcePageSHA256": "4ebfebbdea0b21b93a7bdd4c854afe26ce7b92e7e70f63b31298c6a033a982fa",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:52.958234+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764510933035.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Type": "S"
+      },
+      "sourceAttributeValues": {
+        "attribute_type": "S"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 169.9,
+        "currency": "USD",
+        "raw": "USD 169.90",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:52.958234+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-chisel-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:52.958234+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7759",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7759",
+      "sourceParentProductId": "7759",
+      "sku": null,
+      "name": "Luban No 8 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-8-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-8-plane/",
+      "sourcePageSHA256": "ea77afa74ccd6cfa702e2842d0e21d871a608dd3ca88e1a4070142ed94ed00cd",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.793125+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764510163347.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 459.0,
+        "currency": "USD",
+        "raw": "USD 459.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.793125+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-8-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.793125+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7757",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7757",
+      "sourceParentProductId": "7757",
+      "sku": null,
+      "name": "Luban No 3 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-3-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-3-plane/",
+      "sourcePageSHA256": "feb14b5b7223441c15731a65f6f6601ed8376aef918fcc7ad9d09de54b2f9a4f",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:54.535088+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764507906063-2.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 259.99,
+        "currency": "USD",
+        "raw": "USD 259.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:54.535088+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-3-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:54.535088+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7752",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7752",
+      "sourceParentProductId": "7751",
+      "sku": null,
+      "name": "Luban Brass Mallet — Type: L",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "accessories",
+      "sourceCategory": "All Products, Luban Carving Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-carving-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-brass-mallet/?attribute_type=L",
+      "evidenceURL": "https://lubanplane.com/product/luban-brass-mallet/",
+      "sourcePageSHA256": "2842bbd2553cd7e270406488c5b53074a37bcf54f3b1b33aa3ab6901b663c192",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:52.310425+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764508746696.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1-1.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Type": "L"
+      },
+      "sourceAttributeValues": {
+        "attribute_type": "L"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 169.99,
+        "currency": "USD",
+        "raw": "USD 169.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:52.310425+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-brass-mallet/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:52.310425+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7753",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7753",
+      "sourceParentProductId": "7751",
+      "sku": null,
+      "name": "Luban Brass Mallet — Type: S",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "accessories",
+      "sourceCategory": "All Products, Luban Carving Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-carving-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-brass-mallet/?attribute_type=S",
+      "evidenceURL": "https://lubanplane.com/product/luban-brass-mallet/",
+      "sourcePageSHA256": "2842bbd2553cd7e270406488c5b53074a37bcf54f3b1b33aa3ab6901b663c192",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:52.310425+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764508746696.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1-1.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Type": "S"
+      },
+      "sourceAttributeValues": {
+        "attribute_type": "S"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 119.99,
+        "currency": "USD",
+        "raw": "USD 119.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:52.310425+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-brass-mallet/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:52.310425+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7748",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7748",
+      "sourceParentProductId": "7748",
+      "sku": null,
+      "name": "Luban Iron Spokeshave-Flat Sole",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "spokeshaves",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-iron-spokeshave-flat-sole/",
+      "evidenceURL": "https://lubanplane.com/product/luban-iron-spokeshave-flat-sole/",
+      "sourcePageSHA256": "40cd1e52dd485c2b621d9f575a10e2c7fdf18c4f318f9d67e9370c5ae67cade6",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:54.292166+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764508389916.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346653332.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 129.99,
+        "currency": "USD",
+        "raw": "USD 129.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:54.292166+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-iron-spokeshave-flat-sole/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:54.292166+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7738",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7738",
+      "sourceParentProductId": "7738",
+      "sku": null,
+      "name": "Luban No 4 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-4-plane-2/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-4-plane-2/",
+      "sourcePageSHA256": "c2816e277e5128d0dd654ca0c1112ccc3613c13ac84d3a1b6b78413d12d13c17",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:54.925348+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764507906063.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1-6.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_2-4.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_3-1.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_4-2.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 269.0,
+        "currency": "USD",
+        "raw": "USD 269.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:54.925348+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-4-plane-2/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:54.925348+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7719",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7719",
+      "sourceParentProductId": "7719",
+      "sku": null,
+      "name": "Luban No 5 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-5-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-5-plane/",
+      "sourcePageSHA256": "7cb404c903f1c436087d5bc06e5018fa9115514c63556c730f7151e2f0869142",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.540208+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764507020873-1.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764334823006.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 299.0,
+        "currency": "USD",
+        "raw": "USD 299.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.540208+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-5-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.540208+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7711",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7711",
+      "sourceParentProductId": "7711",
+      "sku": null,
+      "name": "Luban No.5 Low Angle plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-5-low-angle-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-5-low-angle-plane/",
+      "sourcePageSHA256": "e23c0aa5cd01da653d2216ceb2e16c5efd1d142d505cf1b9e81d12c29865373f",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.178873+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764506660651.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/detail_image_2.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/detail_image_10.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/detail_image_11.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1-5.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_2-3.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_3-2.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 299.0,
+        "currency": "USD",
+        "raw": "USD 299.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.178873+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-5-low-angle-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.178873+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7699",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7699",
+      "sourceParentProductId": "7699",
+      "sku": null,
+      "name": "Luban No 6 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-6-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-6-plane/",
+      "sourcePageSHA256": "5fe694f75d13a3769808d3a0648dbac8b92146475b4474913f1932f07a2b066c",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.664233+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764506222655.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338508313.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338516635.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338536895.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338546182.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338556548.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338569244.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338577047.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338585347.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338593282.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764338601172.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 359.0,
+        "currency": "USD",
+        "raw": "USD 359.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.664233+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-6-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.664233+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7687",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7687",
+      "sourceParentProductId": "7687",
+      "sku": null,
+      "name": "Luban No 7 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-7-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-7-plane/",
+      "sourcePageSHA256": "9e307e33691d746eabe75a6ff946ca256f1b7ee6b0b141c9e8617e465253397b",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.805646+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764505498678.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340586565.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340595901.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340606244.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340613879.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340621588.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340629946.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340637482.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340645994.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340655073.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764340662865.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 389.0,
+        "currency": "USD",
+        "raw": "USD 389.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.805646+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-7-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.805646+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7674",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7674",
+      "sourceParentProductId": "7674",
+      "sku": null,
+      "name": "Luban No 5-1/2 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-no-5-1-2-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-5-1-2-plane/",
+      "sourcePageSHA256": "f970c54acae4fd2e985d94363f332fe3610c4d5a9e27df5ebc59737a71c69513",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.172108+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764505062481.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764342342690.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 329.0,
+        "currency": "USD",
+        "raw": "USD 329.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.172108+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-5-1-2-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.172108+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7661",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7661",
+      "sourceParentProductId": "7661",
+      "sku": null,
+      "name": "Luban Router Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-router-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-router-plane/",
+      "sourcePageSHA256": "5871107a6e942dda286ab2718e8662e81e64a8b74978ecef38d1f7a1ebe87f03",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:56.155902+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764495123718.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344010574.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344022084.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344031335.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344039646.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 155.99,
+        "currency": "USD",
+        "raw": "USD 155.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:56.155902+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-router-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:56.155902+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7658",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7658",
+      "sourceParentProductId": "7645",
+      "sku": null,
+      "name": "Luban Shoulder Plane — Size: L",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/?attribute_size=L",
+      "evidenceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/",
+      "sourcePageSHA256": "af310497feadedc62475ac55b5b85d21a56540356c3c5d6b95f76b499495426e",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:56.333829+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/设计木工工具电商图.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343706603.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343717076.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343728767.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343742528.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343750313.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343757867.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Size": "L"
+      },
+      "sourceAttributeValues": {
+        "attribute_size": "L"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 279,
+        "currency": "USD",
+        "raw": "USD 279.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:56.333829+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:56.333829+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7659",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7659",
+      "sourceParentProductId": "7645",
+      "sku": null,
+      "name": "Luban Shoulder Plane — Size: M",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/?attribute_size=M",
+      "evidenceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/",
+      "sourcePageSHA256": "af310497feadedc62475ac55b5b85d21a56540356c3c5d6b95f76b499495426e",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:56.333829+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/设计木工工具电商图.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343706603.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343717076.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343728767.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343742528.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343750313.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343757867.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Size": "M"
+      },
+      "sourceAttributeValues": {
+        "attribute_size": "M"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 219,
+        "currency": "USD",
+        "raw": "USD 219.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:56.333829+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:56.333829+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7660",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7660",
+      "sourceParentProductId": "7645",
+      "sku": null,
+      "name": "Luban Shoulder Plane — Size: S",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/?attribute_size=S",
+      "evidenceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/",
+      "sourcePageSHA256": "af310497feadedc62475ac55b5b85d21a56540356c3c5d6b95f76b499495426e",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:56.333829+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/设计木工工具电商图.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343706603.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343717076.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343728767.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343742528.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343750313.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764343757867.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {
+        "Size": "S"
+      },
+      "sourceAttributeValues": {
+        "attribute_size": "S"
+      },
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 199,
+        "currency": "USD",
+        "raw": "USD 199.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:56.333829+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane-2/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:56.333829+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "variable",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7642",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7642",
+      "sourceParentProductId": "7642",
+      "sku": null,
+      "name": "Luban Double Bar Wheel Marking Gauge",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "measuring_marking",
+      "sourceCategory": "All Products, Luban Marking Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-marking-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-double-bar-wheel-marking-gauge/",
+      "evidenceURL": "https://lubanplane.com/product/luban-double-bar-wheel-marking-gauge/",
+      "sourcePageSHA256": "c6b1846c6b7d4638de338cf36102da6a206da3efe085f7c05f7ff301c42c916d",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:54.359606+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764492841881.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 139.99,
+        "currency": "USD",
+        "raw": "USD 139.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:54.359606+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-double-bar-wheel-marking-gauge/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:54.359606+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7639",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7639",
+      "sourceParentProductId": "7639",
+      "sku": null,
+      "name": "Luban Single Bar Wheel Marking Gauge",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "measuring_marking",
+      "sourceCategory": "All Products, Luban Marking Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-marking-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-single-bar-wheel-marking-gauge/",
+      "evidenceURL": "https://lubanplane.com/product/luban-single-bar-wheel-marking-gauge/",
+      "sourcePageSHA256": "ddcb48d2b7bfc60d1d7aa4f06b97dc2d2a36ea496d01a0becfe4b2f917f3c422",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:56.446092+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764492617517.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 119.99,
+        "currency": "USD",
+        "raw": "USD 119.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:56.446092+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-single-bar-wheel-marking-gauge/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:56.446092+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7627",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7627",
+      "sourceParentProductId": "7627",
+      "sku": null,
+      "name": "Luban​ Shoulder Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-shoulder-plane/",
+      "sourcePageSHA256": "0a30088803bae6244fb203f0a9b31926c222ff9920b2a806ceed773c10ce58ba",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:57.248584+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764491797603.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_1-3.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_2-2.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_3.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_4.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/main_image_5.jpg"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 199.99,
+        "currency": "USD",
+        "raw": "USD 199.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:57.248584+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-shoulder-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:57.248584+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7614",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7614",
+      "sourceParentProductId": "7614",
+      "sku": null,
+      "name": "Luban 043 Plough Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-043-plough-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-043-plough-plane/",
+      "sourcePageSHA256": "35ad042a3d65bcf064f072ef9ad19af0807827569b0ccd5f3095925a7d64a56d",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:53.655120+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764491050245.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344514680.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344523024.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344534089.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344543453.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764344561912.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 239.99,
+        "currency": "USD",
+        "raw": "USD 239.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:53.655120+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-043-plough-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:53.655120+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7605",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7605",
+      "sourceParentProductId": "7605",
+      "sku": null,
+      "name": "Luban Brass Spokeshave-Flat Sole",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "spokeshaves",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-brass-spokeshave-flat-sole/",
+      "evidenceURL": "https://lubanplane.com/product/luban-brass-spokeshave-flat-sole/",
+      "sourcePageSHA256": "ce4746905776945d95b283d0306eb8a70fb5e0bc98f478a2af359a75097a54b1",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:52.301618+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764490171827.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346446051.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346488879.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346498008.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 139.99,
+        "currency": "USD",
+        "raw": "USD 139.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:52.301618+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-brass-spokeshave-flat-sole/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:52.301618+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7596",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7596",
+      "sourceParentProductId": "7596",
+      "sku": null,
+      "name": "Luban Brass Spokeshave-Round Sole",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "spokeshaves",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-brass-spokeshave-round-sole/",
+      "evidenceURL": "https://lubanplane.com/product/luban-brass-spokeshave-round-sole/",
+      "sourcePageSHA256": "5c34e3036f1c067e314027d94b170f99db128feff7f11983b27c83860f21cc49",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:53.914544+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764489711735.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346528531.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346537405.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346545008.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 139.99,
+        "currency": "USD",
+        "raw": "USD 139.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:53.914544+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-brass-spokeshave-round-sole/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:53.914544+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7587",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7587",
+      "sourceParentProductId": "7587",
+      "sku": null,
+      "name": "Luban Mini Brass 20° Block Plane – 101",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": "All Products, Luban Planes Tools",
+      "categoryURLs": [
+        "https://lubanplane.com/product-category/all-products/",
+        "https://lubanplane.com/product-category/luban-planes-tools/"
+      ],
+      "sourceURL": "https://lubanplane.com/product/luban-mini-brass-20-block-plane-101/",
+      "evidenceURL": "https://lubanplane.com/product/luban-mini-brass-20-block-plane-101/",
+      "sourcePageSHA256": "cbb2b61707ffd32d3e556e9d53bb87c985b8e8d05e8bb3a7c2acf0d324737711",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:54.547047+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/新对话.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764345637994.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764345646952.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764345655530.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 159.99,
+        "currency": "USD",
+        "raw": "USD 159.99",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:54.547047+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-mini-brass-20-block-plane-101/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:54.547047+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7573",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7573",
+      "sourceParentProductId": "7573",
+      "sku": null,
+      "name": "Luban Cast Iron 12° Block Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": null,
+      "categoryURLs": [],
+      "sourceURL": "https://lubanplane.com/product/luban-cast-iron-12-block-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-cast-iron-12-block-plane/",
+      "sourcePageSHA256": "d65fd4d0b1b1452d6e425508f58b544d533f2456a86f040940fb9e3e12a809db",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:53.902178+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/设计木工工具电商图-2.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346220848.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346229816.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346238639.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346248014.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764346256447.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 169.0,
+        "currency": "USD",
+        "raw": "USD 169.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:53.902178+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-cast-iron-12-block-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:53.902178+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7564",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7564",
+      "sourceParentProductId": "7564",
+      "sku": null,
+      "name": "Luban Brass Block 12° Plane – 102",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": null,
+      "categoryURLs": [],
+      "sourceURL": "https://lubanplane.com/product/luban-brass-block-12-plane-102/",
+      "evidenceURL": "https://lubanplane.com/product/luban-brass-block-12-plane-102/",
+      "sourcePageSHA256": "f264ad84392e3eb37e6dbb83170b6a9eb026e6c7f32f399fa46f456afd8fa9a9",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:52.321079+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764504624216.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764345730313.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764345747514.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764345755111.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 169.0,
+        "currency": "USD",
+        "raw": "USD 169.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:52.321079+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-brass-block-12-plane-102/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:52.321079+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    },
+    {
+      "id": "urn:noppadol:catalog:lubanplane:7336",
+      "entityType": "ProductModel",
+      "providerId": "lubanplane",
+      "sourceProductId": "7336",
+      "sourceParentProductId": "7336",
+      "sku": null,
+      "name": "Luban No 4-1/2 Plane",
+      "brand": "Luban",
+      "brandBasis": "source_product_name",
+      "seller": "lubanplane.com",
+      "category": "handplanes",
+      "sourceCategory": null,
+      "categoryURLs": [],
+      "sourceURL": "https://lubanplane.com/product/luban-no-4-plane/",
+      "evidenceURL": "https://lubanplane.com/product/luban-no-4-plane/",
+      "sourcePageSHA256": "3d6d6ff71c833185ec8d466e9018575f788847f9b17b2499b8b65d3b60c4f51a",
+      "sourceAPIURL": "https://lubanplane.com/wp-json/wc/store/v1/products?per_page=100",
+      "retrievedAt": "2026-10-22T16:09:55.005459+00:00",
+      "imageURLs": [
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764504463010.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/默认标题__2025-11-3012_16_12.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341884958.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341892921.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341902738.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341912811.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341921319.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341929608.png",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341937734.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341950758.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341958012.jpg",
+        "https://lubanplane.com/wp-content/uploads/2025/11/1764341965869.png"
+      ],
+      "imageAttribution": {
+        "owner": "Original source / respective rights holder",
+        "usage": "URL reference only; no image files copied",
+        "license": "not_asserted"
+      },
+      "attributes": {},
+      "sourceAttributeValues": {},
+      "specificationNotes": [],
+      "specificationScope": "product_page_or_variant_family; verify applicability to selected model",
+      "referenceLinks": [],
+      "offerSnapshot": {
+        "amount": 279.0,
+        "currency": "USD",
+        "raw": "USD 279.00",
+        "purpose": "new_retail_catalog_price",
+        "observedAt": "2026-10-22T16:09:55.005459+00:00",
+        "sourceURL": "https://lubanplane.com/product/luban-no-4-plane/"
+      },
+      "availability": {
+        "status": "in_stock",
+        "observedAt": "2026-10-22T16:09:55.005459+00:00",
+        "note": "Source status snapshot; not current-stock guarantee"
+      },
+      "sourceProductType": "simple",
+      "reviewStatus": "source_extracted_unreviewed"
+    }
+  ]
+}

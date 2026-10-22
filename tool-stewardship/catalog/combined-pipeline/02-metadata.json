@@ -1,0 +1,98 @@
+{
+  "version": "1.1.0",
+  "fields": {
+    "id": {
+      "datatype": "IRI",
+      "obligation": "required",
+      "definition": "Provider namespace + source numeric product or variation ID; never join by product name or SKU across providers"
+    },
+    "sourceProductId": {
+      "datatype": "string",
+      "obligation": "required",
+      "definition": "Exact external numeric ID; never name-matched"
+    },
+    "sku": {
+      "datatype": "string",
+      "obligation": "optional",
+      "definition": "Exact source SKU or null when not stated; never synthesize a SKU from source product ID."
+    },
+    "name": {
+      "datatype": "string",
+      "obligation": "required",
+      "definition": "Variant name, original language"
+    },
+    "sourceURL": {
+      "datatype": "HTTPS URL",
+      "obligation": "required",
+      "definition": "Variant product page URL"
+    },
+    "evidenceURL": {
+      "datatype": "HTTPS URL",
+      "obligation": "required",
+      "definition": "Fetched page containing source productObj"
+    },
+    "sourcePageSHA256": {
+      "datatype": "sha256",
+      "obligation": "required",
+      "definition": "Hash of stored HTML snapshot, anonymous CSRF values removed"
+    },
+    "retrievedAt": {
+      "datatype": "dateTime",
+      "obligation": "required",
+      "definition": "Time of this crawl snapshot"
+    },
+    "imageURLs": {
+      "datatype": "HTTPS URL[]",
+      "obligation": "optional",
+      "definition": "URLs only; empty if source has none"
+    },
+    "brand": {
+      "datatype": "string|null",
+      "obligation": "optional",
+      "definition": "Null when explicit source brand field is empty; retailer not assumed manufacturer"
+    },
+    "category": {
+      "datatype": "controlled code",
+      "obligation": "required",
+      "definition": "Local navigation classification, source category retained separately"
+    },
+    "attributes": {
+      "datatype": "object",
+      "obligation": "optional",
+      "definition": "Decoded source variation options"
+    },
+    "specificationNotes": {
+      "datatype": "string[]",
+      "obligation": "optional",
+      "definition": "Selected factual bullets; may apply to variant family, never physical condition"
+    },
+    "offerSnapshot": {
+      "datatype": "object",
+      "obligation": "required",
+      "definition": "New retail amount/currency/observedAt/source; not owner valuation"
+    },
+    "availability": {
+      "datatype": "object",
+      "obligation": "optional",
+      "definition": "Observed source status only"
+    }
+  },
+  "unknownPolicy": "Unknown remains null or empty array; no fabricated brand, photo or measurements",
+  "identityPolicy": "No allocation in sole AST registry; LOCAL UUID only when user selects a catalog entry",
+  "crosswalk": {
+    "productObj.variants[].id": "sourceProductId + namespaced id",
+    "code": "sku",
+    "name": "name",
+    "image_urls[].regular": "imageURLs",
+    "attributes + variation_attributes.options": "attributes",
+    "price": "offerSnapshot USD",
+    "inventory_status": "availability.status",
+    "WooCommerce Store API id / HTML variation_id": "sourceProductId in lubanplane namespace",
+    "WooCommerce sku empty": "sku:null; never substitute synthetic SKU",
+    "WooCommerce attributes / variation attributes": "Decoded variant names and attributes",
+    "WooCommerce images[].src / variation.image.full_src": "imageURLs; remote references only",
+    "WooCommerce prices.currency_code + minor unit": "USD new-retail snapshot; amount derived using declared currency minor units"
+  },
+  "sourceVersion": "all-tools-2026-10-22.3",
+  "modelVsItem": "a:ProductModel in shared dataset; owned user item optionally a:model references it. Wishlist/reference use LibrarySelection, not ToolPassport."
+}

@@ -1,0 +1,13 @@
+@prefix c: <urn:noppadol:catalog:ontology:> .
+@prefix s: <urn:noppadol:stewardship:> .
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+c:ModelShape a sh:NodeShape ; sh:targetClass schema:Product ;
+ sh:property [ sh:path c:sourceProductId ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+ sh:property [ sh:path schema:name ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+ sh:property [ sh:path schema:sku ; sh:maxCount 1 ; sh:minLength 1 ] ;
+ sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+ sh:property [ sh:path c:sourcePageSHA256 ; sh:minCount 1 ; sh:pattern "^[0-9a-f]{64}$" ] .
+s:SelectionShape a sh:NodeShape ; sh:targetClass s:LibrarySelection ;
+ sh:property [ sh:path s:selectsModel ; sh:minCount 1 ; sh:maxCount 1 ; sh:class a:ProductModel ] .

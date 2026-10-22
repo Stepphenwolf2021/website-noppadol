@@ -1,0 +1,23 @@
+{
+  "version": "1.1.0",
+  "catalogVersion": "all-tools-2026-10-22.3",
+  "sources": [
+    {
+      "key": "lie-nielsen",
+      "name": "Lie-Nielsen Toolworks",
+      "url": "https://www.lie-nielsen.com",
+      "version": "lie-nielsen-2026-10-22.2",
+      "models": 381
+    },
+    {
+      "key": "lubanplane",
+      "name": "lubanplane.com",
+      "url": "https://lubanplane.com",
+      "version": "lubanplane-2026-10-22.1",
+      "models": 27
+    }
+  ],
+  "sourceDatasetSHA256": "0a3bde101e808c9d23f1ca545230b93a8e70b6ef9f99f608df6d469677361e5f",
+  "identity": "Namespaced source ID mandatory; SKU optional; no AST allocation or owner data migration",
+  "personalLibrary": "LOCAL UUID / explicit owned-wishlist-reference; unknown price/condition stay blank"
+}

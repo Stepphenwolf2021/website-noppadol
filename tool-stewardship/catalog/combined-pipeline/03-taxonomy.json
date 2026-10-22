@@ -1,0 +1,32 @@
+{
+  "version": "1.1.0",
+  "status": "draft_navigation_mapping",
+  "facets": {
+    "category": {
+      "handplanes": 74,
+      "parts": 89,
+      "chisels": 23,
+      "workbenches": 15,
+      "tool_care": 23,
+      "accessories": 20,
+      "green_woodworking": 4,
+      "sharpening": 27,
+      "spokeshaves": 8,
+      "education": 93,
+      "merchandise": 12,
+      "measuring_marking": 14,
+      "saws": 6
+    },
+    "libraryStatus": [
+      "owned",
+      "wishlist",
+      "reference"
+    ],
+    "sourceCategories": "Preserved categoryURLs; no is-a assertions from website navigation",
+    "catalogProvider": [
+      "lie-nielsen",
+      "lubanplane"
+    ]
+  },
+  "rules": "Source product name and category determine navigation facets; source category URLs retained. Provider is an independent facet. Models/variants are not owned items."
+}
