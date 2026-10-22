@@ -1,0 +1,12 @@
+@prefix c: <urn:noppadol:catalog:ontology:> .
+@prefix s: <urn:noppadol:stewardship:> .
+@prefix a: <urn:noppadol:assets:ontology:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+c: a owl:Ontology ; owl:versionInfo "1.0.0-draft" .
+a:ProductModel a owl:Class ; rdfs:label "ProductModel"@en .
+a:AssetItem a owl:Class ; rdfs:label "AssetItem"@en .
+s:LibrarySelection a owl:Class ; rdfs:comment "Private selection; no ownership implication."@en .
+s:selectsModel a owl:ObjectProperty ; rdfs:domain s:LibrarySelection ; rdfs:range a:ProductModel .
+a:model a owl:ObjectProperty ; rdfs:domain a:AssetItem ; rdfs:range a:ProductModel .
+c:RetailOfferSnapshot a owl:Class ; rdfs:comment "Observed new retail offer, never inferred personal valuation."@en .

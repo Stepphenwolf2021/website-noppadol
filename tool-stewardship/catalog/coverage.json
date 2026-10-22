@@ -1,0 +1,30 @@
+{
+  "version": "lie-nielsen-2026-10-22.1",
+  "listingPages": 162,
+  "navigationCategories": 69,
+  "productPages": 361,
+  "modelVariants": 381,
+  "equipmentVariants": 276,
+  "byCategory": {
+    "handplanes": 54,
+    "parts": 89,
+    "chisels": 23,
+    "workbenches": 15,
+    "tool_care": 23,
+    "accessories": 18,
+    "green_woodworking": 4,
+    "sharpening": 27,
+    "spokeshaves": 5,
+    "education": 93,
+    "merchandise": 12,
+    "measuring_marking": 12,
+    "saws": 6
+  },
+  "missingImages": [
+    "1-C-FT-1-2-L"
+  ],
+  "extractionFailures": [],
+  "sourceConflicts": [],
+  "coverageNotes": "Some displayed category totals count variants while cards group them. Coverage retains listed IDs, page counts and expanded variants separately. All discovered 361 product URLs parsed successfully; no assertion about unlinked items.",
+  "sourceImageDownloads": 0
+}

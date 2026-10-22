@@ -1,0 +1,3 @@
+PREFIX a: <urn:noppadol:assets:ontology:>
+PREFIX schema: <https://schema.org/>
+SELECT ?model ?sku ?name WHERE { ?model a a:ProductModel ; schema:sku ?sku ; schema:name ?name . } ORDER BY ?sku

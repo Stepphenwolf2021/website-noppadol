@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "labels": {
+    "handplanes": [
+      "กบไสไม้",
+      "handplane",
+      "hand plane"
+    ],
+    "chisels": [
+      "สิ่ว",
+      "chisel"
+    ],
+    "saws": [
+      "เลื่อย",
+      "saw"
+    ],
+    "parts": [
+      "อะไหล่",
+      "ใบสำรอง"
+    ],
+    "sharpening": [
+      "ลับคม",
+      "sharpening"
+    ],
+    "tool_care": [
+      "ดูแลและจัดเก็บ",
+      "tool care"
+    ]
+  },
+  "related": [
+    [
+      "ProductModel",
+      "OwnedTool"
+    ],
+    [
+      "LibrarySelection",
+      "ProductModel"
+    ]
+  ],
+  "notEquivalent": [
+    [
+      "retailer",
+      "manufacturer"
+    ],
+    [
+      "RetailOfferSnapshot",
+      "resale valuation"
+    ],
+    [
+      "wishlist",
+      "owned"
+    ]
+  ],
+  "externalExactMatches": []
+}

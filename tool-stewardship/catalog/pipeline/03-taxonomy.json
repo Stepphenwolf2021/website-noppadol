@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "status": "draft_navigation_mapping",
+  "facets": {
+    "category": {
+      "handplanes": 54,
+      "parts": 89,
+      "chisels": 23,
+      "workbenches": 15,
+      "tool_care": 23,
+      "accessories": 18,
+      "green_woodworking": 4,
+      "sharpening": 27,
+      "spokeshaves": 5,
+      "education": 93,
+      "merchandise": 12,
+      "measuring_marking": 12,
+      "saws": 6
+    },
+    "libraryStatus": [
+      "owned",
+      "wishlist",
+      "reference"
+    ],
+    "sourceCategories": "Preserved categoryURLs; no is-a assertions from website navigation"
+  },
+  "rules": "Implemented in build_catalog.py category(); narrow source categories take precedence over broad source sections; no SKOS concept automatically becomes an OWL class."
+}

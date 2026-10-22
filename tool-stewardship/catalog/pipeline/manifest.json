@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "sourceCatalogVersion": "lie-nielsen-2026-10-22.1",
+  "sourceDatasetSHA256": "cda4d441ac389591d2278da34eab4e1394b4192d5e5fdf1906a285cab762a56c",
+  "scope": "My Assets catalog extension; Mission Core and AST registry unchanged",
+  "competencyQuestions": [
+    "Which source SKU is this model?",
+    "Can variant differences be selected without merging?",
+    "Which product images can be referenced by URL?",
+    "Does choosing wishlist avoid ownership claims?",
+    "Can two owned tools share one model while keeping distinct local identity?"
+  ],
+  "stageStatus": "draft artifacts with executable checks; not owner semantic approval of all source facts"
+}

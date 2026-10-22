@@ -1,0 +1,17 @@
+import {blank} from './model.mjs';
+export const libraryLabels={owned:'มีอยู่แล้ว',wishlist:'อยากมี',reference:'เก็บไว้ศึกษา'};
+export const categoryLabels={handplanes:'กบไสไม้',saws:'เลื่อย',chisels:'สิ่ว',spokeshaves:'กบเหลา / Spokeshave',green_woodworking:'เครื่องมืองานไม้สด',measuring_marking:'วัดและขีดเส้น',sharpening:'ลับคม',tool_care:'ดูแลและจัดเก็บ',workbenches:'โต๊ะงานไม้',parts:'ใบสำรองและอะไหล่',accessories:'อุปกรณ์เสริม',education:'หนังสือและสื่อ',merchandise:'ของที่ระลึก'};
+export function safeURL(s){try{const u=new URL(s);return u.protocol==='https:';}catch{return false;}}
+export function validateCatalog(c){
+ if(c?.schemaVersion!=='tool-catalog-1.0.0'||!Array.isArray(c.models)||!c.version)throw Error('รูปแบบแค็ตตาล็อกไม่รองรับ');
+ const ids=new Set();for(const m of c.models){if(!m.id?.startsWith('urn:noppadol:catalog:lie-nielsen:')||ids.has(m.id)||!m.name||!m.sku||!safeURL(m.sourceURL)||!Array.isArray(m.imageURLs)||m.imageURLs.some(x=>!safeURL(x))||!Object.hasOwn(categoryLabels,m.category))throw Error('ข้อมูลรุ่นสินค้าหรือ URL ไม่ถูกต้อง');ids.add(m.id);}return c;
+}
+export function searchModels(c,{query='',category='',equipmentOnly=true}={}){const q=query.trim().toLocaleLowerCase();return c.models.filter(m=>(!equipmentOnly||!['education','merchandise'].includes(m.category))&&(!category||m.category===category)&&(!q||[m.name,m.sku,m.sourceCategory,m.brand,m.seller,categoryLabels[m.category],...(m.specificationNotes||[])].join(' ').toLocaleLowerCase().includes(q)));}
+export async function makeLibraryRecord(m,status,catalogVersion,cryptoAPI=globalThis.crypto){
+ if(!Object.hasOwn(libraryLabels,status))throw Error('เลือกสถานะคลังก่อน');
+ if(!m.id||!m.sku||!safeURL(m.sourceURL))throw Error('ข้อมูลรุ่นไม่ครบ');
+ const uuid=cryptoAPI.randomUUID(),now=new Date().toISOString();
+ const snapshot={catalogModelId:m.id,catalogVersion,name:m.name,sku:m.sku,sourceURL:m.sourceURL,sourcePageSHA256:m.sourcePageSHA256,selectedAt:now,selectedStatus:status,notice:'Catalog model specification, not physical-item condition or purchase price.'};
+ const sourceText=JSON.stringify(snapshot,null,2);const hash=[...new Uint8Array(await cryptoAPI.subtle.digest('SHA-256',new TextEncoder().encode(sourceText)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+ return {id:'LOCAL-'+uuid,title:m.name,declaredKind:status==='owned'?'AssetItem':'ProductModel',identityStatus:status==='owned'?'owner_declared_local_item_unreviewed':'catalog_selection_not_ownership',libraryStatus:status,catalogModelId:m.id,catalogVersion,catalogReference:{name:m.name,sku:m.sku,brand:m.brand,seller:m.seller,sourceURL:m.sourceURL,imageURLs:m.imageURLs,sourceRetrievedAt:m.retrievedAt,sourcePageSHA256:m.sourcePageSHA256},source:{uuid,textHash:hash,title:'User catalog selection: '+m.sku,url:m.sourceURL,kind:'catalog_selection_snapshot'},revision:hash,sourceText,observations:(m.specificationNotes||[]).map(note=>({field:'model.specification_note',originalValue:note,status:'seller_reported_model_specification',scope:'model_only',sourceURL:m.sourceURL,sourceRevision:m.sourcePageSHA256})),reviewIssues:['สเปกรุ่นจากผู้ขาย ไม่ยืนยันสภาพชิ้นที่ถือครอง','รหัส LOCAL เป็นรายการในเบราว์เซอร์ ไม่ใช่รหัส AST จากทะเบียนหลัก'],reviewStatus:'unreviewed',access:'private',publication:'draft',stewardship:blank(),createdAt:now,updatedAt:now};
+}

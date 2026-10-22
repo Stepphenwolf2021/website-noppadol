@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "scheme": "MyAssetsCatalog",
+  "status": "draft_extension",
+  "concepts": [
+    {
+      "id": "urn:noppadol:catalog:concept:ProductModel",
+      "prefLabel": "ProductModel",
+      "displayLabelTH": "รุ่นสินค้า",
+      "definition": "A seller-identified product variant/SKU, not a physical owned item.",
+      "source": "Owner request 2026-10-22 / official catalog"
+    },
+    {
+      "id": "urn:noppadol:catalog:concept:CatalogSnapshot",
+      "prefLabel": "CatalogSnapshot",
+      "displayLabelTH": "ชุดแค็ตตาล็อก",
+      "definition": "A dated version of public source-derived model records.",
+      "source": "Owner request 2026-10-22 / official catalog"
+    },
+    {
+      "id": "urn:noppadol:catalog:concept:LibrarySelection",
+      "prefLabel": "LibrarySelection",
+      "displayLabelTH": "การเลือกเข้าคลัง",
+      "definition": "A private user selection with owned, wishlist or reference status.",
+      "source": "Owner request 2026-10-22 / official catalog"
+    },
+    {
+      "id": "urn:noppadol:catalog:concept:OwnedTool",
+      "prefLabel": "OwnedTool",
+      "displayLabelTH": "เครื่องมือที่มีอยู่แล้ว",
+      "definition": "A user-declared physical tool record; model selection alone does not establish ownership.",
+      "source": "Owner request 2026-10-22 / official catalog"
+    },
+    {
+      "id": "urn:noppadol:catalog:concept:RetailOfferSnapshot",
+      "prefLabel": "RetailOfferSnapshot",
+      "displayLabelTH": "ราคาขายใหม่จากต้นทาง",
+      "definition": "Observed new-retail price, separate from acquisition cost, resale valuation and insurance value.",
+      "source": "Owner request 2026-10-22 / official catalog"
+    },
+    {
+      "id": "urn:noppadol:catalog:concept:ImageReference",
+      "prefLabel": "ImageReference",
+      "displayLabelTH": "URL รูปอ้างอิง",
+      "definition": "A remote image URL with source attribution; no local image binary or license grant implied.",
+      "source": "Owner request 2026-10-22 / official catalog"
+    }
+  ]
+}
