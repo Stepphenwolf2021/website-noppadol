@@ -1,5 +1,5 @@
-import {safeURL,libraryLabels,categoryLabels} from './catalog.mjs?v=1.5.1';
-import {personalNetwork,catalogNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.1';
+import {safeURL,libraryLabels,categoryLabels} from './catalog.mjs?v=1.5.2';
+import {personalNetwork,catalogNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.2';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function recordImage(record){return record.catalogReference?.imageURLs?.find(safeURL)||null;}
 export function cabinetEntries(db){return db.records.map(r=>({id:r.id,name:r.title.replace(/^\d+-/,''),image:recordImage(r),status:r.libraryStatus||'owned',record:r})).sort((a,b)=>Number(Boolean(b.image))-Number(Boolean(a.image)));}

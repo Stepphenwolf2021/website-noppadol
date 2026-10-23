@@ -1,4 +1,4 @@
-import {safeURL,libraryLabels} from './catalog.mjs?v=1.5.1';
+import {safeURL,libraryLabels} from './catalog.mjs?v=1.5.2';
 export function nodeImage(n){return (n.type==='asset'?n.data?.catalogReference?.imageURLs:n.type==='model'?n.data?.imageURLs:null)?.find(safeURL)||null;}
 // The projection bounds drawing cost, never the source graph, query matches, or export.
 export function constellationProjection(view,{selected=null,limit=36}={}){

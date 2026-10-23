@@ -1,6 +1,6 @@
-import {renderCabinet} from './cabinet-view.mjs?v=1.5.1';
-import {validateCatalog,searchModels,makeLibraryRecord,libraryLabels,categoryLabels,safeURL,providerLabels,providerKey} from './catalog.mjs?v=1.5.1';
-import {blank,validate,gaps,graph,publicPassport,intentLabels,purposeLabels} from './model.mjs?v=1.5.1';
+import {renderCabinet} from './cabinet-view.mjs?v=1.5.2';
+import {validateCatalog,searchModels,makeLibraryRecord,libraryLabels,categoryLabels,safeURL,providerLabels,providerKey} from './catalog.mjs?v=1.5.2';
+import {blank,validate,gaps,graph,publicPassport,intentLabels,purposeLabels} from './model.mjs?v=1.5.2';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const KEY='noppadol-tool-stewardship-v1';let db={version:'1.0.0',access:'private',records:[]},selected=null,dirty=false,share=null;
 let centralCatalog=null,catalogPage=0,currentCatalogModel=null;
