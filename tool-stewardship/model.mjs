@@ -1,3 +1,4 @@
+import {validatePersonalDetails} from './private-details.mjs?v=1.6.0';
 export const catalogIDPattern=/^urn:noppadol:catalog:(?:(?:lie-nielsen|lubanplane):[0-9]+|veritas:[A-Za-z0-9_-]+)$/;
 export const intentLabels={undecided:'ยังไม่ตัดสินใจ',retain:'เก็บใช้งานต่อ',sell:'ขายส่งต่อ',gift:'มอบให้',bequeath:'วางแผนมรดก'};
 export const purposeLabels={insurance_replacement:'มูลค่าทดแทนเพื่อประกัน',resale_estimate:'ประมาณราคาขายต่อ',asking_price:'ราคาที่ตั้งขาย'};
@@ -12,6 +13,7 @@ export function validate(db){
   if(r.libraryStatus&&!['owned','wishlist','reference'].includes(r.libraryStatus))throw Error('สถานะคลังไม่ถูกต้อง');
   if(r.catalogModelId&&(!catalogIDPattern.test(r.catalogModelId)||!(r.catalogReference?.sku||r.catalogReference?.sourceProductId)))throw Error('การอ้างอิงแค็ตตาล็อกไม่ครบ');
   if(r.catalogReference){const ref=r.catalogReference;const https=u=>{try{return new URL(u).protocol==='https:';}catch{return false;}};if(!https(ref.sourceURL)||!Array.isArray(ref.imageURLs)||ref.imageURLs.some(u=>!https(u)))throw Error('URL อ้างอิงรุ่นสินค้าต้องเป็น HTTPS');}
+  if(r.personalDetails!==undefined)validatePersonalDetails(r.personalDetails);
   const s=r.stewardship;if(!s||!Object.hasOwn(intentLabels,s.intent))throw Error('แผนส่งต่อไม่ถูกต้อง');
   for(const k of Object.keys(blank()).filter(k=>!['valuation','intent'].includes(k)))if(typeof s[k]!=='string'||s[k].length>20000)throw Error('ข้อความรายละเอียดไม่ถูกต้อง');
   if(s.conditionDate&&(!/^\d{4}-\d{2}-\d{2}$/.test(s.conditionDate)||!Number.isFinite(Date.parse(s.conditionDate))||new Date(s.conditionDate).toISOString().slice(0,10)!==s.conditionDate))throw Error('วันที่ตรวจสภาพไม่ถูกต้อง');

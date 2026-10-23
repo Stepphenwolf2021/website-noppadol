@@ -1,5 +1,6 @@
-import {safeURL,libraryLabels} from './catalog.mjs?v=1.5.3';
-export function nodeImage(n){return (n.type==='asset'?n.data?.catalogReference?.imageURLs:n.type==='model'?n.data?.imageURLs:null)?.find(safeURL)||null;}
+import {ownerPhotoImage} from './private-photos.mjs?v=1.6.0';
+import {safeURL,libraryLabels} from './catalog.mjs?v=1.6.0';
+export function nodeImage(n){return (n.type==='asset'?ownerPhotoImage(n.data?.id):null)||(n.type==='asset'?n.data?.catalogReference?.imageURLs:n.type==='model'?n.data?.imageURLs:null)?.find(safeURL)||null;}
 // The projection bounds drawing cost, never the source graph, query matches, or export.
 export function constellationProjection(view,{selected=null,limit=36}={}){
  const byID=new Map(view.nodes.map(n=>[n.id,n]));
