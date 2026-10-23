@@ -1,7 +1,7 @@
 {
-  "version": "all-tools-2026-10-22.3",
-  "totalModels": 408,
-  "equipmentModels": 303,
+  "version": "all-tools-2026-10-23.1",
+  "totalModels": 1605,
+  "equipmentModels": 1499,
   "providers": [
     {
       "key": "lie-nielsen",
@@ -16,26 +16,35 @@
       "url": "https://lubanplane.com",
       "version": "lubanplane-2026-10-22.1",
       "models": 27
+    },
+    {
+      "key": "veritas",
+      "name": "Veritas Tools",
+      "url": "https://www.veritastools.ca/en-ca",
+      "version": "veritas-2026-10-23.1",
+      "models": 1197
     }
   ],
-  "lubanCoverage": {
-    "version": "lubanplane-2026-10-22.1",
-    "publicProductPages": 23,
-    "sitemapProductPages": 23,
-    "modelVariants": 27,
-    "variableFamilies": 3,
-    "withoutSKU": 27,
-    "withImages": 27,
-    "sourceImageDownloads": 0,
-    "uncategorizedProductsIncluded": [
-      "Luban Cast Iron 12° Block Plane",
-      "Luban Brass Block 12° Plane &#8211; 102",
-      "Luban No 4-1/2 Plane"
+  "veritasCoverage": {
+    "sitemapProductPages": 601,
+    "uniqueModelReferences": 1197,
+    "itemVariants": 1194,
+    "familiesWithoutItems": [
+      "118160",
+      "119008",
+      "44834"
     ],
-    "sitemapMissingFromAPI": [],
-    "sourceAPISHA256": "c9226c8ebc2c0160b75c88c18a7749401fc518d97ff735aa1c2f78b38af03958"
+    "duplicateItemAppearances": 0,
+    "missingImages": 3,
+    "withoutSKU": 3,
+    "withoutPrice": 3,
+    "priceConflicts": [],
+    "brands": {
+      "Veritas": 922,
+      "null": 272,
+      "Lee Valley": 3
+    }
   },
-  "oldLieNielsenPreservationSHA256": "2fe6a4ddf05d77c00269b79618c5782644a2e05055c91cbe36d0897d8006a062",
-  "missingImages": 1,
-  "imageFilesCopied": 0
+  "oldProvidersPreserved": true,
+  "sourceImageDownloads": 0
 }

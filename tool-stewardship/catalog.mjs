@@ -1,5 +1,5 @@
-import {blank,catalogIDPattern} from './model.mjs?v=1.3.0';
-export const providerLabels={'lie-nielsen':'Lie-Nielsen',lubanplane:'Luban · lubanplane.com'};
+import {blank,catalogIDPattern} from './model.mjs?v=1.4.0';
+export const providerLabels={'lie-nielsen':'Lie-Nielsen',lubanplane:'Luban · lubanplane.com',veritas:'Veritas'};
 export const providerKey=m=>m.id.split(':')[3];
 export const libraryLabels={owned:'มีอยู่แล้ว',wishlist:'อยากมี',reference:'เก็บไว้ศึกษา'};
 export const categoryLabels={handplanes:'กบไสไม้',saws:'เลื่อย',chisels:'สิ่ว',spokeshaves:'กบเหลา / Spokeshave',green_woodworking:'เครื่องมืองานไม้สด',measuring_marking:'วัดและขีดเส้น',sharpening:'ลับคม',tool_care:'ดูแลและจัดเก็บ',workbenches:'โต๊ะงานไม้',parts:'ใบสำรองและอะไหล่',accessories:'อุปกรณ์เสริม',education:'หนังสือและสื่อ',merchandise:'ของที่ระลึก'};

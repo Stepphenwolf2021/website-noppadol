@@ -1,4 +1,4 @@
-export const catalogIDPattern=/^urn:noppadol:catalog:(?:lie-nielsen|lubanplane):[0-9]+$/;
+export const catalogIDPattern=/^urn:noppadol:catalog:(?:(?:lie-nielsen|lubanplane):[0-9]+|veritas:[A-Za-z0-9_-]+)$/;
 export const intentLabels={undecided:'ยังไม่ตัดสินใจ',retain:'เก็บใช้งานต่อ',sell:'ขายส่งต่อ',gift:'มอบให้',bequeath:'วางแผนมรดก'};
 export const purposeLabels={insurance_replacement:'มูลค่าทดแทนเพื่อประกัน',resale_estimate:'ประมาณราคาขายต่อ',asking_price:'ราคาที่ตั้งขาย'};
 export const blank=()=>({story:'',learning:'',care:'',condition:'',conditionDate:'',defects:'',includes:'',handover:'',successor:'',intent:'undecided',valuation:null});
