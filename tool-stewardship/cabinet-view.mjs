@@ -1,0 +1,33 @@
+import {safeURL,libraryLabels,categoryLabels} from './catalog.mjs?v=1.5.0';
+import {personalNetwork,catalogNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.0';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function recordImage(record){return record.catalogReference?.imageURLs?.find(safeURL)||null;}
+export function cabinetEntries(db){return db.records.map(r=>({id:r.id,name:r.title.replace(/^\d+-/,''),image:recordImage(r),status:r.libraryStatus||'owned',record:r}));}
+export function cabinetConnections(db,catalog,id){
+ const personal=id?.startsWith('urn:noppadol:asset:'),network=personal?personalNetwork(db):catalog?catalogNetwork(catalog):{nodes:[],edges:[]};
+ const centre=network.nodes.find(n=>n.id===id);if(!centre)return {centre:null,related:[],edges:[]};
+ const edges=neighbours(network,id),index=new Map(network.nodes.map(n=>[n.id,n]));
+ return {centre,edges,related:edges.map(e=>({edge:e,node:index.get(e.from===id?e.to:e.from)})).filter(x=>x.node)};
+}
+let featured=null,collectionStatus='',showAll=false;
+export function renderCabinet(db,catalog,{onRecord,onModel}={}){
+ const root=document.querySelector('#cabinet');if(!root)return;
+ const entries=cabinetEntries(db),filtered=entries.filter(x=>!collectionStatus||x.status===collectionStatus);
+ document.querySelector('#cabinet-count').textContent=`${entries.length} รายการส่วนตัว · เก็บเฉพาะเบราว์เซอร์นี้`;
+ const first=entries.find(x=>x.image)||entries[0];const defaultID=first?'urn:noppadol:asset:'+first.id:catalog?.models.find(m=>m.category==='handplanes'&&m.imageURLs.length)?.id;
+ let connections=cabinetConnections(db,catalog,featured||defaultID);if(!connections.centre){featured=null;connections=cabinetConnections(db,catalog,defaultID);}
+ const {centre,related}=connections,personal=centre?.type==='asset',data=centre?.data,image=personal?recordImage(data):data?.imageURLs?.find(safeURL);
+ const graphURL='knowledge-graph.html?scope='+(personal?'personal':'catalog')+(centre?'&node='+encodeURIComponent(centre.id):'');
+ const title=personal?data.title.replace(/^\d+-/,''):centre?.label;
+ const photo=(url,label,cls='')=>url?`<img class="${cls}" src="${esc(url)}" alt="${esc(label)}" loading="lazy" referrerpolicy="no-referrer">`:`<span class="object-placeholder ${cls}" aria-label="ยังไม่มีภาพของรายการนี้"><span>◇</span><small>ยังไม่มีภาพอ้างอิง</small></span>`;
+ document.querySelector('#cabinet-world').innerHTML=centre?`<div class="world-heading"><span class="eyebrow">EXPLORE A CONNECTION</span><h2>A tool and its world</h2><p>${personal?'ความสัมพันธ์จากคลังของคุณ':'สำรวจรุ่นจากแค็ตตาล็อกกลาง · ยังไม่ใช่ของในคลังส่วนตัว'}</p></div><div class="world-map"><svg viewBox="0 0 420 350" aria-hidden="true"><g>${related.slice(0,5).map((_,i)=>{const a=i*2*Math.PI/Math.min(related.length,5)-Math.PI/2;return `<line x1="210" y1="178" x2="${210+Math.cos(a)*145}" y2="${178+Math.sin(a)*120}"/>`;}).join('')}</g></svg><a class="world-centre" href="${esc(graphURL)}">${photo(image,title)}<strong>${esc(title)}</strong></a>${related.slice(0,5).map(({node,edge},i)=>{const a=i*2*Math.PI/Math.min(related.length,5)-Math.PI/2;return `<a class="world-node" style="left:${50+Math.cos(a)*35}%;top:${51+Math.sin(a)*34}%" href="knowledge-graph.html?scope=${personal?'personal':'catalog'}&node=${encodeURIComponent(node.id)}"><span class="world-symbol">${({provider:'◎',category:'◈',source:'↗',passport:'▤',value:'◇',model:'◉'})[node.type]||'◦'}</span><small>${esc(edge.label)}</small><strong>${esc(node.label.length>29?node.label.slice(0,28)+'…':node.label)}</strong></a>`;}).join('')}</div><div class="world-selection"><span>${personal?'จากคลังส่วนตัว':'ข้อมูลระดับรุ่นจากต้นทาง'}</span><a href="${esc(graphURL)}">Explore connections ↗</a></div>`:'<div class="world-heading"><span class="eyebrow">KNOWLEDGE, CONNECTED</span><h2>A tool and its world</h2><p>กำลังเปิดแค็ตตาล็อก… คุณยังเปิดทะเบียนส่วนตัวได้ด้านล่าง</p><a href="knowledge-graph.html?scope=personal">สำรวจคลังส่วนตัว ↗</a></div>';
+ const grid=document.querySelector('#cabinet-grid');grid.innerHTML=filtered.length?filtered.slice(0,showAll?filtered.length:8).map(x=>`<article class="cabinet-card"><button class="cabinet-object" data-feature="${esc(x.id)}" aria-label="สำรวจ ${esc(x.name)}">${photo(x.image,x.name)}<span class="object-meta">${esc(libraryLabels[x.status])}</span><h3>${esc(x.name)}</h3></button><div class="cabinet-card-actions"><small>${esc(x.id.startsWith('LOCAL-')?'รายการส่วนตัว':x.id)}</small><button data-open-record="${esc(x.id)}">เปิดทะเบียน ↗</button></div></article>`).join(''):`<div class="cabinet-empty"><h3>${entries.length?'ไม่มีรายการในสถานะนี้':'เริ่มสะสมเรื่องราวของเครื่องมือ'}</h3><p>${entries.length?'เลือกสถานะอื่นเพื่อดูรายการที่มีอยู่':'เปิดแค็ตตาล็อกเพื่อเลือกรุ่นที่สนใจ หรือนำเข้าทะเบียนเดิมของคุณ'}</p><a href="#catalog" data-tab-link="catalog">เปิดแค็ตตาล็อกกลาง ↗</a></div>`;
+ grid.querySelectorAll('[data-feature]').forEach(b=>b.onclick=()=>{featured='urn:noppadol:asset:'+b.dataset.feature;renderCabinet(db,catalog,{onRecord,onModel});document.querySelector('#cabinet-world').scrollIntoView({behavior:'smooth',block:'center'});});
+ grid.querySelectorAll('[data-open-record]').forEach(b=>b.onclick=()=>onRecord?.(b.dataset.openRecord));
+ document.querySelector('#cabinet-status').value=collectionStatus;document.querySelector('#cabinet-status').onchange=e=>{collectionStatus=e.target.value;showAll=false;renderCabinet(db,catalog,{onRecord,onModel});};
+ const more=document.querySelector('#cabinet-more');more.hidden=filtered.length<=8;more.textContent=showAll?'แสดงน้อยลง ↑':`ดูทั้งหมด ${filtered.length} รายการ ↓`;more.onclick=()=>{showAll=!showAll;renderCabinet(db,catalog,{onRecord,onModel});};
+ const stories=db.records.filter(r=>r.stewardship.story||r.stewardship.learning||r.stewardship.care).slice(0,3);
+ document.querySelector('#cabinet-stories').innerHTML=stories.length?stories.map(r=>`<button class="story-card" data-story="${esc(r.id)}"><span class="eyebrow">OWNER'S NOTES</span><h3>${esc(r.title.replace(/^\d+-/,''))}</h3><p>${esc((r.stewardship.story||r.stewardship.learning||r.stewardship.care).slice(0,190))}</p><span>อ่านบันทึก ↗</span></button>`).join(''):`<div class="story-empty"><p>ทุกชิ้นมีเรื่องราวที่รอคุณบันทึก</p><span>เรื่องราว การดูแล และสิ่งที่เรียนรู้จะปรากฏที่นี่ เมื่อคุณบันทึกในทะเบียน</span></div>`;
+ document.querySelectorAll('[data-story]').forEach(b=>b.onclick=()=>onRecord?.(b.dataset.story));
+ document.querySelectorAll('#cabinet img').forEach(img=>img.onerror=()=>{const fallback=document.createElement('span');fallback.className='object-placeholder';fallback.textContent='ภาพอ้างอิงไม่พร้อมใช้งาน';img.replaceWith(fallback);});
+}
