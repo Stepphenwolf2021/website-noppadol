@@ -15,4 +15,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm ci --ignore-scripts
       - run: node --test tests/tool-catalog.test.mjs tests/multi-catalog.test.mjs tests/knowledge-graph.test.mjs tests/veritas-catalog.test.mjs tests/cabinet-view.test.mjs tests/private-photos.test.mjs
