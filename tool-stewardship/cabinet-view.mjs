@@ -1,13 +1,13 @@
-import {safeURL,libraryLabels,categoryLabels} from './catalog.mjs?v=1.5.0';
-import {personalNetwork,catalogNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.0';
+import {safeURL,libraryLabels,categoryLabels} from './catalog.mjs?v=1.5.1';
+import {personalNetwork,catalogNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.1';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function recordImage(record){return record.catalogReference?.imageURLs?.find(safeURL)||null;}
-export function cabinetEntries(db){return db.records.map(r=>({id:r.id,name:r.title.replace(/^\d+-/,''),image:recordImage(r),status:r.libraryStatus||'owned',record:r}));}
+export function cabinetEntries(db){return db.records.map(r=>({id:r.id,name:r.title.replace(/^\d+-/,''),image:recordImage(r),status:r.libraryStatus||'owned',record:r})).sort((a,b)=>Number(Boolean(b.image))-Number(Boolean(a.image)));}
 export function cabinetConnections(db,catalog,id){
  const personal=id?.startsWith('urn:noppadol:asset:'),network=personal?personalNetwork(db):catalog?catalogNetwork(catalog):{nodes:[],edges:[]};
  const centre=network.nodes.find(n=>n.id===id);if(!centre)return {centre:null,related:[],edges:[]};
  const edges=neighbours(network,id),index=new Map(network.nodes.map(n=>[n.id,n]));
- return {centre,edges,related:edges.map(e=>({edge:e,node:index.get(e.from===id?e.to:e.from)})).filter(x=>x.node)};
+ const related=new Map();for(const edge of edges){const node=index.get(edge.from===id?edge.to:edge.from);if(!node)continue;const existing=related.get(node.id);if(existing)existing.edge={...existing.edge,label:existing.edge.label+' · '+edge.label};else related.set(node.id,{edge:{...edge},node});}return {centre,edges,related:[...related.values()]};
 }
 let featured=null,collectionStatus='',showAll=false;
 export function renderCabinet(db,catalog,{onRecord,onModel}={}){

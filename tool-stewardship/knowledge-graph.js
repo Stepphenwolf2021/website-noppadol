@@ -1,7 +1,7 @@
-import {constellationProjection,constellationPositions,nodeImage} from './graph-layout.mjs?v=1.5.0';
-import {catalogNetwork,personalNetwork,selectNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.0';
-import {validate,graph} from './model.mjs?v=1.5.0';
-import {validateCatalog,categoryLabels,providerLabels,providerKey,libraryLabels,safeURL} from './catalog.mjs?v=1.5.0';
+import {constellationProjection,constellationPositions,nodeImage} from './graph-layout.mjs?v=1.5.1';
+import {catalogNetwork,personalNetwork,selectNetwork,neighbours,nodeTypes} from './graph-data.mjs?v=1.5.1';
+import {validate,graph} from './model.mjs?v=1.5.1';
+import {validateCatalog,categoryLabels,providerLabels,providerKey,libraryLabels,safeURL} from './catalog.mjs?v=1.5.1';
 const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let requestedNode=new URLSearchParams(location.search).get('node');
 let scope=new URLSearchParams(location.search).get('scope')==='personal'?'personal':'catalog',catalog=null,db=null,network={nodes:[],edges:[]},view=null,selected=null,page=0,zoom=1,loadError='';

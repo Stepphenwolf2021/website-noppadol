@@ -1,5 +1,5 @@
-import {categoryLabels,providerLabels,providerKey,libraryLabels} from './catalog.mjs?v=1.5.0';
-import {graph,validate} from './model.mjs?v=1.5.0';
+import {categoryLabels,providerLabels,providerKey,libraryLabels} from './catalog.mjs?v=1.5.1';
+import {graph,validate} from './model.mjs?v=1.5.1';
 export const nodeTypes={provider:['แหล่งแค็ตตาล็อก','#816348'],category:['หมวดเครื่องมือ','#536b4c'],model:['รุ่นเครื่องมือ','#8d9d7c'],asset:['รายการส่วนตัว','#365e5c'],source:['หลักฐานต้นทาง','#bb9d72'],passport:['บันทึกดูแล / ส่งต่อ','#9f7861'],value:['ค่าที่บันทึก','#b6a2ba'],condition:['สภาพล่าสุด','#8a9560'],valuation:['การประเมิน','#b48b49'],plan:['แผนส่งต่อ','#ad7468']};
 export function catalogNetwork(c){
  const nodes=new Map(),edges=[];const add=n=>nodes.set(n.id,n);
