@@ -1,0 +1,3 @@
+// Viewing and backup never write or migrate the legacy register or its photos.
+function protect(){for(const s of ['#newPersonalTool','#import','#edit input','#edit textarea','#edit select','#edit button[type="submit"]','#addCatalogForm input','#addCatalogForm select','#addCatalogForm button[type="submit"]','#private-photos input','#private-photos button[type="submit"]','#private-photos [data-cover-photo]','#private-photos [data-remove-photo]','#private-photos [data-restore-photo]'])for(const el of document.querySelectorAll(s))if(!el.disabled)el.disabled=true;}
+protect();new MutationObserver(protect).observe(document.body,{childList:true,subtree:true});
